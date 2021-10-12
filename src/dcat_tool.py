@@ -38,8 +38,9 @@ if __name__=="__main__":
             pprint.pprint(stmt)
 
     if args.makexls:
+        print("DEBUG: Here are the columns that we want to collect, and the type for each:")
         for (s, p, o) in g.triples((None, None, DHS.CollectionRecord)):
-            print("s=",s,"p=",p,"o=",o)
+            print(f"DEBUG: name: {s}")
 
     if args.write:
         fmt = os.path.splitext(args.write)[1][1:].lower()

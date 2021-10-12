@@ -17,6 +17,7 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dhs: <http://github.com/usdhs/dcat-tool/0.1> .
+@prefix dcterms: <http://dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/> .
 
 dhs:CollectionRecord
   a rdfs:Class ;
@@ -37,6 +38,17 @@ dhs:CollectionRecord
   skos:definition "A record in a data catalog, describing the registration of a single dataset or data service."@en ;
 .
 
+dcterms:identifier
+  rdfs:domain dhs:CollectionRecord ;
+  rdfs:label "Identifier"@en ;
+.
+
+dcterms:title
+  rdfs:domain dhs:CollectionRecord ;
+  rdfs:label "Title"@en ;
+.
+
 dcat:accessURL
   rdfs:domain dhs:CollectionRecord ;
+  rdfs:label "Access URL"@en;
 .
