@@ -37,6 +37,10 @@ if __name__=="__main__":
         for stmt in g:
             pprint.pprint(stmt)
 
+    if args.debug:
+        for (s, p, o) in g.triples((None, None, None)):
+            print(s,p,o)
+
     if args.makexls:
         print("DEBUG: Here are the columns that we want to collect, and the type for each:")
         for (s, p, o) in g.triples((None, None, DHS.CollectionRecord)):
