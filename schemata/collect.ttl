@@ -18,6 +18,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix dhs: <http://github.com/usdhs/dcat-tool/0.1> .
 @prefix dcterms: <http://dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
 
 []
   a sh:NodeShape ;
@@ -45,8 +46,7 @@
       a sh:PropertyShape ;
       sh:minCount 1 ;
       sh:path dcterms:title ;
-    ] ,
-    ;
+    ] ;
   sh:targetClass dcat:Dataset ;
   skos:definition "Constraints for a record in a data catalog, describing the registration of a single dataset or data service."@en ;
   .
