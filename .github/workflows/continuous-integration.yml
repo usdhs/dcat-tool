@@ -31,4 +31,4 @@ jobs:
           pip install autopep8 || true
 
       - name: Test with pytest
-        run: pytest --cov=./ --cov-report=xml python
+        run: pytest --cov=./ --cov-report=xml .
