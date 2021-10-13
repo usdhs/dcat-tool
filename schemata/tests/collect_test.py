@@ -2,13 +2,16 @@ import py.test
 import os
 import os.path
 import rdflib
+import glob
 
 from os.path import abspath,dirname,basename
 
-COLLECT_TTL = os.path.join(dirname(dirname(abspath(__file__))), "collect.ttl")
+SCHEMATA_DIR = os.path.join(dirname(dirname(abspath(__file__))))
 
 def test_collect():
-    assert os.path.exists(COLLECT_TTL)
+    assert os.path.exists(SCHEMATA_DIR)
     DHS = rdflib.Namespace("http://github.com/usdhs/dcat-tool/0.1")
     g = rdflib.Graph()
-    g.parse(COLLECT_TTL)
+    for fn in glob.glob( os.path.join(SCHEMATA_DIR,"*.ttl") ):
+        print(fn)
+        g.parse(fn)

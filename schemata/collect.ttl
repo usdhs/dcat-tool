@@ -26,6 +26,12 @@
   sh:property
     [
       a sh:PropertyShape ;
+      a dhs:DataInventoryRecord ;
+      sh:minCount 1 ;
+      sh:path dcterms:identifier ;
+    ] ,
+    [
+      a sh:PropertyShape ;
       sh:class dcat:Resource ;
       sh:maxCount 1 ;
       sh:minCount 1 ;
@@ -36,11 +42,6 @@
       a sh:PropertyShape ;
       sh:minCount 1 ;
       sh:path dcterms:accessURL ;
-    ] ,
-    [
-      a sh:PropertyShape ;
-      sh:minCount 1 ;
-      sh:path dcterms:identifier ;
     ] ,
     [
       a sh:PropertyShape ;
