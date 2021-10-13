@@ -19,36 +19,34 @@
 @prefix dhs: <http://github.com/usdhs/dcat-tool/0.1> .
 @prefix dcterms: <http://dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/> .
 
-dhs:CollectionRecord
-  a rdfs:Class ;
-  a owl:Class ;
+[]
+  a sh:NodeShape ;
   rdfs:comment "Specify the DCATv3 fields (and other fields) that we wish to collect."@en ;
-  rdfs:isDefinedBy <http://www.w3.org/TR/vocab-dcat/> ;
-  rdfs:label "Collection Record"@en ;
-  rdfs:subClassOf [
-      a owl:Restriction ;
-      owl:allValuesFrom dcat:Resource ;
-      owl:onProperty foaf:primaryTopic ;
-    ] ;
-  rdfs:subClassOf [
-      a owl:Restriction ;
-      owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty foaf:primaryTopic ;
-    ] ;
-  skos:definition "A record in a data catalog, describing the registration of a single dataset or data service."@en ;
-.
-
-dcterms:identifier
-  rdfs:domain dhs:CollectionRecord ;
-  rdfs:label "Identifier"@en ;
-.
-
-dcterms:title
-  rdfs:domain dhs:CollectionRecord ;
-  rdfs:label "Title"@en ;
-.
-
-dcat:accessURL
-  rdfs:domain dhs:CollectionRecord ;
-  rdfs:label "Access URL"@en;
-.
+  sh:property
+    [
+      a sh:PropertyShape ;
+      sh:class dcat:Resource ;
+      sh:maxCount 1 ;
+      sh:minCount 1 ;
+      sh:nodeKind sh:BlankNodeOrIRI ;
+      sh:path foaf:primaryTopic ;
+    ] ,
+    [
+      a sh:PropertyShape ;
+      sh:minCount 1 ;
+      sh:path dcterms:accessURL ;
+    ] ,
+    [
+      a sh:PropertyShape ;
+      sh:minCount 1 ;
+      sh:path dcterms:identifier ;
+    ] ,
+    [
+      a sh:PropertyShape ;
+      sh:minCount 1 ;
+      sh:path dcterms:title ;
+    ] ,
+    ;
+  sh:targetClass dcat:Dataset ;
+  skos:definition "Constraints for a record in a data catalog, describing the registration of a single dataset or data service."@en ;
+  .
