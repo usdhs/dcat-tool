@@ -26,8 +26,8 @@ def test_excelGenerator():
     outdir = "/tmp"             # for dev
     fname  = os.path.join(outdir, "inventory_tool.xlsx")
     g = dcat_tool.ExcelGenerator(instructions=dcat_tool.INSTRUCTIONS)
-    g.add(("First Column",'int'))
-    g.add(("Second Column",'string'))
+    g.add(("First Column",'','',50,'int'))
+    g.add(("Second Column",','',50,'string'))
     g.saveToExcel( fname )
 
     # Now load the file and make sure that it has two sheets and instructions
