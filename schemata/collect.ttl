@@ -20,13 +20,18 @@
 @prefix dcterms: <http://dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 
+dhs:dataInventoryRecord
+ a owl:Class, sh:NodeShape ;
+ rdfs:subClassOf dcat:Dataset ;
+ sh:targetClass dhs:DataInventoryRecord ;
+ .
+
 []
   a sh:NodeShape ;
   rdfs:comment "Specify the DCATv3 fields (and other fields) that we wish to collect."@en ;
   sh:property
     [
       a sh:PropertyShape ;
-      a dhs:DataInventoryRecord ;
       sh:minCount 1 ;
       sh:path dcterms:identifier ;
     ] ,
