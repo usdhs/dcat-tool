@@ -30,7 +30,7 @@ class ExcelGenerator:
     def add(self,info):
         """ add (dcat name, display name, help, width, field type)"""
         if len(info)!=5:
-            raise ValueError(f"info={info}. Expected a list with 4 elements")
+            raise ValueError(f"info={info}. Expected a list with 5 elements, got {len(info)}")
         self.fields.append(info)
 
     def saveToExcel(self, fname):
