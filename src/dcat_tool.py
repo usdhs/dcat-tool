@@ -27,12 +27,16 @@ class ExcelGenerator:
         self.fields = []
         self.instructions = instructions
 
-    def add(self,pair):
-        """ add (field name, field type)"""
-        self.fields.append(pair)
+    def add(self,info):
+        """ add (dcat name, display name, help, width, field type)"""
+        if len(info)!=5:
+            raise ValueError(f"info={info}. Expected a list with 4 elements")
+        self.fields.append(info)
 
     def saveToExcel(self, fname):
         wb = easy_workbook.EasyWorkbook()
+        wb.windowWidth=800
+        wb.windowHeight=1000
         wb.remove(wb.active)    # remove default sheet
 
         if self.instructions:
@@ -54,9 +58,15 @@ class ExcelGenerator:
 
         inv = wb.create_sheet("Inventory")
 
-        for (col,(name,typ)) in enumerate(self.fields,1):
-            inv.cell(row=1, column=col).value = name
-            inv.cell(row=1, column=col).alignment = easy_workbook.Alignment(textRotation=45)
+        for (col,(name,display,hlp,width,typ)) in enumerate(self.fields,1):
+            from openpyxl.comments import Comment
+            import openpyxl.utils
+            # We tried making the comment string the description and the DCATv3 type is the comment "author", but that didn't work
+            cell = inv.cell(row=1, column=col)
+            cell.value = display
+            cell.alignment = easy_workbook.Alignment(textRotation=45)
+            cell.comment = Comment(f"{hlp} ({name})",name)
+            inv.column_dimensions[ openpyxl.utils.get_column_letter( cell.col_idx) ].width   = int(width)
         wb.save(fname)
 
 
@@ -73,7 +83,7 @@ if __name__=="__main__":
     parser.add_argument("--debug", help="Enable debugging", action='store_true')
     parser.add_argument("--print", help="Print the schema after it is read", action='store_true')
     parser.add_argument("--write", help="write the schema to the specified file")
-    parser.add_argument("--makexls", help="specify the output filename of the Excel file to make for a collection schema")
+    parser.add_argument("--makexlsx", help="specify the output filename of the Excel file to make for a collection schema")
     parser.add_argument("--extrafields", help="As a hack, specify a csv with DCAT attribute,datatype fields to add to the xls file")
     args = parser.parse_args()
 
@@ -103,10 +113,20 @@ if __name__=="__main__":
         for (s, p, o) in g.triples((None, None, None)):
             print(s,p,o)
 
-    if args.makexls:
+    if args.makexlsx:
         print("DEBUG: Here are the columns that we want to collect, and the type for each:")
         for (s, p, o) in g.triples((None, None, DHS.CollectionRecord)):
             print(f"DEBUG: name: {s}")
+        eg = ExcelGenerator(instructions = INSTRUCTIONS)
+        if args.extrafields:
+            for line in open(args.extrafields):
+                if line[0]=='#':
+                    continue
+                eg.add( line.split(","))
+        eg.saveToExcel( args.makexlsx )
+
+
+
 
     q = """
     SELECT ?nProperty ?nType

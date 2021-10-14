@@ -1,0 +1,3 @@
+# Temporary hack until we learn how to read from collect.ttl file
+dcterms:identifier,unique identifier, Unique identifier for the dataset,50,string
+dcterms:accessURL,access URL,The URL for accessing the dataset,100,string
