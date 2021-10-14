@@ -26,7 +26,6 @@
   sh:property
     [
       a sh:PropertyShape ;
-      a dhs:DataInventoryRecord ;
       sh:minCount 1 ;
       sh:path dcterms:identifier ;
     ] ,
