@@ -25,12 +25,21 @@ in the spreadsheet into its RDF representation.
 
 # For additional Reference
 
-These sites may be useful:
+If you are unfamiliar with the W3C's Semantic Web standards, you may
+find it useful to read these resources, in this order:
 
-* [rdflib documentation](https://rdflib.readthedocs.io/en/stable/)
-* [SHACL: Shapes Constraint Language, a W3C Recommendation](https://www.w3.org/TR/shacl/)
-* [OWL 2 Web Ontology Language Overview](https://www.w3.org/TR/owl2-overview/)
-* [W3C RDF 1.1 Primer](https://www.w3.org/TR/rdf11-primer/)
+1. [W3C RDF 1.1 Primer](https://www.w3.org/TR/rdf11-primer/)
+2. [RDF 1.1 Turtle --- The Terse RDF Triple Language](https://www.w3.org/TR/turtle/)
+3. [rdflib documentation](https://rdflib.readthedocs.io/en/stable/)
+4. [SHACL: Shapes Constraint Language, a W3C Recommendation](https://www.w3.org/TR/shacl/)
+5. [OWL 2 Web Ontology Language Overview](https://www.w3.org/TR/owl2-overview/)
+
+If you are looking for references that are not standards documents, try:
+
+* [Learning SPARQL, 2nd Edition](https://www.oreilly.com/library/view/learning-sparql-2nd/9781449371449/)
+* [Mustafa Jarrar's tutorial on SPARQL](http://www.jarrar.info/courses/WebData/Jarrar.LectureNotes.SPARQL.pdf)
+
+
 
 ## Related Concepts
 

@@ -1,58 +1,55 @@
-# baseURI: http://www.w3.org/ns/dcat
-# imports: http://purl.org/dc/terms/
-# imports: http://www.w3.org/2004/02/skos/core
-# imports: http://www.w3.org/ns/prov-o#
-# prefix: dcat
-
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix dctype: <http://purl.org/dc/dcmitype/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix sdo: <http://schema.org/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dhs: <http://github.com/usdhs/dcat-tool/0.1> .
-@prefix dcterms: <http://dublincore.org/specifications/dublin-core/dcmi-terms/2020-01-20/> .
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix dctype:  <http://purl.org/dc/dcmitype/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sdo:     <http://schema.org/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dhs:     <http://github.com/usdhs/dcat-tool/0.1#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 
 dhs:dataInventoryRecord
- a owl:Class, sh:NodeShape ;
+ a owl:Class ;
  rdfs:subClassOf dcat:Dataset ;
- sh:targetClass dhs:DataInventoryRecord ;
  .
 
-[]
+dhs:dataInventoryRecord
   a sh:NodeShape ;
   rdfs:comment "Specify the DCATv3 fields (and other fields) that we wish to collect."@en ;
   sh:property
     [
-      a sh:PropertyShape ;
-      sh:minCount 1 ;
       sh:path dcterms:identifier ;
+      sh:minCount 1 ;
+      dhs:excelWidth 30;
+      a sh:PropertyShape ;
     ] ,
     [
+      sh:path dcterms:title ;
+      sh:minCount 1 ;
+      dhs:excelWidth 100;
       a sh:PropertyShape ;
+    ],
+    [
+      sh:path foaf:primaryTopic ;
       sh:class dcat:Resource ;
       sh:maxCount 1 ;
       sh:minCount 1 ;
       sh:nodeKind sh:BlankNodeOrIRI ;
-      sh:path foaf:primaryTopic ;
+      dhs:excelWidth 30;
+      a sh:PropertyShape ;
     ] ,
     [
-      a sh:PropertyShape ;
       sh:minCount 1 ;
       sh:path dcterms:accessURL ;
-    ] ,
-    [
+      dhs:excelWidth 50;
       a sh:PropertyShape ;
-      sh:minCount 1 ;
-      sh:path dcterms:title ;
     ] ;
-  sh:targetClass dcat:Dataset ;
+  sh:targetClass dhs:dataInventoryRecord ;
   skos:definition "Constraints for a record in a data catalog, describing the registration of a single dataset or data service."@en ;
-  .
+.
