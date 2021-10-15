@@ -1,0 +1,10 @@
+# Temporary hack until we learn how to read from collect.ttl file
+dcterms:identifier,unique identifier, Unique identifier for the dataset,50,string
+dcterms:title,Dataset Name,Name of the dataset,100,string
+dcat:keyword,Keywords,Keywords,50,string
+dcterms:publisher,Publisher,Publisher of the dataset,50,string
+usg:accessLevel,Public Access Level,Enter 'restricted public' 'Non-Public' or 'Public',50,string
+usg:metadataClassification,Classification (metadata),,50,string
+dcterms:issued,Release Date,Date that the data was published,50,date
+# Cataloged Resource (Data Governance Information)
+dcterms:accessURL,access URL,The URL for accessing the dataset,100,string
