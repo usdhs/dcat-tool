@@ -18,7 +18,7 @@ from rdflib import Dataset, Graph, URIRef, Literal, Namespace
 import easy_workbook
 
 SCHEMATA_DIR = os.path.join(dirname(abspath( __file__ )) , "../schemata")
-COLLECT_TTL  = os.path.join(SCHEMATA_DIR, "collect.ttl")
+COLLECT_TTL  = os.path.join(SCHEMATA_DIR, "dhs_collect.ttl")
 INSTRUCTIONS = os.path.join(dirname(abspath( __file__ )), "instructions.md")
 
 # CQUERY is the query to create the collection instrument
@@ -83,6 +83,15 @@ class ExcelGenerator:
             inv.column_dimensions[ openpyxl.utils.get_column_letter( cell.col_idx) ].width   = int(width)
         wb.save(fname)
 
+class Simplifier:
+    def __init__(self, graph):
+        self.graph = graph
+    def simplify(self, token):
+        for prefix,ns in self.graph.namespaces():
+            if ns:
+                if token.startswith(ns):
+                    return prefix+":"+token[len(ns):]
+        return token
 
 if __name__=="__main__":
     import argparse
@@ -102,6 +111,7 @@ if __name__=="__main__":
     args = parser.parse_args()
 
     DHS = Namespace("http://github.com/usdhs/dcat-tool/0.1")
+    RDFS = Namespace("http://www.w3.org/2000/01/rdf-schema#")
     print("DHS:",DHS)
 
     g = Graph()
@@ -120,21 +130,31 @@ if __name__=="__main__":
             pprint.pprint(stmt)
             print()
 
-    for r in g.query(CQUERY):
-        print(r)
-        print()
-        print("---")
+    # g2 is an output graph of the terms in the collection instrument
+    simp = Simplifier(g)
+    g2 = Graph()
+    # Copy over the namespaces
+    for ns_prefix,namespace in g.namespaces():
+        print(f"bind({ns_prefix},{namespace})")
+        g2.bind(ns_prefix, namespace)
 
-    if not query_result:
-        print("ERROR. Query produced no output:",file=sys.stderr)
-        print(CQUERY, file=sys.stderr)
-        exit(1)
+    for r in g.query(CQUERY):
+        d = r.asdict()
+        (aProperty, aType, aWidth) = r
+        print(d.keys())
+        print(simp.simplify(d.get('aProperty','')), d.get('aType','n/a'))
+        if aProperty and aType:
+            triple =(aProperty, RDFS.range, aType)
+            #print("triple=",triple)
+            g2.add(triple )
+
+    #g2.serialize("foo.ttl",format="ttl")
 
     if args.makexlsx:
+        eg = ExcelGenerator(instructions = INSTRUCTIONS)
         print("DEBUG: Here are the columns that we want to collect, and the type for each:")
         for (s, p, o) in g.triples((None, None, DHS.CollectionRecord)):
             print(f"DEBUG: name: {s}")
-        eg = ExcelGenerator(instructions = INSTRUCTIONS)
         if args.extrafields:
             for line in open(args.extrafields):
                 if line[0]=='#':
@@ -143,6 +163,8 @@ if __name__=="__main__":
         eg.saveToExcel( args.makexlsx )
 
     if args.write:
+        print(dir(g))
+        exit(0)
         fmt = os.path.splitext(args.write)[1][1:].lower()
         if fmt=='json':
             fmt='json-ld'
