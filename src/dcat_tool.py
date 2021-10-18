@@ -35,54 +35,6 @@ WHERE {
 """
 
 
-# This should be folded into ctools schema package
-class ExcelGenerator:
-    def __init__(self, instructions=None):
-        self.fields = []
-        self.instructions = instructions
-
-    def add(self,info):
-        """ add (dcat name, display name, help, width, field type)"""
-        if len(info)!=5:
-            raise ValueError(f"info={info}. Expected a list with 5 elements, got {len(info)}")
-        self.fields.append(info)
-
-    def saveToExcel(self, fname):
-        wb = easy_workbook.EasyWorkbook()
-        wb.windowWidth=800
-        wb.windowHeight=1000
-        wb.remove(wb.active)    # remove default sheet
-
-        if self.instructions:
-            ins = wb.create_sheet("Instructions")
-            for (row,line) in enumerate(open(self.instructions),1):
-                font = None
-                if line.startswith("# "):
-                    line = line[2:]
-                    font = easy_workbook.H1
-                if line.startswith("## "):
-                    line = line[3:]
-                    font = easy_workbook.H2
-                if line.startswith("### "):
-                    line = line[4:]
-                    font = easy_workbook.H3
-                ins.cell(row=row, column=1).value = line.strip()
-                if font:
-                    ins.cell(row=row, column=1).font = font
-
-        inv = wb.create_sheet("Inventory")
-
-        for (col,(name,display,hlp,width,typ)) in enumerate(self.fields,1):
-            from openpyxl.comments import Comment
-            import openpyxl.utils
-            # We tried making the comment string the description and the DCATv3 type is the comment "author", but that didn't work
-            cell = inv.cell(row=1, column=col)
-            cell.value = display
-            cell.alignment = easy_workbook.Alignment(textRotation=45)
-            cell.comment = Comment(f"{hlp} ({name})",name)
-            inv.column_dimensions[ openpyxl.utils.get_column_letter( cell.col_idx) ].width   = int(width)
-        wb.save(fname)
-
 class Simplifier:
     def __init__(self, graph):
         self.graph = graph
@@ -114,6 +66,7 @@ if __name__=="__main__":
     RDFS = Namespace("http://www.w3.org/2000/01/rdf-schema#")
     print("DHS:",DHS)
 
+    ci_objs = []
     g = Graph()
     seen   = set()
     for fname in glob.glob( os.path.join(args.schemadir,"*.ttl")) + [args.schema]:
@@ -141,7 +94,6 @@ if __name__=="__main__":
     for r in g.query(CQUERY):
         d = r.asdict()
         (aProperty, aType, aWidth) = r
-        print(d.keys())
         print(simp.simplify(d.get('aProperty','')), d.get('aType','n/a'))
         if aProperty and aType:
             triple =(aProperty, RDFS.range, aType)
@@ -150,17 +102,19 @@ if __name__=="__main__":
 
     #g2.serialize("foo.ttl",format="ttl")
 
+    if args.extrafields:
+        for line in open(args.extrafields):
+            if line[0]=='#':
+                continue
+            ci = easy_workbook.ColumnInfo()
+            (ci.name,ci.display,ci.hlp,ci.width,ci.typ) = line.split(",")
+            ci_objs.append( ci )
+
     if args.makexlsx:
-        eg = ExcelGenerator(instructions = INSTRUCTIONS)
-        print("DEBUG: Here are the columns that we want to collect, and the type for each:")
-        for (s, p, o) in g.triples((None, None, DHS.CollectionRecord)):
-            print(f"DEBUG: name: {s}")
-        if args.extrafields:
-            for line in open(args.extrafields):
-                if line[0]=='#':
-                    continue
-                eg.add( line.split(","))
-        eg.saveToExcel( args.makexlsx )
+        eg = easy_workbook.ExcelGenerator()
+        eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read())
+        eg.add_columns_sheet("Inventory", ci_objs)
+        eg.save( args.makexlsx )
 
     if args.write:
         print(dir(g))

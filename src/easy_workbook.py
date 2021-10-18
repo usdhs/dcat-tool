@@ -87,3 +87,55 @@ class EasyWorkbook(Workbook):
         cell = ws.cell(row=row, column=column)
         for (key,value) in kwargs.items():
             setattr(cell, key, value)
+
+
+class ColumnInfo:
+    __slots__ = ('name','display','hlp', 'width', 'typ')
+    def __init__(self, **kwargs):
+        for k,v in kwargs.items():
+            setattr(self, k, v)
+
+# Slightly higher-level
+class ExcelGenerator:
+    def __init__(self):
+        self.wb = EasyWorkbook()
+        self.wb.remove(self.wb.active)    # remove default sheet
+
+    def add_markdown_sheet( self, name, markdown):
+        ins = self.wb.create_sheet( name )
+        for (row,line) in enumerate( markdown.split("\n"),1):
+            font = None
+            if line.startswith("# "):
+                line = line[2:]
+                font = H1
+            if line.startswith("## "):
+                line = line[3:]
+                font = H2
+            if line.startswith("### "):
+                line = line[4:]
+                font = H3
+            ins.cell(row=row, column=1).value = line.strip()
+            if font:
+                ins.cell(row=row, column=1).font = font
+
+    def add_columns_sheet(self, name, ci_list):
+        """ add (dcat name, display name, help, width, field type)"""
+        if not isinstance(ci_list, list):
+            raise ValueError(f"{ci_list} is not a list, it is a {type(ci_list)}")
+        for ci in ci_list:
+            if not isinstance(ci, ColumnInfo):
+                raise ValueError(f"{ci} is not an instance of ColumnInfo, it is a {type(ci)}")
+        inv = self.wb.create_sheet( name )
+
+        for (col,obj) in enumerate( ci_list, 1):
+            from openpyxl.comments import Comment
+            import openpyxl.utils
+            # We tried making the comment string the description and the DCATv3 type is the comment "author", but that didn't work
+            cell = inv.cell(row=1, column=col)
+            cell.value = obj.display
+            cell.alignment = Alignment(textRotation=45)
+            cell.comment = Comment(f"{obj.hlp} ({obj.name})",obj.name)
+            inv.column_dimensions[ openpyxl.utils.get_column_letter( cell.col_idx) ].width   = int(obj.width)
+
+    def save(self, fname):
+        self.wb.save(fname)
