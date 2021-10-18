@@ -11,15 +11,13 @@ from os.path import abspath,dirname,basename
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 SCHEMATA_DIR = os.path.join(dirname(dirname(dirname(abspath( __file__ )))) , "schemata")
-COLLECT_TTL  = os.path.join(SCHEMATA_DIR, "collect.ttl")
 
 import dcat_tool
 
 def test_collect():
-    assert os.path.exists(SCHEMATA_DIR)
     DHS = rdflib.Namespace("http://github.com/usdhs/dcat-tool/0.1")
     g = rdflib.Graph()
-    g.parse( COLLECT_TTL )
+    g.parse( dcat_tool.COLLECT_TTL )
 
 def test_excelGenerator():
     outdir = tempfile.TemporaryDirectory()
