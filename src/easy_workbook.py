@@ -31,6 +31,8 @@ PR_FILL     = PatternFill(fill_type='solid', start_color='F4D03F')       # yello
 STATE1_FILL = PatternFill(fill_type='solid', start_color='F2F4F4')   # silver
 STATE2_FILL = PatternFill(fill_type='solid', start_color='A9CCE3') # blue
 
+LIGHT_COLORS = ['FFFFEE','FFEEFF','EEFFFF','FFEEEE','EEFFEE','EEEEFF','EEEEEE']
+
 def darker(openpyxl_fill):
     rgb = openpyxl_fill.start_color.rgb
     (r,g,b) = [int(s,16) for s in [rgb[0:2],rgb[2:4],rgb[4:6]]]
@@ -90,7 +92,7 @@ class EasyWorkbook(Workbook):
 
 
 class ColumnInfo:
-    __slots__ = ('value', 'comment', 'author', 'width', 'typ')
+    __slots__ = ('value', 'comment', 'author', 'width', 'typ', 'group')
     def __init__(self, **kwargs):
         for k,v in kwargs.items():
             setattr(self, k, v)
@@ -120,24 +122,58 @@ class ExcelGenerator:
             if font:
                 ins.cell(row=row, column=1).font = font
 
-    def add_columns_sheet(self, name, ci_list):
+    def add_columns_sheet(self, name, ci_list, rows=100):
         """ add (dcat name, display name, help, width, field type)"""
         if not isinstance(ci_list, list):
             raise ValueError(f"{ci_list} is not a list, it is a {type(ci_list)}")
         for ci in ci_list:
             if not isinstance(ci, ColumnInfo):
                 raise ValueError(f"{ci} is not an instance of ColumnInfo, it is a {type(ci)}")
-        inv = self.wb.create_sheet( name )
+        ws = self.wb.create_sheet( name )
+
+        last_group = None
+        color_index = 0
+        my_border = Border(left=Side(style=BORDER_THIN),
+                           right=Side(style=BORDER_THIN),
+                           top=Side(style=BORDER_THIN),
+                           bottom=Side(style=BORDER_THIN))
+
+        group_border = Border(left=Side(style=BORDER_THICK),
+                           right=Side(style=BORDER_THIN),
+                           top=Side(style=BORDER_THIN),
+                           bottom=Side(style=BORDER_THIN))
 
         for (col,obj) in enumerate( ci_list, 1):
             from openpyxl.comments import Comment
             import openpyxl.utils
+
+
             # We tried making the comment string the description and the DCATv3 type is the comment "author", but that didn't work
-            cell = inv.cell(row=1, column=col)
+            cell = ws.cell(row=1, column=col)
             cell.value = obj.value
             cell.alignment = Alignment(textRotation=45)
-            cell.comment = Comment(obj.comment + "<obj.author>" , "")
-            inv.column_dimensions[ openpyxl.utils.get_column_letter( cell.col_idx) ].width   = obj.width
+            cell.comment = Comment(obj.comment + "\n" + "<" + obj.author + ">" , "")
+            cell.comment.width = 200
+            cell.comment.height = 400
+            column_letter = openpyxl.utils.get_column_letter( cell.col_idx)
+            ws.column_dimensions[ column_letter ].width   = obj.width
+
+            new_border = my_border
+            if last_group != obj.group:
+                last_group = obj.group
+                color_index = (color_index + 1) % len(LIGHT_COLORS)
+                group_color = LIGHT_COLORS[color_index]
+                color_fill = PatternFill(start_color = group_color, end_color=group_color, fill_type='solid')
+                new_border = group_border
+            cell.fill = color_fill
+            cell.border = new_border
+            for row in range(2,rows):
+                cell2 = ws.cell(row=row, column=col)
+                cell2.value=''
+                cell2.fill = color_fill
+                cell2.border = new_border
+
+
             # TODO: handle typ
 
     def save(self, fname):

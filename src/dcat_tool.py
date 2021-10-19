@@ -21,12 +21,12 @@ import easy_workbook
 SCHEMATA_DIR = os.path.join(dirname(abspath( __file__ )) , "../schemata")
 COLLECT_TTL  = os.path.join(SCHEMATA_DIR, "dhs_collect.ttl")
 INSTRUCTIONS = os.path.join(dirname(abspath( __file__ )), "instructions.md")
-DEFAULT_WIDTH = 30              # Excel spreadsheet default width
+DEFAULT_WIDTH = 15              # Excel spreadsheet default width
 
 # CQUERY is the query to create the collection instrument
 # ?aShapeName is the name of the blank nodes that are actually the column constraints in the schema.
 CQUERY = """
-SELECT ?aProperty ?aTitle ?aComment ?aType ?aWidth
+SELECT DISTINCT ?aProperty ?aTitle ?aComment ?aType ?aWidth ?aGroup
 WHERE {
   dhs:dataInventoryRecord sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
@@ -35,9 +35,9 @@ WHERE {
   OPTIONAL { ?aShapeName dhs:excelWidth ?aWidth . }
   OPTIONAL { ?aProperty  rdfs:comment   ?aComment . }
   OPTIONAL { ?aShapeName dt:title  ?aTitle . }
+  OPTIONAL { ?aShapeName dt:group  ?aGroup . }
 }
 """
-
 
 class Simplifier:
     def __init__(self, graph):
@@ -66,7 +66,7 @@ if __name__=="__main__":
     parser.add_argument("--dump", help="Dump the triple store after everything it is read", action='store_true')
     parser.add_argument("--write", help="write the schema to the specified file")
     parser.add_argument("--makexlsx", help="specify the output filename of the Excel file to make for a collection schema")
-    parser.add_argument("--extrafields", help="As a hack, specify a csv with DCAT attribute,datatype fields to add to the xls file")
+    parser.add_argument("--noinstructions", help="Do not generate instructions. Mostly for debugging.", action='store_true')
     args = parser.parse_args()
 
     DHS = Namespace("http://github.com/usdhs/dcat-tool/0.1")
@@ -108,7 +108,7 @@ if __name__=="__main__":
             if d['aComment'].language != 'en':
                 skip = True
         except (KeyError,AttributeError) as e:
-            continue
+            pass
         if skip:
             continue
 
@@ -118,10 +118,12 @@ if __name__=="__main__":
             title = simp.simplify(d['aProperty'], namespace=False)
 
         obj = easy_workbook.ColumnInfo(value = title, # what is displayed in cell
-                                       comment = d.get('aComment',''),
+                                       comment = title + ":\n" + d.get('aComment',''),
                                        author = simp.simplify(d['aProperty']),
                                        width = int(d.get('aWidth',DEFAULT_WIDTH)),
-                                       typ = simp.simplify(d.get('aType', DEFAULT_TYPE)))
+                                       typ = simp.simplify(d.get('aType', DEFAULT_TYPE)),
+                                       group = d.get('aGroup',''),
+                                       )
 
         # Add the object to the column list
         ci_objs.append( obj )
@@ -138,17 +140,10 @@ if __name__=="__main__":
             pass
 
 
-    if args.extrafields:
-        for line in open(args.extrafields):
-            if line[0]=='#':
-                continue
-            ci = easy_workbook.ColumnInfo()
-            (ci.name, ci.display, ci.hlp, ci.width, ci.typ) = line.split(",")
-            ci_objs.append( ci )
-
     if args.makexlsx:
         eg = easy_workbook.ExcelGenerator()
-        eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read())
+        if not args.noinstructions:
+            eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read())
         eg.add_columns_sheet("Inventory", ci_objs)
         eg.save( args.makexlsx )
 
