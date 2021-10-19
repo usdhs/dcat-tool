@@ -27,8 +27,8 @@ def test_excelGenerator():
     g = easy_workbook.ExcelGenerator()
     g.add_markdown_sheet("Instructions", open(dcat_tool.INSTRUCTIONS).read())
     g.add_columns_sheet("Inventory",
-                        [easy_workbook.ColumnInfo(name="First Column", display="The First Column", hlp="Help 1", width=50, typ='int'),
-                         easy_workbook.ColumnInfo(name="Second Column", display="The Second Column", hlp="Help 2", width=50, typ='int')])
+                        [easy_workbook.ColumnInfo(value="First Column", comment="Foo", author="Author 1", width=50, typ='int'),
+                         easy_workbook.ColumnInfo(value="Second Column", comment="Bar", author="Author 2", width=50, typ='int')])
 
     g.save( fname )
 
