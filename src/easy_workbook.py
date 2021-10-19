@@ -90,10 +90,12 @@ class EasyWorkbook(Workbook):
 
 
 class ColumnInfo:
-    __slots__ = ('name','display','hlp', 'width', 'typ')
+    __slots__ = ('value', 'comment', 'author', 'width', 'typ')
     def __init__(self, **kwargs):
         for k,v in kwargs.items():
             setattr(self, k, v)
+    def __str__(self):
+        return f"<ColumnInfo value={self.value} comment={self.comment} width={self.width} typ={self.typ}>"
 
 # Slightly higher-level
 class ExcelGenerator:
@@ -132,10 +134,11 @@ class ExcelGenerator:
             import openpyxl.utils
             # We tried making the comment string the description and the DCATv3 type is the comment "author", but that didn't work
             cell = inv.cell(row=1, column=col)
-            cell.value = obj.display
+            cell.value = obj.value
             cell.alignment = Alignment(textRotation=45)
-            cell.comment = Comment(f"{obj.hlp} ({obj.name})",obj.name)
-            inv.column_dimensions[ openpyxl.utils.get_column_letter( cell.col_idx) ].width   = int(obj.width)
+            cell.comment = Comment(obj.comment + "<obj.author>" , "")
+            inv.column_dimensions[ openpyxl.utils.get_column_letter( cell.col_idx) ].width   = obj.width
+            # TODO: handle typ
 
     def save(self, fname):
         self.wb.save(fname)

@@ -11,6 +11,7 @@ import sys
 import pprint
 import glob
 import time
+import rdflib
 from rdflib import Dataset, Graph, URIRef, Literal, Namespace
 
 #sys.path.append(os.path.dirname(__file__))
@@ -20,17 +21,20 @@ import easy_workbook
 SCHEMATA_DIR = os.path.join(dirname(abspath( __file__ )) , "../schemata")
 COLLECT_TTL  = os.path.join(SCHEMATA_DIR, "dhs_collect.ttl")
 INSTRUCTIONS = os.path.join(dirname(abspath( __file__ )), "instructions.md")
+DEFAULT_WIDTH = 30              # Excel spreadsheet default width
 
 # CQUERY is the query to create the collection instrument
 # ?aShapeName is the name of the blank nodes that are actually the column constraints in the schema.
 CQUERY = """
-SELECT ?aProperty ?aType ?aWidth
+SELECT ?aProperty ?aTitle ?aComment ?aType ?aWidth
 WHERE {
   dhs:dataInventoryRecord sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
 
-  OPTIONAL { ?aProperty rdfs:range ?aType . }
+  OPTIONAL { ?aProperty  rdfs:range ?aType . }
   OPTIONAL { ?aShapeName dhs:excelWidth ?aWidth . }
+  OPTIONAL { ?aProperty  rdfs:comment   ?aComment . }
+  OPTIONAL { ?aShapeName dt:title  ?aTitle . }
 }
 """
 
@@ -38,11 +42,14 @@ WHERE {
 class Simplifier:
     def __init__(self, graph):
         self.graph = graph
-    def simplify(self, token):
+    def simplify(self, token, namespace=True):
         for prefix,ns in self.graph.namespaces():
             if ns:
                 if token.startswith(ns):
-                    return prefix+":"+token[len(ns):]
+                    if namespace:
+                        return prefix+":"+token[len(ns):]
+                    else:
+                        return token[len(ns):]
         return token
 
 if __name__=="__main__":
@@ -64,7 +71,9 @@ if __name__=="__main__":
 
     DHS = Namespace("http://github.com/usdhs/dcat-tool/0.1")
     RDFS = Namespace("http://www.w3.org/2000/01/rdf-schema#")
-    print("DHS:",DHS)
+    XSD  = Namespace("http://www.w3.org/2001/XMLSchema#")
+
+    DEFAULT_TYPE = XSD.string
 
     ci_objs = []
     g = Graph()
@@ -79,35 +88,62 @@ if __name__=="__main__":
         raise RuntimeError("No schema files specified")
 
     if args.dump:
+        print("Dumping triple store:\n")
         for stmt in sorted(g):
             pprint.pprint(stmt)
             print()
 
     # g2 is an output graph of the terms in the collection instrument
-    simp = Simplifier(g)
     g2 = Graph()
-    # Copy over the namespaces
+
+    # Copy over the namespaces from the triples we read to the graph we are producing
     for ns_prefix,namespace in g.namespaces():
-        print(f"bind({ns_prefix},{namespace})")
         g2.bind(ns_prefix, namespace)
 
+    simp = Simplifier(g)
     for r in g.query(CQUERY):
         d = r.asdict()
-        (aProperty, aType, aWidth) = r
-        print(simp.simplify(d.get('aProperty','')), d.get('aType','n/a'))
-        if aProperty and aType:
-            triple =(aProperty, RDFS.range, aType)
-            #print("triple=",triple)
-            g2.add(triple )
+        skip = False
+        try:
+            if d['aComment'].language != 'en':
+                skip = True
+        except (KeyError,AttributeError) as e:
+            continue
+        if skip:
+            continue
 
-    #g2.serialize("foo.ttl",format="ttl")
+        try:
+            title = d['aTitle']
+        except KeyError:
+            title = simp.simplify(d['aProperty'], namespace=False)
+
+        obj = easy_workbook.ColumnInfo(value = title, # what is displayed in cell
+                                       comment = d.get('aComment',''),
+                                       author = simp.simplify(d['aProperty']),
+                                       width = int(d.get('aWidth',DEFAULT_WIDTH)),
+                                       typ = simp.simplify(d.get('aType', DEFAULT_TYPE)))
+
+        # Add the object to the column list
+        ci_objs.append( obj )
+
+        # Now create the collection graph
+        try:
+            g2.add( (d['aProperty'], RDFS.range,   d['aType']) )
+        except KeyError as e:
+            pass
+
+        try:
+            g2.add( (d['aProperty'], RDFS.comment,   d['aComment']) )
+        except KeyError as e:
+            pass
+
 
     if args.extrafields:
         for line in open(args.extrafields):
             if line[0]=='#':
                 continue
             ci = easy_workbook.ColumnInfo()
-            (ci.name,ci.display,ci.hlp,ci.width,ci.typ) = line.split(",")
+            (ci.name, ci.display, ci.hlp, ci.width, ci.typ) = line.split(",")
             ci_objs.append( ci )
 
     if args.makexlsx:
@@ -117,9 +153,7 @@ if __name__=="__main__":
         eg.save( args.makexlsx )
 
     if args.write:
-        print(dir(g))
-        exit(0)
         fmt = os.path.splitext(args.write)[1][1:].lower()
         if fmt=='json':
             fmt='json-ld'
-        g.serialize(destination=args.write, format=fmt)
+        g2.serialize(destination=args.write, format=fmt)

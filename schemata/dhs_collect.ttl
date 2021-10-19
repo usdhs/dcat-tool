@@ -11,7 +11,8 @@
 @prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
 @prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
-@prefix dhs:     <http://github.com/usdhs/dcat-tool/0.1#> .
+@prefix dhs:     <http://github.com/usdhs/DCAT-dhs/0.1#> .
+@prefix dt:      <http://github.com/usdhs/dcat-tool/0.1#> .
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
 @prefix usg:     <http://resources.data.gov/resources/dcat-us/#> .
 
@@ -24,7 +25,7 @@ dhs:dataInventoryRecord
   a sh:NodeShape ;
   rdfs:comment "Specify the DCATv3 fields (and other fields) that we wish to collect."@en ;
   sh:property
-    [ sh:path dcterms:identifier         ; sh:minCount 1 ; rdfs:comment:"A unique identifier for the dataset"@en; dhs:excelWidth  30; a sh:PropertyShape ; ] ,
+    [ sh:path dcterms:identifier         ; sh:minCount 1 ; rdfs:comment:"A unique identifier for the dataset"@en; dhs:excelWidth 20; a sh:PropertyShape ; ] ,
     [ sh:path dcterms:title              ; sh:minCount 1 ; rdfs:comment:"The official title for the datset"@en; dhs:excelWidth 100; a sh:PropertyShape ; ],
     [ sh:path dcterms:description        ; sh:minCount 1 ; dhs:excelWidth 100; a sh:PropertyShape ; ],
     [ sh:path dcat:keyword               ; sh:minCount 0 ; dhs:excelWidth 100; a sh:PropertyShape ; ],
