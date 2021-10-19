@@ -11,23 +11,25 @@ from os.path import abspath,dirname,basename
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 SCHEMATA_DIR = os.path.join(dirname(dirname(dirname(abspath( __file__ )))) , "schemata")
-COLLECT_TTL  = os.path.join(SCHEMATA_DIR, "collect.ttl")
 
 import dcat_tool
+import easy_workbook
 
 def test_collect():
-    assert os.path.exists(SCHEMATA_DIR)
     DHS = rdflib.Namespace("http://github.com/usdhs/dcat-tool/0.1")
     g = rdflib.Graph()
-    g.parse( COLLECT_TTL )
+    g.parse( dcat_tool.COLLECT_TTL )
 
 def test_excelGenerator():
     outdir = tempfile.TemporaryDirectory()
     outdir = "/tmp"             # for dev
     fname  = os.path.join(outdir, "inventory_tool.xlsx")
-    g = dcat_tool.ExcelGenerator(instructions=dcat_tool.INSTRUCTIONS)
-    g.add(("First Column",'','',50,'int'))
-    g.add(("Second Column",'','',50,'string'))
-    g.saveToExcel( fname )
+    g = easy_workbook.ExcelGenerator()
+    g.add_markdown_sheet("Instructions", open(dcat_tool.INSTRUCTIONS).read())
+    g.add_columns_sheet("Inventory",
+                        [easy_workbook.ColumnInfo(value="First Column", comment="Foo", author="Author 1", width=50, typ='int', group='a'),
+                         easy_workbook.ColumnInfo(value="Second Column", comment="Bar", author="Author 2", width=50, typ='int', group='b')])
+
+    g.save( fname )
 
     # Now load the file and make sure that it has two sheets and instructions

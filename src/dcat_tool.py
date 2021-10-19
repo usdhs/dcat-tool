@@ -11,6 +11,7 @@ import sys
 import pprint
 import glob
 import time
+import rdflib
 from rdflib import Dataset, Graph, URIRef, Literal, Namespace
 
 #sys.path.append(os.path.dirname(__file__))
@@ -18,71 +19,38 @@ from rdflib import Dataset, Graph, URIRef, Literal, Namespace
 import easy_workbook
 
 SCHEMATA_DIR = os.path.join(dirname(abspath( __file__ )) , "../schemata")
-COLLECT_TTL  = os.path.join(SCHEMATA_DIR, "collect.ttl")
+COLLECT_TTL  = os.path.join(SCHEMATA_DIR, "dhs_collect.ttl")
 INSTRUCTIONS = os.path.join(dirname(abspath( __file__ )), "instructions.md")
+DEFAULT_WIDTH = 15              # Excel spreadsheet default width
 
 # CQUERY is the query to create the collection instrument
 # ?aShapeName is the name of the blank nodes that are actually the column constraints in the schema.
 CQUERY = """
-SELECT ?aProperty ?aType ?aWidth
+SELECT DISTINCT ?aProperty ?aTitle ?aComment ?aType ?aWidth ?aGroup
 WHERE {
   dhs:dataInventoryRecord sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
 
-  OPTIONAL { ?aProperty rdfs:range ?aType . }
+  OPTIONAL { ?aProperty  rdfs:range ?aType . }
   OPTIONAL { ?aShapeName dhs:excelWidth ?aWidth . }
+  OPTIONAL { ?aProperty  rdfs:comment   ?aComment . }
+  OPTIONAL { ?aShapeName dt:title  ?aTitle . }
+  OPTIONAL { ?aShapeName dt:group  ?aGroup . }
 }
 """
 
-
-# This should be folded into ctools schema package
-class ExcelGenerator:
-    def __init__(self, instructions=None):
-        self.fields = []
-        self.instructions = instructions
-
-    def add(self,info):
-        """ add (dcat name, display name, help, width, field type)"""
-        if len(info)!=5:
-            raise ValueError(f"info={info}. Expected a list with 5 elements, got {len(info)}")
-        self.fields.append(info)
-
-    def saveToExcel(self, fname):
-        wb = easy_workbook.EasyWorkbook()
-        wb.windowWidth=800
-        wb.windowHeight=1000
-        wb.remove(wb.active)    # remove default sheet
-
-        if self.instructions:
-            ins = wb.create_sheet("Instructions")
-            for (row,line) in enumerate(open(self.instructions),1):
-                font = None
-                if line.startswith("# "):
-                    line = line[2:]
-                    font = easy_workbook.H1
-                if line.startswith("## "):
-                    line = line[3:]
-                    font = easy_workbook.H2
-                if line.startswith("### "):
-                    line = line[4:]
-                    font = easy_workbook.H3
-                ins.cell(row=row, column=1).value = line.strip()
-                if font:
-                    ins.cell(row=row, column=1).font = font
-
-        inv = wb.create_sheet("Inventory")
-
-        for (col,(name,display,hlp,width,typ)) in enumerate(self.fields,1):
-            from openpyxl.comments import Comment
-            import openpyxl.utils
-            # We tried making the comment string the description and the DCATv3 type is the comment "author", but that didn't work
-            cell = inv.cell(row=1, column=col)
-            cell.value = display
-            cell.alignment = easy_workbook.Alignment(textRotation=45)
-            cell.comment = Comment(f"{hlp} ({name})",name)
-            inv.column_dimensions[ openpyxl.utils.get_column_letter( cell.col_idx) ].width   = int(width)
-        wb.save(fname)
-
+class Simplifier:
+    def __init__(self, graph):
+        self.graph = graph
+    def simplify(self, token, namespace=True):
+        for prefix,ns in self.graph.namespaces():
+            if ns:
+                if token.startswith(ns):
+                    if namespace:
+                        return prefix+":"+token[len(ns):]
+                    else:
+                        return token[len(ns):]
+        return token
 
 if __name__=="__main__":
     import argparse
@@ -98,12 +66,16 @@ if __name__=="__main__":
     parser.add_argument("--dump", help="Dump the triple store after everything it is read", action='store_true')
     parser.add_argument("--write", help="write the schema to the specified file")
     parser.add_argument("--makexlsx", help="specify the output filename of the Excel file to make for a collection schema")
-    parser.add_argument("--extrafields", help="As a hack, specify a csv with DCAT attribute,datatype fields to add to the xls file")
+    parser.add_argument("--noinstructions", help="Do not generate instructions. Mostly for debugging.", action='store_true')
     args = parser.parse_args()
 
     DHS = Namespace("http://github.com/usdhs/dcat-tool/0.1")
-    print("DHS:",DHS)
+    RDFS = Namespace("http://www.w3.org/2000/01/rdf-schema#")
+    XSD  = Namespace("http://www.w3.org/2001/XMLSchema#")
 
+    DEFAULT_TYPE = XSD.string
+
+    ci_objs = []
     g = Graph()
     seen   = set()
     for fname in glob.glob( os.path.join(args.schemadir,"*.ttl")) + [args.schema]:
@@ -116,34 +88,67 @@ if __name__=="__main__":
         raise RuntimeError("No schema files specified")
 
     if args.dump:
+        print("Dumping triple store:\n")
         for stmt in sorted(g):
             pprint.pprint(stmt)
             print()
 
-    for r in g.query(CQUERY):
-        print(r)
-        print()
-        print("---")
+    # g2 is an output graph of the terms in the collection instrument
+    g2 = Graph()
 
-    if not query_result:
-        print("ERROR. Query produced no output:",file=sys.stderr)
-        print(CQUERY, file=sys.stderr)
-        exit(1)
+    # Copy over the namespaces from the triples we read to the graph we are producing
+    for ns_prefix,namespace in g.namespaces():
+        g2.bind(ns_prefix, namespace)
+
+    simp = Simplifier(g)
+    for r in g.query(CQUERY):
+        d = r.asdict()
+        skip = False
+        try:
+            if d['aComment'].language != 'en':
+                skip = True
+        except (KeyError,AttributeError) as e:
+            pass
+        if skip:
+            continue
+
+        try:
+            title = d['aTitle']
+        except KeyError:
+            title = simp.simplify(d['aProperty'], namespace=False)
+
+        obj = easy_workbook.ColumnInfo(value = title, # what is displayed in cell
+                                       comment = title + ":\n" + d.get('aComment',''),
+                                       author = simp.simplify(d['aProperty']),
+                                       width = int(d.get('aWidth',DEFAULT_WIDTH)),
+                                       typ = simp.simplify(d.get('aType', DEFAULT_TYPE)),
+                                       group = d.get('aGroup',''),
+                                       )
+
+        # Add the object to the column list
+        ci_objs.append( obj )
+
+        # Now create the collection graph
+        try:
+            g2.add( (d['aProperty'], RDFS.range,   d['aType']) )
+        except KeyError as e:
+            pass
+
+        try:
+            g2.add( (d['aProperty'], RDFS.comment,   d['aComment']) )
+        except KeyError as e:
+            pass
+
 
     if args.makexlsx:
-        print("DEBUG: Here are the columns that we want to collect, and the type for each:")
-        for (s, p, o) in g.triples((None, None, DHS.CollectionRecord)):
-            print(f"DEBUG: name: {s}")
-        eg = ExcelGenerator(instructions = INSTRUCTIONS)
-        if args.extrafields:
-            for line in open(args.extrafields):
-                if line[0]=='#':
-                    continue
-                eg.add( line.split(","))
-        eg.saveToExcel( args.makexlsx )
+        eg = easy_workbook.ExcelGenerator()
+        if not args.noinstructions:
+            eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read())
+        eg.add_columns_sheet("Inventory", ci_objs)
+        eg.save( args.makexlsx )
 
     if args.write:
         fmt = os.path.splitext(args.write)[1][1:].lower()
         if fmt=='json':
             fmt='json-ld'
-        g.serialize(destination=args.write, format=fmt)
+        g2.serialize(destination=args.write, format=fmt)

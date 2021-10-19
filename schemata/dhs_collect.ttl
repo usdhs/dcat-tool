@@ -1,0 +1,133 @@
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctype:  <http://purl.org/dc/dcmitype/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sdo:     <http://schema.org/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dhs:     <http://github.com/usdhs/DCAT-dhs/0.1#> .
+@prefix dt:      <http://github.com/usdhs/dcat-tool/0.1#> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix usg:     <http://resources.data.gov/resources/dcat-us/#> .
+
+dhs:dataInventoryRecord
+ a owl:Class ;
+ rdfs:subClassOf dcat:Dataset ;
+ .
+
+dhs:dataInventoryRecord
+  a sh:NodeShape ;
+  rdfs:comment "Specify the DCATv3 fields (and other fields) that we wish to collect."@en ;
+  sh:property
+    [ sh:path dcterms:identifier         ; sh:minCount 1 ; dt:title "unique identifier"; rdfs:comment:"A unique identifier for the dataset"@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:title              ; sh:minCount 1 ; rdfs:comment:"The official title for the datset"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:description        ; sh:minCount 1 ; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcat:keyword               ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:publisher          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path usg:accessLevel            ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path usg:metadataClassificaiton ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:issued             ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
+
+    [ sh:path dcterms:creator            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:governance             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:owner                  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:steward                ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:custodian              ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:primaryITInvestmentUII ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dcterms:references         ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:sharingAgreements      ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dcat:contactPoint          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:collectionAuthority    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:retentionAuthority     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:releaseAuthority       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:recordsSchedule        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:collectionAuthority    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:retentionAuthority     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:releaseAuthority       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:systemOfRecords        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+
+    [ sh:path dcterms:conformsTo         ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
+    [ sh:path dcterms:Standard           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
+    [ sh:path usg:conformsFIPS           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
+    [ sh:path usg:conformsNIEMPercent    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
+    [ sh:path usg:conformsUnicode        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
+    [ sh:path usg:identitiesNativeScript ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
+    [ sh:path usg:transliterationStandard; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
+
+    [ sh:path usg:sourceDatasets         ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
+    [ sh:path usg:destinationDatasets    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
+    [ sh:path usg:describedBy            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
+    [ sh:path usg:describedByType        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
+    [ sh:path dcterms:isPartOf           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
+
+    [ sh:path dct:accuralPeriodicity     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataset ],
+
+    [ sh:path dcterms:spatial            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetGeospatial ],
+    [ sh:path dcat:spatialResolutionInMeters  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetGeospatial],
+
+    [ sh:path dcterms:temporal           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetTemporal],
+    [ sh:path dcat:temporalResolution    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetTemporal],
+
+    [ sh:path usg:dataQualityKnown       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
+    [ sh:path usg:dataQualityMetric      ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
+    [ sh:path usg:dataQualityMeasure     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
+    [ sh:path usg:dataQualityPercent     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
+    [ sh:path usg:dataQualityAssessment  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
+    [ sh:path usg:dataQuality            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
+
+    [ sh:path dcterms:format             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dcat:accessURL             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path usg:accessURLNEIM          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path usg:modified               ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path usg:vendor                 ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dcterms:license            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dcterms:accessRights       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dcat:theme                 ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path usg:component              ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path usg:functionalDataDomain   ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dcat:mediaType             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+
+    [ sh:path usg:tableCount             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:size ],
+    [ sh:path usg:recordCount            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:size ],
+    [ sh:path dcat:byteSize              ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:size ],
+
+    [ sh:path usg:datasetClassification  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:characteristics        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-person-level        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-financial           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-event-records       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-faces               ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-fingerprints        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-cui                 ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-phi                 ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-pii                 ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-geospatial          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-fisa                ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-8usc1367            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-propin              ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-immigration         ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-criticalIfrastructure; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-disseminationRestrictions; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+
+    [ sh:path usg:hostingLocation        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
+    [ sh:path usg:hostedInCloud          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
+    [ sh:path usg:easilyAccessibleByCreatingComponent  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
+    [ sh:path usg:easilyAccessibleByAllComponents  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
+    [ sh:path usg:easilyAccessibleByGeneralPublic  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
+
+    [ sh:path usg:metadataClassification ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:metadata ],
+
+
+    [ sh:path usg:recordTransmission     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:publication ],
+    [ sh:path usg:validityTime           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:publication ]
+  ;
+
+  sh:targetClass dhs:dataInventoryRecord ;
+  skos:definition "Constraints for a record in a data catalog, describing the registration of a single dataset or data service."@en ;
+.
