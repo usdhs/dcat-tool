@@ -1,0 +1,140 @@
+# baseURI: http://www.w3.org/ns/dcat
+# imports: http://purl.org/dc/terms/
+# imports: http://www.w3.org/2004/02/skos/core
+# imports: http://www.w3.org/ns/prov-o#
+# prefix: usg
+
+
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dctype: <http://purl.org/dc/dcmitype/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sdo: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix usg:     <http://resources.data.gov/resources/dcat-us/#> .
+
+
+<http://resources.data.gov/resources/dcat-us/#>
+  a owl:Ontology ;
+  dct:contributor [
+      sdo:affiliation [
+          foaf:homepage <http://dhs.gov> ;
+          foaf:name "U.S. Department of Homeland Security" ;
+        ] ;
+      foaf:name "Simson Garfinkel" ;
+    ] ;
+  dct:modified "2021-10-20"^^xsd:date ;
+  rdfs:comment "DCAT extensions in DCAT-US and further extended by DHS";
+  owl:imports dct: ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
+  owl:imports <http://www.w3.org/ns/prov-o#> ;
+  owl:versionInfo "Initial Version";
+.
+
+usg:accessLevel
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range rdfs:Literal ;
+.
+
+usg:ch-pii
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean ;
+.
+
+usg:ch-person-level
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-financial
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-event-records
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-faces
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-fingerprints
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-cui
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-phi
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-pii
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-geospatial
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-fisa
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-8usc1367
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-propin
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-immigration
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-criticalIfrastructure
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.
+
+usg:ch-disseminationRestrictions
+  a rdf:Property ;
+  a owl:ObjectProperty ;
+  rdfs:range xsd:boolean;
+.

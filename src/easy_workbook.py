@@ -12,6 +12,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.styles import Alignment, PatternFill, Border, Side, Protection, Font, Fill, Color
 from openpyxl.styles.borders import Border, Side, BORDER_THIN, BORDER_THICK
 from openpyxl.comments import Comment
+from openpyxl.worksheet.datavalidation import DataValidation
 import openpyxl.styles.colors as colors
 
 # https://htmlcolorcodes.com/
@@ -131,6 +132,23 @@ class ExcelGenerator:
                 raise ValueError(f"{ci} is not an instance of ColumnInfo, it is a {type(ci)}")
         ws = self.wb.create_sheet( name )
 
+        # set up data validation
+        # https://openpyxl.readthedocs.io/en/stable/validation.html
+
+        dv_boolean = DataValidation(type="list", formula1='"true,false"', allow_blank=True)
+        dv_boolean.error = 'Please select yes or no, or leave blank.'
+        dv_boolean.errorTitle = 'Invalid Value'
+        dv_boolean.prompt = 'Please select from the list'
+        dv_boolean.promptTitle = 'List Selection'
+        ws.add_data_validation(dv_boolean)
+
+        dv_decimal = DataValidation(type='decimal')
+        ws.add_data_validation(dv_decimal)
+
+        dv_date    = DataValidation(type='date')
+        ws.add_data_validation(dv_date)
+
+
         last_group = None
         color_index = 0
         my_border = Border(left=Side(style=BORDER_THIN),
@@ -146,6 +164,8 @@ class ExcelGenerator:
         for (col,obj) in enumerate( ci_list, 1):
             from openpyxl.comments import Comment
             import openpyxl.utils
+
+            print(obj.value, obj.typ)
 
 
             # We tried making the comment string the description and the DCATv3 type is the comment "author", but that didn't work
@@ -173,8 +193,10 @@ class ExcelGenerator:
                 cell2.fill = color_fill
                 cell2.border = new_border
 
+            # Set the types with data validation where possible
+            if obj.typ=='xsd:boolean':
+                dv_boolean.add(f'{column_letter}2:{column_letter}{rows}')
 
-            # TODO: handle typ
 
     def save(self, fname):
         self.wb.save(fname)
