@@ -13,6 +13,7 @@ import glob
 import time
 import rdflib
 from rdflib import Dataset, Graph, URIRef, Literal, Namespace
+import openpyxl
 
 #sys.path.append(os.path.dirname(__file__))
 
@@ -52,6 +53,33 @@ class Simplifier:
                         return token[len(ns):]
         return token
 
+
+
+def make_template(fname, include_instructions, ci_objs):
+    eg = easy_workbook.ExcelGenerator()
+    if include_instructions:
+        eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read())
+    eg.add_columns_sheet("Inventory", ci_objs)
+    eg.save( args.makexlsx )
+
+def is_inventory_worksheet(ws):
+    """Return true if this is an inventory worksheet"""
+    for row in ws.rows:
+        for cell in row:
+            if "dct:identifier" in cell.comment.text:
+                return True
+        break                   # only look at the first row
+    return False
+
+def read_xlsx(fname, g):
+    """We can every worksheet in the workbook because we might get multiple ones.
+    We tell that it's an inventory sheet because it has an identifier in row 1 somewhere.
+    """
+    wb = openpyxl.load_workbook( fname )
+    for ws in wb:
+        print("ws=",ws,"is inventory:",is_inventory_worksheet(ws))
+
+
 if __name__=="__main__":
     import argparse
 
@@ -64,8 +92,9 @@ if __name__=="__main__":
                         default=COLLECT_TTL)
     parser.add_argument("--debug", help="Enable debugging", action='store_true')
     parser.add_argument("--dump", help="Dump the triple store after everything it is read", action='store_true')
-    parser.add_argument("--write", help="write the schema to the specified file")
-    parser.add_argument("--makexlsx", help="specify the output filename of the Excel file to make for a collection schema")
+    parser.add_argument("--writeschema", help="write the schema to the specified file")
+    parser.add_argument("--make_template", help="specify the output filename of the Excel template to make for a collection schema")
+    parser.add_argument("--read_xlsx", help="Read a filled-out Excel template and generate an output file")
     parser.add_argument("--noinstructions", help="Do not generate instructions. Mostly for debugging.", action='store_true')
     args = parser.parse_args()
 
@@ -139,15 +168,13 @@ if __name__=="__main__":
         except KeyError as e:
             pass
 
+    if args.make_template:
+        make_template(args.make_template, not args.noinstructions, ci_objs)
 
-    if args.makexlsx:
-        eg = easy_workbook.ExcelGenerator()
-        if not args.noinstructions:
-            eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read())
-        eg.add_columns_sheet("Inventory", ci_objs)
-        eg.save( args.makexlsx )
+    if args.read_xlsx:
+        read_xlsx(args.read_xlsx, g)
 
-    if args.write:
+    if args.writeschema:
         fmt = os.path.splitext(args.write)[1][1:].lower()
         if fmt=='json':
             fmt='json-ld'
