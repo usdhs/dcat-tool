@@ -38,16 +38,47 @@ class TemplateReader:
     def inventory_worksheets(self):
         return [ws for ws in self.wb if self.is_inventory_worksheet(ws)]
 
-    def dcat_properties(self, ws):
-        """For a given worksheet, return a set of pairs in the form (column #, dcat attribute)"""
-        for cell in next(ws.rows):
+    def dcat_properties_for_row(self, row):
+        """For a given worksheet, return a dictonary key=column#, value=dcat_attribute"""
+        props = {}
+        for cell in row:
             try:
                 m = PROPERTY_RE.search(cell.comment.text)
             except AttributeError as e:
                 continue
             if m:
-                yield (cell.column, m.group(1))
+                props[cell.column] = m.group(1);
+        return props
 
+    def dcat_properties(self, ws):
+        return self.dcat_properties_for_row(next(ws.rows))
 
-    def process_worksheet(self, ws):
-        pass
+    def blank_row(self, row):
+        for cell in row:
+            if cell.value:
+                return False
+        return True
+
+    def create_data_record(self, props, row):
+        """Returns a record where the key=property and val=value"""
+        ret = {}
+        for cell in row:
+            if cell.value:
+                ret[ props[ cell.column ] ] = cell.value
+        return ret
+
+    def inventory_records(self):
+        """Return all of the inventory records in the workbook."""
+        props = None
+        ret = []
+        for ws in self.inventory_worksheets():
+            # Get the properties, then each row that has data
+            for row in ws.rows:
+                # Get the props if we don't have it yet
+                if props is None:
+                    props = self.dcat_properties_for_row(row)
+                    continue
+                # Otherwise, if the row is not blank, get the data
+                if not self.blank_row(row):
+                    ret.append( self.create_data_record( props, row ) )
+        return ret
