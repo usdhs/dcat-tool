@@ -5,12 +5,14 @@ import rdflib
 import glob
 import sys
 import tempfile
+import openpyxl
 
 from os.path import abspath,dirname,basename
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 SCHEMATA_DIR = os.path.join(dirname(dirname(dirname(abspath( __file__ )))) , "schemata")
+TEST_DIR = dirname(abspath(__file__))
 
 import dcat_tool
 import easy_workbook
@@ -27,9 +29,12 @@ def test_excelGenerator():
     g = easy_workbook.ExcelGenerator()
     g.add_markdown_sheet("Instructions", open(dcat_tool.INSTRUCTIONS).read())
     g.add_columns_sheet("Inventory",
-                        [easy_workbook.ColumnInfo(value="First Column", comment="Foo", author="Author 1", width=50, typ='int', group='a'),
-                         easy_workbook.ColumnInfo(value="Second Column", comment="Bar", author="Author 2", width=50, typ='int', group='b')])
-
+                        [easy_workbook.ColumnInfo(value="First Column", comment="Foo",
+                                                  author="Author 1", width=50, typ='int', group='a'),
+                         easy_workbook.ColumnInfo(value="Second Column", comment="Bar",
+                                                  author="Author 2", width=50, typ='int', group='b')])
     g.save( fname )
 
-    # Now load the file and make sure that it has two sheets and instructions
+def test_excelParser():
+    wb = openpyxl.load_workbook( os.path.join(TEST_DIR, "test_template.xlsx" ))
+    assert len(dcat_tool.inventory_worksheets(wb)) == 1

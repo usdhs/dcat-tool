@@ -53,32 +53,12 @@ class Simplifier:
                         return token[len(ns):]
         return token
 
-
-
 def make_template(fname, include_instructions, ci_objs):
     eg = easy_workbook.ExcelGenerator()
     if include_instructions:
         eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read())
     eg.add_columns_sheet("Inventory", ci_objs)
-    eg.save( args.makexlsx )
-
-def is_inventory_worksheet(ws):
-    """Return true if this is an inventory worksheet"""
-    for row in ws.rows:
-        for cell in row:
-            if "dct:identifier" in cell.comment.text:
-                return True
-        break                   # only look at the first row
-    return False
-
-def read_xlsx(fname, g):
-    """We can every worksheet in the workbook because we might get multiple ones.
-    We tell that it's an inventory sheet because it has an identifier in row 1 somewhere.
-    """
-    wb = openpyxl.load_workbook( fname )
-    for ws in wb:
-        print("ws=",ws,"is inventory:",is_inventory_worksheet(ws))
-
+    eg.save( fname )
 
 if __name__=="__main__":
     import argparse
