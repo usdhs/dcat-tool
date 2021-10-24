@@ -39,15 +39,21 @@ class TemplateReader:
         return [ws for ws in self.wb if self.is_inventory_worksheet(ws)]
 
     def dcat_properties_for_row(self, row):
-        """For a given worksheet, return a dictonary key=column#, value=dcat_attribute"""
+        """For a given worksheet, return a dictonary key=column#, value=dcat_attribute.
+        The properties are learned from the comments of the first row.
+        """
         props = {}
+        seen  = set()
         for cell in row:
             try:
                 m = PROPERTY_RE.search(cell.comment.text)
             except AttributeError as e:
                 continue
             if m:
-                props[cell.column] = m.group(1);
+                name = m.group(1)
+                if name in seen:
+                    raise ValueError(f"{name} appears twice in the spreadsheet header.")
+                props[cell.column] = name
         return props
 
     def dcat_properties(self, ws):
