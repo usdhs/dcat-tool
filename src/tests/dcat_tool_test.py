@@ -36,5 +36,5 @@ def test_excelGenerator():
     g.save( fname )
 
 def test_excelParser():
+    # Make sure template is as expected
     wb = openpyxl.load_workbook( os.path.join(TEST_DIR, "test_template.xlsx" ))
-    assert len(dcat_tool.inventory_worksheets(wb)) == 1

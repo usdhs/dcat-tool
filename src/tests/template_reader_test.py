@@ -22,6 +22,6 @@ def test_template_reader():
     assert len(tr.inventory_worksheets()) == 1
     ws = tr.inventory_worksheets()[0]
 
-    cols = list(tr.dcat_properties(ws))
-    assert(cols[0]==(1, 'dct:identifier'))
-    assert(cols[1]==(2, 'dct:title'))
+    prop_dict = tr.dcat_properties(ws)
+    assert(prop_dict[1] == 'dct:identifier')
+    assert(prop_dict[2] == 'dct:title')
