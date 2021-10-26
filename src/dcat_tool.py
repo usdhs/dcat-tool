@@ -53,8 +53,6 @@ class Simplifier:
                         return token[len(ns):]
         return token
 
-
-
 def make_template(fname, include_instructions, ci_objs):
     eg = easy_workbook.ExcelGenerator()
     if include_instructions:
@@ -77,7 +75,8 @@ def read_xlsx(fname, g):
     """
     wb = openpyxl.load_workbook( fname )
     for ws in wb:
-        print("ws=",ws,"is inventory:",is_inventory_worksheet(ws))
+        if is_inventory_worksheet(ws):
+
 
 
 if __name__=="__main__":
