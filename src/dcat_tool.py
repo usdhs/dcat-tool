@@ -14,6 +14,7 @@ import time
 import rdflib
 from rdflib import Dataset, Graph, URIRef, Literal, Namespace
 import openpyxl
+import template_reader
 
 #sys.path.append(os.path.dirname(__file__))
 
@@ -58,25 +59,13 @@ def make_template(fname, include_instructions, ci_objs):
     if include_instructions:
         eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read())
     eg.add_columns_sheet("Inventory", ci_objs)
-    eg.save( args.makexlsx )
+    eg.save( fname )
 
-def is_inventory_worksheet(ws):
-    """Return true if this is an inventory worksheet"""
-    for row in ws.rows:
-        for cell in row:
-            if "dct:identifier" in cell.comment.text:
-                return True
-        break                   # only look at the first row
-    return False
-
-def read_xlsx(fname, g):
-    """We can every worksheet in the workbook because we might get multiple ones.
-    We tell that it's an inventory sheet because it has an identifier in row 1 somewhere.
-    """
-    wb = openpyxl.load_workbook( fname )
-    for ws in wb:
-        if is_inventory_worksheet(ws):
-
+def read_xlsx(fname) :
+    tr = template_reader.TemplateReader( fname )
+    for r in tr.inventory_records():
+        print(r)
+        print("-------------------")
 
 
 if __name__=="__main__":
@@ -171,7 +160,7 @@ if __name__=="__main__":
         make_template(args.make_template, not args.noinstructions, ci_objs)
 
     if args.read_xlsx:
-        read_xlsx(args.read_xlsx, g)
+        read_xlsx(args.read_xlsx)
 
     if args.writeschema:
         fmt = os.path.splitext(args.write)[1][1:].lower()
