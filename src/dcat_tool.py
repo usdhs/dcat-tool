@@ -25,17 +25,25 @@ COLLECT_TTL  = os.path.join(SCHEMATA_DIR, "dhs_collect.ttl")
 INSTRUCTIONS = os.path.join(dirname(abspath( __file__ )), "instructions.md")
 DEFAULT_WIDTH = 15              # Excel spreadsheet default width
 
-# CQUERY is the query to create the collection instrument
-# ?aShapeName is the name of the blank nodes that are actually the column constraints in the schema.
-CQUERY = """
+"""
+CI_QUERY is the query to create the collection instrument
+It finds all of the properties that are within the dhs:dataInventoryRecord and
+then does a join with OPTIONAL on several other objects we would like to extract.on several
+
+?aShapeName is the name of the blank nodes that are actually the column constraints in the schema.
+?aTitle is the title in the excel spreadsheet
+?aGroup is the group within the excel spreadsheet
+"""
+
+CI_QUERY = """
 SELECT DISTINCT ?aProperty ?aTitle ?aComment ?aType ?aWidth ?aGroup
 WHERE {
   dhs:dataInventoryRecord sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
 
-  OPTIONAL { ?aProperty  rdfs:range ?aType . }
-  OPTIONAL { ?aShapeName dhs:excelWidth ?aWidth . }
+  OPTIONAL { ?aProperty  rdfs:range     ?aType . }
   OPTIONAL { ?aProperty  rdfs:comment   ?aComment . }
+  OPTIONAL { ?aShapeName dhs:excelWidth ?aWidth . }
   OPTIONAL { ?aShapeName dt:title  ?aTitle . }
   OPTIONAL { ?aShapeName dt:group  ?aGroup . }
 }
@@ -118,7 +126,7 @@ if __name__=="__main__":
         g2.bind(ns_prefix, namespace)
 
     simp = Simplifier(g)
-    for r in g.query(CQUERY):
+    for r in g.query(CI_QUERY):
         d = r.asdict()
         skip = False
         try:
