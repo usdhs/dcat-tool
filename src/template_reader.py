@@ -26,13 +26,14 @@ class TemplateReader:
 
     def is_inventory_worksheet(self, ws):
         """Return true if this is an inventory worksheet"""
-        # Just read the first row
-        for cell in next(ws.rows):
-            try:
-                if "dct:identifier" in cell.comment.text:
-                    return True
-            except AttributeError:
-                pass
+        for row in ws.rows:
+            for cell in row:
+                try:
+                    if "dct:identifier" in cell.comment.text:
+                        return True
+                except AttributeError:
+                    pass
+            break
         return False
 
     def inventory_worksheets(self):

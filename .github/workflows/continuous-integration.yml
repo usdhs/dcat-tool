@@ -1,4 +1,4 @@
-name: Validate Schema
+name: Validate Schema, create Template
 on: [push]
 
 jobs:
@@ -32,3 +32,13 @@ jobs:
 
       - name: Test with pytest
         run: pytest --cov=./ --cov-report=xml .
+
+      - name: Create template
+        run: python src/dcat_tool.py --make_template dist/DIP_Template_output_$(date +%F).xlsx
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: upload-template
+          retention-days: 30
+          path: dist
