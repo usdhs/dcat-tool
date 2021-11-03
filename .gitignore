@@ -6,3 +6,4 @@ __pycache__
 Untitled.ipynb
 *.xlsx
 g2.ttl
+.DS_Store
