@@ -36,16 +36,17 @@ then does a join with OPTIONAL on several other objects we would like to extract
 """
 
 CI_QUERY = """
-SELECT DISTINCT ?aProperty ?aTitle ?aComment ?aType ?aWidth ?aGroup
+SELECT DISTINCT ?aProperty ?aTitle ?aPropertyComment ?aShapeComment ?aType ?aWidth ?aGroup
 WHERE {
   dhs:dataInventoryRecord sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
 
   OPTIONAL { ?aProperty  rdfs:range     ?aType . }
-  OPTIONAL { ?aProperty  rdfs:comment   ?aComment . }
+  OPTIONAL { ?aProperty  rdfs:comment   ?aPropertyComment . }
   OPTIONAL { ?aShapeName dhs:excelWidth ?aWidth . }
   OPTIONAL { ?aShapeName dt:title  ?aTitle . }
   OPTIONAL { ?aShapeName dt:group  ?aGroup . }
+  OPTIONAL { ?aShapeName rdfs:comment    ?aShapeComment . }
 }
 """
 
@@ -74,6 +75,17 @@ def read_xlsx(fname) :
     for r in tr.inventory_records():
         print(r)
         print("-------------------")
+
+
+def should_skip(d):
+    """Skip query responses that are not in English"""
+    # Skip property comments that are not in english
+    try:
+        if d['aPropertyComment'].language != 'en':
+            return True
+    except (KeyError,AttributeError) as e:
+        pass
+    return False
 
 
 if __name__=="__main__":
@@ -128,13 +140,13 @@ if __name__=="__main__":
     simp = Simplifier(g)
     for r in g.query(CI_QUERY):
         d = r.asdict()
-        skip = False
-        try:
-            if d['aComment'].language != 'en':
-                skip = True
-        except (KeyError,AttributeError) as e:
-            pass
-        if skip:
+
+        if args.debug:
+            print(d)
+
+        if should_skip(d):
+            if args.debug:
+                print(">> skip")
             continue
 
         try:
@@ -142,8 +154,14 @@ if __name__=="__main__":
         except KeyError:
             title = simp.simplify(d['aProperty'], namespace=False)
 
+        # For the comment, grab the shape comment if it is present. otherwise, grab the property comment.
+        # The comment goes into the tooltip for the column
+        comment = d.get('aShapeComment', d.get('aPropertyComment', ''))
+        if not comment:
+            print("Need description for",d['aProperty'])
+
         obj = easy_workbook.ColumnInfo(value = title, # what is displayed in cell
-                                       comment = title + ":\n" + d.get('aComment',''),
+                                       comment = title + ":\n" + comment,
                                        author = simp.simplify(d['aProperty']),
                                        width = int(d.get('aWidth',DEFAULT_WIDTH)),
                                        typ = simp.simplify(d.get('aType', DEFAULT_TYPE)),
