@@ -8,7 +8,7 @@ run:
 
 check:
 	pytest
-	python dcat_tool.py --dump > /dev/null
+	python dcat_tool.py --dumpts --dumpci > /dev/null
 	make template
 	python dcat_tool.py --validate < tests/test_template_clean.json
 	python dcat_tool.py --validate_lines < tests/test_template_clean.json

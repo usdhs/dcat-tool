@@ -103,7 +103,7 @@ class Validator:
         # Copy over the namespaces from the triples we read to the graph we are producing
         for ns_prefix,namespace in self.g.namespaces():
             g2.bind(ns_prefix, namespace)
-            print("adding namespace prefix",ns_prefix,namespace)
+            #print("adding namespace prefix",ns_prefix,namespace)
         return g2
 
     def augmentGraph(self, g2, queryResult):
