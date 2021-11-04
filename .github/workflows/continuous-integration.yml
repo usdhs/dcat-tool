@@ -30,6 +30,9 @@ jobs:
           pip install black flake8 autopep8 || true
           pip install autopep8 || true
 
+      - name: Top-level check
+        run: make check
+
       - name: Test with pytest
         run: pytest --cov=./ --cov-report=xml .
 

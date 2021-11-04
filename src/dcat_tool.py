@@ -20,11 +20,15 @@ import template_reader
 import dhs_ontology
 import easy_workbook
 
+RDFS          = Namespace("http://www.w3.org/2000/01/rdf-schema#")
+XSD           = Namespace("http://www.w3.org/2001/XMLSchema#")
 INSTRUCTIONS  = os.path.join(dirname(abspath( __file__ )) , "instructions.md")
+DEFAULT_WIDTH = 15              # Excel spreadsheet default width
+DEFAULT_TYPE  = XSD.string
 
 def make_template(fname, include_instructions, schema_dir=dhs_ontology.SCHEMATA_DIR, schema=dhs_ontology.COLLECT_TTL):
-    g = dcatv3_ontology(schemadir, schema)
-    (g2, ci_objs) = get_template_column_info_objs(g, CI_QUERY)
+    g = dhs_ontology.dcatv3_ontology(schema_dir, schema)
+    (g2, ci_objs) = get_template_column_info_objs(g, dhs_ontology.CI_QUERY)
     eg = easy_workbook.ExcelGenerator()
     if include_instructions:
         eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read())
@@ -121,8 +125,8 @@ if __name__=="__main__":
 
     parser = argparse.ArgumentParser(description='Use a DCAT schema to produce capture instruments and APIs.',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("--schemadir",
-                        help="specify the directory to read all the schemata. If the --schema file is in schemadir, it will only be read once.",
+    parser.add_argument("--schema_dir",
+                        help="specify the directory to read all the schemata. If the --schema file is in schema_dir, it will only be read once.",
                         default=dhs_ontology.SCHEMATA_DIR)
     parser.add_argument("--schema",
                         help="specify the collection schema file in Turtle, RDF/XML or RDF/JSON",
@@ -141,12 +145,12 @@ if __name__=="__main__":
 
     if args.dump:
         print("Dumping triple store:\n")
-        for stmt in sorted( dcatv3_ontology(args.schemadir, args.schema) ):
+        for stmt in sorted( dcatv3_ontology(args.schema_dir, args.schema) ):
             pprint.pprint(stmt)
             print()
 
     if args.validate:
-        v = dhs_ontology.Validator( args.schemadir, args.schema )
+        v = dhs_ontology.Validator( args.schema_dir, args.schema )
         while not sys.stdin.eof():
             jin  = json.load( sys.stdin )
             jout = validate( jin )
@@ -154,7 +158,7 @@ if __name__=="__main__":
         sys.stdout.write("\n")
 
     if args.make_template:
-        make_template(args.make_template, not args.noinstructions, ci_objs)
+        make_template(args.make_template, not args.noinstructions, schema_dir=args.schema_dir, schema=args.schema)
 
     if args.read_xlsx:
         for r in read_xlsx(args.read_xlsx):

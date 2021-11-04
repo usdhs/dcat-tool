@@ -14,13 +14,9 @@ from rdflib import Dataset, Graph, URIRef, Literal, Namespace
 import openpyxl
 import template_reader
 
-RDFS          = Namespace("http://www.w3.org/2000/01/rdf-schema#")
-XSD           = Namespace("http://www.w3.org/2001/XMLSchema#")
 DHS           = Namespace("http://github.com/usdhs/dcat-tool/0.1")
 SCHEMATA_DIR  = os.path.join(dirname(abspath( __file__ )) , "../schemata")
 COLLECT_TTL   = os.path.join(SCHEMATA_DIR, "dhs_collect.ttl")
-DEFAULT_WIDTH = 15              # Excel spreadsheet default width
-DEFAULT_TYPE  = XSD.string
 
 """
 CI_QUERY is the query to create the collection instrument
@@ -47,10 +43,10 @@ WHERE {
 }
 """
 
-def dcatv3_ontology(schemadir, schema_files):
+def dcatv3_ontology(schema_dir, schema_file):
     g    = Graph()
     seen = set()
-    for fname in glob.glob( os.path.join(args.schemadir,"*.ttl")) + [args.schema]:
+    for fname in glob.glob( os.path.join(schema_dir,"*.ttl")) + [schema_file]:
         if fname and fname not in seen:
             fname = os.path.abspath(fname)
             g.parse(fname)
@@ -62,8 +58,8 @@ def dcatv3_ontology(schemadir, schema_files):
 
 
 class Validator:
-    def __init__(self, schemadir, schema):
-        self.g = dcatv3_ontology(args.schemadir, args.schema)
+    def __init__(self, schema_dir, schema):
+        self.g = dcatv3_ontology(args.schema_dir, args.schema)
         (self.g2, self.ci_objs) = get_template_column_info_objs(g, CI_QUERY)
         self.seenIDs = set()
 
