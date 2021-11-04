@@ -32,7 +32,7 @@ dhs:dataInventoryRecord
     [ sh:path dcat:keyword               ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:publisher          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path usg:accessLevel            ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path usg:metadataClassificaiton ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path usg:metadataClassification ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:issued             ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
 
     [ sh:path dcterms:creator            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
@@ -84,7 +84,7 @@ dhs:dataInventoryRecord
 
     [ sh:path dcterms:format             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcat:accessURL             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path usg:accessURLNEIM          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path usg:accessURLNIEM          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path usg:modified               ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path usg:vendor                 ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcterms:license            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
@@ -113,7 +113,7 @@ dhs:dataInventoryRecord
     [ sh:path usg:ch-8usc1367            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
     [ sh:path usg:ch-propin              ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
     [ sh:path usg:ch-immigration         ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path usg:ch-criticalIfrastructure; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path usg:ch-criticalInfrastructure; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
     [ sh:path usg:ch-disseminationRestrictions; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
 
     [ sh:path usg:hostingLocation        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
@@ -121,10 +121,6 @@ dhs:dataInventoryRecord
     [ sh:path usg:easilyAccessibleByCreatingComponent  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
     [ sh:path usg:easilyAccessibleByAllComponents  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
     [ sh:path usg:easilyAccessibleByGeneralPublic  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
-
-    [ sh:path usg:metadataClassification ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:metadata ],
-
-
     [ sh:path usg:recordTransmission     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:publication ],
     [ sh:path usg:validityTime           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:publication ]
     ;
