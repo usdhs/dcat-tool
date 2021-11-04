@@ -96,9 +96,9 @@ if __name__=="__main__":
                 fail.append([line, e.message])
                 continue
             try:
-                v.validate( jin )
+                v.add_row( jin )
             except dhs_ontology.ValidationFail as e:
-                fail.append([line,e.message])
+                fail.append([line, str(e)])
                 continue
         if not fail:
             print("OK")

@@ -95,6 +95,7 @@ class Validator:
         self.g = dcatv3_ontology(schemata_dir, schema_file)
         self.get_template_column_info_objs()
         self.seenIDs = set()
+        self.rows    = []
 
     def get_template_column_info_objs(self):
         # g2 is an output graph of the terms in the collection instrument
@@ -151,20 +152,21 @@ class Validator:
             except KeyError as e:
                 pass
 
-
     def validate(self, obj):
+        """Check the dictionary (a loaded JSON object) """
+        if 'dct:identifier' not in obj:
+            raise ValidationFail('dct:identifier missing')
         return True
 
-    def add_row(self, row):
+    def add_row(self, obj):
         """Validates a single object."""
-        if 'dct:identifier' not in row:
-            raise ValidationFail('dct:identifier missing')
+        self.validate( obj )
 
-        ident = row['dct:identifier']
+        ident = obj['dct:identifier']
         if ident in self.seenIDs:
-            raise ValidationFail('dct:identifier already seen')
+            raise ValidationFail(f'dct:identifier "{ident}" already seen')
         self.seenIDs.add(ident)
-        jout['input'] = jin['input']
+        self.rows.append( obj )
 
     # TODO: Implement shackl validation.
     # Make sure all mandatory fields are present
