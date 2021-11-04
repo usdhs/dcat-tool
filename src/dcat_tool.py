@@ -85,13 +85,21 @@ if __name__=="__main__":
         v = dhs_ontology.Validator( args.schemata_dir, args.schema )
         fail = []
         line = 0
-        while not sys.stdin.eof():
+        while True:
+            data = sys.stdin.readline()
+            if len(data) == 0:
+                break
             line += 1
-            jin  = json.load( sys.stdin )
+            try:
+                jin  = json.loads( data )
+            except json.decoder.JSONDecodeError as e:
+                fail.append([line, e.message])
+                continue
             try:
                 v.validate( jin )
             except dhs_ontology.ValidationFail as e:
                 fail.append([line,e.message])
+                continue
         if not fail:
             print("OK")
         else:
@@ -105,7 +113,7 @@ if __name__=="__main__":
 
     if args.read_xlsx:
         for r in read_xlsx(args.read_xlsx):
-            print(r)
+            print( json.dumps(r) )
 
     if args.writeschema:
         fmt = os.path.splitext(args.write)[1][1:].lower()
