@@ -3,6 +3,9 @@ DATE := $(shell date +%F)
 clean:
 	/bin/rm -rf *~ __pycache__ output.xlsx
 
+run:
+	FLASK_APP=hello flask run
+
 check:
 	pytest
 	python dcat_tool.py --dump > /dev/null

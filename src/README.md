@@ -15,7 +15,7 @@ This directory contains the python source code for:
    [SHACL (Shape Constraint Langauge)](https://www.w3.org/TR/shacl/)
 
 4. A [Python Flask](https://flask.palletsprojects.com/en/2.0.x/) and
-   [WSGI-based implementaiton](https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface)
+   [WSGI-based implementation](https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface)
    of an API that validates Excel spreadsheets and JSON objects.
 
-4. A mini-webserver written using CherryPy that demonstrates the Flask interface.
+4. A mini-webserver written using the Flask debug webserver.

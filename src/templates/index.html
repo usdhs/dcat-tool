@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<title>DHS Data Inventory API Demonstration Website</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<h1>API Test</h1>
+<h2>Upload and Validate an Excel Spreadsheet</h2>
+You can upload an excel spreadsheet:
+<form method=post enctype=multipart/form-data>
+  <input type=file name=file>
+  <input type=submit value=Upload>
+</form>
+</body>
+</html>
