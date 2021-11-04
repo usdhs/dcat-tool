@@ -86,76 +86,83 @@ def should_skip(d):
         pass
     return False
 
-def get_template_column_info_objs(g, query, debug=False):
-    # g2 is an output graph of the terms in the collection instrument
-
-    g2 = Graph()
-
-    # Copy over the namespaces from the triples we read to the graph we are producing
-    for ns_prefix,namespace in g.namespaces():
-        g2.bind(ns_prefix, namespace)
-
-    ci_objs = []
-    simp = Simplifier(g)
-    for r in g.query( query ):
-        d = r.asdict()
-
-        if debug:
-            print(d)
-
-        if should_skip(d):
-            if debug:
-                print(">> skip")
-            continue
-
-        try:
-            title = d['aTitle']
-        except KeyError:
-            title = simp.simplify(d['aProperty'], namespace=False)
-
-        # For the comment, grab the shape comment if it is present. otherwise, grab the property comment.
-        # The comment goes into the tooltip for the column
-        comment = d.get('aShapeComment', d.get('aPropertyComment', ''))
-        if not comment:
-            print("Need description for",d['aProperty'])
-
-        obj = easy_workbook.ColumnInfo(value = title, # what is displayed in cell
-                                       comment = title + ":\n" + comment,
-                                       author = simp.simplify(d['aProperty']),
-                                       width = int(d.get('aWidth',DEFAULT_WIDTH)),
-                                       typ = simp.simplify(d.get('aType', DEFAULT_TYPE)),
-                                       group = d.get('aGroup',''),
-                                       )
-
-        # Add the object to the column list
-        ci_objs.append( obj )
-
-        # Now create the collection graph
-        try:
-            g2.add( (d['aProperty'], RDFS.range,   d['aType']) )
-        except KeyError as e:
-            pass
-
-        try:
-            g2.add( (d['aProperty'], RDFS.comment,   d['aComment']) )
-        except KeyError as e:
-            pass
-    return (g2, ci_objs)
+class ValidationFail( Exception ):
+    pass
 
 class Validator:
     def __init__(self, schemata_dir = SCHEMATA_DIR, schema_file = COLLECT_TTL):
+        self.debug = False
         self.g = dcatv3_ontology(schemata_dir, schema_file)
-        (self.g2, self.ci_objs) = get_template_column_info_objs(g, CI_QUERY)
+        self.get_template_column_info_objs()
         self.seenIDs = set()
+
+    def get_template_column_info_objs(self):
+        # g2 is an output graph of the terms in the collection instrument
+
+        self.g2 = Graph()
+
+        # Copy over the namespaces from the triples we read to the graph we are producing
+        for ns_prefix,namespace in self.g.namespaces():
+            self.g2.bind(ns_prefix, namespace)
+
+        self.ci_objs = []
+        simp = Simplifier(self.g)
+        for r in self.g.query( CI_QUERY ):
+            d = r.asdict()
+
+            if self.debug:
+                print(d)
+
+            if should_skip(d):
+                if self.debug:
+                    print(">> skip")
+                continue
+
+            try:
+                title = d['aTitle']
+            except KeyError:
+                title = simp.simplify(d['aProperty'], namespace=False)
+
+            # For the comment, grab the shape comment if it is present. otherwise, grab the property comment.
+            # The comment goes into the tooltip for the column
+            comment = d.get('aShapeComment', d.get('aPropertyComment', ''))
+            if not comment:
+                print("Need description for",d['aProperty'])
+
+            obj = easy_workbook.ColumnInfo(value = title, # what is displayed in cell
+                                           comment = title + ":\n" + comment,
+                                           author = simp.simplify(d['aProperty']),
+                                           width = int(d.get('aWidth',DEFAULT_WIDTH)),
+                                           typ = simp.simplify(d.get('aType', DEFAULT_TYPE)),
+                                           group = d.get('aGroup',''),
+                                           )
+
+            # Add the object to the column list
+            self.ci_objs.append( obj )
+
+            # Now create the collection graph
+            try:
+                self.g2.add( (d['aProperty'], RDFS.range,   d['aType']) )
+            except KeyError as e:
+                pass
+
+            try:
+                self.g2.add( (d['aProperty'], RDFS.comment,   d['aComment']) )
+            except KeyError as e:
+                pass
+
+
+    def validate(self, obj):
+        return True
 
     def add_row(self, row):
         """Validates a single object."""
         if 'dct:identifier' not in row:
-            raise ValueError('dct:identifier missing')
+            raise ValidationFail('dct:identifier missing')
 
         ident = row['dct:identifier']
         if ident in self.seenIDs:
-            raise KeyError('dct:identifier already seen')
+            raise ValidationFail('dct:identifier already seen')
         self.seenIDs.add(ident)
         jout['input'] = jin['input']
 

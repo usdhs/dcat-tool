@@ -11,6 +11,7 @@ import sys
 import pprint
 import glob
 import time
+import json
 
 import openpyxl
 import rdflib
@@ -22,13 +23,12 @@ import easy_workbook
 
 INSTRUCTIONS  = os.path.join(dirname(abspath( __file__ )) , "instructions.md")
 
-def make_template(fname, include_instructions, schemata_dir=dhs_ontology.SCHEMATA_DIR, schema=dhs_ontology.COLLECT_TTL, debug=False):
-    g = dhs_ontology.dcatv3_ontology(schemata_dir, schema)
-    (g2, ci_objs) = dhs_ontology.get_template_column_info_objs(g, dhs_ontology.CI_QUERY, debug=debug)
+def make_template(fname, include_instructions, schemata_dir=dhs_ontology.SCHEMATA_DIR, schema_file=dhs_ontology.COLLECT_TTL, debug=False):
+    v = dhs_ontology.Validator(schemata_dir, schema_file)
     eg = easy_workbook.ExcelGenerator()
     if include_instructions:
         eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read())
-    eg.add_columns_sheet("Inventory", ci_objs)
+    eg.add_columns_sheet("Inventory", v.ci_objs)
     eg.save( fname )
 
 def read_xlsx(fname) :
@@ -55,7 +55,9 @@ if __name__=="__main__":
     parser.add_argument("--read_xlsx", help="Read a filled-out Excel template and generate an output file")
     parser.add_argument("--noinstructions", help="Do not generate instructions. Mostly for debugging.",
                         action='store_true')
-    parser.add_argument("--validate", help="Read a JSON object on stdin and validate it, with output being another JSON object on stdout.",
+    parser.add_argument("--validate", help="Read a single JSON object on stdin and validate.",
+                        action='store_true')
+    parser.add_argument("--validate_lines", help="Read multiple JSON objects on stdin and validate all.",
                         action='store_true')
     args = parser.parse_args()
 
@@ -67,14 +69,39 @@ if __name__=="__main__":
 
     if args.validate:
         v = dhs_ontology.Validator( args.schemata_dir, args.schema )
+        data = sys.stdin.readline()
+        try:
+            jin  = json.loads( data )
+        except json.decoder.JSONDecodeError as e:
+            print(e)
+            print("offending input: ",data)
+        try:
+            v.validate( jin )
+            print("OK")
+        except dhs_ontology.ValidationFail as e:
+            print("FAIL:"+e.message)
+
+    if args.validate_lines:
+        v = dhs_ontology.Validator( args.schemata_dir, args.schema )
+        fail = []
+        line = 0
         while not sys.stdin.eof():
+            line += 1
             jin  = json.load( sys.stdin )
-            jout = validate( jin )
-        json.dump(sys.stdout, jout, indent=4)
-        sys.stdout.write("\n")
+            try:
+                v.validate( jin )
+            except dhs_ontology.ValidationFail as e:
+                fail.append([line,e.message])
+        if not fail:
+            print("OK")
+        else:
+            print("FAILURE:")
+            for (line, message) in fail:
+                print(f"line {line}: {message}")
+
 
     if args.make_template:
-        make_template(args.make_template, not args.noinstructions, schemata_dir=args.schemata_dir, schema=args.schema, debug=args.debug)
+        make_template(args.make_template, not args.noinstructions, schemata_dir=args.schemata_dir, schema_file=args.schema, debug=args.debug)
 
     if args.read_xlsx:
         for r in read_xlsx(args.read_xlsx):
