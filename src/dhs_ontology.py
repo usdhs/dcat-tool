@@ -97,14 +97,30 @@ class Validator:
         self.seenIDs = set()
         self.rows    = []
 
-    def get_template_column_info_objs(self):
-        # g2 is an output graph of the terms in the collection instrument
-
-        self.g2 = Graph()
-
+    def cleanGraph(self):
+        """Return a graph with the namespace but none of the tripples"""
+        g2 = Graph()
         # Copy over the namespaces from the triples we read to the graph we are producing
         for ns_prefix,namespace in self.g.namespaces():
-            self.g2.bind(ns_prefix, namespace)
+            g2.bind(ns_prefix, namespace)
+            print("adding namespace prefix",ns_prefix,namespace)
+        return g2
+
+    def augmentGraph(self, g2, queryResult):
+        # Now create the collection graph
+        try:
+            g2.add( (queryResult['aProperty'], RDFS.range,   queryResult['aType']) )
+        except KeyError as e:
+            pass
+
+        try:
+            g2.add( (queryResult['aProperty'], RDFS.comment,   queryResult['aComment']) )
+        except KeyError as e:
+            pass
+
+    def get_template_column_info_objs(self):
+        # g2 is an output graph of the terms in the collection instrument
+        g2 = self.cleanGraph()
 
         self.ci_objs = []
         simp = Simplifier(self.g)
@@ -139,19 +155,10 @@ class Validator:
                                            group = d.get('aGroup',''),
                                            )
 
-            # Add the object to the column list
+            # Add the object to the column list and the graph
             self.ci_objs.append( obj )
-
-            # Now create the collection graph
-            try:
-                self.g2.add( (d['aProperty'], RDFS.range,   d['aType']) )
-            except KeyError as e:
-                pass
-
-            try:
-                self.g2.add( (d['aProperty'], RDFS.comment,   d['aComment']) )
-            except KeyError as e:
-                pass
+            self.augmentGraph( g2, d )
+        self.g2 = g2
 
     def validate(self, obj):
         """Check the dictionary (a loaded JSON object) """

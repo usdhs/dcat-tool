@@ -15,7 +15,7 @@ import json
 
 import openpyxl
 import rdflib
-from rdflib import Dataset, Graph, URIRef, Literal, Namespace
+from rdflib import Dataset, Graph, URIRef, Literal, Namespace, BNode
 
 import template_reader
 import dhs_ontology
@@ -71,13 +71,14 @@ if __name__=="__main__":
     parser.add_argument("--writeschema", help="write the schema to the specified file")
     parser.add_argument("--make_template",
                         help="specify the output filename of the Excel template to make for a collection schema")
-    parser.add_argument("--read_xlsx", help="Read a filled-out Excel template and generate multi-line output JSON")
+    parser.add_argument("--read_xlsx", help="Read a filled-out Excel template and generate multi-line output JSON for each")
     parser.add_argument("--noinstructions", help="Do not generate instructions. Mostly for debugging.",
                         action='store_true')
     parser.add_argument("--validate_xlsx", help="Validate a filled-out Excel template and generate validateion report")
     parser.add_argument("--validate", help="Read a single JSON object on stdin and validate.", action='store_true')
     parser.add_argument("--validate_lines", help="Read multiple JSON objects on stdin and validate all.",
                         action='store_true')
+    parser.add_argument("--convertJSON", help="Read simplified JSON on stdin line-by-line and output full RDF/JSON using DCATv3 spec",action='store_true')
     args = parser.parse_args()
 
     if args.dumpts:
@@ -144,7 +145,38 @@ if __name__=="__main__":
         print(json.dumps(validate_inventory_records(read_xlsx(args.validate_xlsx)), indent=4))
 
     if args.writeschema:
-        fmt = os.path.splitext(args.write)[1][1:].lower()
+        v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
+        fmt = os.path.splitext(args.writeschema)[1][1:].lower()
         if fmt=='json':
             fmt='json-ld'
-        g2.serialize(destination=args.write, format=fmt)
+        v.g2.serialize(destination=args.writeschema, format=fmt)
+
+    """
+    This code is not working propertly.
+
+Test:
+echo '{ "dct:identifier": "id102", "dct:title": "This is ID102", "dct:description": "This is the third dataset" }' |  python dcat_tool.py --convertJSON
+
+URLs for help:
+https://github.com/RDFLib/rdflib/issues/543
+https://stackoverflow.com/questions/65818401/namespace-binding-in-rdflib
+https://www.programcreek.com/python/example/18799/rdflib.Namespace
+https://stackoverflow.com/questions/28503628/force-rdflib-to-define-a-namespace
+https://rdflib.readthedocs.io/en/4.0/_modules/rdflib/namespace.html
+https://rdflib.readthedocs.io/en/stable/_modules/rdflib/namespace.html
+https://github.com/RDFLib/rdflib/issues/1232
+    """
+
+    if args.convertJSON:
+        v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
+        g2 = v.cleanGraph()
+        while True:
+            data = sys.stdin.readline()
+            if len(data) == 0:
+                break
+            obj = json.loads( data )
+            bnode = BNode()     # a GUID is generated
+            for (k,v) in obj.items():
+                g2.add( ( bnode, URIRef(k), Literal(v)) )
+            print(g2)
+            print(g2.serialize( format='turtle'))

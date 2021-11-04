@@ -4,9 +4,9 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#>.
-@prefix foaf: <http://xmlns.com/foaf/0.1/>.
-@prefix wot: <http://xmlns.com/wot/0.1/>.
-@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/#>.
+@prefix wot: <http://xmlns.com/wot/0.1/#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/#>.
 
 dc:date a owl:AnnotationProperty.
 dc:description a owl:AnnotationProperty.
