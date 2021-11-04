@@ -16,11 +16,12 @@ TEST_DIR = dirname(abspath(__file__))
 
 import dcat_tool
 import easy_workbook
+import dhs_ontology
 
 def test_collect():
     DHS = rdflib.Namespace("http://github.com/usdhs/dcat-tool/0.1")
     g = rdflib.Graph()
-    g.parse( dcat_tool.COLLECT_TTL )
+    g.parse( dhs_ontology.COLLECT_TTL )
 
 def test_excelGenerator():
     outdir = tempfile.TemporaryDirectory()
@@ -37,4 +38,11 @@ def test_excelGenerator():
 
 def test_excelParser():
     # Make sure template is as expected
-    wb = openpyxl.load_workbook( os.path.join(TEST_DIR, "test_template.xlsx" ))
+    wb = openpyxl.load_workbook( os.path.join(TEST_DIR, "test_template_clean.xlsx" ))
+
+def test_excelIngest():
+    r1 = dcat_tool.read_xlsx(os.path.join(TEST_DIR, "test_template_clean.xlsx" ))
+    assert len(r1) == 3
+
+    r2 = dcat_tool.read_xlsx(os.path.join(TEST_DIR, "test_template_error_uid.xlsx" ))
+    assert len(r2) == 4
