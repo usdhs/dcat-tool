@@ -61,7 +61,7 @@ if __name__=="__main__":
 
     if args.dump:
         print("Dumping triple store:\n")
-        for stmt in sorted( dcatv3_ontology(args.schemata_dir, args.schema) ):
+        for stmt in sorted( dhs_ontology.dcatv3_ontology(args.schemata_dir, args.schema) ):
             pprint.pprint(stmt)
             print()
 
