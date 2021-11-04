@@ -14,7 +14,7 @@ functionality:
    The excel spreadsheet should contain minimal validation.
 
 2. Given a spreadsheet that's been filled out, parse the supplied data
-in the spreadsheet into its RDF representation.
+   in the spreadsheet into its RDF representation.
 
 3. Given an RDF representation of data elements, validate them, and
    create sensible error messages if validation fails. (We will use
@@ -22,6 +22,12 @@ in the spreadsheet into its RDF representation.
    data or spreadsheets.)
 
 # For additional Reference
+
+This tool is based:
+1. [W3C Data Catalog Vocabulary (DCAT) version 3 (draft recommendation)](https://www.w3.org/TR/vocab-dcat-3)
+2. [W3C Data Exchange Working Group](https://www.w3.org/groups/wg/dx)
+3. [DCAT-US Schema v1.1 (Project Open Data Metadata Schema)](https://resources.data.gov/resources/dcat-us/).
+   See also the [POD schema documentation on github](https://github.com/GSA/resources.data.gov/tree/main/pages/schemas/dcat-us/v1.1/schema)
 
 If you are unfamiliar with the W3C's Semantic Web standards, you may
 find it useful to read these resources, in this order:
@@ -39,7 +45,6 @@ If you are looking for references that are not standards documents, try:
 
 
 ## Related Concepts
-
 
 Turtle
 : An easy-to-author format for rendering RDF as text.
