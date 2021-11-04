@@ -80,7 +80,7 @@ def should_skip(d):
     """Skip query responses that are not in English"""
     # Skip property comments that are not in english
     try:
-        if d['aPropertyComment'].language != 'en':
+        if d['aPropertyComment'].language not in ['en', None, '']:
             return True
     except (KeyError,AttributeError) as e:
         pass
@@ -90,8 +90,8 @@ class ValidationFail( Exception ):
     pass
 
 class Validator:
-    def __init__(self, schemata_dir = SCHEMATA_DIR, schema_file = COLLECT_TTL):
-        self.debug = False
+    def __init__(self, schemata_dir = SCHEMATA_DIR, schema_file = COLLECT_TTL, debug=False):
+        self.debug = debug
         self.g = dcatv3_ontology(schemata_dir, schema_file)
         self.get_template_column_info_objs()
         self.seenIDs = set()
@@ -116,7 +116,7 @@ class Validator:
 
             if should_skip(d):
                 if self.debug:
-                    print(">> skip")
+                    print(">> skip",d)
                 continue
 
             try:
@@ -132,6 +132,7 @@ class Validator:
 
             obj = easy_workbook.ColumnInfo(value = title, # what is displayed in cell
                                            comment = title + ":\n" + comment,
+                                           property = d['aProperty'],
                                            author = simp.simplify(d['aProperty']),
                                            width = int(d.get('aWidth',DEFAULT_WIDTH)),
                                            typ = simp.simplify(d.get('aType', DEFAULT_TYPE)),

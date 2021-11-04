@@ -1,11 +1,18 @@
 import os
 import uuid
 import tempfile
+import sys
+from os.path import dirname,basename,abspath
 
-from flask import Flask, session, flash, request, redirect, send_from_directory, render_template
+MYDIR = dirname( abspath( __file__ ))
+if MYDIR not in sys.path:
+    sys.path.append(MYDIR)
+
+import dcat_tool
+
+from flask import Flask, session, flash, request, redirect, send_from_directory, render_template, send_file
 from werkzeug.utils import secure_filename
 from flask.helpers import safe_join
-
 
 app = Flask(__name__)
 app.secret_key = str(uuid.uuid4())
@@ -51,6 +58,14 @@ def upload_file():
 def _home():
     #return send_from_directory(static, 'index.html')
     return render_template('index.html')
+
+@app.route('/DIP_Template.xlsx')
+def _template():
+    with tempfile.NamedTemporaryFile( suffix='.xlsx' ) as tf:
+        dcat_tool.make_template( tf.name, True )
+        return send_file(tf.name,
+                         mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                         attachment_filename='DIP_Template.xlsx', as_attachment=True)
 
 @app.route('/<path:path>', methods=['GET'])
 def _static(path):

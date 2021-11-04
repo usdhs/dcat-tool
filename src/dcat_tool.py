@@ -44,11 +44,12 @@ if __name__=="__main__":
     parser.add_argument("--schemata_dir",
                         help="specify the directory to read all the schemata. If the --schema file is in schemata_dir, it will only be read once.",
                         default=dhs_ontology.SCHEMATA_DIR)
-    parser.add_argument("--schema",
+    parser.add_argument("--schema_file",
                         help="specify the collection schema file in Turtle, RDF/XML or RDF/JSON",
                         default=dhs_ontology.COLLECT_TTL)
     parser.add_argument("--debug", help="Enable debugging", action='store_true')
-    parser.add_argument("--dump", help="Dump the triple store after everything it is read", action='store_true')
+    parser.add_argument("--dumpts", help="Dump the triple store after everything it is read", action='store_true')
+    parser.add_argument("--dumpci", help="Dump the collection instrument after everything it is read", action='store_true')
     parser.add_argument("--writeschema", help="write the schema to the specified file")
     parser.add_argument("--make_template",
                         help="specify the output filename of the Excel template to make for a collection schema")
@@ -61,14 +62,21 @@ if __name__=="__main__":
                         action='store_true')
     args = parser.parse_args()
 
-    if args.dump:
+    if args.dumpts:
         print("Dumping triple store:\n")
-        for stmt in sorted( dhs_ontology.dcatv3_ontology(args.schemata_dir, args.schema) ):
+        for stmt in sorted( dhs_ontology.dcatv3_ontology(args.schemata_dir, args.schema_file) ):
             pprint.pprint(stmt)
             print()
 
+    if args.dumpci:
+        print("Dumping collection instrument:\n")
+        v = dhs_ontology.Validator(schemata_dir = args.schemata_dir, schema_file=args.schema_file, debug=args.debug)
+        for (ct,obj) in enumerate(v.ci_objs):
+            print(ct,str(obj).replace("\n"," "))
+
+
     if args.validate:
-        v = dhs_ontology.Validator( args.schemata_dir, args.schema )
+        v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
         data = sys.stdin.readline()
         try:
             jin  = json.loads( data )
@@ -82,7 +90,7 @@ if __name__=="__main__":
             print("FAIL:"+e.message)
 
     if args.validate_lines:
-        v = dhs_ontology.Validator( args.schemata_dir, args.schema )
+        v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
         fail = []
         line = 0
         while True:
@@ -109,7 +117,7 @@ if __name__=="__main__":
 
 
     if args.make_template:
-        make_template(args.make_template, not args.noinstructions, schemata_dir=args.schemata_dir, schema_file=args.schema, debug=args.debug)
+        make_template(args.make_template, not args.noinstructions, schemata_dir=args.schemata_dir, schema_file=args.schema_file, debug=args.debug)
 
     if args.read_xlsx:
         for r in read_xlsx(args.read_xlsx):
