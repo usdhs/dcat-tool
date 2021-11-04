@@ -35,6 +35,24 @@ def read_xlsx(fname) :
     tr = template_reader.TemplateReader( fname )
     return list(tr.inventory_records())
 
+def validate_inventory_records( records ):
+    ret = {}
+    ret['response'] = 200       # looks good
+    ret['records']  = []
+    ret['messages'] = []
+    ret['errors']   = []
+    v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
+    for (num,record) in enumerate(records):
+        ret['records'].append(record)
+        try:
+            v.add_row( record )
+            ret['messages'].append('OK')
+        except dhs_ontology.ValidationFail as e:
+            ret['response'] = 409
+            ret['errors'].append(num)
+            ret['messages'].append(str(e))
+    return ret
+
 
 if __name__=="__main__":
     import argparse
@@ -53,11 +71,11 @@ if __name__=="__main__":
     parser.add_argument("--writeschema", help="write the schema to the specified file")
     parser.add_argument("--make_template",
                         help="specify the output filename of the Excel template to make for a collection schema")
-    parser.add_argument("--read_xlsx", help="Read a filled-out Excel template and generate an output file")
+    parser.add_argument("--read_xlsx", help="Read a filled-out Excel template and generate multi-line output JSON")
     parser.add_argument("--noinstructions", help="Do not generate instructions. Mostly for debugging.",
                         action='store_true')
-    parser.add_argument("--validate", help="Read a single JSON object on stdin and validate.",
-                        action='store_true')
+    parser.add_argument("--validate_xlsx", help="Validate a filled-out Excel template and generate validateion report")
+    parser.add_argument("--validate", help="Read a single JSON object on stdin and validate.", action='store_true')
     parser.add_argument("--validate_lines", help="Read multiple JSON objects on stdin and validate all.",
                         action='store_true')
     args = parser.parse_args()
@@ -90,7 +108,8 @@ if __name__=="__main__":
             print("FAIL:"+e.message)
 
     if args.validate_lines:
-        v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
+        """Read lines of JSON, turn each one into a dictionary, then validate them all"""
+        records = []
         fail = []
         line = 0
         while True:
@@ -99,21 +118,19 @@ if __name__=="__main__":
                 break
             line += 1
             try:
-                jin  = json.loads( data )
+                records.append( json.loads( data ) )
             except json.decoder.JSONDecodeError as e:
                 fail.append([line, e.message])
                 continue
-            try:
-                v.add_row( jin )
-            except dhs_ontology.ValidationFail as e:
-                fail.append([line, str(e)])
-                continue
-        if not fail:
+        ret = validate_inventory_records(records)
+        if ret['response']==200 and fail==[]:
             print("OK")
         else:
             print("FAILURE:")
             for (line, message) in fail:
                 print(f"line {line}: {message}")
+            for (rec, message) in ret['messages']:
+                print(f"record {rec}: {message}")
 
 
     if args.make_template:
@@ -122,6 +139,9 @@ if __name__=="__main__":
     if args.read_xlsx:
         for r in read_xlsx(args.read_xlsx):
             print( json.dumps(r) )
+
+    if args.validate_xlsx:
+        print(json.dumps(validate_inventory_records(read_xlsx(args.validate_xlsx)), indent=4))
 
     if args.writeschema:
         fmt = os.path.splitext(args.write)[1][1:].lower()
