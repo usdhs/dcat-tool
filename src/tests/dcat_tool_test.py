@@ -41,8 +41,8 @@ def test_excelParser():
     wb = openpyxl.load_workbook( os.path.join(TEST_DIR, "test_template_clean.xlsx" ))
 
 def test_excelIngest():
-    r1 = dcat_tool.read_xlsx(os.path.join(TEST_DIR, "test_template_clean.xlsx" ))
+    r1 = dhs_ontology.read_xlsx(os.path.join(TEST_DIR, "test_template_clean.xlsx" ))
     assert len(r1) == 3
 
-    r2 = dcat_tool.read_xlsx(os.path.join(TEST_DIR, "test_template_error_uid.xlsx" ))
+    r2 = dhs_ontology.read_xlsx(os.path.join(TEST_DIR, "test_template_error_uid.xlsx" ))
     assert len(r2) == 4

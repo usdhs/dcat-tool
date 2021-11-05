@@ -167,7 +167,7 @@ class Validator:
     def validate(self, obj):
         """Check the dictionary (a loaded JSON object) """
         if not isinstance(obj,dict):
-            raise ValidationFail('argument is not a JSON object or python dictionary')
+            raise ValidationFail(f'argument is type "{type(obj)}" and is not a JSON object or python dictionary')
         if 'dct:identifier' not in obj:
             raise ValidationFail('dct:identifier missing')
         return True
@@ -185,3 +185,29 @@ class Validator:
     # TODO: Implement shackl validation.
     # Make sure all mandatory fields are present
     # Make sure all fields have correct format
+
+
+def validate_inventory_records( v, records ):
+    ret = {}
+    ret['response'] = 200       # looks good
+    ret['records']  = []
+    ret['messages'] = []
+    ret['errors']   = []
+    v.clear()
+    for (num,record) in enumerate(records):
+        ret['records'].append(record)
+        try:
+            v.add_row( record )
+            ret['messages'].append('OK')
+        except ValidationFail as e:
+            ret['response'] = 409
+            ret['errors'].append(num)
+            ret['messages'].append(str(e))
+    return ret
+
+def read_xlsx(fname) :
+    tr = template_reader.TemplateReader( fname )
+    return list(tr.inventory_records())
+
+def validate_xlsx( v, fname):
+    return validate_inventory_records( v, read_xlsx( fname ) )

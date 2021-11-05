@@ -16,6 +16,10 @@ if MYDIR not in sys.path:
 import dcat_tool
 import dhs_ontology
 
+HTTP_OK = 200
+HTTP_BAD_REQUEST = 400
+HTTP_JSON_DECODE_ERROR = 409
+
 # Bring in flask
 
 from flask import Flask, session, flash, request, redirect, send_from_directory, render_template, send_file
@@ -38,43 +42,78 @@ def _home():
     return render_template('index.html')
 
 
-# Validation
+################################################################
+### Load the validator. This is slow, so we do it when the package loads
 print(">> Loading validator...")
 t0 = time.time()
 validator = dhs_ontology.Validator()
 t = time.time() - t0
 print(">> Validator loaded in",t,"seconds")
-def web_analyze(obj, msg):
-    """
-    Analyze an object that is uploaded and report the results via flash(), with each result preceeded by msg.
-    """
-    try:
-        validator.add_row( obj )
-        flash( msg+"validates")
-    except dhs_ontology.ValidationFail as e:
-        flash( msg+"does not validate -- "+str(e))
+################################################################
+
 
 @app.route('/validate/xlsx', methods=['POST'])
 def _validate_xlsx():
     """
     This is the main REST API for validating .xlsx files.
-    It has result code feedback
+    It has result code feedback.
+    @param request.files['file'] - the input file, from a posted form.
+    @return -  json encoded string of ret, and the code
     """
+    file = request.files['file']
     with tempfile.NamedTemporaryFile( suffix='.xlsx' ) as tf:
         file.save( tf.name )
-        resp = validate_xlsx( tf.name )
-        code = 200
-        if (resp['error']):
-            code=409
-        return resp, code
+        ret = dhs_ontology.validate_xlsx( validator, tf.name )
+    if ( ret.get('error','') ):
+        ret['response'] = HTTP_JSON_DECODE_ERROR
+    if 'response' not in ret:
+        ret['response'] = HTTP_OK
+    return json.dumps(ret), ret['response']
 
 
+@app.route('/validate/json', methods=['POST'])
+def _validate_json():
+    """
+    This is the main REST API for validating JSON.
+    It has result code feedback. It mirrors the code below.
+    @param request.form['text'] - the text to validate.
+    """
+    try:
+        obj = json.loads( request.form['text'] )
+    except json.decoder.JSONDecodeError as e:
+        return "JSON decode error",HTTP_JSON_DECODE_ERROR
+    ret = {}
+    ret['messages'] = []
+    ret['response']     = HTTP_OK
+    if isinstance(obj,dict):
+        obj = [obj]             # wrap it
+    if isinstance(obj,list):
+        validator.clear()
+        for o in obj:
+            try:
+                validator.add_row( o )
+                ret['messages'].append('OK')
+            except dhs_ontology.ValidationFail as e:
+                ret['messages'].append('FAIL: '+str(e))
+                ret['response'] = HTTP_BAD_REQUEST
+    else:
+        ret['messages'].append('A JSON list or object must be provided')
+        ret['response'] = HTTP_BAD_REQUEST
+    return json.dumps(ret), ret['response']
+
+
+################################################################
+## Handle post to / , which is done by the web page.
+## Arguments:
+## request.files['file'] - the file that is uploaded
+## request.form['text']  - the text to validate
 @app.route('/', methods=['POST'])
 def _upload_file_or_json():
     """
     This is the main user interface for posting files and text fields
-    it includes HTML feedback.
+    it includes HTML feedback. It calls the same functions as used by the REST API.
     """
+    # Test the Excel validator. This uses the same code as the actual validator above
     if 'file' in request.files:
         file = request.files['file']
         # If the user does not select a file, the browser submits an
@@ -91,9 +130,17 @@ def _upload_file_or_json():
         if ext=='.xls':
             flash(".xls files must be converted to .xlsx prior to uploading.")
             return redirect(request.url)
-        with tempfile.NamedTemporaryFile( suffix=ext ) as tf:
-            file.save( tf.name )
-            return redirect(request.url)
+
+        # Use the API
+        (resp_json, code) = _validate_xlsx()
+        resp = json.loads( resp_json )
+        for msg in resp['messages']:
+            flash(msg)
+        flash("Return code: "+str(resp['response']))
+        return redirect(request.url)
+
+
+    # Test the JSON validator
     try:
         text = request.form['text'].strip()
     except (KeyError, ValueError) as e:
@@ -104,20 +151,20 @@ def _upload_file_or_json():
             obj = json.loads(text)
             flash('JSON is syntactically valid.')
         except json.decoder.JSONDecodeError as e:
-            flash('JSON is not valid.')
+            flash('JSON is not syntatically valid.')
             return redirect(request.url)
 
-        if isinstance(obj,list):
-            plural = '' if len(obj)==1 else 's'
-            flash(f'A JSON list with {len(obj)} element{plural} was provided')
-            validator.clear()
-            for (ct,o) in enumerate(obj,1):
-                web_analyze(o,f"object #{ct}:")
-        elif isinstance(obj,dict):
-            flash('A JSON object was provided')
-            web_analyze(o,"")
-        else:
-            flash('Error: a JSON list or object must be provided.')
+        (resp_json,code) = _validate_json()
+        try:
+            resp = json.loads( resp_json )
+        except json.decoder.JSONDecodeError as e:
+            print("invalid resp_json: ", resp_json)
+            flash('Internal Error')
+            return redirect(request.url)
+
+        for msg in resp['messages']:
+            flash(msg)
+        flash("Return code: "+str(resp['response']))
         return redirect(request.url)
 
     flash('Please provide text or a file to analyze.')

@@ -31,29 +31,6 @@ def make_template(fname, include_instructions, schemata_dir=dhs_ontology.SCHEMAT
     eg.add_columns_sheet("Inventory", v.ci_objs)
     eg.save( fname )
 
-def read_xlsx(fname) :
-    tr = template_reader.TemplateReader( fname )
-    return list(tr.inventory_records())
-
-def validate_inventory_records( records ):
-    ret = {}
-    ret['response'] = 200       # looks good
-    ret['records']  = []
-    ret['messages'] = []
-    ret['errors']   = []
-    v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
-    for (num,record) in enumerate(records):
-        ret['records'].append(record)
-        try:
-            v.add_row( record )
-            ret['messages'].append('OK')
-        except dhs_ontology.ValidationFail as e:
-            ret['response'] = 409
-            ret['errors'].append(num)
-            ret['messages'].append(str(e))
-    return ret
-
-
 if __name__=="__main__":
     import argparse
 
@@ -78,6 +55,7 @@ if __name__=="__main__":
     parser.add_argument("--validate", help="Read a single JSON object on stdin and validate.", action='store_true')
     parser.add_argument("--validate_lines", help="Read multiple JSON objects on stdin and validate all.",
                         action='store_true')
+    parser.add_argument("--flip", help="Flip exit code with --validate_lines", action='store_true')
     parser.add_argument("--convertJSON", help="Read simplified JSON on stdin line-by-line and output full RDF/JSON using DCATv3 spec",action='store_true')
     args = parser.parse_args()
 
@@ -123,23 +101,26 @@ if __name__=="__main__":
             except json.decoder.JSONDecodeError as e:
                 fail.append([line, e.message])
                 continue
-        ret = validate_inventory_records(records)
+        v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
+        ret = dhs_ontology.validate_inventory_records( v, records)
         if ret['response']==200 and fail==[]:
             print("OK")
         else:
             print("FAILURE:")
             print(json.dumps(ret,indent=4))
-            exit(1)
+            exit(1 if not args.flip else 0)
+        exit(0 if not args.flip else 1)
 
     if args.make_template:
         make_template(args.make_template, not args.noinstructions, schemata_dir=args.schemata_dir, schema_file=args.schema_file, debug=args.debug)
 
     if args.read_xlsx:
-        for r in read_xlsx(args.read_xlsx):
+        for r in dhs_ontology.read_xlsx( args.read_xlsx):
             print( json.dumps(r) )
 
     if args.validate_xlsx:
-        print(json.dumps(validate_inventory_records(read_xlsx(args.validate_xlsx)), indent=4))
+        v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
+        print(json.dumps( dhs_ontology.validate_xlsx( v, args.validate_xlsx), indent=4))
 
     if args.writeschema:
         v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
