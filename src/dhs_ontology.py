@@ -97,6 +97,10 @@ class Validator:
         self.seenIDs = set()
         self.rows    = []
 
+    def clear(self):
+        """Clear the seenIDs"""
+        self.seenIDs.clear()
+
     def cleanGraph(self):
         """Return a graph with the namespace but none of the tripples"""
         g2 = Graph()
@@ -162,6 +166,8 @@ class Validator:
 
     def validate(self, obj):
         """Check the dictionary (a loaded JSON object) """
+        if not isinstance(obj,dict):
+            raise ValidationFail('argument is not a JSON object or python dictionary')
         if 'dct:identifier' not in obj:
             raise ValidationFail('dct:identifier missing')
         return True

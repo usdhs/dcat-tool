@@ -128,11 +128,8 @@ if __name__=="__main__":
             print("OK")
         else:
             print("FAILURE:")
-            for (line, message) in fail:
-                print(f"line {line}: {message}")
-            for (rec, message) in ret['messages']:
-                print(f"record {rec}: {message}")
-
+            print(json.dumps(ret,indent=4))
+            exit(1)
 
     if args.make_template:
         make_template(args.make_template, not args.noinstructions, schemata_dir=args.schemata_dir, schema_file=args.schema_file, debug=args.debug)

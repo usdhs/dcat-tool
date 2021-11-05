@@ -16,20 +16,20 @@
 {% endwith %}
 
 <h1>API Test</h1>
-<h2>Upload and Validate an Excel Spreadsheet</h2>
-<p>You can upload an excel spreadsheet:</p>
-<form method=post enctype=multipart/form-data>
-  <input type=file name=file>
-  <input type=submit value=Upload>
+This API tester demonstrates both the Excel upload API and the RDF/JSON validation API.
+<h2>Option 1: Upload and Validate an Excel Spreadsheet</h2>
+<p>You can upload an excel spreadsheet. Select a file and click 'upload' below:</p>
+<form method='post' enctype='multipart/form-data'>
+  <input type='file' name='file'>
+  <input type='submit' value='Upload'>
 </form>
 
-<h2>Paste in your RDF/JSON</h2>
-<p>Paste RDF/JSON for validation. You can paste a single data
-  inventory record or a list of data inventory records.</p>
+<h2>Option 2: Paste in your RDF/JSON</h2>
+<p>Validate RDF/JSON. Paste a single data   inventory record or a list of data inventory records into the text area below, and click the 'validate' button:</p>
 <form method=post enctype=multipart/form-data>
-  <textarea rows=20 cols=80> </textarea>
+  <textarea rows='20' cols='80' name='text'></textarea>
   <br/>
-  <input type=submit value=Validate>
+  <input type='submit' value='Validate'>
 </form>
 
 <h1>Download Excel Template</h1>
