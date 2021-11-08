@@ -12,7 +12,7 @@ check:
 	make template
 	python dcat_tool.py --validate < tests/test_template_clean.json
 	python dcat_tool.py --validate_lines < tests/test_template_clean.json
-	python dcat_tool.py --validate_lines --flip < tests/test_template_error_uid.json
+	python dcat_tool.py --validate_lines --flip < tests/test_template_error_uid.json | grep FAILURE > /dev/null
 
 template:
 	python dcat_tool.py --make_template ../dist/DIP_Template_output_$(DATE).xlsx
