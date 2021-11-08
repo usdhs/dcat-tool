@@ -4,20 +4,20 @@
     # imports: http://www.w3.org/ns/prov-o#
     # prefix: usg
 
-@prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix dctype: <http://purl.org/dc/dcmitype/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix sdo: <http://schema.org/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcat:  <http://www.w3.org/ns/dcat#> .
+@prefix dct:   <http://purl.org/dc/terms/#> .
+@prefix dctype: <http://purl.org/dc/dcmitype/#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sdo:   <http://schema.org/#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix usg:     <http://resources.data.gov/resources/dcat-us/#> .
-@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix usg:   <http://resources.data.gov/resources/dcat-us/#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
 
 <http://resources.data.gov/resources/dcat-us/#>
     a owl:Ontology ;
@@ -38,7 +38,6 @@
 
 usg:accessLevel
     a rdf:Property ;
-    a owl:ObjectProperty ;
     a sh:NodeShape ;
 
     rdfs:range rdfs:Literal ;
@@ -51,13 +50,12 @@ usg:accessLevel
 
 usg:metadataClassification
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The classification level of the metadata." ;
     .
 
 usg:public
-    a owl:DatatypeProperty ;
+    a rdfs:Property ;
     rdfs:label "public"@en ;
     rdfs:comment "Data asset is or could be made publicly available to all without restrictions." ;
     .
@@ -76,42 +74,36 @@ usg:nonPublic
 
 usg:governance
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The organization responsible for governance or oversight of the dataset.";
     .
 
 usg:owner
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The owner of the dataset. Data owners are senior officials or organizations that are responsible for the content and quality of the dataset.";
     .
 
 usg:steward
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The steward of the dataset. Data stewards are responsible for ensuring that data are properly stored, maintained, accessible, and protected.";
     .
 
 usg:custodian
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The custodian of the dataset. Data custodians are the individuals or organizations that have physical posession of the data.";
     .
 
 usg:primaryITInvestmentUII
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "For linking a dataset with an IT Unique Investment Identifier (UII)." ;
     .
 
 usg:sharingAgreements
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Any sharing agreements for the dataset that should be documented." ;
     .
@@ -119,357 +111,306 @@ usg:sharingAgreements
 
 usg:collectionAuthority
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The legal authority under which the data were collected." ;
     .
 
 usg:retentionAuthority
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The legal authority under which the data are retained." ;
     .
 
 usg:releaseAuthority
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The legal authority under which the data may be released." ;
     .
 
 usg:recordsSchedule
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The data records schedule." ;
     .
 
 usg:systemOfRecords
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The system of records notice (SORN) in which the dataset appears." ;
     .
 
 usg:conformsFIPS
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Any Federal Information Processing Standard (FIPS) that covers the data." ;
     .
 
 usg:conformsNIEMPercent
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The percentage of the data schema that conforms to the National Information Exchnage Model (NIEM)." ;
     .
 
 usg:conformsUnicode
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Does the dataset contain unicode information?" ;
     .
 
 usg:identitiesNativeScript
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Are names in the dataset represented in native script?" ;
     .
 
 usg:transliterationStandard;
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The transliteration standard used for names in the dataset, if names are transliterated into English." ;
     .
 
 usg:sourceDatasets
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The unique identifiers of the source datasets." ;
     .
 
 usg:destinationDatasets
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The unique identifiers of the downstream datasets fed by this dataset." ;
     .
 
 usg:describedBy
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "URL for the JSON Schema file that defines the schema used." ;
     .
 
 usg:describedByType
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The machine-readable file format (IANA Media Type also known as MIME Type) of the dataset’s Data Dictionary (describedBy)." ;
     .
 
 usg:dataQualityKnown
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "If the data quality is known or not." ;
     .
 
 usg:dataQualityMetric
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Metric used to measure data quality." ;
     .
 
 usg:dataQualityMeasure
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The measure of the data quality." ;
     .
 
 usg:dataQualityPercent
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "A simple measure of the data quality, on a scale from 0-100." ;
     .
 
 usg:dataQualityAssessment
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Narrative as to the overall data quality." ;
     .
 
 usg:dataQuality
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Indicates whether a dataset conforms to the agency’s information quality guidelines (boolean)." ;
     .
 
 usg:accessURLNIEM
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The URL from which the NIEM representation can be accessed." ;
     .
 
 usg:modified
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Most recent date on which the dataset was changed, updated or modified." ;
     .
 
 usg:vendor
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Source of the dataset." ;
     .
 
 usg:component
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Sub-department (e.g. bureau or component) of the data." ;
     .
 
 usg:functionalDataDomain
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Functional data domain of the data." ;
     .
 
 usg:tableCount
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Number of 2-dimensional tables in the data." ;
     .
 
 usg:recordCount
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Total number of records in the data." ;
     .
 
 usg:datasetClassification
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Security classificaiton of the data." ;
     .
 
 usg:characteristics
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Specific container to hold various data characteristics." ;
     .
 
 usg:ch-person-level
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains person-level records." ;
     .
 
 usg:ch-financial
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains financial information." ;
     .
 
 usg:ch-event-records
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains information about events that are tagged with a specific place and time." ;
     .
 
 usg:ch-faces
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains human faces." ;
     .
 
 usg:ch-fingerprints
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains fingerprints." ;
     .
 
 usg:ch-cui
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains controlled unclassified information." ;
     .
 
 usg:ch-phi
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains protected health information." ;
     .
 
 usg:ch-pii
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean ;
     rdfs:comment "The dataset contains personally identifiable information under the controlling legal definition of PII." ;
     .
 
 usg:ch-geospatial
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains geospatial information." ;
     .
 
 usg:ch-fisa
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains information pretaining to the Foreign Intelligence Surveillance Act (FISA)." ;
     .
 
 usg:ch-8usc1367
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains 8 USC 1367." ;
     .
 
 usg:ch-propin
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains proprietary commercial information." ;
     .
 
 usg:ch-immigration
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains information pertaining to immigration." ;
     .
 
 usg:ch-criticalInfrastructure
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains critical infrastructure information." ;
     .
 
 usg:ch-disseminationRestrictions
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range xsd:boolean;
     rdfs:comment "The information has dissemination restrictions." ;
     .
 
 usg:hostingLocation
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Where the data physically reside." ;
     .
 
 usg:hostedInCloud
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "If the dataset's location is in the cloud." ;
     .
 
 usg:easilyAccessibleByCreatingComponent
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The information can be easily accessed by individuals within the component that created it." ;
     .
 
 usg:easilyAccessibleByAllComponents
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The information can be easily accessed by individuals within all department component." ;
     .
 
 usg:easilyAccessibleByGeneralPublic
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The information can be easily accessed by the general public." ;
     .
 
 usg:recordTransmission
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "When the metadata record was transmitted." ;
     .
 
 usg:validityTime
     a rdf:Property ;
-    a owl:ObjectProperty ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "When the metadata record is valid." ;
     .

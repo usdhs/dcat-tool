@@ -93,12 +93,12 @@ class EasyWorkbook(Workbook):
 
 
 class ColumnInfo:
-    __slots__ = ('value', 'comment', 'author', 'width', 'typ', 'group')
+    __slots__ = ('value', 'comment', 'author', 'width', 'typ', 'group', 'property')
     def __init__(self, **kwargs):
         for k,v in kwargs.items():
             setattr(self, k, v)
     def __str__(self):
-        return f"<ColumnInfo value={self.value} comment={self.comment} width={self.width} typ={self.typ}>"
+        return f"<ColumnInfo property={self.property} value={self.value} comment={self.comment} width={self.width} typ={self.typ}>"
 
 # Slightly higher-level
 class ExcelGenerator:
@@ -134,19 +134,24 @@ class ExcelGenerator:
 
         # set up data validation
         # https://openpyxl.readthedocs.io/en/stable/validation.html
+        # Not working properly yet
 
-        dv_boolean = DataValidation(type="list", formula1='"true,false"', allow_blank=True)
-        dv_boolean.error = 'Please select yes or no, or leave blank.'
-        dv_boolean.errorTitle = 'Invalid Value'
-        dv_boolean.prompt = 'Please select from the list'
-        dv_boolean.promptTitle = 'List Selection'
-        ws.add_data_validation(dv_boolean)
+        USE_DATA_VALIDATION=False
 
-        dv_decimal = DataValidation(type='decimal')
-        ws.add_data_validation(dv_decimal)
+        if USE_DATA_VALIDATION:
+            dv_boolean = DataValidation(type="list", formula1='"true,false"', allow_blank=True)
+            dv_boolean.error = 'Please select yes or no, or leave blank.'
+            dv_boolean.errorTitle = 'Invalid Value'
+            dv_boolean.prompt = 'Please select from the list'
+            dv_boolean.promptTitle = 'List Selection'
+            ws.add_data_validation(dv_boolean)
 
-        dv_date    = DataValidation(type='date')
-        ws.add_data_validation(dv_date)
+            dv_decimal = DataValidation(type='decimal')
+            ws.add_data_validation(dv_decimal)
+
+            dv_date    = DataValidation(type='date')
+            ws.add_data_validation(dv_date)
+
 
 
         last_group = None
@@ -192,9 +197,10 @@ class ExcelGenerator:
                 cell2.fill = color_fill
                 cell2.border = new_border
 
-            # Set the types with data validation where possible
-            if obj.typ=='xsd:boolean':
-                dv_boolean.add(f'{column_letter}2:{column_letter}{rows}')
+            if USE_DATA_VALIDATION:
+                # Set the types with data validation where possible
+                if obj.typ=='xsd:boolean':
+                    dv_boolean.add(f'{column_letter}2:{column_letter}{rows}')
 
 
     def save(self, fname):

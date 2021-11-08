@@ -11,12 +11,18 @@ import glob
 import time
 import rdflib
 from rdflib import Dataset, Graph, URIRef, Literal, Namespace
-import openpyxl
+
 import template_reader
+import easy_workbook
 
 DHS           = Namespace("http://github.com/usdhs/dcat-tool/0.1")
+XSD           = Namespace("http://www.w3.org/2001/XMLSchema#")
+RDFS          = Namespace("http://www.w3.org/2000/01/rdf-schema#")
+
 SCHEMATA_DIR  = os.path.join(dirname(abspath( __file__ )) , "../schemata")
 COLLECT_TTL   = os.path.join(SCHEMATA_DIR, "dhs_collect.ttl")
+DEFAULT_WIDTH = 15              # Excel spreadsheet default width
+DEFAULT_TYPE  = XSD.string
 
 """
 CI_QUERY is the query to create the collection instrument
@@ -34,19 +40,21 @@ WHERE {
   dhs:dataInventoryRecord sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
 
-  OPTIONAL { ?aProperty  rdfs:range     ?aType . }
-  OPTIONAL { ?aProperty  rdfs:comment   ?aPropertyComment . }
-  OPTIONAL { ?aShapeName dhs:excelWidth ?aWidth . }
-  OPTIONAL { ?aShapeName dt:title  ?aTitle . }
-  OPTIONAL { ?aShapeName dt:group  ?aGroup . }
+  OPTIONAL { ?aProperty  rdfs:range      ?aType . }
+  OPTIONAL { ?aProperty  rdfs:comment    ?aPropertyComment . }
+  OPTIONAL { ?aShapeName dhs:excelWidth  ?aWidth . }
+  OPTIONAL { ?aShapeName dt:title        ?aTitle . }
+  OPTIONAL { ?aShapeName dt:group        ?aGroup . }
   OPTIONAL { ?aShapeName rdfs:comment    ?aShapeComment . }
+  OPTIONAL { ?aShareName sh:minCount     ?aMinCount . }
 }
 """
 
-def dcatv3_ontology(schema_dir, schema_file):
+def dcatv3_ontology(schemata_dir = SCHEMATA_DIR, schema_file = COLLECT_TTL):
+    """Returns a graph of the DHS ontology for the data inventory program"""
     g    = Graph()
     seen = set()
-    for fname in glob.glob( os.path.join(schema_dir,"*.ttl")) + [schema_file]:
+    for fname in glob.glob( os.path.join(schemata_dir,"*.ttl")) + [schema_file]:
         if fname and fname not in seen:
             fname = os.path.abspath(fname)
             g.parse(fname)
@@ -55,26 +63,159 @@ def dcatv3_ontology(schema_dir, schema_file):
         raise RuntimeError("No schema files specified")
     return g
 
+class Simplifier:
+    def __init__(self, graph):
+        self.graph = graph
+    def simplify(self, token, namespace=True):
+        for prefix,ns in self.graph.namespaces():
+            if ns:
+                if token.startswith(ns):
+                    if namespace:
+                        return prefix+":"+token[len(ns):]
+                    else:
+                        return token[len(ns):]
+        return token
 
+def should_skip(d):
+    """Skip query responses that are not in English"""
+    # Skip property comments that are not in english
+    try:
+        if d['aPropertyComment'].language not in ['en', None, '']:
+            return True
+    except (KeyError,AttributeError) as e:
+        pass
+    return False
+
+class ValidationFail( Exception ):
+    pass
 
 class Validator:
-    def __init__(self, schema_dir, schema):
-        self.g = dcatv3_ontology(args.schema_dir, args.schema)
-        (self.g2, self.ci_objs) = get_template_column_info_objs(g, CI_QUERY)
+    def __init__(self, schemata_dir = SCHEMATA_DIR, schema_file = COLLECT_TTL, debug=False):
+        self.debug = debug
+        self.g = dcatv3_ontology(schemata_dir, schema_file)
+        self.get_template_column_info_objs()
         self.seenIDs = set()
+        self.rows    = []
 
+    def clear(self):
+        """Clear the seenIDs"""
+        self.seenIDs.clear()
 
-    def add_row(self, row):
+    def cleanGraph(self):
+        """Return a graph with the namespace but none of the tripples"""
+        g2 = Graph()
+        # Copy over the namespaces from the triples we read to the graph we are producing
+        for ns_prefix,namespace in self.g.namespaces():
+            g2.bind(ns_prefix, namespace)
+            #print("adding namespace prefix",ns_prefix,namespace)
+        return g2
+
+    def augmentGraph(self, g2, queryResult):
+        # Now create the collection graph
+        try:
+            g2.add( (queryResult['aProperty'], RDFS.range,   queryResult['aType']) )
+        except KeyError as e:
+            pass
+
+        try:
+            g2.add( (queryResult['aProperty'], RDFS.comment,   queryResult['aComment']) )
+        except KeyError as e:
+            pass
+
+    def get_query_dict(self):
+        for r in self.g.query( CI_QUERY ):
+            d = r.asdict()
+            if self.debug:
+                print(d)
+            if should_skip(d):
+                if self.debug:
+                    print(">> skip",d)
+                continue
+            yield d
+
+    def get_descriptions(self):
+        """Returns an iterator of tuples in the form (group, simplifed_property, description)"""
+        simp = Simplifier(self.g)
+        for d in self.get_query_dict():
+            comment = d.get('aShapeComment', d.get('aPropertyComment', ''))
+            yield (simp.simplify(d['aGroup']), simp.simplify(d['aProperty']), comment)
+
+    def get_template_column_info_objs(self):
+        # g2 is an output graph of the terms in the collection instrument
+        g2 = self.cleanGraph()
+
+        self.ci_objs = []
+        simp = Simplifier(self.g)
+        for d in self.get_query_dict():
+            try:
+                title = d['aTitle']
+            except KeyError:
+                title = simp.simplify(d['aProperty'], namespace=False)
+
+            # For the comment, grab the shape comment if it is present. otherwise, grab the property comment.
+            # The comment goes into the tooltip for the column
+            comment = d.get('aShapeComment', d.get('aPropertyComment', ''))
+            if not comment:
+                print("Need description for",d['aProperty'])
+
+            obj = easy_workbook.ColumnInfo(value = title, # what is displayed in cell
+                                           comment = title + ":\n" + comment,
+                                           property = d['aProperty'],
+                                           author = simp.simplify(d['aProperty']),
+                                           width = int(d.get('aWidth',DEFAULT_WIDTH)),
+                                           typ = simp.simplify(d.get('aType', DEFAULT_TYPE)),
+                                           group = d.get('aGroup',''),
+                                           )
+
+            # Add the object to the column list and the graph
+            self.ci_objs.append( obj )
+            self.augmentGraph( g2, d )
+        self.g2 = g2
+
+    def validate(self, obj):
+        """Check the dictionary (a loaded JSON object) """
+        if not isinstance(obj,dict):
+            raise ValidationFail(f'argument is type "{type(obj)}" and is not a JSON object or python dictionary')
+        if 'dct:identifier' not in obj:
+            raise ValidationFail('dct:identifier missing')
+        return True
+
+    def add_row(self, obj):
         """Validates a single object."""
-        if 'dct:identifier' not in row:
-            raise ValueError('dct:identifier missing')
+        self.validate( obj )
 
-        ident = row['dct:identifier']
+        ident = obj['dct:identifier']
         if ident in self.seenIDs:
-            raise KeyError('dct:identifier already seen')
+            raise ValidationFail(f'dct:identifier "{ident}" already seen')
         self.seenIDs.add(ident)
-        jout['input'] = jin['input']
+        self.rows.append( obj )
 
     # TODO: Implement shackl validation.
     # Make sure all mandatory fields are present
     # Make sure all fields have correct format
+
+
+def validate_inventory_records( v, records ):
+    ret = {}
+    ret['response'] = 200       # looks good
+    ret['records']  = []
+    ret['messages'] = []
+    ret['errors']   = []
+    v.clear()
+    for (num,record) in enumerate(records):
+        ret['records'].append(record)
+        try:
+            v.add_row( record )
+            ret['messages'].append('OK')
+        except ValidationFail as e:
+            ret['response'] = 409
+            ret['errors'].append(num)
+            ret['messages'].append(str(e))
+    return ret
+
+def read_xlsx(fname) :
+    tr = template_reader.TemplateReader( fname )
+    return list(tr.inventory_records())
+
+def validate_xlsx( v, fname):
+    return validate_inventory_records( v, read_xlsx( fname ) )

@@ -21,6 +21,8 @@ PROPERTY_RE = re.compile(r'([-a-zA-Z0-9]+:[-a-zA-Z0-9]+)')
 
 class TemplateReader:
     def __init__(self, fn):
+        if not os.path.exists(fn):
+            raise FileNotFoundError(fn)
         self.fn = fn
         self.wb = openpyxl.load_workbook( fn )
 
