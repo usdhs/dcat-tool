@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<title>DHS Data Inventory Attribute Definitions</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>DHS Collection Vocabulary</h1>
+Below is a list of terms and their definitions for the DHS Data Inventory.
+
+<table class='definitions'>
+{% for (group,name,d) in desc %}
+   {% if loop.changed(group) %}
+      </table>
+      <h3>{{group}}</h3>
+      <table class='definitions'>
+   {% endif %}
+      <tr><th> {{ name }} </th> <td> {{ d }} </td> </tr>
+{% endfor %}
+</table>
+
+</body>
+</html>

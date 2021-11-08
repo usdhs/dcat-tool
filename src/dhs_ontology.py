@@ -122,23 +122,31 @@ class Validator:
         except KeyError as e:
             pass
 
+    def get_query_dict(self):
+        for r in self.g.query( CI_QUERY ):
+            d = r.asdict()
+            if self.debug:
+                print(d)
+            if should_skip(d):
+                if self.debug:
+                    print(">> skip",d)
+                continue
+            yield d
+
+    def get_descriptions(self):
+        """Returns an iterator of tuples in the form (group, simplifed_property, description)"""
+        simp = Simplifier(self.g)
+        for d in self.get_query_dict():
+            comment = d.get('aShapeComment', d.get('aPropertyComment', ''))
+            yield (simp.simplify(d['aGroup']), simp.simplify(d['aProperty']), comment)
+
     def get_template_column_info_objs(self):
         # g2 is an output graph of the terms in the collection instrument
         g2 = self.cleanGraph()
 
         self.ci_objs = []
         simp = Simplifier(self.g)
-        for r in self.g.query( CI_QUERY ):
-            d = r.asdict()
-
-            if self.debug:
-                print(d)
-
-            if should_skip(d):
-                if self.debug:
-                    print(">> skip",d)
-                continue
-
+        for d in self.get_query_dict():
             try:
                 title = d['aTitle']
             except KeyError:

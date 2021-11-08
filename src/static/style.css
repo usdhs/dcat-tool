@@ -131,3 +131,24 @@ input[type=submit] {
   align-self: start;
   min-width: 10em;
 }
+
+
+table.definitions {
+    border-collapse: collapse;
+}
+
+table.definitions tr {
+    border-bottom: 2px solid black;
+}
+
+table.definitions th {
+    color: black;
+    font-weight: normal;
+    width: 50px;
+    text-align: left;
+}
+
+table.definitions td {
+    color: green;
+    width: 400px;
+}

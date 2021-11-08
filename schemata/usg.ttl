@@ -55,7 +55,7 @@ usg:metadataClassification
     .
 
 usg:public
-    a owl:DatatypeProperty ;
+    a rdfs:Property ;
     rdfs:label "public"@en ;
     rdfs:comment "Data asset is or could be made publicly available to all without restrictions." ;
     .

@@ -17,14 +17,14 @@ import openpyxl
 import rdflib
 from rdflib import Dataset, Graph, URIRef, Literal, Namespace, BNode
 
+import jinja2
 import template_reader
 import dhs_ontology
 import easy_workbook
 
 INSTRUCTIONS  = os.path.join(dirname(abspath( __file__ )) , "instructions.md")
 
-def make_template(fname, include_instructions, schemata_dir=dhs_ontology.SCHEMATA_DIR, schema_file=dhs_ontology.COLLECT_TTL, debug=False):
-    v = dhs_ontology.Validator(schemata_dir, schema_file)
+def make_template(v, fname, include_instructions):
     eg = easy_workbook.ExcelGenerator()
     if include_instructions:
         eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read())
@@ -46,9 +46,10 @@ if __name__=="__main__":
     parser.add_argument("--dumpts", help="Dump the triple store after everything it is read", action='store_true')
     parser.add_argument("--dumpci", help="Dump the collection instrument after everything it is read", action='store_true')
     parser.add_argument("--writeschema", help="write the schema to the specified file")
+    parser.add_argument("--render_descriptions", help="Render descriptions of each attribute in an HTML file")
     parser.add_argument("--make_template",
                         help="specify the output filename of the Excel template to make for a collection schema")
-    parser.add_argument("--read_xlsx", help="Read a filled-out Excel template and generate multi-line output JSON for each")
+    parser.add_argument("--read_xlsx", help="Read a filled-out Excel template and generate multi-line output JSON for each without validating.")
     parser.add_argument("--noinstructions", help="Do not generate instructions. Mostly for debugging.",
                         action='store_true')
     parser.add_argument("--validate_xlsx", help="Validate a filled-out Excel template and generate validateion report")
@@ -65,15 +66,19 @@ if __name__=="__main__":
             pprint.pprint(stmt)
             print()
 
+    if args.read_xlsx:
+        for r in dhs_ontology.read_xlsx( args.read_xlsx):
+            print( json.dumps(r) )
+
+    # All of those that follow require 'v':
+    v = dhs_ontology.Validator(schemata_dir = args.schemata_dir, schema_file=args.schema_file, debug=args.debug)
+
     if args.dumpci:
         print("Dumping collection instrument:\n")
-        v = dhs_ontology.Validator(schemata_dir = args.schemata_dir, schema_file=args.schema_file, debug=args.debug)
         for (ct,obj) in enumerate(v.ci_objs):
             print(ct,str(obj).replace("\n"," "))
 
-
     if args.validate:
-        v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
         data = sys.stdin.readline()
         try:
             jin  = json.loads( data )
@@ -85,6 +90,17 @@ if __name__=="__main__":
             print("OK")
         except dhs_ontology.ValidationFail as e:
             print("FAIL:"+e.message)
+
+    if args.make_template:
+        make_template(v, args.make_template, not args.noinstructions)
+
+    if args.render_descriptions:
+        desc = v.get_descriptions()
+        env = jinja2.Environment(
+            loader = jinja2.PackageLoader('dcat_tool','templates')
+        )
+        template = env.get_template('definitions.html')
+        open(args.render_descriptions,"w").write(template.render(desc = desc))
 
     if args.validate_lines:
         """Read lines of JSON, turn each one into a dictionary, then validate them all"""
@@ -101,7 +117,6 @@ if __name__=="__main__":
             except json.decoder.JSONDecodeError as e:
                 fail.append([line, e.message])
                 continue
-        v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
         ret = dhs_ontology.validate_inventory_records( v, records)
         if ret['response']==200 and fail==[]:
             print("OK")
@@ -111,19 +126,10 @@ if __name__=="__main__":
             exit(1 if not args.flip else 0)
         exit(0 if not args.flip else 1)
 
-    if args.make_template:
-        make_template(args.make_template, not args.noinstructions, schemata_dir=args.schemata_dir, schema_file=args.schema_file, debug=args.debug)
-
-    if args.read_xlsx:
-        for r in dhs_ontology.read_xlsx( args.read_xlsx):
-            print( json.dumps(r) )
-
     if args.validate_xlsx:
-        v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
         print(json.dumps( dhs_ontology.validate_xlsx( v, args.validate_xlsx), indent=4))
 
     if args.writeschema:
-        v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
         fmt = os.path.splitext(args.writeschema)[1][1:].lower()
         if fmt=='json':
             fmt='json-ld'
@@ -146,7 +152,6 @@ https://github.com/RDFLib/rdflib/issues/1232
     """
 
     if args.convertJSON:
-        v = dhs_ontology.Validator( args.schemata_dir, args.schema_file )
         g2 = v.cleanGraph()
         while True:
             data = sys.stdin.readline()
