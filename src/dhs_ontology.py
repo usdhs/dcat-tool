@@ -57,7 +57,7 @@ def dcatv3_ontology(schemata_dir = SCHEMATA_DIR, schema_file = COLLECT_TTL):
     for fname in glob.glob( os.path.join(schemata_dir,"*.ttl")) + [schema_file]:
         if fname and fname not in seen:
             fname = os.path.abspath(fname)
-            g.parse(fname)
+            g.parse(fname, format='turtle')
             seen.add(fname)
     if not seen:
         raise RuntimeError("No schema files specified")
