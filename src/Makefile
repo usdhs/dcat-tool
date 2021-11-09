@@ -6,6 +6,9 @@ clean:
 run:
 	FLASK_APP=hello flask run
 
+cherryd:
+	cherryd -c cherrypy.conf -i hello
+
 check:
 	pytest
 	python dcat_tool.py --dumpts --dumpci > /dev/null
