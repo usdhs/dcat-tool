@@ -177,7 +177,7 @@ def _upload_file_or_json():
 @app.route('/DIP_Template.xlsx')
 def _template():
     with tempfile.NamedTemporaryFile( suffix='.xlsx' ) as tf:
-        dcat_tool.make_template( tf.name, True )
+        dcat_tool.make_template( validator, tf.name, True )
         return send_file(tf.name,
                          mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                          attachment_filename='DIP_Template.xlsx', as_attachment=True)
