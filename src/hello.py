@@ -61,14 +61,15 @@ def _validate_xlsx():
     @return -  json encoded string of ret, and the code
     """
     file = request.files['file']
-    with tempfile.NamedTemporaryFile( suffix='.xlsx' ) as tf:
+
+    with tempfile.NamedTemporaryFile( suffix='.xlsx', delete=False ) as tf:
         file.save( tf.name )
         ret = dhs_ontology.validate_xlsx( validator, tf.name )
     if ( ret.get('error','') ):
         ret['response'] = HTTP_JSON_DECODE_ERROR
     if 'response' not in ret:
         ret['response'] = HTTP_OK
-    return json.dumps(ret), ret['response']
+    return json.dumps(ret, default=str), ret['response']
 
 
 @app.route('/validate/json', methods=['POST'])
@@ -99,7 +100,7 @@ def _validate_json():
     else:
         ret['messages'].append('A JSON list or object must be provided')
         ret['response'] = HTTP_BAD_REQUEST
-    return json.dumps(ret), ret['response']
+    return json.dumps(ret, default=str), ret['response']
 
 
 ################################################################
@@ -176,7 +177,7 @@ def _upload_file_or_json():
 #
 @app.route('/DIP_Template.xlsx')
 def _template():
-    with tempfile.NamedTemporaryFile( suffix='.xlsx' ) as tf:
+    with tempfile.NamedTemporaryFile( suffix='.xlsx', delete=False ) as tf:
         dcat_tool.make_template( validator, tf.name, True )
         return send_file(tf.name,
                          mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',

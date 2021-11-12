@@ -68,7 +68,7 @@ if __name__=="__main__":
 
     if args.read_xlsx:
         for r in dhs_ontology.read_xlsx( args.read_xlsx):
-            print( json.dumps(r) )
+            print( json.dumps(r, default=str) )
 
     # All of those that follow require 'v':
     v = dhs_ontology.Validator(schemata_dir = args.schemata_dir, schema_file=args.schema_file, debug=args.debug)
@@ -122,12 +122,12 @@ if __name__=="__main__":
             print("OK")
         else:
             print("FAILURE:")
-            print(json.dumps(ret,indent=4))
+            print(json.dumps(ret,indent=4, default=str))
             exit(1 if not args.flip else 0)
         exit(0 if not args.flip else 1)
 
     if args.validate_xlsx:
-        print(json.dumps( dhs_ontology.validate_xlsx( v, args.validate_xlsx), indent=4))
+        print(json.dumps( dhs_ontology.validate_xlsx( v, args.validate_xlsx), indent=4, default=str))
 
     if args.writeschema:
         fmt = os.path.splitext(args.writeschema)[1][1:].lower()
