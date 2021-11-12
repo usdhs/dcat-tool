@@ -69,7 +69,7 @@ def _validate_xlsx():
         ret['response'] = HTTP_JSON_DECODE_ERROR
     if 'response' not in ret:
         ret['response'] = HTTP_OK
-    return json.dumps(ret), HTTP_OK
+    return json.dumps(ret, default=str), HTTP_OK
 
 
 @app.route('/validate/json', methods=['POST'])
@@ -100,7 +100,7 @@ def _validate_json():
     else:
         ret['messages'].append('A JSON list or object must be provided')
         ret['response'] = HTTP_BAD_REQUEST
-    return json.dumps(ret), HTTP_OK
+    return json.dumps(ret, default=str), HTTP_OK
 
 
 ################################################################
