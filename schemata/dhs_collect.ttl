@@ -26,7 +26,7 @@ dhs:dataInventoryRecord
     rdfs:comment "Specify the DCATv3 fields (and other fields) that we wish to collect."@en ;
     dct:modified "2021-10-20"^^xsd:date ;
     sh:property
-    [ sh:path dcterms:identifier         ; sh:minCount 1 ;  dt:title "unique identifier"; rdfs:comment "A snaffle unique identifier for the dataset"@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:identifier         ; sh:minCount 1 ;  dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset"@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:title              ; sh:minCount 1 ;  rdfs:comment:"The official title for the datset"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:description        ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcat:keyword               ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
