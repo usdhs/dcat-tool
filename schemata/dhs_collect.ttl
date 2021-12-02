@@ -27,7 +27,7 @@ dhs:dataInventoryRecord
     dct:modified "2021-10-20"^^xsd:date ;
     sh:property
     [ sh:path dcterms:identifier         ; sh:minCount 1 ;  dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset"@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcterms:title              ; sh:minCount 1 ;  rdfs:comment:"The official title for the datset"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:title              ; sh:minCount 1 ;  rdfs:comment "The official title for the datset"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:description        ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcat:keyword               ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:publisher          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
@@ -48,9 +48,6 @@ dhs:dataInventoryRecord
     [ sh:path usg:retentionAuthority     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path usg:releaseAuthority       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path usg:recordsSchedule        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path usg:collectionAuthority    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path usg:retentionAuthority     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path usg:releaseAuthority       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path usg:systemOfRecords        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
 
     [ sh:path dcterms:conformsTo         ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
@@ -90,7 +87,7 @@ dhs:dataInventoryRecord
     [ sh:path dcterms:license            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcterms:accessRights       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcat:theme                 ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path usg:component              ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path usg:component              ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path usg:functionalDataDomain   ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcat:mediaType             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
 
