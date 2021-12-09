@@ -1,5 +1,4 @@
 @prefix dcat:    <http://www.w3.org/ns/dcat#> .
-@prefix dct:     <http://purl.org/dc/terms/#> .
 @prefix dcterms: <http://purl.org/dc/terms/#> .
 @prefix dctype:  <http://purl.org/dc/dcmitype/#> .
 @prefix foaf:    <http://xmlns.com/foaf/0.1/#> .
@@ -24,16 +23,16 @@ dhs:dataInventoryRecord
 dhs:dataInventoryRecord
     a sh:NodeShape ;
     rdfs:comment "Specify the DCATv3 fields (and other fields) that we wish to collect."@en ;
-    dct:modified "2021-10-20"^^xsd:date ;
+    dcterms:modified "2021-10-20"^^xsd:date ;
     sh:property
     [ sh:path dcterms:identifier         ; sh:minCount 1 ;  dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset"@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:title              ; sh:minCount 1 ;  rdfs:comment "The official title for the datset"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:description        ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcat:keyword               ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:publisher          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path usg:accessLevel            ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path usg:accessLevel            ; sh:minCount 1 ; sh:in("public" "non-public" "restricted") ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path usg:metadataClassification ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcterms:issued             ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:issued             ; sh:minCount 1 ; sh:datatype xsd:date; a sh:PropertyShape ; dt:group dt:highLevel; ],
 
     [ sh:path dcterms:creator            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path usg:governance             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
@@ -64,7 +63,7 @@ dhs:dataInventoryRecord
     [ sh:path usg:describedByType        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
     [ sh:path dcterms:isPartOf           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
 
-    [ sh:path dct:accrualPeriodicity     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataset ],
+    [ sh:path dcterms:accrualPeriodicity     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataset ],
 
     [ sh:path dcterms:spatial            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetGeospatial ],
     [ sh:path dcat:spatialResolutionInMeters  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetGeospatial],
@@ -77,7 +76,7 @@ dhs:dataInventoryRecord
     [ sh:path usg:dataQualityMeasure     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
     [ sh:path usg:dataQualityPercent     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
     [ sh:path usg:dataQualityAssessment  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
-    [ sh:path usg:dataQuality            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
+    [ sh:path usg:dataQuality            ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; a sh:PropertyShape ; dt:group dt:dataQuality ],
 
     [ sh:path dcterms:format             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcat:accessURL             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
