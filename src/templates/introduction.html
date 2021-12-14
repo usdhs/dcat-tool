@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<title>DHS Data Inventory Introduction</title>
+<link rel="stylesheet" href="./static/style.css"/>
+</head>
+<body>
+<h1>DHS Data Inventory Introduction</h1>
+The purpose of the DHS Data Inventory Program (DIP) is to create an inventory of datasets at the Department of Homeland Security (DHS) that is accurate, complete, timely, and useful. 
+The DIP collects metadata about every dataset within DHS, including the DHS management function and all DHS components, builds a dataset-of-datasets called the DHS Data Inventory and makes that inventory available for uses both inside and external to DHS. 
+The DIP is conducted under DHS Delegation 04004 of May 18, 2021, from Secretary Mayorkas to the Chief Data Officer, as authorized by the “Foundations for Evidence-Based Policymaking Act of 2018” (codified at 44 United State Code (U.S.C.) §3520) and the “Open, Public, Electronic, and Necessary Government Data Act” (OPEN Government Data Act) (codified at 44 U.S.C. §3520).
+
+
+<h1>Data Inventory Record Basics</h1>
+The DHS Data Inventory Program (DIP) Record is designed to capture, at minimum, enough data to identify that a dataset exists within a DHS component, and - in the best case - 
+captures substantial detail about the upstream and downstream systems, data quality, data characteristics, authority and ownership. The DIP Record is designed as a RDF graph - 
+in keeping with efforts related to data.gov and anticipating the growth of the semantic web -  
+but can be submitted via an Excel spreadsheet to facilitate ease of use (see 'Record Submission' section below). RDF records can also be submitted as well-formatted 
+JSON-LD, Turtle or RDF/XML. The full specification for the DIP Record - including example records - are provided in the sections below. 
+
+<h2>Required Fields - Minimum Viable Record</h2>
+The minimum record for the DIP collects just enough data to identify that a dataset exists within a DHS component. The required fields include:
+<ul>
+    <li>Identifier</li>
+    <li>Title</li>
+    <li>Description</li>
+    <li>Access Level</li>
+    <li>Metadata Classification</li>
+    <li>Date Issued</li>
+    <li>Component</li>
+  </ul>
+
+<h2>Record Submission</h2>
+Users can upload data via an HTML page in the DHS Mobius application or via the API hosted on the DHS Mobius application. 
+Both the submission page and the API accept data in an Excel workbook or any of the RDF formats listed above. JSON-LD is the preferred 
+format and records are stored and saved in JSON-LD on the back end. Records can be submitted in bulk or as single records via both the upload 
+page or the API.
+
+The Excel Template for data loading can be downloaded from __Todo__. Data descriptions are provided as a tooltip for each column in the spreadsheet 
+(be sure to enable edits to see the tooltips). Data in the spreadsheet is validated against the same rules as used for RDF data, so - for example - 
+date columns must have valid dates, or the data will be rejected. Additionally, when records are submitted in bulk, a single validation failure 
+will result in the entire bulk submission being rejected. Details for valid formats for each field/attribute can be found on the attribute definition 
+in the respective Namespace for each attribute.
+
+In order to use the Mobuis API you must use a Mobius API token - which can be configured while logged into Mobius. Mobius API tokens are valid 
+for an extended period and can be used for automated scripting to submit DIP Records. The API tab on the 'Data Ineventory Upload' page in 
+Mobius provides both the means to create a API token as well as an example submission statement (using cURL).
+
+<h2>RDF and Namespaces</h2>
+Since the DHS Data Inventory Record is built using an RDF graph (for the Semantic Web) it relies on attributes described in various public Namespaces. 
+The list below provides the Namespaces used in DHS Data Inventory Record. Details for each specific attribute can be found in the 'DHS Collection Vocabulary' section.
+The last Namespace is a custom extension to the DCAT-US Namespace developed specifically for this project. 
+
+<table class='definitions'>
+    <tr class="headspecial"><td>Common Name</td><td>Prefix</td><td>Namespace</td></tr>
+    <tr><th style='width:300px;'>Dublin Core Terms</th><td>dcterms</td><td><a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a>    </td></tr>
+    <tr><th style='width:300px;'>Data Catalog Vocabulary (DCAT) - Version 2</th><td>dcat</td><td><a href="http://www.w3.org/ns/dcat/" target="_blank">http://www.w3.org/ns/dcat/</a>    </td></tr>
+    <tr><th style='width:300px;'>DCAT-US Schema v1.1</th><td>usg</td><td><a href="http://resources.data.gov/resources/dcat-us/" target="_blank">http://resources.data.gov/resources/dcat-us/</a>    </td></tr>
+    <tr><th style='width:300px;'>DHS DCAT Extensions</th><td>dhs</td><td><a href="http://github.com/usdhs/DCAT-dhs/" target="_blank">http://github.com/usdhs/DCAT-dhs/</a>    </td></tr>
+</table>
+
+<h2>Sample Records</h2>
+The validity of an RDF format can be tested in advance by loading the data defintion file (dhs_collect.ttl) and a sample record to a (SHACL) test tool 
+(like https://shacl-playground.zazuko.com/) or loading just the (JSON-LD) sample record to a test site (like https://json-ld.org/playground).
+
+Here is an example of a simple JSON-LD file (__todo___) and a complete JSON-LD record (__todo___) submission for the DIP, so you can see what a valid format looks like. 
+Please note, however, that there are several variations to the formatting that are also valid, so depending on your implementation the format may differ slightly. 
+
+</body>
+</html>

@@ -35,18 +35,21 @@ then does a join with OPTIONAL on several other objects we would like to extract
 """
 
 CI_QUERY = """
-SELECT DISTINCT ?aProperty ?aTitle ?aPropertyComment ?aShapeComment ?aType ?aWidth ?aGroup
+SELECT DISTINCT ?aProperty ?aTitle ?aPropertyComment ?aShapeComment ?aType ?aWidth ?aGroup ?aPropertyDefinedBy ?aPropertyLabel ?aMinCount
 WHERE {
   dhs:dataInventoryRecord sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
 
   OPTIONAL { ?aProperty  rdfs:range      ?aType . }
   OPTIONAL { ?aProperty  rdfs:comment    ?aPropertyComment . }
+  OPTIONAL { ?aProperty  rdfs:isDefinedBy    ?aPropertyDefinedBy . }
+  OPTIONAL { ?aProperty  rdfs:label    ?aPropertyLabel . }
   OPTIONAL { ?aShapeName dhs:excelWidth  ?aWidth . }
   OPTIONAL { ?aShapeName dt:title        ?aTitle . }
   OPTIONAL { ?aShapeName dt:group        ?aGroup . }
   OPTIONAL { ?aShapeName rdfs:comment    ?aShapeComment . }
-  OPTIONAL { ?aShareName sh:minCount     ?aMinCount . }
+  OPTIONAL { ?aShapeName sh:minCount     ?aMinCount . }
+  FILTER (!BOUND(?aPropertyLabel) || lang(?aPropertyLabel) = "" || lang(?aPropertyLabel) = "en" || lang(?aPropertyLabel) = "en-US")
 }
 """
 
@@ -81,6 +84,14 @@ def should_skip(d):
     # Skip property comments that are not in english
     try:
         if d['aPropertyComment'].language not in ['en', None, '']:
+            return True
+    except (KeyError,AttributeError) as e:
+        pass
+    return False
+
+def label_lang_check(labelIn):
+    try:
+        if labelIn.language in ['en']:
             return True
     except (KeyError,AttributeError) as e:
         pass
@@ -136,9 +147,18 @@ class Validator:
     def get_descriptions(self):
         """Returns an iterator of tuples in the form (group, simplifed_property, description)"""
         simp = Simplifier(self.g)
+        c = 0
         for d in self.get_query_dict():
             comment = d.get('aShapeComment', d.get('aPropertyComment', ''))
-            yield (simp.simplify(d['aGroup']), simp.simplify(d['aProperty']), comment)
+            label = d.get('aPropertyLabel', '')
+            definedByNS = d.get('aPropertyDefinedBy', '')
+            requiredIn = d.get('aMinCount', '')
+            required = "No"
+            if(int(requiredIn) > 0):
+                required = "Yes" 
+            c += 1
+            yield (simp.simplify(d['aGroup']), simp.simplify(d['aProperty']), comment, label, definedByNS, required)
+        print(str(c))
 
     def get_template_column_info_objs(self):
         # g2 is an output graph of the terms in the collection instrument

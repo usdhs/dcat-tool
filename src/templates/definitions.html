@@ -2,20 +2,24 @@
 <html>
 <head>
 <title>DHS Data Inventory Attribute Definitions</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="./static/style.css"/>
 </head>
 <body>
+
+   {% include "introduction.html" %}
+
 <h1>DHS Collection Vocabulary</h1>
 Below is a list of terms and their definitions for the DHS Data Inventory.
 
 <table class='definitions'>
-{% for (group,name,d) in desc %}
+{% for (group,name,d,label,namesp, required) in desc %}
    {% if loop.changed(group) %}
       </table>
       <h3>{{group}}</h3>
       <table class='definitions'>
+         <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    {% endif %}
-      <tr><th> {{ name }} </th> <td> {{ d }} </td> </tr>
+      <tr><th> {{ label }} </th> <td> {{ name }} </td> <td> {{ d }} </td> <td> <a href="{{ namesp }}" target="_blank">{{ namesp }}</a> </td> <td> {{ required }} </td> </tr>
 {% endfor %}
 </table>
 
