@@ -147,7 +147,7 @@ class Validator:
     def get_descriptions(self):
         """Returns an iterator of tuples in the form (group, simplifed_property, description)"""
         simp = Simplifier(self.g)
-        c = 0
+        counter = 0
         for d in self.get_query_dict():
             comment = d.get('aShapeComment', d.get('aPropertyComment', ''))
             label = d.get('aPropertyLabel', '')
@@ -156,9 +156,9 @@ class Validator:
             required = "No"
             if(int(requiredIn) > 0):
                 required = "Yes" 
-            c += 1
+            counter += 1
             yield (simp.simplify(d['aGroup']), simp.simplify(d['aProperty']), comment, label, definedByNS, required)
-        print(str(c))
+        #print(str(counter))
 
     def get_template_column_info_objs(self):
         # g2 is an output graph of the terms in the collection instrument

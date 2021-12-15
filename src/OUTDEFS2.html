@@ -16,7 +16,7 @@
 <h1>DHS Data Inventory Introduction</h1>
 The purpose of the DHS Data Inventory Program (DIP) is to create an inventory of datasets at the Department of Homeland Security (DHS) that is accurate, complete, timely, and useful. 
 The DIP collects metadata about every dataset within DHS, including the DHS management function and all DHS components, builds a dataset-of-datasets called the DHS Data Inventory and makes that inventory available for uses both inside and external to DHS. 
-The DIP is conducted under DHS Delegation 04004 of May 18, 2021, from Secretary Mayorkas to the Chief Data Officer, as authorized by the “Foundations for Evidence-Based Policymaking Act of 2018” (codified at 44 United State Code (U.S.C.) §3520) and the “Open, Public, Electronic, and Necessary Government Data Act” (OPEN Government Data Act) (codified at 44 U.S.C. §3520).
+The DIP is conducted under DHS Delegation 04004 of May 18, 2021, from Secretary Mayorkas to the Chief Data Officer, as authorized by the "Foundations for Evidence-Based Policymaking Act of 2018" (codified at 44 United State Code (U.S.C.) &#167;3520) and the "Open, Public, Electronic, and Necessary Government Data Act" (OPEN Government Data Act) (codified at 44 U.S.C. &#167;3520).
 
 
 <h1>Data Inventory Record Basics</h1>
@@ -43,14 +43,14 @@ Users can upload data via an HTML page in the DHS Mobius application or via the 
 Both the submission page and the API accept data in an Excel workbook or any of the RDF formats listed above. JSON-LD is the preferred 
 format and records are stored and saved in JSON-LD on the back end. Records can be submitted in bulk or as single records via both the upload 
 page or the API.
-
-The Excel Template for data loading can be downloaded from __Todo__. Data descriptions are provided as a tooltip for each column in the spreadsheet 
+<br/><br/>
+The Excel Template for data loading can be downloaded from github at: <a href="../dist/DIP_Excel_Template.xlsx" download>https://github.com/usdhs/dcat-tool/tree/main/dist/DIP_Excel_Template.xlsx</a>. Data descriptions are provided as a tooltip for each column in the spreadsheet 
 (be sure to enable edits to see the tooltips). Data in the spreadsheet is validated against the same rules as used for RDF data, so - for example - 
 date columns must have valid dates, or the data will be rejected. Additionally, when records are submitted in bulk, a single validation failure 
 will result in the entire bulk submission being rejected. Details for valid formats for each field/attribute can be found on the attribute definition 
-in the respective Namespace for each attribute.
-
-In order to use the Mobuis API you must use a Mobius API token - which can be configured while logged into Mobius. Mobius API tokens are valid 
+in the respective Namespace for each attribute. Sample files with valid data using JSON-LD are linked below. 
+<br/><br/>
+In order to use the Mobuis API you must use a Mobius API token, which can be configured while logged into Mobius. Mobius API tokens are valid 
 for an extended period and can be used for automated scripting to submit DIP Records. The API tab on the 'Data Ineventory Upload' page in 
 Mobius provides both the means to create a API token as well as an example submission statement (using cURL).
 
@@ -64,14 +64,15 @@ The last Namespace is a custom extension to the DCAT-US Namespace developed spec
     <tr><th style='width:300px;'>Dublin Core Terms</th><td>dcterms</td><td><a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a>    </td></tr>
     <tr><th style='width:300px;'>Data Catalog Vocabulary (DCAT) - Version 2</th><td>dcat</td><td><a href="http://www.w3.org/ns/dcat/" target="_blank">http://www.w3.org/ns/dcat/</a>    </td></tr>
     <tr><th style='width:300px;'>DCAT-US Schema v1.1</th><td>usg</td><td><a href="http://resources.data.gov/resources/dcat-us/" target="_blank">http://resources.data.gov/resources/dcat-us/</a>    </td></tr>
-    <tr><th style='width:300px;'>DHS DCAT Extensions</th><td>dhs</td><td><a href="http://github.com/usdhs/DCAT-dhs/" target="_blank">http://github.com/usdhs/DCAT-dhs/</a>    </td></tr>
+    <tr><th style='width:300px;'>DHS DCAT Extensions</th><td>usg</td><td><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a>    </td></tr>
 </table>
 
 <h2>Sample Records</h2>
 The validity of an RDF format can be tested in advance by loading the data defintion file (dhs_collect.ttl) and a sample record to a (SHACL) test tool 
-(like https://shacl-playground.zazuko.com/) or loading just the (JSON-LD) sample record to a test site (like https://json-ld.org/playground).
+(like <a href="https://shacl-playground.zazuko.com/" target="_blank">https://shacl-playground.zazuko.com/</a>) or loading just the (JSON-LD) sample record to a test site (like <a href="https://json-ld.org/playground" target="_blank">https://json-ld.org/playground</a>).
 
-Here is an example of a simple JSON-LD file (__todo___) and a complete JSON-LD record (__todo___) submission for the DIP, so you can see what a valid format looks like. 
+Here is an example of a simple JSON-LD file: <a href="../dist/DIP_small_record.json-ld" download>https://github.com/usdhs/dcat-tool/tree/main/dist/DIP_small_record.json-ld</a> 
+and a complete JSON-LD record: <a href="../dist/DIP_full_record.json-ld" download>https://github.com/usdhs/dcat-tool/tree/main/dist/DIP_full_record.json-ld</a> submission for the DIP, so you can see what a valid format looks like. 
 Please note, however, that there are several variations to the formatting that are also valid, so depending on your implementation the format may differ slightly. 
 
 </body>
@@ -106,7 +107,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <tr><th> Access Level </th> <td> usg:accessLevel </td> <td> The degree to which this dataset could be made publicly-available, regardless of whether it has been made available. Choices: public (Data asset is or could be made publicly available to all without restrictions), restricted public (Data asset is available under certain use restrictions), or non-public (Data asset is not available to members of the public). </td> <td> <a href="https://resources.data.gov/resources/dcat-us/" target="_blank">https://resources.data.gov/resources/dcat-us/</a> </td> <td> Yes </td> </tr>
 
    
-      <tr><th> Metadata Classification </th> <td> usg:metadataClassification </td> <td> The classification level of the metadata. </td> <td> <a href="http://github.com/usdhs/DCAT-dhs/" target="_blank">http://github.com/usdhs/DCAT-dhs/</a> </td> <td> Yes </td> </tr>
+      <tr><th> Metadata Classification </th> <td> usg:metadataClassification </td> <td> The classification level of the metadata. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> Yes </td> </tr>
 
    
       <tr><th> Date Issued </th> <td> dct:issued </td> <td> Date of formal issuance (e.g., publication) of the resource. </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> Yes </td> </tr>
@@ -120,43 +121,43 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <tr><th> Creator </th> <td> dct:creator </td> <td> An entity primarily responsible for making the resource. </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Governance </th> <td> usg:governance </td> <td> The organization responsible for governance or oversight of the dataset. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Governance </th> <td> usg:governance </td> <td> The organization responsible for governance or oversight of the dataset. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Owner </th> <td> usg:owner </td> <td> The owner of the dataset. Data owners are senior officials or organizations that are responsible for the content and quality of the dataset. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Owner </th> <td> usg:owner </td> <td> The owner of the dataset. Data owners are senior officials or organizations that are responsible for the content and quality of the dataset. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Steward </th> <td> usg:steward </td> <td> The steward of the dataset. Data stewards are responsible for ensuring that data are properly stored, maintained, accessible, and protected. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Steward </th> <td> usg:steward </td> <td> The steward of the dataset. Data stewards are responsible for ensuring that data are properly stored, maintained, accessible, and protected. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Custodian </th> <td> usg:custodian </td> <td> The custodian of the dataset. Data custodians are the individuals or organizations that have physical posession of the data. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Custodian </th> <td> usg:custodian </td> <td> The custodian of the dataset. Data custodians are the individuals or organizations that have physical posession of the data. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Primary IT Investment UII </th> <td> usg:primaryITInvestmentUII </td> <td> For linking a dataset with an IT Unique Investment Identifier (UII). </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Primary IT Investment UII </th> <td> usg:primaryITInvestmentUII </td> <td> For linking a dataset with an IT Unique Investment Identifier (UII). </td> <td> <a href="http://resources.data.gov/resources/dcat-us/" target="_blank">http://resources.data.gov/resources/dcat-us/</a> </td> <td> No </td> </tr>
 
    
       <tr><th> References </th> <td> dct:references </td> <td> A related resource that is referenced, cited, or otherwise pointed to by the described resource. </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Sharing Agreements </th> <td> usg:sharingAgreements </td> <td> Any sharing agreements for the dataset that should be documented. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Sharing Agreements </th> <td> usg:sharingAgreements </td> <td> Any sharing agreements for the dataset that should be documented. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
       <tr><th> contact point </th> <td> dcat:contactPoint </td> <td> Relevant contact information for the catalogued resource. Use of vCard is recommended. </td> <td> <a href="http://www.w3.org/TR/vocab-dcat/" target="_blank">http://www.w3.org/TR/vocab-dcat/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Collection Authority </th> <td> usg:collectionAuthority </td> <td> The legal authority under which the data were collected. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Collection Authority </th> <td> usg:collectionAuthority </td> <td> The legal authority under which the data were collected. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Retention Authority </th> <td> usg:retentionAuthority </td> <td> The legal authority under which the data are retained. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Retention Authority </th> <td> usg:retentionAuthority </td> <td> The legal authority under which the data are retained. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Release Authority </th> <td> usg:releaseAuthority </td> <td> The legal authority under which the data may be released. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Release Authority </th> <td> usg:releaseAuthority </td> <td> The legal authority under which the data may be released. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Records Schedule </th> <td> usg:recordsSchedule </td> <td> The data records schedule. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Records Schedule </th> <td> usg:recordsSchedule </td> <td> The data records schedule. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> System of Records </th> <td> usg:systemOfRecords </td> <td> The system of records notice (SORN) in which the dataset appears. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> System of Records </th> <td> usg:systemOfRecords </td> <td> The system of records notice (SORN) in which the dataset appears. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
       </table>
@@ -170,19 +171,19 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <tr><th> Standard </th> <td> dct:Standard </td> <td> A basis for comparison; a reference point against which other things can be evaluated. </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Conforms FIPS </th> <td> usg:conformsFIPS </td> <td> Any Federal Information Processing Standard (FIPS) that covers the data. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Conforms FIPS </th> <td> usg:conformsFIPS </td> <td> Any Federal Information Processing Standard (FIPS) that covers the data. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Conforms NIEM Percent </th> <td> usg:conformsNIEMPercent </td> <td> The percentage of the data schema that conforms to the National Information Exchnage Model (NIEM). </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Conforms NIEM Percent </th> <td> usg:conformsNIEMPercent </td> <td> The percentage of the data schema that conforms to the National Information Exchnage Model (NIEM). </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Conforms Unicode </th> <td> usg:conformsUnicode </td> <td> Does the dataset contain unicode information? </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Conforms Unicode </th> <td> usg:conformsUnicode </td> <td> Does the dataset contain unicode information? </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Identities NativeScript </th> <td> usg:identitiesNativeScript </td> <td> Are names in the dataset represented in native script? </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Identities NativeScript </th> <td> usg:identitiesNativeScript </td> <td> Are names in the dataset represented in native script? </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Transliteration Standard </th> <td> usg:transliterationStandard </td> <td> The transliteration standard used for names in the dataset, if names are transliterated into English. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Transliteration Standard </th> <td> usg:transliterationStandard </td> <td> The transliteration standard used for names in the dataset, if names are transliterated into English. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
       </table>
@@ -190,16 +191,16 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
-      <tr><th> Source Datasets </th> <td> usg:sourceDatasets </td> <td> The unique identifiers of the source datasets. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Source Datasets </th> <td> usg:sourceDatasets </td> <td> The unique identifiers of the source datasets. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Destination Datasets </th> <td> usg:destinationDatasets </td> <td> The unique identifiers of the downstream datasets fed by this dataset. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Destination Datasets </th> <td> usg:destinationDatasets </td> <td> The unique identifiers of the downstream datasets fed by this dataset. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Described By </th> <td> usg:describedBy </td> <td> URL for the JSON Schema file that defines the schema used. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Described By </th> <td> usg:describedBy </td> <td> URL for the JSON Schema file that defines the schema used. </td> <td> <a href="http://resources.data.gov/resources/dcat-us/" target="_blank">http://resources.data.gov/resources/dcat-us/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Described By Type </th> <td> usg:describedByType </td> <td> The machine-readable file format (IANA Media Type also known as MIME Type) of the dataset’s Data Dictionary (describedBy). </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Described By Type </th> <td> usg:describedByType </td> <td> The machine-readable file format (IANA Media Type also known as MIME Type) of the dataset’s Data Dictionary (describedBy). </td> <td> <a href="http://resources.data.gov/resources/dcat-us/" target="_blank">http://resources.data.gov/resources/dcat-us/</a> </td> <td> No </td> </tr>
 
    
       <tr><th> Is Part Of </th> <td> dct:isPartOf </td> <td> A related resource in which the described resource is physically or logically included. </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> No </td> </tr>
@@ -240,22 +241,22 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
-      <tr><th> Data Quality Known </th> <td> usg:dataQualityKnown </td> <td> If the data quality is known or not. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Data Quality Known </th> <td> usg:dataQualityKnown </td> <td> If the data quality is known or not. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Data Quality Metric </th> <td> usg:dataQualityMetric </td> <td> Metric used to measure data quality. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Data Quality Metric </th> <td> usg:dataQualityMetric </td> <td> Metric used to measure data quality. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Data Quality Measure </th> <td> usg:dataQualityMeasure </td> <td> The measure of the data quality. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Data Quality Measure </th> <td> usg:dataQualityMeasure </td> <td> The measure of the data quality. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Data Quality Percent </th> <td> usg:dataQualityPercent </td> <td> A simple measure of the data quality, on a scale from 0-100. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Data Quality Percent </th> <td> usg:dataQualityPercent </td> <td> A simple measure of the data quality, on a scale from 0-100. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Data Quality Assessment </th> <td> usg:dataQualityAssessment </td> <td> Narrative as to the overall data quality. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Data Quality Assessment </th> <td> usg:dataQualityAssessment </td> <td> Narrative as to the overall data quality. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Data Quality </th> <td> usg:dataQuality </td> <td> Indicates whether a dataset conforms to the agency’s information quality guidelines (boolean). </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Data Quality </th> <td> usg:dataQuality </td> <td> Indicates whether a dataset conforms to the agency’s information quality guidelines (boolean). </td> <td> <a href="http://resources.data.gov/resources/dcat-us/" target="_blank">http://resources.data.gov/resources/dcat-us/</a> </td> <td> No </td> </tr>
 
    
       </table>
@@ -269,13 +270,13 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <tr><th> access address </th> <td> dcat:accessURL </td> <td> A URL of a resource that gives access to a distribution of the dataset. E.g. landing page, feed, SPARQL endpoint. Use for all cases except a simple download link, in which case downloadURL is preferred. </td> <td> <a href="http://www.w3.org/TR/vocab-dcat/" target="_blank">http://www.w3.org/TR/vocab-dcat/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Access URL NIEM </th> <td> usg:accessURLNIEM </td> <td> The URL from which the NIEM representation can be accessed. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Access URL NIEM </th> <td> usg:accessURLNIEM </td> <td> The URL from which the NIEM representation can be accessed. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Modified </th> <td> usg:modified </td> <td> Most recent date on which the dataset was changed, updated or modified. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Modified </th> <td> usg:modified </td> <td> Most recent date on which the dataset was changed, updated or modified. </td> <td> <a href="http://resources.data.gov/resources/dcat-us/" target="_blank">http://resources.data.gov/resources/dcat-us/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Vendor </th> <td> usg:vendor </td> <td> Source of the dataset. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Vendor </th> <td> usg:vendor </td> <td> Source of the dataset. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
       <tr><th> License </th> <td> dct:license </td> <td> A legal document giving official permission to do something with the resource. </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> No </td> </tr>
@@ -287,10 +288,10 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <tr><th> theme </th> <td> dcat:theme </td> <td> A main category of the resource. A resource can have multiple themes. </td> <td> <a href="http://www.w3.org/TR/vocab-dcat/" target="_blank">http://www.w3.org/TR/vocab-dcat/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Component </th> <td> usg:component </td> <td> Sub-department (e.g. bureau or component) of the data. </td> <td> <a href="" target="_blank"></a> </td> <td> Yes </td> </tr>
+      <tr><th> Component </th> <td> usg:component </td> <td> Sub-department (e.g. bureau or component) of the data. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> Yes </td> </tr>
 
    
-      <tr><th> Functional Data Domain </th> <td> usg:functionalDataDomain </td> <td> Functional data domain of the data. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Functional Data Domain </th> <td> usg:functionalDataDomain </td> <td> Functional data domain of the data. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
       <tr><th> media type </th> <td> dcat:mediaType </td> <td> The media type of the distribution as defined by IANA </td> <td> <a href="http://www.w3.org/TR/vocab-dcat/" target="_blank">http://www.w3.org/TR/vocab-dcat/</a> </td> <td> No </td> </tr>
@@ -301,10 +302,10 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
-      <tr><th> Table Count </th> <td> usg:tableCount </td> <td> Number of 2-dimensional tables in the data. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Table Count </th> <td> usg:tableCount </td> <td> Number of 2-dimensional tables in the data. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Record Count </th> <td> usg:recordCount </td> <td> Total number of records in the data. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Record Count </th> <td> usg:recordCount </td> <td> Total number of records in the data. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
       <tr><th> byte size </th> <td> dcat:byteSize </td> <td> The size of a distribution in bytes. </td> <td> <a href="http://www.w3.org/TR/vocab-dcat/" target="_blank">http://www.w3.org/TR/vocab-dcat/</a> </td> <td> No </td> </tr>
@@ -315,55 +316,55 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
-      <tr><th> Dataset Classification </th> <td> usg:datasetClassification </td> <td> Security classificaiton of the data. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Dataset Classification </th> <td> usg:datasetClassification </td> <td> Security classificaiton of the data. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics </th> <td> usg:characteristics </td> <td> Specific container to hold various data characteristics. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics </th> <td> usg:characteristics </td> <td> Specific container to hold various data characteristics. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - Person Level </th> <td> usg:ch-person-level </td> <td> The dataset contains person-level records. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - Person Level </th> <td> usg:ch-person-level </td> <td> The dataset contains person-level records. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - Financial </th> <td> usg:ch-financial </td> <td> The dataset contains financial information. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - Financial </th> <td> usg:ch-financial </td> <td> The dataset contains financial information. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - Event records </th> <td> usg:ch-event-records </td> <td> The dataset contains information about events that are tagged with a specific place and time. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - Event records </th> <td> usg:ch-event-records </td> <td> The dataset contains information about events that are tagged with a specific place and time. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - Faces </th> <td> usg:ch-faces </td> <td> The dataset contains human faces. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - Faces </th> <td> usg:ch-faces </td> <td> The dataset contains human faces. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - Fingerprints </th> <td> usg:ch-fingerprints </td> <td> The dataset contains fingerprints. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - Fingerprints </th> <td> usg:ch-fingerprints </td> <td> The dataset contains fingerprints. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - CUI </th> <td> usg:ch-cui </td> <td> The dataset contains controlled unclassified information. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - CUI </th> <td> usg:ch-cui </td> <td> The dataset contains controlled unclassified information. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - PHI </th> <td> usg:ch-phi </td> <td> The dataset contains protected health information. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - PHI </th> <td> usg:ch-phi </td> <td> The dataset contains protected health information. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - PII </th> <td> usg:ch-pii </td> <td> The dataset contains personally identifiable information under the controlling legal definition of PII. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - PII </th> <td> usg:ch-pii </td> <td> The dataset contains personally identifiable information under the controlling legal definition of PII. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - Geospatial </th> <td> usg:ch-geospatial </td> <td> The dataset contains geospatial information. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - Geospatial </th> <td> usg:ch-geospatial </td> <td> The dataset contains geospatial information. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - FISA </th> <td> usg:ch-fisa </td> <td> The dataset contains information pretaining to the Foreign Intelligence Surveillance Act (FISA). </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - FISA </th> <td> usg:ch-fisa </td> <td> The dataset contains information pretaining to the Foreign Intelligence Surveillance Act (FISA). </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - 8usc1367 </th> <td> usg:ch-8usc1367 </td> <td> The dataset contains 8 USC 1367. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - 8usc1367 </th> <td> usg:ch-8usc1367 </td> <td> The dataset contains 8 USC 1367. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - proprietary info </th> <td> usg:ch-propin </td> <td> The dataset contains proprietary commercial information. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - proprietary info </th> <td> usg:ch-propin </td> <td> The dataset contains proprietary commercial information. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - Immigration </th> <td> usg:ch-immigration </td> <td> The dataset contains information pertaining to immigration. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - Immigration </th> <td> usg:ch-immigration </td> <td> The dataset contains information pertaining to immigration. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - Critical Infrastructure </th> <td> usg:ch-criticalInfrastructure </td> <td> The dataset contains critical infrastructure information. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - Critical Infrastructure </th> <td> usg:ch-criticalInfrastructure </td> <td> The dataset contains critical infrastructure information. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Characteristics - Dissemination Restrictions </th> <td> usg:ch-disseminationRestrictions </td> <td> The information has dissemination restrictions. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Characteristics - Dissemination Restrictions </th> <td> usg:ch-disseminationRestrictions </td> <td> The information has dissemination restrictions. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
       </table>
@@ -371,19 +372,19 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
-      <tr><th> Hosting Location </th> <td> usg:hostingLocation </td> <td> Where the data physically reside. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Hosting Location </th> <td> usg:hostingLocation </td> <td> Where the data physically reside. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Hosted in Cloud </th> <td> usg:hostedInCloud </td> <td> If the dataset's location is in the cloud. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Hosted in Cloud </th> <td> usg:hostedInCloud </td> <td> If the dataset's location is in the cloud. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Easily Accessible By Creating Component </th> <td> usg:easilyAccessibleByCreatingComponent </td> <td> The information can be easily accessed by individuals within the component that created it. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Easily Accessible By Creating Component </th> <td> usg:easilyAccessibleByCreatingComponent </td> <td> The information can be easily accessed by individuals within the component that created it. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Easily Accessible By All Components </th> <td> usg:easilyAccessibleByAllComponents </td> <td> The information can be easily accessed by individuals within all department component. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Easily Accessible By All Components </th> <td> usg:easilyAccessibleByAllComponents </td> <td> The information can be easily accessed by individuals within all department component. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Easily Accessible By General Public </th> <td> usg:easilyAccessibleByGeneralPublic </td> <td> The information can be easily accessed by the general public. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Easily Accessible By General Public </th> <td> usg:easilyAccessibleByGeneralPublic </td> <td> The information can be easily accessed by the general public. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
       </table>
@@ -391,10 +392,10 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
-      <tr><th> Record Transmission </th> <td> usg:recordTransmission </td> <td> When the metadata record was transmitted. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Record Transmission </th> <td> usg:recordTransmission </td> <td> When the metadata record was transmitted. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Validity Time </th> <td> usg:validityTime </td> <td> When the metadata record is valid. </td> <td> <a href="" target="_blank"></a> </td> <td> No </td> </tr>
+      <tr><th> Validity Time </th> <td> usg:validityTime </td> <td> When the metadata record is valid. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
 </table>
 
