@@ -47,6 +47,7 @@ if __name__=="__main__":
     parser.add_argument("--dumpci", help="Dump the collection instrument after everything it is read", action='store_true')
     parser.add_argument("--writeschema", help="write the schema to the specified file")
     parser.add_argument("--render_descriptions", help="Render descriptions of each attribute in an HTML file")
+    parser.add_argument("--render_namespace", help="Render namespace descriptions for novel attributes in an HTML file")
     parser.add_argument("--make_template",
                         help="specify the output filename of the Excel template to make for a collection schema")
     parser.add_argument("--read_xlsx", help="Read a filled-out Excel template and generate multi-line output JSON for each without validating.")
@@ -101,6 +102,15 @@ if __name__=="__main__":
         )
         template = env.get_template('definitions.html')
         open(args.render_descriptions,"w").write(template.render(desc = desc))
+
+    if args.render_namespace:
+        namesp = v.get_namespace()
+        namesp2 = v.get_namespace()
+        env = jinja2.Environment(
+            loader = jinja2.PackageLoader('dcat_tool','templates')
+        )
+        template = env.get_template('dhsnamespace.html')
+        open(args.render_namespace,"w").write(template.render(desc = namesp, desc2 = namesp2))
 
     if args.validate_lines:
         """Read lines of JSON, turn each one into a dictionary, then validate them all"""

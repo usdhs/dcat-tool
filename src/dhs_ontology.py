@@ -35,7 +35,7 @@ then does a join with OPTIONAL on several other objects we would like to extract
 """
 
 CI_QUERY = """
-SELECT DISTINCT ?aProperty ?aTitle ?aPropertyComment ?aShapeComment ?aType ?aWidth ?aGroup ?aPropertyDefinedBy ?aPropertyLabel ?aMinCount
+SELECT DISTINCT ?aProperty ?aTitle ?aPropertyComment ?aShapeComment ?aType ?aWidth ?aGroup ?aPropertyDefinedBy ?aPropertyLabel ?aMinCount ?aDataType
 WHERE {
   dhs:dataInventoryRecord sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
@@ -49,6 +49,7 @@ WHERE {
   OPTIONAL { ?aShapeName dt:group        ?aGroup . }
   OPTIONAL { ?aShapeName rdfs:comment    ?aShapeComment . }
   OPTIONAL { ?aShapeName sh:minCount     ?aMinCount . }
+  OPTIONAL { ?aShapeName sh:datatype     ?aDataType . }
   FILTER (!BOUND(?aPropertyLabel) || lang(?aPropertyLabel) = "" || lang(?aPropertyLabel) = "en" || lang(?aPropertyLabel) = "en-US")
 }
 """
@@ -159,6 +160,25 @@ class Validator:
             counter += 1
             yield (simp.simplify(d['aGroup']), simp.simplify(d['aProperty']), comment, label, definedByNS, required)
         #print(str(counter))
+
+    def get_namespace(self):
+        """Returns an iterator of tuples in the form (group, simplifed_property, description)"""
+        """Filters for the novel DHS-DCAT attribute namespace using a partial string defined below"""
+        simp = Simplifier(self.g)
+        namespaceStr = 'dcat-tool'
+        counterb = 0
+        for d in self.get_query_dict():
+            definedByNS = d.get('aPropertyDefinedBy', '')
+            if(namespaceStr in definedByNS):
+                comment = d.get('aShapeComment', d.get('aPropertyComment', ''))
+                label = d.get('aPropertyLabel', '')
+                definedByNS = d.get('aPropertyDefinedBy', '')
+                requiredIn = d.get('aMinCount', '')
+                required = "No"
+                if(int(requiredIn) > 0):
+                    required = "Yes"
+                counterb += 1
+                yield (simp.simplify(d['aGroup']), simp.simplify(d['aProperty']), comment, label, definedByNS, required, simp.simplify(d.get('aType', DEFAULT_TYPE)), simp.simplify(d.get('aDataType', DEFAULT_TYPE)) )
 
     def get_template_column_info_objs(self):
         # g2 is an output graph of the terms in the collection instrument

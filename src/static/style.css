@@ -165,3 +165,8 @@ table.definitions td {
   color: black !important; 
   font-weight: bold;
 }
+
+.hrefright{
+  color: white !important; 
+  text-align: right;
+}
