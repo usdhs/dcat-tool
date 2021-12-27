@@ -8,6 +8,8 @@ body {
   max-width: 960px;
   margin: 0 auto;
   background: white;
+  font-family:Arial, Helvetica, sans-serif; 
+  font-size:small;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -135,20 +137,36 @@ input[type=submit] {
 
 table.definitions {
     border-collapse: collapse;
+    border: 1px solid gray;
 }
 
 table.definitions tr {
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid black;
 }
 
 table.definitions th {
     color: black;
+    background-color: lightskyblue;
     font-weight: normal;
     width: 50px;
     text-align: left;
+    padding: 5px;
 }
 
 table.definitions td {
-    color: green;
+    border: 1px solid gray;
+    color: black;
     width: 400px;
+    padding: 5px;
+}
+
+.headspecial{
+  background-color: lightslategrey; 
+  color: black !important; 
+  font-weight: bold;
+}
+
+.hrefright{
+  color: white !important; 
+  text-align: right;
 }

@@ -71,7 +71,7 @@ dhs:dataInventoryRecord
     [ sh:path dcterms:temporal           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetTemporal],
     [ sh:path dcat:temporalResolution    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetTemporal],
 
-    [ sh:path usg:dataQualityKnown       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
+    [ sh:path usg:dataQualityKnown       ; sh:minCount 0 ; sh:datatype xsd:boolean ; a sh:PropertyShape ; dt:group dt:dataQuality ],
     [ sh:path usg:dataQualityMetric      ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
     [ sh:path usg:dataQualityMeasure     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
     [ sh:path usg:dataQualityPercent     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
@@ -81,7 +81,7 @@ dhs:dataInventoryRecord
     [ sh:path dcterms:format             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcat:accessURL             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path usg:accessURLNIEM          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path usg:modified               ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path usg:modified               ; sh:minCount 0 ; sh:datatype xsd:date; a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path usg:vendor                 ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcterms:license            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcterms:accessRights       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],

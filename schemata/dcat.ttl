@@ -1266,8 +1266,9 @@ dcat:service
   skos:definition "Et websted eller et endpoint som er opført i kataloget."@da ;
 .
 dcat:spatialResolutionInMeters
+  a rdf:Property ;
   a owl:DatatypeProperty ;
-  rdfs:comment "minimum spatial separation resolvable in a dataset, measured in meters."@en-US ;
+  rdfs:comment "minimum spatial separation resolvable in a dataset, measured in meters."@en ;
   rdfs:comment "minimum spatial separation resolvable in a dataset, measured in metres."@en-GB ;
   rdfs:comment "minimální prostorový rozestup rozeznatelný v datové sadě, měřeno v metrech."@cs ;
   rdfs:comment "mínima separacíon espacial disponible en un conjunto de datos, medida en metros."@es ;
@@ -1280,6 +1281,7 @@ dcat:spatialResolutionInMeters
   rdfs:label "spatial resolution (metres)"@en-GB ;
   rdfs:label "geografisk opløsning (meter)"@da ;
   rdfs:range xsd:decimal ;
+  rdfs:isDefinedBy <http://www.w3.org/TR/vocab-dcat/> ;
   skos:changeNote "New property added in DCAT 2.0."@en ;
   skos:changeNote "Nová vlastnost přidaná ve verzi DCAT 2.0."@cs ;
   skos:changeNote "Nueva propiedad añadida en DCAT 2.0."@es ;
@@ -1344,6 +1346,7 @@ dcat:temporalResolution
   rdfs:label "časové rozlišení"@cs ;
   rdfs:label "tidslig opløsning"@da ;
   rdfs:range xsd:duration ;
+  rdfs:isDefinedBy <http://www.w3.org/TR/vocab-dcat/> ;
   skos:changeNote "New property added in DCAT 2.0."@en ;
   skos:changeNote "Nová vlastnost přidaná ve verzi DCAT 2.0."@cs ;
   skos:changeNote "Nueva propiedad añadida en DCAT 2.0."@es ;

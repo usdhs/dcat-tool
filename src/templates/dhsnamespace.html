@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<title>DHS Data Inventory Attribute Definitions</title>
+<link rel="stylesheet" href="./static/style.css"/>
+</head>
+<body>
+    <a name="top"></a>
+<h1>DHS DCAT v3 Extension Terms</h1>
+As part of the DHS Data Inventory effort (launched in the fall of 2021) a set of terms were developed to extend the DCAT v3 terms
+and provide greater detail and fidelity to the DHS Data Inventory Program and specifically the Data Inventory Record. The following list 
+of terms are linked to their more detailed definitions - provided in the section below.
+
+{% for (group,name,d,label,namesp, required, rtype, dtype) in desc2 %}
+    {% if loop.changed(group) %}
+    <h3>{{group}}</h3>
+    {% endif %}
+    <a href="#{{ label }}">{{ label }}</a>&nbsp
+
+{% endfor %}
+<br/>
+
+Detailed definitions follow:
+
+<table class='definitions'>
+{% for (group,name,d,label,namesp, required, rtype, dtype) in desc %}
+   {% if loop.changed(label) %}
+      </table>
+      <a name="{{label}}"></a>
+      <h3>{{label}}</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: {{ name }} &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   {% endif %}
+        <tr><th> Description </th> <td> {{ d }} </td></tr> 
+        <tr><th> namespace </th> <td> <a href="{{ namesp }}" target="_blank">{{ namesp }}</a> </td></tr>
+        <tr><th>Required</th><td> {{ required }} </td> </tr>
+        <tr><th>Rdfs datatype</th><td> {{ rtype }} </td> </tr>
+        <tr><th>Shacl datatype </th><td> {{ dtype }} </td> </tr>
+{% endfor %}
+</table>
+
+</body>
+</html>

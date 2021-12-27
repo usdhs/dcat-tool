@@ -5,7 +5,7 @@
     # prefix: usg
 
 @prefix dcat:  <http://www.w3.org/ns/dcat#> .
-@prefix dct:   <http://purl.org/dc/terms/#> .
+@prefix dcterms:   <http://purl.org/dc/terms/#> .
 @prefix dctype: <http://purl.org/dc/dcmitype/#> .
 @prefix foaf:  <http://xmlns.com/foaf/0.1/#> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
@@ -21,16 +21,16 @@
 
 <http://resources.data.gov/resources/dcat-us/#>
     a owl:Ontology ;
-    dct:contributor [
+    dcterms:contributor [
         sdo:affiliation [
             foaf:homepage <http://dhs.gov> ;
         foaf:name "U.S. Department of Homeland Security" ;
         ] ;
     foaf:name "Simson Garfinkel" ;
     ] ;
-    dct:modified "2021-10-20"^^xsd:date ;
+    dcterms:modified "2021-10-20"^^xsd:date ;
     rdfs:comment "DCAT extensions in DCAT-US and further extended by DHS";
-    owl:imports dct: ;
+    owl:imports dcterms: ;
     owl:imports <http://www.w3.org/2004/02/skos/core> ;
     owl:imports <http://www.w3.org/ns/prov-o#> ;
     owl:versionInfo "Initial Version";
@@ -41,6 +41,8 @@ usg:accessLevel
     a sh:NodeShape ;
 
     rdfs:range rdfs:Literal ;
+    rdfs:label "Access Level"@en ;
+    rdfs:isDefinedBy <https://resources.data.gov/resources/dcat-us/> ;
     rdfs:comment "The degree to which this dataset could be made publicly-available, regardless of whether it has been made available. Choices: public (Data asset is or could be made publicly available to all without restrictions), restricted public (Data asset is available under certain use restrictions), or non-public (Data asset is not available to members of the public)." ;
 
     sh:property [
@@ -51,6 +53,8 @@ usg:accessLevel
 usg:metadataClassification
     a rdf:Property ;
     rdfs:range rdfs:Literal ;
+    rdfs:label "Metadata Classification"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:comment "The classification level of the metadata." ;
     .
 
@@ -74,36 +78,48 @@ usg:nonPublic
 
 usg:governance
     a rdf:Property ;
+    rdfs:label "Governance"@en ;
     rdfs:range rdfs:Literal ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:comment "The organization responsible for governance or oversight of the dataset.";
     .
 
 usg:owner
     a rdf:Property ;
+    rdfs:label "Owner"@en ;
     rdfs:range rdfs:Literal ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:comment "The owner of the dataset. Data owners are senior officials or organizations that are responsible for the content and quality of the dataset.";
     .
 
 usg:steward
     a rdf:Property ;
+    rdfs:label "Steward"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The steward of the dataset. Data stewards are responsible for ensuring that data are properly stored, maintained, accessible, and protected.";
     .
 
 usg:custodian
     a rdf:Property ;
+    rdfs:label "Custodian"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The custodian of the dataset. Data custodians are the individuals or organizations that have physical posession of the data.";
     .
 
 usg:primaryITInvestmentUII
     a rdf:Property ;
+    rdfs:label "Primary IT Investment UII"@en ;
+    rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "For linking a dataset with an IT Unique Investment Identifier (UII)." ;
     .
 
 usg:sharingAgreements
     a rdf:Property ;
+    rdfs:label "Sharing Agreements"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Any sharing agreements for the dataset that should be documented." ;
     .
@@ -111,306 +127,408 @@ usg:sharingAgreements
 
 usg:collectionAuthority
     a rdf:Property ;
+    rdfs:label "Collection Authority"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The legal authority under which the data were collected." ;
     .
 
 usg:retentionAuthority
     a rdf:Property ;
+    rdfs:label "Retention Authority"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The legal authority under which the data are retained." ;
     .
 
 usg:releaseAuthority
     a rdf:Property ;
+    rdfs:label "Release Authority"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The legal authority under which the data may be released." ;
     .
 
 usg:recordsSchedule
     a rdf:Property ;
+    rdfs:label "Records Schedule"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The data records schedule." ;
     .
 
 usg:systemOfRecords
     a rdf:Property ;
+    rdfs:label "System of Records"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The system of records notice (SORN) in which the dataset appears." ;
     .
 
 usg:conformsFIPS
     a rdf:Property ;
+    rdfs:label "Conforms FIPS"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Any Federal Information Processing Standard (FIPS) that covers the data." ;
     .
 
 usg:conformsNIEMPercent
     a rdf:Property ;
+    rdfs:label "Conforms NIEM Percent"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The percentage of the data schema that conforms to the National Information Exchnage Model (NIEM)." ;
     .
 
 usg:conformsUnicode
     a rdf:Property ;
+    rdfs:label "Conforms Unicode"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Does the dataset contain unicode information?" ;
     .
 
 usg:identitiesNativeScript
     a rdf:Property ;
+    rdfs:label "Identities NativeScript"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Are names in the dataset represented in native script?" ;
     .
 
 usg:transliterationStandard;
     a rdf:Property ;
+    rdfs:label "Transliteration Standard"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The transliteration standard used for names in the dataset, if names are transliterated into English." ;
     .
 
 usg:sourceDatasets
     a rdf:Property ;
+    rdfs:label "Source Datasets"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The unique identifiers of the source datasets." ;
     .
 
 usg:destinationDatasets
     a rdf:Property ;
+    rdfs:label "Destination Datasets"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The unique identifiers of the downstream datasets fed by this dataset." ;
     .
 
 usg:describedBy
     a rdf:Property ;
+    rdfs:label "Described By"@en ;
+    rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "URL for the JSON Schema file that defines the schema used." ;
     .
 
 usg:describedByType
     a rdf:Property ;
+    rdfs:label "Described By Type"@en ;
+    rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The machine-readable file format (IANA Media Type also known as MIME Type) of the dataset’s Data Dictionary (describedBy)." ;
     .
 
 usg:dataQualityKnown
     a rdf:Property ;
+    rdfs:label "Data Quality Known"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "If the data quality is known or not." ;
     .
 
 usg:dataQualityMetric
     a rdf:Property ;
+    rdfs:label "Data Quality Metric"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Metric used to measure data quality." ;
     .
 
 usg:dataQualityMeasure
     a rdf:Property ;
+    rdfs:label "Data Quality Measure"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The measure of the data quality." ;
     .
 
 usg:dataQualityPercent
     a rdf:Property ;
+    rdfs:label "Data Quality Percent"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "A simple measure of the data quality, on a scale from 0-100." ;
     .
 
 usg:dataQualityAssessment
     a rdf:Property ;
+    rdfs:label "Data Quality Assessment"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Narrative as to the overall data quality." ;
     .
 
 usg:dataQuality
     a rdf:Property ;
+    rdfs:label "Data Quality"@en ;
+    rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Indicates whether a dataset conforms to the agency’s information quality guidelines (boolean)." ;
     .
 
 usg:accessURLNIEM
     a rdf:Property ;
+    rdfs:label "Access URL NIEM"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The URL from which the NIEM representation can be accessed." ;
     .
 
 usg:modified
     a rdf:Property ;
+    rdfs:label "Modified"@en ;
+    rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Most recent date on which the dataset was changed, updated or modified." ;
     .
 
 usg:vendor
     a rdf:Property ;
+    rdfs:label "Vendor"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Source of the dataset." ;
     .
 
 usg:component
     a rdf:Property ;
+    rdfs:label "Component"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Sub-department (e.g. bureau or component) of the data." ;
     .
 
 usg:functionalDataDomain
     a rdf:Property ;
+    rdfs:label "Functional Data Domain"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Functional data domain of the data." ;
     .
 
 usg:tableCount
     a rdf:Property ;
+    rdfs:label "Table Count"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Number of 2-dimensional tables in the data." ;
     .
 
 usg:recordCount
     a rdf:Property ;
+    rdfs:label "Record Count"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Total number of records in the data." ;
     .
 
 usg:datasetClassification
     a rdf:Property ;
+    rdfs:label "Dataset Classification"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Security classificaiton of the data." ;
     .
 
 usg:characteristics
     a rdf:Property ;
+    rdfs:label "Characteristics"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Specific container to hold various data characteristics." ;
     .
 
 usg:ch-person-level
     a rdf:Property ;
+    rdfs:label "Characteristics - Person Level"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains person-level records." ;
     .
 
 usg:ch-financial
     a rdf:Property ;
+    rdfs:label "Characteristics - Financial"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains financial information." ;
     .
 
 usg:ch-event-records
     a rdf:Property ;
+    rdfs:label "Characteristics - Event records"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains information about events that are tagged with a specific place and time." ;
     .
 
 usg:ch-faces
     a rdf:Property ;
+    rdfs:label "Characteristics - Faces"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains human faces." ;
     .
 
 usg:ch-fingerprints
     a rdf:Property ;
+    rdfs:label "Characteristics - Fingerprints"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains fingerprints." ;
     .
 
 usg:ch-cui
     a rdf:Property ;
+    rdfs:label "Characteristics - CUI"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains controlled unclassified information." ;
     .
 
 usg:ch-phi
     a rdf:Property ;
+    rdfs:label "Characteristics - PHI"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains protected health information." ;
     .
 
 usg:ch-pii
     a rdf:Property ;
+    rdfs:label "Characteristics - PII"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean ;
     rdfs:comment "The dataset contains personally identifiable information under the controlling legal definition of PII." ;
     .
 
 usg:ch-geospatial
     a rdf:Property ;
+    rdfs:label "Characteristics - Geospatial"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains geospatial information." ;
     .
 
 usg:ch-fisa
     a rdf:Property ;
+    rdfs:label "Characteristics - FISA"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains information pretaining to the Foreign Intelligence Surveillance Act (FISA)." ;
     .
 
 usg:ch-8usc1367
     a rdf:Property ;
+    rdfs:label "Characteristics - 8usc1367"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains 8 USC 1367." ;
     .
 
 usg:ch-propin
     a rdf:Property ;
+    rdfs:label "Characteristics - proprietary info"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains proprietary commercial information." ;
     .
 
 usg:ch-immigration
     a rdf:Property ;
+    rdfs:label "Characteristics - Immigration"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains information pertaining to immigration." ;
     .
 
 usg:ch-criticalInfrastructure
     a rdf:Property ;
+    rdfs:label "Characteristics - Critical Infrastructure"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains critical infrastructure information." ;
     .
 
 usg:ch-disseminationRestrictions
     a rdf:Property ;
+    rdfs:label "Characteristics - Dissemination Restrictions"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The information has dissemination restrictions." ;
     .
 
 usg:hostingLocation
     a rdf:Property ;
+    rdfs:label "Hosting Location"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "Where the data physically reside." ;
     .
 
 usg:hostedInCloud
     a rdf:Property ;
+    rdfs:label "Hosted in Cloud"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "If the dataset's location is in the cloud." ;
     .
 
 usg:easilyAccessibleByCreatingComponent
     a rdf:Property ;
+    rdfs:label "Easily Accessible By Creating Component"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The information can be easily accessed by individuals within the component that created it." ;
     .
 
 usg:easilyAccessibleByAllComponents
     a rdf:Property ;
+    rdfs:label "Easily Accessible By All Components"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The information can be easily accessed by individuals within all department component." ;
     .
 
 usg:easilyAccessibleByGeneralPublic
     a rdf:Property ;
+    rdfs:label "Easily Accessible By General Public"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "The information can be easily accessed by the general public." ;
     .
 
 usg:recordTransmission
     a rdf:Property ;
+    rdfs:label "Record Transmission"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "When the metadata record was transmitted." ;
     .
 
 usg:validityTime
     a rdf:Property ;
+    rdfs:label "Validity Time"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "When the metadata record is valid." ;
     .
