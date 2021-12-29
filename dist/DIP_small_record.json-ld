@@ -3,10 +3,10 @@
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dct": "http://purl.org/dc/terms/#",
+    "dctype": "http://purl.org/dc/terms/",
     "usg": "http://resources.data.gov/resources/dcat-us/#",
     "issued": {
-      "@id":"http://purl.org/dc/terms/#issued",
+      "@id":"http://purl.org/dc/terms/issued",
       "@type": "http://www.w3.org/2001/XMLSchema#date"
     },
     "dataQuality": {
@@ -16,10 +16,10 @@
   },
   "@id": "https://dhs.gov/test-1",
   "@type": "http://github.com/usdhs/DCAT-dhs/0.1#dataInventoryRecord",
-  "dct:description": "In theory a description would not exceed 1000 chars, but...",
-  "dct:identifier": "test-id-23451-y78ujy",
+  "dctype:description": "In theory a description would not exceed 1000 chars, but...",
+  "dctype:identifier": "test-id-23451-y78ujy",
   "issued":"2021-10-21",
-  "dct:title": "A Test Title",
+  "dctype:title": "A Test Title",
   "usg:accessLevel": "public",
   "usg:component": "MGMT",
   "usg:metadataClassification": "CUI",

@@ -3,10 +3,10 @@
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dct": "http://purl.org/dc/terms/#",
+    "dct": "http://purl.org/dc/terms/",
     "usg": "http://resources.data.gov/resources/dcat-us/#",
     "issued": {
-      "@id":"http://purl.org/dc/terms/#issued",
+      "@id":"http://purl.org/dc/terms/issued",
       "@type": "http://www.w3.org/2001/XMLSchema#date"
     },
     "dataQuality": {

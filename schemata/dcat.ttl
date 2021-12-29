@@ -5,8 +5,8 @@
 # prefix: dcat
 
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
-@prefix dct: <http://purl.org/dc/terms/#> .
-@prefix dctype: <http://purl.org/dc/dcmitype/#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dctype: <http://purl.org/dc/dcmitype/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -19,7 +19,7 @@
 
 <http://www.w3.org/ns/dcat>
   a owl:Ontology ;
-  dct:contributor [
+  dcterms:contributor [
       a foaf:Person ;
       sdo:affiliation [
           foaf:homepage <https://csiro.au> ;
@@ -29,27 +29,27 @@
       foaf:name "Simon J D Cox" ;
       foaf:workInfoHomepage <http://people.csiro.au/Simon-Cox> ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       sdo:affiliation <http://www.w3.org/data#W3C> ;
       rdfs:seeAlso <http://philarcher.org/foaf.rdf#me> ;
       foaf:homepage <http://www.w3.org/People/all#phila> ;
       foaf:name "Phil Archer" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       sdo:affiliation [
           foaf:homepage <http://ec.europa.eu/dgs/informatics/> ;
           foaf:name "European Commission, DG DIGIT" ;
         ] ;
       foaf:name "Vassilios Peristeras" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       sdo:affiliation [
           foaf:homepage <http://okfn.org> ;
           foaf:name "Open Knowledge Foundation" ;
         ] ;
       foaf:name "Rufus Pollock" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       sdo:affiliation [
           foaf:homepage <http://stfc.ac.uk> ;
           foaf:name "Science and Technology Facilities Council, UK" ;
@@ -58,69 +58,69 @@
       foaf:homepage <https://agbeltran.github.io> ;
       foaf:name "Alejandra Gonzalez-Beltran" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       sdo:affiliation [
           foaf:homepage <http://www.refinitiv.com> ;
           foaf:name "Refinitiv" ;
         ] ;
       foaf:name "David Browning" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       rdfs:seeAlso <http://makxdekkers.com/makxdekkers.rdf#me> ;
       foaf:homepage <http://makxdekkers.com/> ;
       foaf:name "Makx Dekkers" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       rdfs:seeAlso <http://www.eurecom.fr/~atemezin/gatemezing-foaf.rdf> ;
       foaf:name "Ghislain Auguste Atemezing" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       rdfs:seeAlso <https://jakub.klímek.com/#me> ;
       foaf:homepage <https://jakub.klímek.com/> ;
       foaf:name "Jakub Klímek" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       rdfs:seeAlso <https://orcid.org/0000-0001-5648-2713> ;
       foaf:homepage <http://www.imati.cnr.it/index.php/people/8-curricula/178-riccardo-albertoni> ;
       foaf:homepage <https://w3id.org/people/ralbertoni/> ;
       foaf:name "Riccardo Albertoni" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       rdfs:seeAlso <https://orcid.org/0000-0001-9300-2694> ;
       foaf:homepage <http://www.andrea-perego.name/foaf/#me> ;
       foaf:name "Andrea Perego" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       foaf:homepage <http://www.asahi-net.or.jp/~ax2s-kmtn/> ;
       foaf:name "Shuji Kamitsuna" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       foaf:name "Boris Villazón-Terrazas" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       foaf:name "Marios Meimaris" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       foaf:name "Martin Alvarez-Espinar" ;
     ] ;
-  dct:contributor [
+  dcterms:contributor [
       foaf:name "Richard Cyganiak" ;
     ] ;
-  dct:creator [
+  dcterms:creator [
       rdfs:seeAlso <http://fadmaa.me/foaf.ttl> ;
       foaf:name "Fadi Maali" ;
     ] ;
-  dct:creator [
+  dcterms:creator [
       foaf:name "John Erickson" ;
     ] ;
-  dct:license <https://creativecommons.org/licenses/by/4.0/> ;
-  dct:modified "2012-04-24"^^xsd:date ;
-  dct:modified "2013-09-20"^^xsd:date ;
-  dct:modified "2013-11-28"^^xsd:date ;
-  dct:modified "2017-12-19"^^xsd:date ;
-  dct:modified "2019" ;
-  dct:modified "2020-11-30"^^xsd:date ;
-  dct:modified "2021-09-14"^^xsd:date ;
+  dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+  dcterms:modified "2012-04-24"^^xsd:date ;
+  dcterms:modified "2013-09-20"^^xsd:date ;
+  dcterms:modified "2013-11-28"^^xsd:date ;
+  dcterms:modified "2017-12-19"^^xsd:date ;
+  dcterms:modified "2019" ;
+  dcterms:modified "2020-11-30"^^xsd:date ;
+  dcterms:modified "2021-09-14"^^xsd:date ;
   rdfs:comment "DCAT es un vocabulario RDF diseñado para facilitar la interoperabilidad entre catálogos de datos publicados en la Web. Utilizando DCAT para describir datos disponibles en catálogos se aumenta la posibilidad de que sean descubiertos y se permite que las aplicaciones consuman fácilmente los metadatos de varios catálogos."@es ;
   rdfs:comment "DCAT est un vocabulaire développé pour faciliter l'interopérabilité entre les jeux de données publiées sur le Web. En utilisant DCAT pour décrire les jeux de données dans les catalogues de données, les fournisseurs de données augmentent leur découverte et permettent que les applications facilement les métadonnées de plusieurs catalogues. Il permet en plus la publication décentralisée des catalogues et facilitent la recherche fédérée des données entre plusieurs sites. Les métadonnées DCAT aggrégées peuvent servir comme un manifeste pour faciliter la préservation digitale des ressources. DCAT est définie à l'adresse http://www.w3.org/TR/vocab-dcat/. Une quelconque version de ce document normatif et ce vocabulaire est une erreur dans ce vocabulaire."@fr ;
   rdfs:comment "DCAT is an RDF vocabulary designed to facilitate interoperability between data catalogs published on the Web. By using DCAT to describe datasets in data catalogs, publishers increase discoverability and enable applications easily to consume metadata from multiple catalogs. It further enables decentralized publishing of catalogs and facilitates federated dataset search across sites. Aggregated DCAT metadata can serve as a manifest file to facilitate digital preservation. DCAT is defined at http://www.w3.org/TR/vocab-dcat/. Any variance between that normative document and this schema is an error in this schema."@en ;
@@ -139,7 +139,7 @@
   rdfs:label "أنطولوجية فهارس قوائم البيانات"@ar ;
   rdfs:label "データ・カタログ語彙（DCAT）"@ja ;
   rdfs:label "Datakatalogvokabular"@da ;
-  owl:imports dct: ;
+  owl:imports dcterms: ;
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:imports <http://www.w3.org/ns/prov-o#> ;
   owl:versionInfo "Esta es una copia del vocabulario DCAT v2.0 disponible en https://www.w3.org/ns/dcat.ttl"@es ;
@@ -267,15 +267,15 @@ dcat:DataService
   skos:definition "Un sitio o end-point que provee operaciones relacionadas a funciones de descubrimiento, acceso, o procesamiento de datos o recursos relacionados."@es ;
   skos:definition "Un sito o end-point che fornisce operazioni relative alla scoperta, all'accesso o all'elaborazione di funzioni su dati o risorse correlate."@it ;
   skos:definition "Et site eller endpoint der udstiller operationer relateret til opdagelse af, adgang til eller behandlende funktioner på data eller relaterede ressourcer."@da ;
-  skos:scopeNote "Druh služby může být indikován vlastností dct:type. Její hodnota může být z řízeného slovníku, kterým je například slovník typů prostorových datových služeb INSPIRE."@cs ;
-  skos:scopeNote "El tipo de servicio puede indicarse usando la propiedad dct:type. Su valor puede provenir de un vocabulario controlado, como por ejemplo el vocabulario de servicios de datos espaciales de INSPIRE."@es ;
+  skos:scopeNote "Druh služby může být indikován vlastností dcterms:type. Její hodnota může být z řízeného slovníku, kterým je například slovník typů prostorových datových služeb INSPIRE."@cs ;
+  skos:scopeNote "El tipo de servicio puede indicarse usando la propiedad dcterms:type. Su valor puede provenir de un vocabulario controlado, como por ejemplo el vocabulario de servicios de datos espaciales de INSPIRE."@es ;
   skos:scopeNote "If a dcat:DataService is bound to one or more specified Datasets, they are indicated by the dcat:servesDataset property."@en ;
-  skos:scopeNote "Il tipo di servizio può essere indicato usando la proprietà dct:type. Il suo valore può essere preso da un vocabolario controllato come il vocabolario dei tipi di servizi per dati spaziali di INSPIRE."@it ;
+  skos:scopeNote "Il tipo di servizio può essere indicato usando la proprietà dcterms:type. Il suo valore può essere preso da un vocabolario controllato come il vocabolario dei tipi di servizi per dati spaziali di INSPIRE."@it ;
   skos:scopeNote "Pokud je dcat:DataService navázána na jednu či více Datových sad, jsou tyto indikovány vlstností dcat:servesDataset."@cs ;
   skos:scopeNote "Se un dcat:DataService è associato a uno o più Dataset specificati, questi sono indicati dalla proprietà dcat:serveDataset."@it ;
   skos:scopeNote "Si un dcat:DataService está asociado con uno o más conjuntos de datos especificados, dichos conjuntos de datos pueden indicarse con la propiedad dcat:servesDataset."@es ;
-  skos:scopeNote "The kind of service can be indicated using the dct:type property. Its value may be taken from a controlled vocabulary such as the INSPIRE spatial data service type vocabulary."@en ;
-  skos:scopeNote "Datatjenestetypen kan indikeres ved hjælp af egenskaben dct:type. Værdien kan tages fra kontrollerede udfaldsrum såsom INSPIRE spatial data service vocabulary."@da ;
+  skos:scopeNote "The kind of service can be indicated using the dcterms:type property. Its value may be taken from a controlled vocabulary such as the INSPIRE spatial data service type vocabulary."@en ;
+  skos:scopeNote "Datatjenestetypen kan indikeres ved hjælp af egenskaben dcterms:type. Værdien kan tages fra kontrollerede udfaldsrum såsom INSPIRE spatial data service vocabulary."@da ;
   skos:scopeNote "Hvis en dcat:DataService er bundet til en eller flere specifikke datasæt kan dette indikeres ved hjælp af egenskaben dcat:servesDataset. "@da ;
 .
 dcat:Dataset
@@ -396,11 +396,11 @@ dcat:Relationship
   skos:definition "Una clase de asociación para adjuntar información adicional a una relación entre recursos DCAT."@es ;
   skos:definition "Una classe di associazione per il collegamento di informazioni aggiuntive a una relazione tra le risorse DCAT."@it ;
   skos:definition "En associationsklasse til brug for tilknytning af yderligere information til en relation mellem DCAT-ressourcer."@da ;
-  skos:scopeNote "Používá se pro charakterizaci vztahu mezi datovými sadami a případně i jinými zdroji, kde druh vztahu je sice znám, ale není přiměřeně charakterizován standardními vlastnostmi slovníku Dublin Core (dct:hasPart, dct:isPartOf, dct:conformsTo, dct:isFormatOf, dct:hasFormat, dct:isVersionOf, dct:hasVersion, dct:replaces, dct:isReplacedBy, dct:references, dct:isReferencedBy, dct:requires, dct:isRequiredBy) či vlastnostmi slovníku PROV-O (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@cs ;
-  skos:scopeNote "Se usa para caracterizar la relación entre conjuntos de datos, y potencialmente otros recursos, donde la naturaleza de la relación se conoce pero no está caracterizada adecuadamente con propiedades del estándar 'Dublin Core' (dct:hasPart, dct:isPartOf, dct:conformsTo, dct:isFormatOf, dct:hasFormat, dct:isVersionOf, dct:hasVersion, dct:replaces, dct:isReplacedBy, dct:references, dct:isReferencedBy, dct:requires, dct:isRequiredBy) or PROV-O properties (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@es ;
-  skos:scopeNote "Use to characterize a relationship between datasets, and potentially other resources, where the nature of the relationship is known but is not adequately characterized by the standard Dublin Core properties (dct:hasPart, dct:isPartOf, dct:conformsTo, dct:isFormatOf, dct:hasFormat, dct:isVersionOf, dct:hasVersion, dct:replaces, dct:isReplacedBy, dct:references, dct:isReferencedBy, dct:requires, dct:isRequiredBy) or PROV-O properties (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@en ;
-  skos:scopeNote "Viene utilizzato per caratterizzare la relazione tra insiemi di dati, e potenzialmente altri tipi di risorse, nei casi in cui la natura della relazione è nota ma non adeguatamente caratterizzata dalle proprietà dello standard 'Dublin Core' (dct:hasPart, dct:isPartOf, dct:conformsTo, dct:isFormatOf, dct:hasFormat, dct:isVersionOf, dct:hasVersion, dct:replaces, dct:isReplacedBy, dct:references, dct:isReferencedBy, dct:require, dct:isRequiredBy) o dalle propietà fornite da PROV-O  (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov: hadPrimarySource, prov:alternateOf, prov:specializationOf)."@it ;
-  skos:scopeNote "Anvendes til at karakterisere en relation mellem datasæt, og potentielt andre ressourcer, hvor relationen er kendt men ikke tilstrækkeligt beskrevet af de standardiserede egenskaber i Dublin Core (dct:hasPart, dct:isPartOf, dct:conformsTo, dct:isFormatOf, dct:hasFormat, dct:isVersionOf, dct:hasVersion, dct:replaces, dct:isReplacedBy, dct:references, dct:isReferencedBy, dct:requires, dct:isRequiredBy) eller PROV-O-egenskaber (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@da ;
+  skos:scopeNote "Používá se pro charakterizaci vztahu mezi datovými sadami a případně i jinými zdroji, kde druh vztahu je sice znám, ale není přiměřeně charakterizován standardními vlastnostmi slovníku Dublin Core (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat, dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:requires, dcterms:isRequiredBy) či vlastnostmi slovníku PROV-O (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@cs ;
+  skos:scopeNote "Se usa para caracterizar la relación entre conjuntos de datos, y potencialmente otros recursos, donde la naturaleza de la relación se conoce pero no está caracterizada adecuadamente con propiedades del estándar 'Dublin Core' (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat, dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:requires, dcterms:isRequiredBy) or PROV-O properties (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@es ;
+  skos:scopeNote "Use to characterize a relationship between datasets, and potentially other resources, where the nature of the relationship is known but is not adequately characterized by the standard Dublin Core properties (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat, dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:requires, dcterms:isRequiredBy) or PROV-O properties (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@en ;
+  skos:scopeNote "Viene utilizzato per caratterizzare la relazione tra insiemi di dati, e potenzialmente altri tipi di risorse, nei casi in cui la natura della relazione è nota ma non adeguatamente caratterizzata dalle proprietà dello standard 'Dublin Core' (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat, dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:require, dcterms:isRequiredBy) o dalle propietà fornite da PROV-O  (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov: hadPrimarySource, prov:alternateOf, prov:specializationOf)."@it ;
+  skos:scopeNote "Anvendes til at karakterisere en relation mellem datasæt, og potentielt andre ressourcer, hvor relationen er kendt men ikke tilstrækkeligt beskrevet af de standardiserede egenskaber i Dublin Core (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat, dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:requires, dcterms:isRequiredBy) eller PROV-O-egenskaber (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@da ;
 .
 dcat:Resource
   a owl:Class ;
@@ -424,15 +424,15 @@ dcat:Resource
   skos:definition "Risorsa pubblicata o curata da un singolo agente."@it ;
   skos:definition "Zdroj publikovaný či řízený jediným činitelem."@cs ;
   skos:definition "Ressource udgivet eller udvalgt og arrangeret af en enkelt aktør."@da ;
-  skos:scopeNote "La clase de todos los recursos catalogados, la superclase de dcat:Dataset, dcat:DataService, dcat:Catalog y cualquier otro miembro de un dcat:Catalog. Esta clase tiene propiedades comunes a todos los recursos catalogados, incluyendo conjuntos de datos y servicios de datos. Se recomienda fuertemente que se use una clase más específica. Cuando se describe un recurso que no es un dcat:Dataset o dcat:DataService, se recomienda crear una sub-clase apropiada de dcat:Resource, o usar dcat:Resource con la propiedad dct:type to indicar el tipo específico."@es ;
-  skos:scopeNote "La classe di tutte le risorse catalogate, la Superclasse di dcat:Dataset, dcat:DataService, dcat:Catalog e qualsiasi altro membro di dcat:Catalog. Questa classe porta proprietà comuni a tutte le risorse catalogate, inclusi set di dati e servizi dati. Si raccomanda vivamente di utilizzare una sottoclasse più specifica. Quando si descrive una risorsa che non è un dcat:Dataset o dcat:DataService, si raccomanda di creare una sottoclasse di dcat:Resource appropriata, o utilizzare dcat:Resource con la proprietà dct:type per indicare il tipo specifico."@it ;
-  skos:scopeNote "The class of all catalogued resources, the Superclass of dcat:Dataset, dcat:DataService, dcat:Catalog and any other member of a dcat:Catalog. This class carries properties common to all catalogued resources, including datasets and data services. It is strongly recommended to use a more specific sub-class. When describing a resource which is not a dcat:Dataset or dcat:DataService, it is recommended to create a suitable sub-class of dcat:Resource, or use dcat:Resource with the dct:type property to indicate the specific type."@en ;
-  skos:scopeNote "Třída všech katalogizovaných zdrojů, nadtřída dcat:Dataset, dcat:DataService, dcat:Catalog a všech ostatních členů dcat:Catalog. Tato třída nese vlastnosti společné všem katalogizovaným zdrojům včetně datových sad a datových služeb. Je silně doporučeno používat specifičtější podtřídy, pokud je to možné. Při popisu zdroje, který není ani dcat:Dataset, ani dcat:DataService se doporučuje vytvořit odpovídající podtřídu dcat:Resrouce a nebo použít dcat:Resource s vlastností dct:type pro určení konkrétního typu."@cs ;
+  skos:scopeNote "La clase de todos los recursos catalogados, la superclase de dcat:Dataset, dcat:DataService, dcat:Catalog y cualquier otro miembro de un dcat:Catalog. Esta clase tiene propiedades comunes a todos los recursos catalogados, incluyendo conjuntos de datos y servicios de datos. Se recomienda fuertemente que se use una clase más específica. Cuando se describe un recurso que no es un dcat:Dataset o dcat:DataService, se recomienda crear una sub-clase apropiada de dcat:Resource, o usar dcat:Resource con la propiedad dcterms:type to indicar el tipo específico."@es ;
+  skos:scopeNote "La classe di tutte le risorse catalogate, la Superclasse di dcat:Dataset, dcat:DataService, dcat:Catalog e qualsiasi altro membro di dcat:Catalog. Questa classe porta proprietà comuni a tutte le risorse catalogate, inclusi set di dati e servizi dati. Si raccomanda vivamente di utilizzare una sottoclasse più specifica. Quando si descrive una risorsa che non è un dcat:Dataset o dcat:DataService, si raccomanda di creare una sottoclasse di dcat:Resource appropriata, o utilizzare dcat:Resource con la proprietà dcterms:type per indicare il tipo specifico."@it ;
+  skos:scopeNote "The class of all catalogued resources, the Superclass of dcat:Dataset, dcat:DataService, dcat:Catalog and any other member of a dcat:Catalog. This class carries properties common to all catalogued resources, including datasets and data services. It is strongly recommended to use a more specific sub-class. When describing a resource which is not a dcat:Dataset or dcat:DataService, it is recommended to create a suitable sub-class of dcat:Resource, or use dcat:Resource with the dcterms:type property to indicate the specific type."@en ;
+  skos:scopeNote "Třída všech katalogizovaných zdrojů, nadtřída dcat:Dataset, dcat:DataService, dcat:Catalog a všech ostatních členů dcat:Catalog. Tato třída nese vlastnosti společné všem katalogizovaným zdrojům včetně datových sad a datových služeb. Je silně doporučeno používat specifičtější podtřídy, pokud je to možné. Při popisu zdroje, který není ani dcat:Dataset, ani dcat:DataService se doporučuje vytvořit odpovídající podtřídu dcat:Resrouce a nebo použít dcat:Resource s vlastností dcterms:type pro určení konkrétního typu."@cs ;
   skos:scopeNote "dcat:Resource es un punto de extensión que permite la definición de cualquier tipo de catálogo. Se pueden definir subclases adicionales en perfil de DCAT o una aplicación para catálogos de otro tipo de recursos."@es ;
   skos:scopeNote "dcat:Resource is an extension point that enables the definition of any kind of catalog. Additional subclasses may be defined in a DCAT profile or application for catalogs of other kinds of resources."@en ;
   skos:scopeNote "dcat:Resource je bod pro rozšíření umožňující definici různých druhů katalogů. Další podtřídy lze definovat v profilech DCAT či aplikacích pro katalogy zdrojů jiných druhů."@cs ;
   skos:scopeNote "dcat:Resource è un punto di estensione che consente la definizione di qualsiasi tipo di catalogo. Sottoclassi aggiuntive possono essere definite in un profilo DCAT o in un'applicazione per cataloghi di altri tipi di risorse."@it ;
-  skos:scopeNote "Klassen for alle katalogiserede ressourcer, den overordnede klasse for dcat:Dataset, dcat:DataService, dcat:Catalog og enhvert medlem af et dcat:Catalog. Denne klasse bærer egenskaber der gælder alle katalogiserede ressourcer, herunder dataset og datatjenester. Det anbefales kraftigt at mere specifikke subklasser oprettes. Når der beskrives ressourcer der ikke er dcat:Dataset eller dcat:DataService, anbefales det at oprette passende subklasser af dcat:Resource eller at dcat:Resource anvendes sammen med egenskaben dct:type til opmærkning med en specifik typeangivelse."@da ;
+  skos:scopeNote "Klassen for alle katalogiserede ressourcer, den overordnede klasse for dcat:Dataset, dcat:DataService, dcat:Catalog og enhvert medlem af et dcat:Catalog. Denne klasse bærer egenskaber der gælder alle katalogiserede ressourcer, herunder dataset og datatjenester. Det anbefales kraftigt at mere specifikke subklasser oprettes. Når der beskrives ressourcer der ikke er dcat:Dataset eller dcat:DataService, anbefales det at oprette passende subklasser af dcat:Resource eller at dcat:Resource anvendes sammen med egenskaben dcterms:type til opmærkning med en specifik typeangivelse."@da ;
   skos:scopeNote "dcat:Resource er et udvidelsespunkt der tillader oprettelsen af enhver type af kataloger. Yderligere subklasser kan defineres i en DCAT-profil eller i en applikation til kataloger med andre typer af ressourcer."@da ;
 .
 dcat:Role
@@ -551,7 +551,7 @@ dcat:accessURL
 dcat:bbox
   a rdf:Property ;
   a owl:DatatypeProperty ;
-  rdfs:domain dct:Location ;
+  rdfs:domain dcterms:Location ;
   rdfs:label "bounding box"@en ;
   rdfs:label "quadro di delimitazione"@it ;
   rdfs:label "cuadro delimitador"@es ;
@@ -632,7 +632,7 @@ dcat:catalog
   rdfs:label "katalog"@da ;
   skos:altLabel "har delkatalog"@da ;
   rdfs:range dcat:Catalog ;
-  rdfs:subPropertyOf dct:hasPart ;
+  rdfs:subPropertyOf dcterms:hasPart ;
   rdfs:subPropertyOf rdfs:member ;
   skos:changeNote "New property added in DCAT 2.0."@en ;
   skos:changeNote "Nová vlastnost přidaná ve verzi DCAT 2.0."@cs ;
@@ -647,7 +647,7 @@ dcat:catalog
 dcat:centroid
   a rdf:Property ;
   a owl:DatatypeProperty ;
-  rdfs:domain dct:Location ;
+  rdfs:domain dcterms:Location ;
   rdfs:label "centroid"@cs ;
   rdfs:label "centroid"@en ;
   rdfs:label "centroide"@it ;
@@ -686,8 +686,8 @@ dcat:compressFormat
   rdfs:label "formato di compressione"@it ;
   rdfs:label "formát komprese"@cs ;
   rdfs:label "kompressionsformat"@da ;
-  rdfs:range dct:MediaType ;
-  rdfs:subPropertyOf dct:format ;
+  rdfs:range dcterms:MediaType ;
+  rdfs:subPropertyOf dcterms:format ;
   skos:changeNote "New property added in DCAT 2.0."@en ;
   skos:changeNote "Nová vlastnost přidaná ve verzi DCAT 2.0."@cs ;
   skos:changeNote "Nueva propiedad agregada en DCAT 2.0."@es ;
@@ -764,7 +764,7 @@ dcat:dataset
   skos:altLabel "har datasæt"@da ;
   skos:altLabel "datasamling"@da ;
   rdfs:range dcat:Dataset ;
-  rdfs:subPropertyOf dct:hasPart ;
+  rdfs:subPropertyOf dcterms:hasPart ;
   rdfs:subPropertyOf rdfs:member ;
   skos:definition "A collection of data that is listed in the catalog."@en ;
   skos:definition "Kolekce dat, která je katalogizována v katalogu."@cs ;
@@ -802,7 +802,7 @@ dcat:distribution
   rdfs:label "توزيع"@ar ;
   rdfs:label "データセット配信"@ja ;
   rdfs:range dcat:Distribution ;
-  rdfs:subPropertyOf dct:relation ;
+  rdfs:subPropertyOf dcterms:relation ;
   skos:definition "An available distribution of the dataset."@en ;
   skos:definition "Connecte un jeu de données à des distributions disponibles."@fr ;
   skos:definition "Dostupná distribuce datové sady."@cs ;
@@ -817,15 +817,15 @@ dcat:distribution
 dcat:downloadURL
   a rdf:Property ;
   a owl:ObjectProperty ;
-  rdfs:comment "Ceci est un lien direct à un fichier téléchargeable en un format donnée. Exple fichier CSV ou RDF. Le format est décrit par les propriétés de distribution dct:format et/ou dcat:mediaType."@fr ;
-  rdfs:comment "La URL de un archivo descargable en el formato dato. Por ejemplo, archivo CSV o archivo RDF. El formato se describe con las propiedades de la distribución dct:format y/o dcat:mediaType."@es ;
-  rdfs:comment "Questo è un link diretto al file scaricabile in un dato formato. E.g. un file CSV o un file RDF. Il formato è descritto dal dct:format e/o dal dcat:mediaType della distribuzione."@it ;
-  rdfs:comment "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType."@en ;
-  rdfs:comment "URL souboru ke stažení v daném formátu, například CSV nebo RDF soubor. Formát je popsán vlastností distribuce dct:format a/nebo dcat:mediaType."@cs ;
+  rdfs:comment "Ceci est un lien direct à un fichier téléchargeable en un format donnée. Exple fichier CSV ou RDF. Le format est décrit par les propriétés de distribution dcterms:format et/ou dcat:mediaType."@fr ;
+  rdfs:comment "La URL de un archivo descargable en el formato dato. Por ejemplo, archivo CSV o archivo RDF. El formato se describe con las propiedades de la distribución dcterms:format y/o dcat:mediaType."@es ;
+  rdfs:comment "Questo è un link diretto al file scaricabile in un dato formato. E.g. un file CSV o un file RDF. Il formato è descritto dal dcterms:format e/o dal dcat:mediaType della distribuzione."@it ;
+  rdfs:comment "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dcterms:format and/or dcat:mediaType."@en ;
+  rdfs:comment "URL souboru ke stažení v daném formátu, například CSV nebo RDF soubor. Formát je popsán vlastností distribuce dcterms:format a/nebo dcat:mediaType."@cs ;
   rdfs:comment "dcat:downloadURLはdcat:accessURLの特定の形式です。しかし、DCATプロファイルが非ダウンロード・ロケーションに対してのみaccessURLを用いる場合には、より強い分離を課すことを望む可能性があるため、この含意を強化しないように、DCATは、dcat:downloadURLをdcat:accessURLのサブプロパティーであると定義しません。"@ja ;
-  rdfs:comment "Είναι ένας σύνδεσμος άμεσης μεταφόρτωσης ενός αρχείου σε μια δεδομένη μορφή. Π.χ. ένα αρχείο CSV ή RDF. Η μορφη αρχείου περιγράφεται από τις ιδιότητες dct:format ή/και dcat:mediaType της διανομής."@el ;
-  rdfs:comment "رابط مباشر لملف يمكن تحميله. نوع الملف يتم توصيفه باستخدام الخاصية dct:format dcat:mediaType "@ar ;
-  rdfs:comment "URL til fil der kan downloades i et bestemt format. Fx en CSV-fil eller en RDF-fil. Formatet for distributionen angives ved hjælp af egenskaberne dct:format og/eller dcat:mediaType."@da ;
+  rdfs:comment "Είναι ένας σύνδεσμος άμεσης μεταφόρτωσης ενός αρχείου σε μια δεδομένη μορφή. Π.χ. ένα αρχείο CSV ή RDF. Η μορφη αρχείου περιγράφεται από τις ιδιότητες dcterms:format ή/και dcat:mediaType της διανομής."@el ;
+  rdfs:comment "رابط مباشر لملف يمكن تحميله. نوع الملف يتم توصيفه باستخدام الخاصية dcterms:format dcat:mediaType "@ar ;
+  rdfs:comment "URL til fil der kan downloades i et bestemt format. Fx en CSV-fil eller en RDF-fil. Formatet for distributionen angives ved hjælp af egenskaberne dcterms:format og/eller dcat:mediaType."@da ;
   rdfs:domain dcat:Distribution ;
   rdfs:isDefinedBy <http://www.w3.org/TR/vocab-dcat/> ;
   rdfs:label "URL de descarga"@es ;
@@ -838,15 +838,15 @@ dcat:downloadURL
   rdfs:label "ダウンロードURL"@ja ;
   rdfs:label "downloadURL"@da ;
   rdfs:range rdfs:Resource ;
-  skos:definition "Ceci est un lien direct à un fichier téléchargeable en un format donnée. Exple fichier CSV ou RDF. Le format est décrit par les propriétés de distribution dct:format et/ou dcat:mediaType."@fr ;
-  skos:definition "La URL de un archivo descargable en el formato dato. Por ejemplo, archivo CSV o archivo RDF. El formato se describe con las propiedades de la distribución dct:format y/o dcat:mediaType."@es ;
-  skos:definition "Questo è un link diretto al file scaricabile in un dato formato. E.g. un file CSV o un file RDF. Il formato è descritto dal dct:format e/o dal dcat:mediaType della distribuzione."@it ;
-  skos:definition "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType."@en ;
-  skos:definition "URL souboru ke stažení v daném formátu, například CSV nebo RDF soubor. Formát je popsán vlastností distribuce dct:format a/nebo dcat:mediaType."@cs ;
+  skos:definition "Ceci est un lien direct à un fichier téléchargeable en un format donnée. Exple fichier CSV ou RDF. Le format est décrit par les propriétés de distribution dcterms:format et/ou dcat:mediaType."@fr ;
+  skos:definition "La URL de un archivo descargable en el formato dato. Por ejemplo, archivo CSV o archivo RDF. El formato se describe con las propiedades de la distribución dcterms:format y/o dcat:mediaType."@es ;
+  skos:definition "Questo è un link diretto al file scaricabile in un dato formato. E.g. un file CSV o un file RDF. Il formato è descritto dal dcterms:format e/o dal dcat:mediaType della distribuzione."@it ;
+  skos:definition "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dcterms:format and/or dcat:mediaType."@en ;
+  skos:definition "URL souboru ke stažení v daném formátu, například CSV nebo RDF soubor. Formát je popsán vlastností distribuce dcterms:format a/nebo dcat:mediaType."@cs ;
   skos:definition "dcat:downloadURLはdcat:accessURLの特定の形式です。しかし、DCATプロファイルが非ダウンロード・ロケーションに対してのみaccessURLを用いる場合には、より強い分離を課すことを望む可能性があるため、この含意を強化しないように、DCATは、dcat:downloadURLをdcat:accessURLのサブプロパティーであると定義しません。"@ja ;
-  skos:definition "Είναι ένας σύνδεσμος άμεσης μεταφόρτωσης ενός αρχείου σε μια δεδομένη μορφή. Π.χ. ένα αρχείο CSV ή RDF. Η μορφη αρχείου περιγράφεται από τις ιδιότητες dct:format ή/και dcat:mediaType της διανομής."@el ;
-  skos:definition "URL til fil der kan downloades i et bestemt format. Fx en CSV-fil eller en RDF-fil. Formatet for distributionen angives ved hjælp af egenskaberne dct:format og/eller dcat:mediaType."@da ;
-  skos:definition "رابط مباشر لملف يمكن تحميله. نوع الملف يتم توصيفه باستخدام الخاصية dct:format dcat:mediaType "@ar ;
+  skos:definition "Είναι ένας σύνδεσμος άμεσης μεταφόρτωσης ενός αρχείου σε μια δεδομένη μορφή. Π.χ. ένα αρχείο CSV ή RDF. Η μορφη αρχείου περιγράφεται από τις ιδιότητες dcterms:format ή/και dcat:mediaType της διανομής."@el ;
+  skos:definition "URL til fil der kan downloades i et bestemt format. Fx en CSV-fil eller en RDF-fil. Formatet for distributionen angives ved hjælp af egenskaberne dcterms:format og/eller dcat:mediaType."@da ;
+  skos:definition "رابط مباشر لملف يمكن تحميله. نوع الملف يتم توصيفه باستخدام الخاصية dcterms:format dcat:mediaType "@ar ;
   skos:editorialNote "Status: English  Definition text modified by DCAT revision team, Italian, Spanish and Czech translation updated, other translations pending."@en ;
   skos:editorialNote "rdfs:label, rdfs:comment and/or skos:scopeNote have been modified. Non-english versions must be updated."@en ;
   skos:scopeNote "El valor es una URL."@es ;
@@ -860,7 +860,7 @@ dcat:downloadURL
 dcat:endDate
   a rdf:Property ;
   a owl:DatatypeProperty ;
-  rdfs:domain dct:PeriodOfTime ;
+  rdfs:domain dcterms:PeriodOfTime ;
   rdfs:label "datum konce"@cs ;
   rdfs:label "end date"@en ;
   rdfs:label "data di fine"@it ;
@@ -908,15 +908,15 @@ dcat:endpointDescription
   skos:definition "Una descrizione dell'endpoint del servizio, incluse le sue operazioni, parametri, ecc."@it ;
   skos:definition "En beskrivelse af det pågældende tjenesteendpoint, inklusiv dets operationer, parametre etc."@da ;
   skos:scopeNote "An endpoint description may be expressed in a machine-readable form, such as an OpenAPI (Swagger) description, an OGC GetCapabilities response, a SPARQL Service Description, an OpenSearch or WSDL document, a Hydra API description, else in text or some other informal mode if a formal representation is not possible."@en ;
-  skos:scopeNote "La descripción del endpoint brinda detalles específicos de la instancia del endpoint, mientras que dct:conformsTo se usa para indicar el estándar general o especificación que implementa el endpoint."@es ;
-  skos:scopeNote "La descrizione dell'endpoint fornisce dettagli specifici dell'istanza dell'endpoint reale, mentre dct:conformsTo viene utilizzato per indicare lo standard o le specifiche implementate dall'endpoint."@it ;
-  skos:scopeNote "Popis přístupového bodu dává specifické detaily jeho konkrétní instance, zatímco dct:conformsTo indikuje obecný standard či specifikaci kterou přístupový bod implementuje."@cs ;
+  skos:scopeNote "La descripción del endpoint brinda detalles específicos de la instancia del endpoint, mientras que dcterms:conformsTo se usa para indicar el estándar general o especificación que implementa el endpoint."@es ;
+  skos:scopeNote "La descrizione dell'endpoint fornisce dettagli specifici dell'istanza dell'endpoint reale, mentre dcterms:conformsTo viene utilizzato per indicare lo standard o le specifiche implementate dall'endpoint."@it ;
+  skos:scopeNote "Popis přístupového bodu dává specifické detaily jeho konkrétní instance, zatímco dcterms:conformsTo indikuje obecný standard či specifikaci kterou přístupový bod implementuje."@cs ;
   skos:scopeNote "Popis přístupového bodu může být vyjádřen ve strojově čitelné formě, například jako popis OpenAPI (Swagger), odpověď služby OGC getCapabilities, pomocí slovníku SPARQL Service Description, jako OpenSearch či WSDL document, jako popis API dle slovníku Hydra, a nebo textově nebo jiným neformálním způsobem, pokud není možno použít formální reprezentaci."@cs ;
-  skos:scopeNote "The endpoint description gives specific details of the actual endpoint instance, while dct:conformsTo is used to indicate the general standard or specification that the endpoint implements."@en ;
+  skos:scopeNote "The endpoint description gives specific details of the actual endpoint instance, while dcterms:conformsTo is used to indicate the general standard or specification that the endpoint implements."@en ;
   skos:scopeNote "Una descripción del endpoint del servicio puede expresarse en un formato que la máquina puede interpretar, tal como una descripción basada en OpenAPI (Swagger), una respuesta OGC GetCapabilities, una descripción de un servicio SPARQL, un documento OpenSearch o WSDL, una descripción con la Hydra API, o en texto u otro modo informal si la representación formal no es posible."@es ;
   skos:scopeNote "Una descrizione dell'endpoint può essere espressa in un formato leggibile dalla macchina, come una descrizione OpenAPI (Swagger), una risposta GetCapabilities OGC, una descrizione del servizio SPARQL, un documento OpenSearch o WSDL, una descrizione API Hydra, o con del testo o qualche altra modalità informale se una rappresentazione formale non è possibile."@it ;
   skos:scopeNote "En beskrivelse af et endpoint kan udtrykkes i et maskinlæsbart format, såsom OpenAPI (Swagger)-beskrivelser, et OGC GetCapabilities svar, en SPARQL tjenestebeskrivelse, en OpenSearch- eller et WSDL-dokument, en Hydra-API-beskrivelse, eller i tekstformat eller i et andet uformelt format, hvis en formel repræsentation ikke er mulig."@da ;
-  skos:scopeNote "Endpointbeskrivelsen giver specifikke oplysninger om den konkrete endpointinstans, mens dct:conformsTo anvendes til at indikere den overordnede standard eller specifikation som endpointet er i overensstemmelse med."@da ;
+  skos:scopeNote "Endpointbeskrivelsen giver specifikke oplysninger om den konkrete endpointinstans, mens dcterms:conformsTo anvendes til at indikere den overordnede standard eller specifikation som endpointet er i overensstemmelse med."@da ;
 .
 dcat:endpointURL
   a owl:ObjectProperty ;
@@ -1009,7 +1009,7 @@ dcat:keyword
   rdfs:label "キーワード/タグ"@ja ;
   rdfs:label "nøgleord"@da ;
   rdfs:range rdfs:Literal ;
-  rdfs:subPropertyOf dct:subject ;
+  rdfs:subPropertyOf dcterms:subject ;
   skos:definition "A keyword or tag describing a resource."@en ;
   skos:definition "Klíčové slovo nebo značka popisující zdroj."@cs ;
   skos:definition "Un mot-clé ou étiquette décrivant une ressource."@fr ;
@@ -1065,14 +1065,14 @@ dcat:landingPage
 dcat:mediaType
   a rdf:Property ;
   a owl:ObjectProperty ;
-  rdfs:comment "Cette propriété doit être utilisée quand c'est définit le type de média de la distribution en IANA, sinon dct:format DOIT être utilisé avec différentes valeurs."@fr ;
-  rdfs:comment "Esta propiedad debe ser usada cuando está definido el tipo de media de la distribución en IANA, de otra manera dct:format puede ser utilizado con diferentes valores"@es ;
+  rdfs:comment "Cette propriété doit être utilisée quand c'est définit le type de média de la distribution en IANA, sinon dcterms:format DOIT être utilisé avec différentes valeurs."@fr ;
+  rdfs:comment "Esta propiedad debe ser usada cuando está definido el tipo de media de la distribución en IANA, de otra manera dcterms:format puede ser utilizado con diferentes valores"@es ;
   rdfs:comment "Il tipo di media della distribuzione come definito da IANA"@it ;
   rdfs:comment "The media type of the distribution as defined by IANA"@en ;
   rdfs:comment "Typ média distribuce definovaný v IANA."@cs ;
-  rdfs:comment "Η ιδιότητα αυτή ΘΑ ΠΡΕΠΕΙ να χρησιμοποιείται όταν ο τύπος μέσου μίας διανομής είναι ορισμένος στο IANA, αλλιώς η ιδιότητα dct:format ΔΥΝΑΤΑΙ να χρησιμοποιηθεί με διαφορετικές τιμές."@el ;
+  rdfs:comment "Η ιδιότητα αυτή ΘΑ ΠΡΕΠΕΙ να χρησιμοποιείται όταν ο τύπος μέσου μίας διανομής είναι ορισμένος στο IANA, αλλιώς η ιδιότητα dcterms:format ΔΥΝΑΤΑΙ να χρησιμοποιηθεί με διαφορετικές τιμές."@el ;
   rdfs:comment "يجب استخدام هذه الخاصية إذا كان نوع الملف معرف ضمن IANA"@ar ;
-  rdfs:comment "このプロパティーは、配信のメディア・タイプがIANAで定義されているときに使用すべきで（SHOULD）、そうでない場合には、dct:formatを様々な値と共に使用できます（MAY）。"@ja ;
+  rdfs:comment "このプロパティーは、配信のメディア・タイプがIANAで定義されているときに使用すべきで（SHOULD）、そうでない場合には、dcterms:formatを様々な値と共に使用できます（MAY）。"@ja ;
   rdfs:comment "Medietypen for distributionen som den er defineret af IANA."@da ;
   rdfs:domain dcat:Distribution ;
   rdfs:isDefinedBy <http://www.w3.org/TR/vocab-dcat/> ;
@@ -1085,26 +1085,26 @@ dcat:mediaType
   rdfs:label "نوع الميديا"@ar ;
   rdfs:label "メディア・タイプ"@ja ;
   rdfs:label "medietype"@da ;
-  rdfs:range dct:MediaType ;
-  rdfs:subPropertyOf dct:format ;
+  rdfs:range dcterms:MediaType ;
+  rdfs:subPropertyOf dcterms:format ;
   skos:changeNote "Obor hodnot dcat:mediaType byl zúžen v této revizi DCAT."@cs ;
   skos:changeNote "The range of dcat:mediaType has been tightened as part of the revision of DCAT."@en ;
   skos:changeNote "Il range di dcat:mediaType è stato ristretto  come parte della revisione di DCAT."@it ;
-  skos:definition "Cette propriété doit être utilisée quand c'est définit le type de média de la distribution en IANA, sinon dct:format DOIT être utilisé avec différentes valeurs."@fr ;
-  skos:definition "Esta propiedad debe ser usada cuando está definido el tipo de media de la distribución en IANA, de otra manera dct:format puede ser utilizado con diferentes valores."@es ;
+  skos:definition "Cette propriété doit être utilisée quand c'est définit le type de média de la distribution en IANA, sinon dcterms:format DOIT être utilisé avec différentes valeurs."@fr ;
+  skos:definition "Esta propiedad debe ser usada cuando está definido el tipo de media de la distribución en IANA, de otra manera dcterms:format puede ser utilizado con diferentes valores."@es ;
   skos:definition "Il tipo di media della distribuzione come definito da IANA."@it ;
   skos:definition "The media type of the distribution as defined by IANA."@en ;
   skos:definition "Typ média distribuce definovaný v IANA."@cs ;
-  skos:definition "Η ιδιότητα αυτή ΘΑ ΠΡΕΠΕΙ να χρησιμοποιείται όταν ο τύπος μέσου μίας διανομής είναι ορισμένος στο IANA, αλλιώς η ιδιότητα dct:format ΔΥΝΑΤΑΙ να χρησιμοποιηθεί με διαφορετικές τιμές."@el ;
+  skos:definition "Η ιδιότητα αυτή ΘΑ ΠΡΕΠΕΙ να χρησιμοποιείται όταν ο τύπος μέσου μίας διανομής είναι ορισμένος στο IANA, αλλιώς η ιδιότητα dcterms:format ΔΥΝΑΤΑΙ να χρησιμοποιηθεί με διαφορετικές τιμές."@el ;
   skos:definition "يجب استخدام هذه الخاصية إذا كان نوع الملف معرف ضمن IANA"@ar ;
-  skos:definition "このプロパティーは、配信のメディア・タイプがIANAで定義されているときに使用すべきで（SHOULD）、そうでない場合には、dct:formatを様々な値と共に使用できます（MAY）。"@ja ;
+  skos:definition "このプロパティーは、配信のメディア・タイプがIANAで定義されているときに使用すべきで（SHOULD）、そうでない場合には、dcterms:formatを様々な値と共に使用できます（MAY）。"@ja ;
   skos:definition "Medietypen for distributionen som den er defineret af IANA."@da ;
   skos:editorialNote "Status: English Definition text modified by DCAT revision team, Italian and Czech translation provided, other translations pending. Note some inconsistency on def vs. usage."@en ;
-  skos:scopeNote "Esta propiedad DEBERÍA usarse cuando el 'media type' de la distribución está definido en el registro IANA de 'media types' https://www.iana.org/assignments/media-types/, de lo contrario, dct:format PUEDE usarse con distintos valores."@es ;
-  skos:scopeNote "Questa proprietà DEVE essere usata quando il tipo di media della distribuzione è definito nel registro dei tipi di media IANA https://www.iana.org/assignments/media-types/, altrimenti dct:format PUO 'essere usato con differenti valori."@it ;
-  skos:scopeNote "Tato vlastnost BY MĚLA být použita, je-li typ média distribuce definován v registru IANA https://www.iana.org/assignments/media-types/. V ostatních případech MŮŽE být použita vlastnost dct:format s jinými hodnotami."@cs ;
-  skos:scopeNote "This property SHOULD be used when the media type of the distribution is defined in the IANA media types registry https://www.iana.org/assignments/media-types/, otherwise dct:format MAY be used with different values."@en ;
-  skos:scopeNote "Denne egenskab BØR anvendes hvis distributionens medietype optræder i 'IANA media types registry' https://www.iana.org/assignments/media-types/, ellers KAN egenskaben dct:format anvendes med et andet udfaldsrum."@da ;
+  skos:scopeNote "Esta propiedad DEBERÍA usarse cuando el 'media type' de la distribución está definido en el registro IANA de 'media types' https://www.iana.org/assignments/media-types/, de lo contrario, dcterms:format PUEDE usarse con distintos valores."@es ;
+  skos:scopeNote "Questa proprietà DEVE essere usata quando il tipo di media della distribuzione è definito nel registro dei tipi di media IANA https://www.iana.org/assignments/media-types/, altrimenti dcterms:format PUO 'essere usato con differenti valori."@it ;
+  skos:scopeNote "Tato vlastnost BY MĚLA být použita, je-li typ média distribuce definován v registru IANA https://www.iana.org/assignments/media-types/. V ostatních případech MŮŽE být použita vlastnost dcterms:format s jinými hodnotami."@cs ;
+  skos:scopeNote "This property SHOULD be used when the media type of the distribution is defined in the IANA media types registry https://www.iana.org/assignments/media-types/, otherwise dcterms:format MAY be used with different values."@en ;
+  skos:scopeNote "Denne egenskab BØR anvendes hvis distributionens medietype optræder i 'IANA media types registry' https://www.iana.org/assignments/media-types/, ellers KAN egenskaben dcterms:format anvendes med et andet udfaldsrum."@da ;
 .
 dcat:packageFormat
   a rdf:Property ;
@@ -1121,8 +1121,8 @@ dcat:packageFormat
   rdfs:label "formát balíčku"@cs ;
   rdfs:label "packaging format"@en ;
   rdfs:label "pakkeformat"@da ;
-  rdfs:range dct:MediaType ;
-  rdfs:subPropertyOf dct:format ;
+  rdfs:range dcterms:MediaType ;
+  rdfs:subPropertyOf dcterms:format ;
   skos:changeNote "New property added in DCAT 2.0."@en ;
   skos:changeNote "Nová vlastnost přidaná ve verzi DCAT 2.0."@cs ;
   skos:changeNote "Nueva propiedad agregada en DCAT 2.0."@es ;
@@ -1167,11 +1167,11 @@ dcat:qualifiedRelation
   skos:editorialNote "Přidáno do DCAT k doplnění jiných kvalifikovaných vztahů ze slovníku PROV."@cs ;
   skos:editorialNote "Se incluyó en DCAT para complementar las relaciones calificadas disponibles en PROV."@es ;
   skos:editorialNote "Introduceret i DCAT med henblik på at supplere de øvrige kvalificerede relationer fra PROV. "@da ;
-  skos:scopeNote "Použito pro odkazování na jiný zdroj, kde druh vztahu je znám, ale neodpovídá standardním vlastnostem ze slovníku Dublin Core (dct:hasPart, dct:isPartOf, dct:conformsTo, dct:isFormatOf, dct:hasFormat, dct:isVersionOf, dct:hasVersion, dct:replaces, dct:isReplacedBy, dct:references, dct:isReferencedBy, dct:requires, dct:isRequiredBy) či slovníku PROV-O (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@cs ;
-  skos:scopeNote "Se usa para asociar con otro recurso para el cuál la naturaleza de la relación es conocida pero no es ninguna de las propiedades que provee el estándar Dublin Core (dct:hasPart, dct:isPartOf, dct:conformsTo, dct:isFormatOf, dct:hasFormat, dct:isVersionOf, dct:hasVersion, dct:replaces, dct:isReplacedBy, dct:references, dct:isReferencedBy, dct:requires, dct:isRequiredBy) or PROV-O properties (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@es ;
-  skos:scopeNote "Used to link to another resource where the nature of the relationship is known but does not match one of the standard Dublin Core properties (dct:hasPart, dct:isPartOf, dct:conformsTo, dct:isFormatOf, dct:hasFormat, dct:isVersionOf, dct:hasVersion, dct:replaces, dct:isReplacedBy, dct:references, dct:isReferencedBy, dct:requires, dct:isRequiredBy) or PROV-O properties (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@en ;
-  skos:scopeNote "Viene utilizzato per associarsi a un'altra risorsa nei casi per i quali la natura della relazione è nota ma non è alcuna delle proprietà fornite dallo standard Dublin Core (dct:hasPart, dct:isPartOf, dct:conformsTo, dct:isFormatOf, dct:hasFormat , dct:isVersionOf, dct:hasVersion, dct:replaces, dct:isReplacedBy, dct:references, dct:isReferencedBy, dct:require, dct:isRequiredBy) o dalle proprietà fornite da PROV-O (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom , prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@it ;
-  skos:scopeNote "Anvendes til at referere til en anden ressource hvor relationens betydning er kendt men ikke matcher en af de standardiserede egenskaber fra Dublin Core (dct:hasPart, dct:isPartOf, dct:conformsTo, dct:isFormatOf, dct:hasFormat, dct:isVersionOf, dct:hasVersion, dct:replaces, dct:isReplacedBy, dct:references, dct:isReferencedBy, dct:requires, dct:isRequiredBy) eller PROV-O-egenskaber (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@da ;
+  skos:scopeNote "Použito pro odkazování na jiný zdroj, kde druh vztahu je znám, ale neodpovídá standardním vlastnostem ze slovníku Dublin Core (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat, dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:requires, dcterms:isRequiredBy) či slovníku PROV-O (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@cs ;
+  skos:scopeNote "Se usa para asociar con otro recurso para el cuál la naturaleza de la relación es conocida pero no es ninguna de las propiedades que provee el estándar Dublin Core (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat, dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:requires, dcterms:isRequiredBy) or PROV-O properties (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@es ;
+  skos:scopeNote "Used to link to another resource where the nature of the relationship is known but does not match one of the standard Dublin Core properties (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat, dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:requires, dcterms:isRequiredBy) or PROV-O properties (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@en ;
+  skos:scopeNote "Viene utilizzato per associarsi a un'altra risorsa nei casi per i quali la natura della relazione è nota ma non è alcuna delle proprietà fornite dallo standard Dublin Core (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat , dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:require, dcterms:isRequiredBy) o dalle proprietà fornite da PROV-O (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom , prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@it ;
+  skos:scopeNote "Anvendes til at referere til en anden ressource hvor relationens betydning er kendt men ikke matcher en af de standardiserede egenskaber fra Dublin Core (dcterms:hasPart, dcterms:isPartOf, dcterms:conformsTo, dcterms:isFormatOf, dcterms:hasFormat, dcterms:isVersionOf, dcterms:hasVersion, dcterms:replaces, dcterms:isReplacedBy, dcterms:references, dcterms:isReferencedBy, dcterms:requires, dcterms:isRequiredBy) eller PROV-O-egenskaber (prov:wasDerivedFrom, prov:wasInfluencedBy, prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource, prov:alternateOf, prov:specializationOf)."@da ;
 .
 dcat:record
   a rdf:Property ;
@@ -1253,7 +1253,7 @@ dcat:service
   rdfs:label "datatjeneste"@da ;
   skos:altLabel "har datatjeneste"@da ;
   rdfs:range dcat:DataService ;
-  rdfs:subPropertyOf dct:hasPart ;
+  rdfs:subPropertyOf dcterms:hasPart ;
   rdfs:subPropertyOf rdfs:member ;
   skos:changeNote "New property added in DCAT 2.0."@en ;
   skos:changeNote "Nová vlastnost přidaná ve verzi DCAT 2.0."@cs ;
@@ -1310,7 +1310,7 @@ dcat:spatialResolutionInMeters
 dcat:startDate
   a rdf:Property ;
   a owl:DatatypeProperty ;
-  rdfs:domain dct:PeriodOfTime ;
+  rdfs:domain dcterms:PeriodOfTime ;
   rdfs:label "datum začátku"@cs ;
   rdfs:label "start date"@en ;
   rdfs:label "data di inizio"@it ;
@@ -1394,7 +1394,7 @@ dcat:theme
   rdfs:label "emne"@da ;
   skos:altLabel "tema"@da ;
   rdfs:range skos:Concept ;
-  rdfs:subPropertyOf dct:subject ;
+  rdfs:subPropertyOf dcterms:subject ;
   skos:definition "A main category of the resource. A resource can have multiple themes."@en ;
   skos:definition "Hlavní téma zdroje. Zdroj může mít více témat."@cs ;
   skos:definition "La categoria principale della risorsa. Una risorsa può avere più temi."@it ;
