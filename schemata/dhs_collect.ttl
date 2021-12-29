@@ -26,11 +26,11 @@ dhs:dataInventoryRecord
     dcterms:modified "2021-10-20"^^xsd:date ;
     sh:property
     [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 100 ; sh:datatype xsd:string ; sh:message "Identifier (string) is required and must not be more than 100 characters." ; dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset"@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 100 ; sh:datatype xsd:string ; sh:message "Title (string) is required and must not be more than 200 characters." ; rdfs:comment "The official title for the datset"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 100 ; sh:datatype xsd:string ; sh:message "Title (string) is required and must not be more than 200 characters." ; rdfs:comment "The official title for the dataset"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:description        ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 1000 ; sh:datatype xsd:string ; sh:message "Description (string) is required and must not be more than 1,000 characters." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcat:keyword               ; sh:minCount 0 ; sh:datatype xsd:string ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:publisher          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path usg:accessLevel            ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "restricted public" "non-public") ; sh:message "Must be one of the following (exaclty): 'public', 'restricted public' or 'non-public'" ; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path usg:accessLevel            ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "restricted public" "non-public") ; sh:message "Must be one of the following (exactly): 'public', 'restricted public' or 'non-public'" ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path usg:metadataClassification ; sh:minCount 1 ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:issued             ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:date; sh:message "Issued date is required and must be a date in ISO-8601 format." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path usg:component              ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel ],
