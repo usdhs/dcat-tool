@@ -179,6 +179,7 @@ class Validator:
                     required = "Yes"
                 counterb += 1
                 yield (simp.simplify(d['aGroup']), simp.simplify(d['aProperty']), comment, label, definedByNS, required, simp.simplify(d.get('aType', DEFAULT_TYPE)), simp.simplify(d.get('aDataType', DEFAULT_TYPE)) )
+        #print(str(counterb))
 
     def get_template_column_info_objs(self):
         # g2 is an output graph of the terms in the collection instrument

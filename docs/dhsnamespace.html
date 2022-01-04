@@ -1,0 +1,894 @@
+<!doctype html>
+<html>
+<head>
+<title>DHS Data Inventory Attribute Definitions</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <a name="top"></a>
+<h1>DHS DCAT v3 Extension Terms</h1>
+As part of the DHS Data Inventory effort launched in the fall of 2021, a set of terms were developed to extend the DCAT v3 terms
+and provide greater detail and fidelity to the DHS Data Inventory Program, specifically the Data Inventory Record. The following list 
+of terms are linked to their more detailed definitions (provided in the section below).
+
+
+    
+    <h3>dt:highLevel</h3>
+    
+    <a href="#Metadata Classification">Metadata Classification</a>&nbsp
+
+
+    
+    <a href="#Component">Component</a>&nbsp
+
+
+    
+    <h3>dt:dataGovernanceInformation</h3>
+    
+    <a href="#Governance">Governance</a>&nbsp
+
+
+    
+    <a href="#Owner">Owner</a>&nbsp
+
+
+    
+    <a href="#Steward">Steward</a>&nbsp
+
+
+    
+    <a href="#Custodian">Custodian</a>&nbsp
+
+
+    
+    <a href="#Sharing Agreements">Sharing Agreements</a>&nbsp
+
+
+    
+    <a href="#Collection Authority">Collection Authority</a>&nbsp
+
+
+    
+    <a href="#Retention Authority">Retention Authority</a>&nbsp
+
+
+    
+    <a href="#Release Authority">Release Authority</a>&nbsp
+
+
+    
+    <a href="#Records Schedule">Records Schedule</a>&nbsp
+
+
+    
+    <h3>dt:standards</h3>
+    
+    <a href="#Conforms FIPS">Conforms FIPS</a>&nbsp
+
+
+    
+    <a href="#Conforms NIEM Percent">Conforms NIEM Percent</a>&nbsp
+
+
+    
+    <a href="#Conforms Unicode">Conforms Unicode</a>&nbsp
+
+
+    
+    <a href="#Identities NativeScript">Identities NativeScript</a>&nbsp
+
+
+    
+    <a href="#Transliteration Standard">Transliteration Standard</a>&nbsp
+
+
+    
+    <h3>dt:provenance</h3>
+    
+    <a href="#Source Datasets">Source Datasets</a>&nbsp
+
+
+    
+    <a href="#Destination Datasets">Destination Datasets</a>&nbsp
+
+
+    
+    <h3>dt:dataQuality</h3>
+    
+    <a href="#Data Quality Known">Data Quality Known</a>&nbsp
+
+
+    
+    <a href="#Data Quality Percent">Data Quality Percent</a>&nbsp
+
+
+    
+    <a href="#Data Quality Assessment">Data Quality Assessment</a>&nbsp
+
+
+    
+    <h3>dt:distribution</h3>
+    
+    <a href="#Access URL NIEM">Access URL NIEM</a>&nbsp
+
+
+    
+    <a href="#Vendor">Vendor</a>&nbsp
+
+
+    
+    <a href="#Functional Data Domain">Functional Data Domain</a>&nbsp
+
+
+    
+    <h3>dt:size</h3>
+    
+    <a href="#Table Count">Table Count</a>&nbsp
+
+
+    
+    <a href="#Record Count">Record Count</a>&nbsp
+
+
+    
+    <h3>dt:security</h3>
+    
+    <a href="#Dataset Classification">Dataset Classification</a>&nbsp
+
+
+    
+    <a href="#Characteristics">Characteristics</a>&nbsp
+
+
+    
+    <a href="#Characteristics - Person Level">Characteristics - Person Level</a>&nbsp
+
+
+    
+    <a href="#Characteristics - Financial">Characteristics - Financial</a>&nbsp
+
+
+    
+    <a href="#Characteristics - Event records">Characteristics - Event records</a>&nbsp
+
+
+    
+    <a href="#Characteristics - Faces">Characteristics - Faces</a>&nbsp
+
+
+    
+    <a href="#Characteristics - Fingerprints">Characteristics - Fingerprints</a>&nbsp
+
+
+    
+    <a href="#Characteristics - CUI">Characteristics - CUI</a>&nbsp
+
+
+    
+    <a href="#Characteristics - PHI">Characteristics - PHI</a>&nbsp
+
+
+    
+    <a href="#Characteristics - PII">Characteristics - PII</a>&nbsp
+
+
+    
+    <a href="#Characteristics - Geospatial">Characteristics - Geospatial</a>&nbsp
+
+
+    
+    <a href="#Characteristics - FISA">Characteristics - FISA</a>&nbsp
+
+
+    
+    <a href="#Characteristics - 8usc1367">Characteristics - 8usc1367</a>&nbsp
+
+
+    
+    <a href="#Characteristics - proprietary info">Characteristics - proprietary info</a>&nbsp
+
+
+    
+    <a href="#Characteristics - Immigration">Characteristics - Immigration</a>&nbsp
+
+
+    
+    <a href="#Characteristics - Critical Infrastructure">Characteristics - Critical Infrastructure</a>&nbsp
+
+
+    
+    <a href="#Characteristics - Dissemination Restrictions">Characteristics - Dissemination Restrictions</a>&nbsp
+
+
+    
+    <h3>dt:location</h3>
+    
+    <a href="#Hosting Location">Hosting Location</a>&nbsp
+
+
+    
+    <a href="#Hosted in Cloud">Hosted in Cloud</a>&nbsp
+
+
+    
+    <a href="#Easily Accessible By Creating Component">Easily Accessible By Creating Component</a>&nbsp
+
+
+    
+    <a href="#Easily Accessible By All Components">Easily Accessible By All Components</a>&nbsp
+
+
+    
+    <a href="#Easily Accessible By General Public">Easily Accessible By General Public</a>&nbsp
+
+
+    
+    <h3>dt:publication</h3>
+    
+    <a href="#Record Transmission">Record Transmission</a>&nbsp
+
+
+    
+    <a href="#Validity Time">Validity Time</a>&nbsp
+
+
+<br/>
+
+Detailed definitions follow:
+
+<table class='definitions'>
+
+   
+      </table>
+      <a name="Metadata Classification"></a>
+      <h3>Metadata Classification</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:metadataClassification &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The classification level of the metadata. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> Yes </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Component"></a>
+      <h3>Component</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:component &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Sub-department (e.g. bureau or component) of the data. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> Yes </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Governance"></a>
+      <h3>Governance</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:governance &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The organization responsible for governance or oversight of the dataset. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Owner"></a>
+      <h3>Owner</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:owner &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The owner of the dataset. Data owners are senior officials or organizations that are responsible for the content and quality of the dataset. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Steward"></a>
+      <h3>Steward</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:steward &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The steward of the dataset. Data stewards are responsible for ensuring that data are properly stored, maintained, accessible, and protected. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Custodian"></a>
+      <h3>Custodian</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:custodian &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The custodian of the dataset. Data custodians are the individuals or organizations that have physical posession of the data. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Sharing Agreements"></a>
+      <h3>Sharing Agreements</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:sharingAgreements &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Any sharing agreements for the dataset that should be documented. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Collection Authority"></a>
+      <h3>Collection Authority</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:collectionAuthority &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The legal authority under which the data were collected. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Retention Authority"></a>
+      <h3>Retention Authority</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:retentionAuthority &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The legal authority under which the data are retained. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Release Authority"></a>
+      <h3>Release Authority</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:releaseAuthority &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The legal authority under which the data may be released. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Records Schedule"></a>
+      <h3>Records Schedule</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:recordsSchedule &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The data records schedule. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Conforms FIPS"></a>
+      <h3>Conforms FIPS</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:conformsFIPS &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Any Federal Information Processing Standard (FIPS) that covers the data. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Conforms NIEM Percent"></a>
+      <h3>Conforms NIEM Percent</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:conformsNIEMPercent &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The percentage of the data schema that conforms to the National Information Exchnage Model (NIEM). </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:integer </td> </tr>
+
+   
+      </table>
+      <a name="Conforms Unicode"></a>
+      <h3>Conforms Unicode</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:conformsUnicode &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Does the dataset contain unicode information? </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Identities NativeScript"></a>
+      <h3>Identities NativeScript</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:identitiesNativeScript &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Are names in the dataset represented in native script? </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Transliteration Standard"></a>
+      <h3>Transliteration Standard</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:transliterationStandard &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The transliteration standard used for names in the dataset, if names are transliterated into English. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Source Datasets"></a>
+      <h3>Source Datasets</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:sourceDatasets &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The unique identifiers of the source datasets. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Destination Datasets"></a>
+      <h3>Destination Datasets</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:destinationDatasets &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The unique identifiers of the downstream datasets fed by this dataset. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Data Quality Known"></a>
+      <h3>Data Quality Known</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:dataQualityKnown &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> If the data quality is known or not. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Data Quality Percent"></a>
+      <h3>Data Quality Percent</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:dataQualityPercent &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> A simple measure of the data quality, on a scale from 0-100. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:integer </td> </tr>
+
+   
+      </table>
+      <a name="Data Quality Assessment"></a>
+      <h3>Data Quality Assessment</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:dataQualityAssessment &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Narrative as to the overall data quality. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Access URL NIEM"></a>
+      <h3>Access URL NIEM</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:accessURLNIEM &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The URL from which the NIEM representation can be accessed. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Vendor"></a>
+      <h3>Vendor</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:vendor &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Source of the dataset. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Functional Data Domain"></a>
+      <h3>Functional Data Domain</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:functionalDataDomain &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Functional data domain of the data. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Table Count"></a>
+      <h3>Table Count</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:tableCount &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Number of 2-dimensional tables in the data. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:integer </td> </tr>
+
+   
+      </table>
+      <a name="Record Count"></a>
+      <h3>Record Count</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:recordCount &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Total number of records in the data. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:integer </td> </tr>
+
+   
+      </table>
+      <a name="Dataset Classification"></a>
+      <h3>Dataset Classification</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:datasetClassification &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Security classificaiton of the data. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics"></a>
+      <h3>Characteristics</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:characteristics &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Specific container to hold various data characteristics. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - Person Level"></a>
+      <h3>Characteristics - Person Level</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-person-level &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains person-level records. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - Financial"></a>
+      <h3>Characteristics - Financial</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-financial &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains financial information. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - Event records"></a>
+      <h3>Characteristics - Event records</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-event-records &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains information about events that are tagged with a specific place and time. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - Faces"></a>
+      <h3>Characteristics - Faces</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-faces &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains human faces. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - Fingerprints"></a>
+      <h3>Characteristics - Fingerprints</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-fingerprints &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains fingerprints. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - CUI"></a>
+      <h3>Characteristics - CUI</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-cui &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains controlled unclassified information. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - PHI"></a>
+      <h3>Characteristics - PHI</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-phi &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains protected health information. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - PII"></a>
+      <h3>Characteristics - PII</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-pii &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains personally identifiable information under the controlling legal definition of PII. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - Geospatial"></a>
+      <h3>Characteristics - Geospatial</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-geospatial &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains geospatial information. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - FISA"></a>
+      <h3>Characteristics - FISA</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-fisa &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains information pretaining to the Foreign Intelligence Surveillance Act (FISA). </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - 8usc1367"></a>
+      <h3>Characteristics - 8usc1367</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-8usc1367 &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains 8 USC 1367. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - proprietary info"></a>
+      <h3>Characteristics - proprietary info</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-propin &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains proprietary commercial information. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - Immigration"></a>
+      <h3>Characteristics - Immigration</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-immigration &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains information pertaining to immigration. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - Critical Infrastructure"></a>
+      <h3>Characteristics - Critical Infrastructure</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-criticalInfrastructure &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains critical infrastructure information. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - Dissemination Restrictions"></a>
+      <h3>Characteristics - Dissemination Restrictions</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-disseminationRestrictions &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The information has dissemination restrictions. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Hosting Location"></a>
+      <h3>Hosting Location</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:hostingLocation &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> Where the data physically reside. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Hosted in Cloud"></a>
+      <h3>Hosted in Cloud</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:hostedInCloud &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> If the dataset's location is in the cloud. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Easily Accessible By Creating Component"></a>
+      <h3>Easily Accessible By Creating Component</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:easilyAccessibleByCreatingComponent &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The information can be easily accessed by individuals within the component that created it. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Easily Accessible By All Components"></a>
+      <h3>Easily Accessible By All Components</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:easilyAccessibleByAllComponents &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The information can be easily accessed by individuals within all department component. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Easily Accessible By General Public"></a>
+      <h3>Easily Accessible By General Public</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:easilyAccessibleByGeneralPublic &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The information can be easily accessed by the general public. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Record Transmission"></a>
+      <h3>Record Transmission</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:recordTransmission &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> When the metadata record was transmitted. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="Validity Time"></a>
+      <h3>Validity Time</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:validityTime &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> When the metadata record is valid. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+</table>
+
+</body>
+</html>

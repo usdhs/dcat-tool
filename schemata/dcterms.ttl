@@ -2,7 +2,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcam: <http://purl.org/dc/dcam/#> .
-@prefix dcterms: <http://purl.org/dc/terms/#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 <http://purl.org/dc/terms/>
@@ -517,7 +517,7 @@ dcterms:conformsTo
     dcterms:issued "2001-05-21"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "An established standard to which the described resource conforms."@en ;
+    rdfs:comment "An established standard to which the described resource conforms. Should use the Dublin Core Standard Class."@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Conforms To"@en ;
     rdfs:range dcterms:Standard ;
