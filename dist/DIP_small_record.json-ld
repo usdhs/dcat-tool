@@ -5,6 +5,8 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "dctype": "http://purl.org/dc/terms/",
     "usg": "http://resources.data.gov/resources/dcat-us/#",
+    "dhs": "https://usdhs.github.io/dcat-tool/#",
+    "sdo": "http://schema.org/",
     "issued": {
       "@id":"http://purl.org/dc/terms/issued",
       "@type": "http://www.w3.org/2001/XMLSchema#date"
@@ -14,14 +16,18 @@
       "@type": "http://www.w3.org/2001/XMLSchema#boolean"
     }
   },
-  "@id": "https://dhs.gov/test-1",
-  "@type": "http://github.com/usdhs/DCAT-dhs/0.1#dataInventoryRecord",
+  "@id": "https://dhs.gov/test-id-23451-y78ujy",
+  "@type": "https://usdhs.github.io/dcat-tool/#dataInventoryRecord",
   "dctype:description": "In theory a description would not exceed 1000 chars, but...",
   "dctype:identifier": "test-id-23451-y78ujy",
   "issued":"2021-10-21",
   "dctype:title": "A Test Title",
   "usg:accessLevel": "public",
-  "usg:component": "MGMT",
-  "usg:metadataClassification": "CUI",
-  "dataQuality": "true"
+  "dhs:component": "MGMT",
+  "dhs:metadataClassification": "CUI",
+  "dataQuality": "true",
+  "dhs:owner": {
+     "@type": "sdo:Person",
+    "name":"Tom Eldering"
+  }
 }
