@@ -9,7 +9,7 @@ import sys
 
 from openpyxl import Workbook
 from openpyxl.utils import get_column_letter
-from openpyxl.styles import Alignment, PatternFill, Border, Side, Protection, Font, Fill, Color
+from openpyxl.styles import Alignment, PatternFill, Border, Side, Protection, Font, Fill, Color, numbers
 from openpyxl.styles.borders import Border, Side, BORDER_THIN, BORDER_THICK
 from openpyxl.comments import Comment
 from openpyxl.worksheet.datavalidation import DataValidation
@@ -123,6 +123,14 @@ class ExcelGenerator:
             if font:
                 ins.cell(row=row, column=1).font = font
 
+
+    # -- a function that formats the col(arg) as text to support better boolean input --
+    def formatColForBoolean(self, colnumber):
+        for row in ws[2:104]:  # skip the header
+            cell = row[colnumber]            # column 1 is "B"
+            cell.number_format = numbers.FORMAT_TEXT
+
+
     def add_columns_sheet(self, name, ci_list, rows=100):
         """ add (dcat name, display name, help, width, field type)"""
         if not isinstance(ci_list, list):
@@ -134,25 +142,53 @@ class ExcelGenerator:
 
         # set up data validation
         # https://openpyxl.readthedocs.io/en/stable/validation.html
-        # Not working properly yet
+        # validation is fixed and working as of 1/19/22 -- might add text string limits for description, title, etc.
 
-        USE_DATA_VALIDATION=False
+        USE_DATA_VALIDATION=True
 
         if USE_DATA_VALIDATION:
+            # -- boolean --
+            # NOTE: for this to work well the col should be formatted as text
             dv_boolean = DataValidation(type="list", formula1='"true,false"', allow_blank=True)
-            dv_boolean.error = 'Please select yes or no, or leave blank.'
+            dv_boolean.error = 'Please select true or false, or leave blank.'
             dv_boolean.errorTitle = 'Invalid Value'
             dv_boolean.prompt = 'Please select from the list'
             dv_boolean.promptTitle = 'List Selection'
             ws.add_data_validation(dv_boolean)
 
-            dv_decimal = DataValidation(type='decimal')
-            ws.add_data_validation(dv_decimal)
+            # --- date validation ---
+            date_dv = DataValidation(type="date")
+            date_dv.error ='This value must be a date'
+            date_dv.errorTitle = 'Invalid Entry'
+            date_dv.prompt = 'Please enter a date'
+            date_dv.promptTitle = 'Date Field'
+            ws.add_data_validation(date_dv)
 
-            dv_date    = DataValidation(type='date')
-            ws.add_data_validation(dv_date)
+            # -- decimal validation -- 
+            decimal_dv = DataValidation(type="decimal")
+            decimal_dv.error ='This value must be a decimal'
+            decimal_dv.errorTitle = 'Invalid Entry, please use a decimal.'
+            decimal_dv.prompt = 'Please enter a decimal'
+            decimal_dv.promptTitle = 'Decimal Field'
+            ws.add_data_validation(decimal_dv)
 
+            # -- enumberation validation -- 
+            enum_dv = DataValidation(type="list", formula1='"public,non-public,public restricted"', allow_blank=True)
+            enum_dv.error ='Must be one of the following: "public", "non-public" or "public restricted" '
+            enum_dv.errorTitle = 'Invalid Entry'
+            ws.add_data_validation(enum_dv)
 
+            #-- integer (less than 100) --
+            int100_dv = DataValidation(type="whole",operator="lessThan", formula1=101)
+            int100_dv.error ='This value must be a number between 1 and 100'
+            int100_dv.errorTitle = 'Invalid Entry'
+            ws.add_data_validation(int100_dv)
+
+            #-- text/string (less than 100) --
+            text_100_dv = DataValidation(type="textLength", operator="lessThanOrEqual", formula1=100)
+            text_100_dv.error ='This value must be string with fewer than 100 chars'
+            text_100_dv.errorTitle = 'Invalid Entry'
+            ws.add_data_validation(text_100_dv)
 
         last_group = None
         color_index = 0
@@ -171,7 +207,6 @@ class ExcelGenerator:
             import openpyxl.utils
 
             #print(obj.value, obj.typ)
-
             # We tried making the comment string the description and the DCATv3 type is the comment "author", but that didn't work
             cell = ws.cell(row=1, column=col)
             cell.value = obj.value
@@ -201,7 +236,18 @@ class ExcelGenerator:
                 # Set the types with data validation where possible
                 if obj.typ=='xsd:boolean':
                     dv_boolean.add(f'{column_letter}2:{column_letter}{rows}')
-
+                    # -- the true/false works better when the column is formated as text --
+                    for row in range(2,rows):  # skip the header
+                        cell = ws.cell(row=row, column=col)  # column 1 is "B"
+                        cell.number_format = numbers.FORMAT_TEXT
+                if obj.typ=='xsd:date':
+                    date_dv.add(f'{column_letter}2:{column_letter}{rows}')
+                # -- add some specific validation(s) --
+                if obj.value=='conformsNIEMPercent':
+                    int100_dv.add(f'{column_letter}2:{column_letter}{rows}')
+                if obj.value=='accessLevel':
+                    enum_dv.add(f'{column_letter}2:{column_letter}{rows}')
 
     def save(self, fname):
         self.wb.save(fname)
+

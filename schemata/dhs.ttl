@@ -88,6 +88,14 @@ dhs:custodian
     rdfs:comment "The custodian of the dataset. Data custodians are the individuals or organizations that have physical posession of the data.";
     .
 
+dhs:fismaID
+    a rdf:Property ;
+    rdfs:label "FISMA ID"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "If the dataset is part of a system that has a FISMA ID then the FISMA ID should be provided. In this case the 'isPartOf' may be populated with the name of the system or a URI pointing to the system.";
+    .
+
 dhs:sharingAgreements
     a rdf:Property ;
     rdfs:label "Sharing Agreements"@en ;
@@ -343,6 +351,14 @@ dhs:ch-geospatial
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The dataset contains geospatial information." ;
+    .
+
+dhs:ch-environmental
+    a rdf:Property ;
+    rdfs:label "Characteristics - Environmental"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range xsd:boolean;
+    rdfs:comment "The dataset contains environmental information." ;
     .
 
 dhs:ch-fisa

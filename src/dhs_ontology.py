@@ -204,7 +204,7 @@ class Validator:
                                            property = d['aProperty'],
                                            author = simp.simplify(d['aProperty']),
                                            width = int(d.get('aWidth',DEFAULT_WIDTH)),
-                                           typ = simp.simplify(d.get('aType', DEFAULT_TYPE)),
+                                           typ = simp.simplify(d.get('aDataType', DEFAULT_TYPE)),
                                            group = d.get('aGroup',''),
                                            )
 

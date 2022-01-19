@@ -41,6 +41,10 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
+    <a href="#FISMA ID">FISMA ID</a>&nbsp
+
+
+    
     <a href="#Sharing Agreements">Sharing Agreements</a>&nbsp
 
 
@@ -174,6 +178,10 @@ of terms are linked to their more detailed definitions (provided in the section 
 
     
     <a href="#Characteristics - Geospatial">Characteristics - Geospatial</a>&nbsp
+
+
+    
+    <a href="#Characteristics - Environmental">Characteristics - Environmental</a>&nbsp
 
 
     
@@ -311,6 +319,19 @@ Detailed definitions follow:
          <tr class="headspecial"><td colspan="2">Term Name: dhs:custodian &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
    
         <tr><th> Description </th> <td> The custodian of the dataset. Data custodians are the individuals or organizations that have physical posession of the data. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+
+   
+      </table>
+      <a name="FISMA ID"></a>
+      <h3>FISMA ID</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:fismaID &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> If the dataset is part of a system that has a FISMA ID then the FISMA ID should be provided. In this case the 'isPartOf' may be populated with the name of the system or a URI pointing to the system. </td></tr> 
         <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
         <tr><th>Required</th><td> No </td> </tr>
         <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
@@ -714,6 +735,19 @@ Detailed definitions follow:
          <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-geospatial &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
    
         <tr><th> Description </th> <td> The dataset contains geospatial information. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - Environmental"></a>
+      <h3>Characteristics - Environmental</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-environmental &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains environmental information. </td></tr> 
         <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
         <tr><th>Required</th><td> No </td> </tr>
         <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>

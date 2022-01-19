@@ -18,16 +18,11 @@
   },
   "@id": "https://dhs.gov/test-id-23451-y78ujy",
   "@type": "https://usdhs.github.io/dcat-tool/#dataInventoryRecord",
-  "dctype:description": "In theory a description would not exceed 1000 chars, but...",
+  "dctype:description": "A description sould not exceed 4000 chars.",
   "dctype:identifier": "test-id-23451-y78ujy",
   "issued":"2021-10-21",
   "dctype:title": "A Test Title",
   "usg:accessLevel": "public",
   "dhs:component": "MGMT",
-  "dhs:metadataClassification": "CUI",
-  "dataQuality": "true",
-  "dhs:owner": {
-     "@type": "sdo:Person",
-    "name":"Tom Eldering"
-  }
+  "dhs:metadataClassification": "CUI"
 }

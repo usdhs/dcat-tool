@@ -71,7 +71,7 @@ usg:describedByType
     rdfs:label "Described By Type"@en ;
     rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "The machine-readable file format (IANA Media Type also known as MIME Type) of the dataset’s Data Dictionary (describedBy)." ;
+    rdfs:comment "The machine-readable file format (IANA Media Type also known as MIME Type) of the dataset's Data Dictionary (describedBy)." ;
     .
 
 usg:dataQuality
@@ -79,7 +79,7 @@ usg:dataQuality
     rdfs:label "Data Quality"@en ;
     rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Indicates whether a dataset conforms to the agency’s information quality guidelines (boolean)." ;
+    rdfs:comment "Indicates whether a dataset conforms to the agency's information quality guidelines (boolean)." ;
     .
 
 usg:modified
