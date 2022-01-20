@@ -18,7 +18,7 @@
   },
   "@id": "https://dhs.gov/test-id-23451-y78ujy",
   "@type": "https://usdhs.github.io/dcat-tool/#dataInventoryRecord",
-  "dctype:description": "A description sould not exceed 4000 chars.",
+  "dctype:description": "A description should not exceed 4000 chars.",
   "dctype:identifier": "test-id-23451-y78ujy",
   "issued":"2021-10-21",
   "dctype:title": "A Test Title",
