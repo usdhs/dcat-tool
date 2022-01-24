@@ -113,5 +113,5 @@ usg:primaryITInvestmentUII
     rdfs:label "Primary IT Investment UII"@en ;
     rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "For linking a dataset with an IT Unique Investment Identifier (UII)." ;
+    rdfs:comment "For linking a dataset with an IT Unique Investment Identifier (UII). Can have multiple comma separated values." ;
     .

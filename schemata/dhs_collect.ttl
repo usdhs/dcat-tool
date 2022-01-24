@@ -26,8 +26,8 @@ dhs:dataInventoryRecord
     dcterms:modified "2021-10-20"^^xsd:date ;
     sh:property
     [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 100 ; sh:datatype xsd:string ; sh:message "Identifier (string) is required and must not be more than 100 characters." ; dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset"@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 100 ; sh:datatype xsd:string ; sh:message "Title (string) is required and must not be more than 200 characters." ; rdfs:comment "The official title for the dataset"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcterms:description        ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 1000 ; sh:datatype xsd:string ; sh:message "Description (string) is required and must not be more than 1,000 characters." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 256 ; sh:datatype xsd:string ; sh:message "Title (string) is required and must not be more than 255 characters." ; rdfs:comment "The official title for the dataset"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:description        ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 4000 ; sh:datatype xsd:string ; sh:message "Description (string) is required and must not be more than 4,000 characters." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcat:keyword               ; sh:minCount 0 ; sh:datatype xsd:string ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:publisher          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path usg:accessLevel            ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "restricted public" "non-public") ; sh:message "Must be one of the following (exactly): 'public', 'restricted public' or 'non-public'" ; a sh:PropertyShape ; dt:group dt:highLevel; ],
@@ -40,7 +40,7 @@ dhs:dataInventoryRecord
     [ sh:path dhs:owner                  ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class sdo:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:steward                ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:custodian              ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path usg:primaryITInvestmentUII ; sh:minCount 0 ; sh:maxCount 1 ; sh:maxLength 20 ; sh:datatype xsd:string ; sh:message "UII must be a string, typically of the format NNN-NNNNNNNNN and can only have one value." ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:primaryITInvestmentUII ; sh:minCount 0 ; sh:maxLength 20 ; sh:datatype xsd:string ; sh:message "UII must be a string, typically of the format NNN-NNNNNNNNN and can have multiple, comma separated values." ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:fismaID                ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dcterms:references         ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:sharingAgreements      ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
@@ -62,7 +62,7 @@ dhs:dataInventoryRecord
     [ sh:path dhs:destinationDatasets    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
     [ sh:path usg:describedBy            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
     [ sh:path usg:describedByType        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
-    [ sh:path dcterms:isPartOf           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
+    [ sh:path dcterms:isPartOf           ; sh:minCount 0 ; sh:maxLength 5000 ; a sh:PropertyShape ; dt:group dt:provenance; ],
 
     [ sh:path dcterms:accrualPeriodicity     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataset ],
 
