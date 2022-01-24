@@ -624,7 +624,7 @@ dcterms:description
     dcterms:issued "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "An account of the resource."@en ;
+    rdfs:comment "An account of the resource. Text limit is 4,000 characters."@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Description"@en ;
     rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/description> .
@@ -702,7 +702,7 @@ dcterms:identifier
     dcterms:issued "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "An unambiguous reference to the resource within a given context."@en ;
+    rdfs:comment "An unambiguous reference to the resource within a given context. A string that does not exceed 100 characters"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Identifier"@en ;
     rdfs:range rdfs:Literal ;
@@ -1006,7 +1006,7 @@ dcterms:title
     dcterms:issued "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2010-10-11"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "A name given to the resource."@en ;
+    rdfs:comment "A name given to the resource. String limit is 255 characters"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Title"@en ;
     rdfs:range rdfs:Literal ;
