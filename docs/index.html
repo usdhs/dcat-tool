@@ -72,8 +72,8 @@ namespace - including datatype and usage - can be found here:<a href="https://us
 The validity of an RDF format can be tested in advance by loading the data defintion file (dhs_collect.ttl) and a sample record to a (SHACL) test tool 
 (like <a href="https://shacl-playground.zazuko.com/" target="_blank">https://shacl-playground.zazuko.com/</a>) or loading just the (JSON-LD) sample record to a test site (like <a href="https://json-ld.org/playground" target="_blank">https://json-ld.org/playground</a>).
 
-Here is an example of a simple JSON-LD file: <a href="https://usdhs.github.io/dcat-tool/samples/DIP_small_record.jsonld" download>https://usdhs.github.io/dcat-tool/samples/DIP_small_record.jsonld</a> 
-and a complete JSON-LD record: <a href="https://usdhs.github.io/dcat-tool/samples/DIP_full_record.jsonld" download>https://usdhs.github.io/dcat-tool/samples/DIP_full_record.jsonld</a> submission for the DIP, so you can see what a valid format looks like. 
+Here is an example of a simple JSON-LD file: <a href="https://usdhs.github.io/dcat-tool/samples/DIP_small_record.jsonld" download>https://usdhs.github.io/dcat-tool/samples/DIP_small_record.json-ld</a> 
+and a complete JSON-LD record: <a href="https://usdhs.github.io/dcat-tool/samples/DIP_full_record.jsonld" download>https://usdhs.github.io/dcat-tool/samples/DIP_full_record.json-ld</a> submission for the DIP, so you can see what a valid format looks like. 
 Please note, however, that there are several variations to the formatting that are also valid, so depending on your implementation the format may differ slightly. 
 
 </body>
@@ -90,13 +90,13 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
-      <tr><th> Identifier </th> <td> dcterms:identifier </td> <td> A unique identifier for the dataset </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> Yes </td> </tr>
+      <tr><th> Identifier </th> <td> dcterms:identifier </td> <td> A unique identifier for the dataset. String limit is 100 characters. </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> Yes </td> </tr>
 
    
-      <tr><th> Title </th> <td> dcterms:title </td> <td> The official title for the dataset </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> Yes </td> </tr>
+      <tr><th> Title </th> <td> dcterms:title </td> <td> The official title for the dataset. String limit is 255 characters. </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> Yes </td> </tr>
 
    
-      <tr><th> Description </th> <td> dcterms:description </td> <td> An account of the resource. </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> Yes </td> </tr>
+      <tr><th> Description </th> <td> dcterms:description </td> <td> An account of the resource. Text limit is 4,000 characters. </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> Yes </td> </tr>
 
    
       <tr><th> keyword </th> <td> dcat:keyword </td> <td> A keyword or tag describing a resource. </td> <td> <a href="http://www.w3.org/TR/vocab-dcat/" target="_blank">http://www.w3.org/TR/vocab-dcat/</a> </td> <td> No </td> </tr>
@@ -137,7 +137,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <tr><th> Custodian </th> <td> dhs:custodian </td> <td> The custodian of the dataset. Data custodians are the individuals or organizations that have physical posession of the data. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Primary IT Investment UII </th> <td> usg:primaryITInvestmentUII </td> <td> For linking a dataset with an IT Unique Investment Identifier (UII). </td> <td> <a href="http://resources.data.gov/resources/dcat-us/" target="_blank">http://resources.data.gov/resources/dcat-us/</a> </td> <td> No </td> </tr>
+      <tr><th> Primary IT Investment UII </th> <td> usg:primaryITInvestmentUII </td> <td> For linking a dataset with an IT Unique Investment Identifier (UII). Can have multiple comma separated values. </td> <td> <a href="http://resources.data.gov/resources/dcat-us/" target="_blank">http://resources.data.gov/resources/dcat-us/</a> </td> <td> No </td> </tr>
 
    
       <tr><th> FISMA ID </th> <td> dhs:fismaID </td> <td> If the dataset is part of a system that has a FISMA ID then the FISMA ID should be provided. In this case the 'isPartOf' may be populated with the name of the system or a URI pointing to the system. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
@@ -390,10 +390,10 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
-      <tr><th> Record Transmission </th> <td> dhs:recordTransmission </td> <td> When the metadata record was transmitted. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
+      <tr><th> Record Transmission </th> <td> dhs:recordTransmission </td> <td> When the metadata record was transmitted. Must be a date. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
-      <tr><th> Validity Time </th> <td> dhs:validityTime </td> <td> When the metadata record is valid. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
+      <tr><th> Validity Time </th> <td> dhs:validityTime </td> <td> When the metadata record is valid. Must be in the form of a xsd Duration like P1Y or P3M </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
 </table>
 
