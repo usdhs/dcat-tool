@@ -173,8 +173,8 @@ class ExcelGenerator:
             ws.add_data_validation(decimal_dv)
 
             # -- enumberation validation -- 
-            enum_dv = DataValidation(type="list", formula1='"public,non-public,public restricted"', allow_blank=True)
-            enum_dv.error ='Must be one of the following: "public", "non-public" or "public restricted" '
+            enum_dv = DataValidation(type="list", formula1='"public,non-public,restricted public"', allow_blank=True)
+            enum_dv.error ='Must be one of the following: "public", "non-public" or "restricted public" '
             enum_dv.errorTitle = 'Invalid Entry'
             ws.add_data_validation(enum_dv)
 
