@@ -454,7 +454,7 @@ dhs:recordTransmission
     rdfs:label "Record Transmission"@en ;
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "When the metadata record was transmitted." ;
+    rdfs:comment "When the metadata record was transmitted. Must be a date." ;
     .
 
 dhs:validityTime
@@ -462,5 +462,5 @@ dhs:validityTime
     rdfs:label "Validity Time"@en ;
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "When the metadata record is valid." ;
+    rdfs:comment "When the metadata record is valid. Must be in the form of a xsd Duration like P1Y or P3M" ;
     .

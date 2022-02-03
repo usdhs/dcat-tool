@@ -903,11 +903,11 @@ Detailed definitions follow:
       <table class='definitions'>
          <tr class="headspecial"><td colspan="2">Term Name: dhs:recordTransmission &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
    
-        <tr><th> Description </th> <td> When the metadata record was transmitted. </td></tr> 
+        <tr><th> Description </th> <td> When the metadata record was transmitted. Must be a date. </td></tr> 
         <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
         <tr><th>Required</th><td> No </td> </tr>
         <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
-        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:date </td> </tr>
 
    
       </table>
@@ -916,11 +916,11 @@ Detailed definitions follow:
       <table class='definitions'>
          <tr class="headspecial"><td colspan="2">Term Name: dhs:validityTime &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
    
-        <tr><th> Description </th> <td> When the metadata record is valid. </td></tr> 
+        <tr><th> Description </th> <td> When the metadata record is valid. Must be in the form of a xsd Duration like P1Y or P3M </td></tr> 
         <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
         <tr><th>Required</th><td> No </td> </tr>
         <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
-        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:duration </td> </tr>
 
 </table>
 
