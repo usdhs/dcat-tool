@@ -106,10 +106,12 @@ class ExcelGenerator:
         self.wb = EasyWorkbook()
         self.wb.remove(self.wb.active)    # remove default sheet
 
-    def add_markdown_sheet( self, name, markdown):
+    def add_markdown_sheet( self, name, markdown, versionNumber):
         ins = self.wb.create_sheet( name )
         for (row,line) in enumerate( markdown.split("\n"),1):
             font = None
+            if line.startswith("# FY22 Data "):
+                line = line + " - Version " + versionNumber
             if line.startswith("# "):
                 line = line[2:]
                 font = H1

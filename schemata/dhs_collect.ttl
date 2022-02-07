@@ -23,7 +23,7 @@ dhs:dataInventoryRecord
 dhs:dataInventoryRecord
     a sh:NodeShape ;
     rdfs:comment "Specify the DCATv3 fields (and other fields) that are being collected for the DHS Data Inventory Project."@en ;
-    owl:versionInfo "1.3" ;
+    owl:versionInfo "1.4" ;
     dcterms:modified "2022-01-28"^^xsd:date ;
     sh:property
     [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 100 ; sh:datatype xsd:string ; sh:message "Identifier (string) is required and must not be more than 100 characters." ; dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset. String limit is 100 characters."@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
@@ -38,7 +38,7 @@ dhs:dataInventoryRecord
 
     [ sh:path dcterms:creator            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:governance             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:owner                  ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class sdo:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:owner                  ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:steward                ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:custodian              ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path usg:primaryITInvestmentUII ; sh:minCount 0 ; sh:datatype xsd:string ; sh:message "UII must be a string, typically of the format NNN-NNNNNNNNN and can have multiple, comma separated values." ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],

@@ -24,10 +24,22 @@ import easy_workbook
 
 INSTRUCTIONS  = os.path.join(dirname(abspath( __file__ )) , "instructions.md")
 
+def getCollectVersion():
+    gr = dhs_ontology.dhs_collect_graph()
+    pred = URIRef("http://www.w3.org/2002/07/owl#versionInfo")
+    vers = gr.objects(predicate=pred)
+    finalVer = ''
+    for foundver in vers:
+        finalVer = foundver
+    return finalVer
+
+
 def make_template(v, fname, include_instructions):
     eg = easy_workbook.ExcelGenerator()
     if include_instructions:
-        eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read())
+        dhsCollectVers = getCollectVersion()
+        #print(dhsCollectVers)
+        eg.add_markdown_sheet("Instructions", open(INSTRUCTIONS).read(), dhsCollectVers)
     eg.add_columns_sheet("Inventory", v.ci_objs)
     eg.save( fname )
 

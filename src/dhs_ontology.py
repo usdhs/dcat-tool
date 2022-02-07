@@ -54,6 +54,11 @@ WHERE {
 }
 """
 
+def dhs_collect_graph(schema_file = COLLECT_TTL):
+    g    = Graph()
+    g.parse(schema_file, format='turtle')
+    return g
+
 def dcatv3_ontology(schemata_dir = SCHEMATA_DIR, schema_file = COLLECT_TTL):
     """Returns a graph of the DHS ontology for the data inventory program"""
     g    = Graph()
