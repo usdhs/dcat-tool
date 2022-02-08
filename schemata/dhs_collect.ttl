@@ -25,11 +25,12 @@ dhs:dataInventoryRecord
     rdfs:comment "Specify the DCATv3 fields (and other fields) that are being collected for the DHS Data Inventory Project."@en ;
     owl:versionInfo "1.4" ;
     dcterms:modified "2022-01-28"^^xsd:date ;
+    sh:targetClass dhs:dataInventoryRecord ;
     sh:property
     [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 100 ; sh:datatype xsd:string ; sh:message "Identifier (string) is required and must not be more than 100 characters." ; dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset. String limit is 100 characters."@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 256 ; sh:datatype xsd:string ; sh:message "Title (string) is required and must not be more than 255 characters." ; rdfs:comment "The official title for the dataset. String limit is 255 characters."@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:description        ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 4000 ; sh:datatype xsd:string ; sh:message "Description (string) is required and must not be more than 4,000 characters." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcat:keyword               ; sh:minCount 0 ; sh:datatype xsd:string ; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcat:keyword               ; sh:minCount 0 ; sh:or ([sh:datatype xsd:string][sh:datatype rdf:list]) ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:publisher          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path usg:accessLevel            ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "restricted public" "non-public") ; sh:message "Must be one of the following (exactly): 'public', 'restricted public' or 'non-public'" ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dhs:metadataClassification ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "non-public")                     ; sh:message "Must be one of the following (exactly): 'public' or 'non-public'"                      ; a sh:PropertyShape ; dt:group dt:highLevel; ],
