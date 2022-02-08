@@ -35,7 +35,7 @@ dhs:metadataClassification
     rdfs:range rdfs:Literal ;
     rdfs:label "Metadata Classification"@en ;
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
-    rdfs:comment "The classification level of the metadata." ;
+    rdfs:comment "The classification level of the metadata. This should be 'public' for data catalog records that are reported to data.gov, and 'non-public' for data catalog records that are not reported." ;
     .
 
 dhs:public

@@ -32,7 +32,7 @@ dhs:dataInventoryRecord
     [ sh:path dcat:keyword               ; sh:minCount 0 ; sh:datatype xsd:string ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:publisher          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path usg:accessLevel            ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "restricted public" "non-public") ; sh:message "Must be one of the following (exactly): 'public', 'restricted public' or 'non-public'" ; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dhs:metadataClassification ; sh:minCount 1 ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dhs:metadataClassification ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "non-public")                     ; sh:message "Must be one of the following (exactly): 'public' or 'non-public'"                      ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:issued             ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:date; sh:message "Issued date is required and must be a date (like 12/31/2021)." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dhs:component              ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel ],
 
