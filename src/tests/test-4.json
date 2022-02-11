@@ -1,0 +1,34 @@
+{
+    "@context": {
+        "xml": "http://www.w3.org/XML/1998/namespace",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "dctype": "http://purl.org/dc/dcmitype/",
+        "foaf": "http://xmlns.com/foaf/0.1/#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "prov": "http://www.w3.org/ns/prov#",
+        "sdo": "http://schema.org/",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "vcard": "http://www.w3.org/2006/vcard/ns#",
+        "dhs": "https://usdhs.github.io/dcat-tool/#",
+        "dt": "http://github.com/usdhs/dcat-tool/0.1#",
+        "sh": "http://www.w3.org/ns/shacl#",
+        "usg": "http://resources.data.gov/resources/dcat-us/#"
+    },
+    "@id": "https://dhs.gov/test-4",
+    "@type": "https://usdhs.github.io/dcat-tool/#dataInventoryRecord",
+    "http://purl.org/dc/terms/identifier": "test-4",
+    "http://purl.org/dc/terms/title": "test-4",
+    "http://purl.org/dc/terms/description": "test keywords string",
+    "http://purl.org/dc/terms/issued": {
+        "@type": "xsd:date",
+        "@value": "2022-02-11"
+    },
+    "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
+    "https://usdhs.github.io/dcat-tool/#metadataClassification": "public",
+    "https://usdhs.github.io/dcat-tool/#component": "MGMT",
+    "http://www.w3.org/ns/dcat#keyword": "test"
+}
