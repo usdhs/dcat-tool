@@ -180,6 +180,12 @@ class ExcelGenerator:
             enum_dv.errorTitle = 'Invalid Entry'
             ws.add_data_validation(enum_dv)
 
+            # -- enumberation validation -- 
+            enum_dv2 = DataValidation(type="list", formula1='"public,non-public"', allow_blank=True)
+            enum_dv2.error ='Must be one of the following: "public" or "non-public" '
+            enum_dv2.errorTitle = 'Invalid Entry'
+            ws.add_data_validation(enum_dv2)
+
             #-- integer (less than 100) --
             int100_dv = DataValidation(type="whole",operator="lessThan", formula1=101)
             int100_dv.error ='This value must be a number between 1 and 100'
@@ -249,7 +255,8 @@ class ExcelGenerator:
                     int100_dv.add(f'{column_letter}2:{column_letter}{rows}')
                 if obj.value=='accessLevel':
                     enum_dv.add(f'{column_letter}2:{column_letter}{rows}')
-
+                if obj.value=='metadataClassification':
+                    enum_dv2.add(f'{column_letter}2:{column_letter}{rows}')
     def save(self, fname):
         self.wb.save(fname)
 
