@@ -24,7 +24,7 @@ def findExcelColumn(fieldName):
             return cell.column
 
 
-# readin a test file (later this will generate from build_test)
+# read in a test file (later this will generate from build_test)
 with open('test-3.json') as json_file:
     parsed = json.load(json_file)
 

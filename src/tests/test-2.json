@@ -7,15 +7,10 @@
         "dcat": "http://www.w3.org/ns/dcat#",
         "dcterms": "http://purl.org/dc/terms/",
         "dctype": "http://purl.org/dc/dcmitype/",
-        "foaf": "http://xmlns.com/foaf/0.1/#",
-        "owl": "http://www.w3.org/2002/07/owl#",
         "prov": "http://www.w3.org/ns/prov#",
         "sdo": "http://schema.org/",
-        "skos": "http://www.w3.org/2004/02/skos/core#",
         "vcard": "http://www.w3.org/2006/vcard/ns#",
         "dhs": "https://usdhs.github.io/dcat-tool/#",
-        "dt": "http://github.com/usdhs/dcat-tool/0.1#",
-        "sh": "http://www.w3.org/ns/shacl#",
         "usg": "http://resources.data.gov/resources/dcat-us/#"
     },
     "@id": "https://dhs.gov/test-2",
@@ -25,7 +20,7 @@
     "http://purl.org/dc/terms/description": "test all fields for DIP record - a full record",
     "http://purl.org/dc/terms/issued": {
         "@type": "xsd:date",
-        "@value": "2022-02-11"
+        "@value": "2022-02-16"
     },
     "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
     "https://usdhs.github.io/dcat-tool/#metadataClassification": "public",
@@ -47,18 +42,18 @@
     },
     "https://usdhs.github.io/dcat-tool/#owner": {
         "@type": "http://www.w3.org/2006/vcard/ns#Individual",
-        "http://www.w3.org/2006/vcard/ns#organization-name": "Booz Allen",
-        "http://www.w3.org/2006/vcard/ns#fn": "Linda Mckay"
+        "http://www.w3.org/2006/vcard/ns#organization-name": "ECS",
+        "http://www.w3.org/2006/vcard/ns#fn": "Bill Bradly"
     },
     "https://usdhs.github.io/dcat-tool/#steward": {
         "@type": "http://www.w3.org/2006/vcard/ns#Individual",
         "http://www.w3.org/2006/vcard/ns#organization-name": "PWC",
-        "http://www.w3.org/2006/vcard/ns#fn": "Abe Lincon"
+        "http://www.w3.org/2006/vcard/ns#fn": "Ron Johnson"
     },
     "https://usdhs.github.io/dcat-tool/#custodian": {
         "@type": "http://www.w3.org/2006/vcard/ns#Individual",
-        "http://www.w3.org/2006/vcard/ns#organization-name": "PWC",
-        "http://www.w3.org/2006/vcard/ns#fn": "Ron Johnson"
+        "http://www.w3.org/2006/vcard/ns#organization-name": "Booz Allen",
+        "http://www.w3.org/2006/vcard/ns#fn": "Abe Lincon"
     },
     "http://resources.data.gov/resources/dcat-us/#primaryITInvestmentUII": "010-999992220",
     "https://usdhs.github.io/dcat-tool/#fismaID": "FSA-00100-MAJ-00100",
@@ -66,8 +61,8 @@
     "https://usdhs.github.io/dcat-tool/#sharingAgreements": "https://example.org/some/valuable/resource.html",
     "http://www.w3.org/ns/dcat#contactPoint": {
         "@type": "http://www.w3.org/2006/vcard/ns#Individual",
-        "http://www.w3.org/2006/vcard/ns#organization-name": "Booz Allen",
-        "http://www.w3.org/2006/vcard/ns#fn": "Kim Palsi"
+        "http://www.w3.org/2006/vcard/ns#organization-name": "United Nations",
+        "http://www.w3.org/2006/vcard/ns#fn": "Anna Cole"
     },
     "https://usdhs.github.io/dcat-tool/#collectionAuthority": [
         "Some Article of legal authority",
@@ -90,11 +85,11 @@
     "https://usdhs.github.io/dcat-tool/#conformsFIPS": "https://www.nist.gov/publications/security-requirements-cryptographic-modules-includes-change-notices-1232002",
     "https://usdhs.github.io/dcat-tool/#conformsNIEMPercent": {
         "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": 72
+        "@value": 36
     },
     "https://usdhs.github.io/dcat-tool/#conformsUnicode": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#identitiesNativeScript": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
@@ -128,7 +123,7 @@
     },
     "https://usdhs.github.io/dcat-tool/#dataQualityPercent": {
         "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": 2
+        "@value": 69
     },
     "https://usdhs.github.io/dcat-tool/#dataQualityAssessment": "This dataset has some gaps in crtical areas. Efforts are underway to remediate.",
     "http://resources.data.gov/resources/dcat-us/#dataQuality": {
@@ -146,7 +141,7 @@
     },
     "http://resources.data.gov/resources/dcat-us/#modified": {
         "@type": "http://www.w3.org/2001/XMLSchema#date",
-        "@value": "2022-02-11"
+        "@value": "2022-02-16"
     },
     "https://usdhs.github.io/dcat-tool/#vendor": [
         "ECS",
@@ -163,15 +158,15 @@
     "http://www.w3.org/ns/dcat#mediaType": "application/node",
     "https://usdhs.github.io/dcat-tool/#tableCount": {
         "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": 85
+        "@value": 44
     },
     "https://usdhs.github.io/dcat-tool/#recordCount": {
         "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": 33
+        "@value": 96
     },
     "http://www.w3.org/ns/dcat#byteSize": {
         "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": 11
+        "@value": 4
     },
     "https://usdhs.github.io/dcat-tool/#datasetClassification": "CUI",
     "https://usdhs.github.io/dcat-tool/#ch-person-level": {
@@ -184,11 +179,11 @@
     },
     "https://usdhs.github.io/dcat-tool/#ch-event-records": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#ch-faces": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "false"
+        "@value": "true"
     },
     "https://usdhs.github.io/dcat-tool/#ch-fingerprints": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
@@ -196,11 +191,11 @@
     },
     "https://usdhs.github.io/dcat-tool/#ch-cui": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#ch-phi": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#ch-pii": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
@@ -208,15 +203,15 @@
     },
     "https://usdhs.github.io/dcat-tool/#ch-geospatial": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#ch-environmental": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#ch-fisa": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#ch-8usc1367": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
@@ -228,20 +223,20 @@
     },
     "https://usdhs.github.io/dcat-tool/#ch-immigration": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#ch-criticalInfrastructure": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#ch-disseminationRestrictions": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#hostingLocation": "CIRRUS",
     "https://usdhs.github.io/dcat-tool/#hostedInCloud": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#easilyAccessibleByCreatingComponent": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
@@ -253,11 +248,11 @@
     },
     "https://usdhs.github.io/dcat-tool/#easilyAccessibleByGeneralPublic": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#recordTransmission": {
         "@type": "http://www.w3.org/2001/XMLSchema#date",
-        "@value": "2022-02-11"
+        "@value": "2022-02-16"
     },
     "https://usdhs.github.io/dcat-tool/#validityTime": {
         "@type": "http://www.w3.org/2001/XMLSchema#duration",

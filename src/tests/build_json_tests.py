@@ -1,3 +1,5 @@
+import os
+from os.path import abspath, dirname
 from pyshacl import validate
 from rdflib import Graph, URIRef
 from rdflib.namespace import RDF
@@ -8,9 +10,13 @@ import random
 # =======================================
 # Functions to generate test files for python unittest (Class)
 # =======================================
+# -- update the testSuiteDict (below) to add new test cases (each item builds a new test file and outputs to the tests dir)
+# -- the validation_tests.py file needs the tests to be added to check eahc output file
 
-# works -- later get this from the dhs_ontology hook
-s = Graph().parse("C:\Tom\DIP\dcat-tool\schemata\dhs_collect.ttl")
+# setup the schema file
+SCHEMATA_DIR  = os.path.join(dirname(abspath( __file__ )) , "../../schemata")
+COLLECT_TTL   = os.path.join(SCHEMATA_DIR, "dhs_collect.ttl")
+s = Graph().parse(COLLECT_TTL)
 
 ALL_QUERY = """
 SELECT DISTINCT ?aProperty ?aMinCount ?aDataType
@@ -54,7 +60,7 @@ def buildContext(jsonobj):
 
 # -- clean out unused namespaces --
 def cleanContext(jsonobj):
-    print('the first node of the test json ++++++++++++++++++++++++++++++++++ ')
+    #print('the first node of the test json ++++++++++++++++++++++++++++++++++ ')
     ctx = jsonobj["@context"]
     #print(ctx)
     cleanContextItem(ctx,"foaf")
@@ -246,10 +252,10 @@ testSuiteDict = [
 
 # -- the main function --
 def buildTestSuite():
-    #cleanContext(tjson)
     for testcase in testSuiteDict:
         tjson = {}
         bjson = buildContext(tjson)
+        cleanContext(bjson)
         if not testcase["node"]:
             #print('just build a base case')
             ojson = buildTestBase(testcase["id"], testcase["description"], bjson)
