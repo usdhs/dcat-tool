@@ -37,6 +37,7 @@ then does a join with OPTIONAL on several other objects we would like to extract
 CI_QUERY = """
 SELECT DISTINCT ?aProperty ?aTitle ?aPropertyComment ?aShapeComment ?aType ?aWidth ?aGroup ?aPropertyDefinedBy ?aPropertyLabel ?aMinCount ?aDataType
 WHERE {
+{
   dhs:dataInventoryRecord sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
 
@@ -51,6 +52,24 @@ WHERE {
   OPTIONAL { ?aShapeName sh:minCount     ?aMinCount . }
   OPTIONAL { ?aShapeName sh:datatype     ?aDataType . }
   FILTER (!BOUND(?aPropertyLabel) || lang(?aPropertyLabel) = "" || lang(?aPropertyLabel) = "en" || lang(?aPropertyLabel) = "en-US")
+  } 
+  UNION 
+  {
+  dhs:Characteristics sh:property ?aShapeName .
+  ?aShapeName sh:path ?aProperty .
+
+  OPTIONAL { ?aProperty  rdfs:range      ?aType . }
+  OPTIONAL { ?aProperty  rdfs:comment    ?aPropertyComment . }
+  OPTIONAL { ?aProperty  rdfs:isDefinedBy    ?aPropertyDefinedBy . }
+  OPTIONAL { ?aProperty  rdfs:label    ?aPropertyLabel . }
+  OPTIONAL { ?aShapeName dhs:excelWidth  ?aWidth . }
+  OPTIONAL { ?aShapeName dt:title        ?aTitle . }
+  OPTIONAL { ?aShapeName dt:group        ?aGroup . }
+  OPTIONAL { ?aShapeName rdfs:comment    ?aShapeComment . }
+  OPTIONAL { ?aShapeName sh:minCount     ?aMinCount . }
+  OPTIONAL { ?aShapeName sh:datatype     ?aDataType . }
+  FILTER (!BOUND(?aPropertyLabel) || lang(?aPropertyLabel) = "" || lang(?aPropertyLabel) = "en" || lang(?aPropertyLabel) = "en-US")
+  }
 }
 """
 
