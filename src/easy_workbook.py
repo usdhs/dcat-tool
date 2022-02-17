@@ -106,10 +106,12 @@ class ExcelGenerator:
         self.wb = EasyWorkbook()
         self.wb.remove(self.wb.active)    # remove default sheet
 
-    def add_markdown_sheet( self, name, markdown):
+    def add_markdown_sheet( self, name, markdown, versionNumber):
         ins = self.wb.create_sheet( name )
         for (row,line) in enumerate( markdown.split("\n"),1):
             font = None
+            if line.startswith("# FY22 Data "):
+                line = line + " - Version " + versionNumber
             if line.startswith("# "):
                 line = line[2:]
                 font = H1
@@ -177,6 +179,12 @@ class ExcelGenerator:
             enum_dv.error ='Must be one of the following: "public", "non-public" or "restricted public" '
             enum_dv.errorTitle = 'Invalid Entry'
             ws.add_data_validation(enum_dv)
+
+            # -- enumberation validation -- 
+            enum_dv2 = DataValidation(type="list", formula1='"public,non-public"', allow_blank=True)
+            enum_dv2.error ='Must be one of the following: "public" or "non-public" '
+            enum_dv2.errorTitle = 'Invalid Entry'
+            ws.add_data_validation(enum_dv2)
 
             #-- integer (less than 100) --
             int100_dv = DataValidation(type="whole",operator="lessThan", formula1=101)
@@ -247,7 +255,8 @@ class ExcelGenerator:
                     int100_dv.add(f'{column_letter}2:{column_letter}{rows}')
                 if obj.value=='accessLevel':
                     enum_dv.add(f'{column_letter}2:{column_letter}{rows}')
-
+                if obj.value=='metadataClassification':
+                    enum_dv2.add(f'{column_letter}2:{column_letter}{rows}')
     def save(self, fname):
         self.wb.save(fname)
 

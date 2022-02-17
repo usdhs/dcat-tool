@@ -1,0 +1,261 @@
+{
+    "@context": {
+        "xml": "http://www.w3.org/XML/1998/namespace",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "dctype": "http://purl.org/dc/dcmitype/",
+        "prov": "http://www.w3.org/ns/prov#",
+        "sdo": "http://schema.org/",
+        "vcard": "http://www.w3.org/2006/vcard/ns#",
+        "dhs": "https://usdhs.github.io/dcat-tool/#",
+        "usg": "http://resources.data.gov/resources/dcat-us/#"
+    },
+    "@id": "https://dhs.gov/test-2",
+    "@type": "https://usdhs.github.io/dcat-tool/#dataInventoryRecord",
+    "http://purl.org/dc/terms/identifier": "test-2",
+    "http://purl.org/dc/terms/title": "test-2",
+    "http://purl.org/dc/terms/description": "test all fields for DIP record - a full record",
+    "http://purl.org/dc/terms/issued": {
+        "@type": "xsd:date",
+        "@value": "2022-02-16"
+    },
+    "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
+    "https://usdhs.github.io/dcat-tool/#metadataClassification": "public",
+    "https://usdhs.github.io/dcat-tool/#component": "MGMT",
+    "http://purl.org/dc/terms/publisher": {
+        "@type": "http://www.w3.org/2006/vcard/ns#Organization",
+        "http://www.w3.org/2006/vcard/ns#organization-name": "DHS",
+        "http://www.w3.org/2006/vcard/ns#organization-unit": "MGMT"
+    },
+    "http://purl.org/dc/terms/creator": {
+        "@type": "http://www.w3.org/2006/vcard/ns#Organization",
+        "http://www.w3.org/2006/vcard/ns#organization-name": "DHS",
+        "http://www.w3.org/2006/vcard/ns#organization-unit": "MGMT"
+    },
+    "https://usdhs.github.io/dcat-tool/#governance": {
+        "@type": "http://www.w3.org/2006/vcard/ns#Organization",
+        "http://www.w3.org/2006/vcard/ns#organization-name": "DHS",
+        "http://www.w3.org/2006/vcard/ns#organization-unit": "MGMT"
+    },
+    "https://usdhs.github.io/dcat-tool/#owner": {
+        "@type": "http://www.w3.org/2006/vcard/ns#Individual",
+        "http://www.w3.org/2006/vcard/ns#organization-name": "ECS",
+        "http://www.w3.org/2006/vcard/ns#fn": "Bill Bradly"
+    },
+    "https://usdhs.github.io/dcat-tool/#steward": {
+        "@type": "http://www.w3.org/2006/vcard/ns#Individual",
+        "http://www.w3.org/2006/vcard/ns#organization-name": "PWC",
+        "http://www.w3.org/2006/vcard/ns#fn": "Ron Johnson"
+    },
+    "https://usdhs.github.io/dcat-tool/#custodian": {
+        "@type": "http://www.w3.org/2006/vcard/ns#Individual",
+        "http://www.w3.org/2006/vcard/ns#organization-name": "Booz Allen",
+        "http://www.w3.org/2006/vcard/ns#fn": "Abe Lincon"
+    },
+    "http://resources.data.gov/resources/dcat-us/#primaryITInvestmentUII": "010-999992220",
+    "https://usdhs.github.io/dcat-tool/#fismaID": "FSA-00100-MAJ-00100",
+    "http://purl.org/dc/terms/references": "https://example.org/some/valuable/resource.html",
+    "https://usdhs.github.io/dcat-tool/#sharingAgreements": "https://example.org/some/valuable/resource.html",
+    "http://www.w3.org/ns/dcat#contactPoint": {
+        "@type": "http://www.w3.org/2006/vcard/ns#Individual",
+        "http://www.w3.org/2006/vcard/ns#organization-name": "United Nations",
+        "http://www.w3.org/2006/vcard/ns#fn": "Anna Cole"
+    },
+    "https://usdhs.github.io/dcat-tool/#collectionAuthority": [
+        "Some Article of legal authority",
+        "or Executive Orders"
+    ],
+    "https://usdhs.github.io/dcat-tool/#retentionAuthority": [
+        "Some Article of legal authority",
+        "or Executive Orders"
+    ],
+    "https://usdhs.github.io/dcat-tool/#releaseAuthority": [
+        "Some Article of legal authority",
+        "or Executive Orders"
+    ],
+    "https://usdhs.github.io/dcat-tool/#recordsSchedule": [
+        "Pointer to a URL describing records management schedule",
+        "A description of the records management schedule"
+    ],
+    "http://resources.data.gov/resources/dcat-us/#systemOfRecords": "https://example.org/a_SORN_entry.html",
+    "http://purl.org/dc/terms/conformsTo": "http://niem.github.io/reference/iepd/",
+    "https://usdhs.github.io/dcat-tool/#conformsFIPS": "https://www.nist.gov/publications/security-requirements-cryptographic-modules-includes-change-notices-1232002",
+    "https://usdhs.github.io/dcat-tool/#conformsNIEMPercent": {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 36
+    },
+    "https://usdhs.github.io/dcat-tool/#conformsUnicode": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#identitiesNativeScript": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "true"
+    },
+    "https://usdhs.github.io/dcat-tool/#transliterationStandard": "https://www.iso.org/ics/01.140.10/x/",
+    "https://usdhs.github.io/dcat-tool/#sourceDatasets": [
+        "datasetA",
+        "datasetB",
+        "..."
+    ],
+    "https://usdhs.github.io/dcat-tool/#destinationDatasets": [
+        "datasetA",
+        "datasetB",
+        "..."
+    ],
+    "http://resources.data.gov/resources/dcat-us/#describedBy": "https://example.org/some/valuable/resource.html",
+    "http://resources.data.gov/resources/dcat-us/#describedByType": "application/json",
+    "http://purl.org/dc/terms/isPartOf": "Mobius",
+    "http://purl.org/dc/terms/accrualPeriodicity": {
+        "@type": "http://www.w3.org/2001/XMLSchema#duration",
+        "@value": "P1Y"
+    },
+    "http://purl.org/dc/terms/spatial": "Downtown Washington, DC",
+    "http://www.w3.org/ns/dcat#spatialResolutionInMeters": "5x5 meters",
+    "http://purl.org/dc/terms/temporal": "December, 2021",
+    "http://www.w3.org/ns/dcat#temporalResolution": "P1M",
+    "https://usdhs.github.io/dcat-tool/#dataQualityKnown": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "true"
+    },
+    "https://usdhs.github.io/dcat-tool/#dataQualityPercent": {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 69
+    },
+    "https://usdhs.github.io/dcat-tool/#dataQualityAssessment": "This dataset has some gaps in crtical areas. Efforts are underway to remediate.",
+    "http://resources.data.gov/resources/dcat-us/#dataQuality": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "http://purl.org/dc/terms/format": "CSV",
+    "http://www.w3.org/ns/dcat#accessURL": {
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+        "@value": "<https://ea.dhs.gov/mobius>"
+    },
+    "https://usdhs.github.io/dcat-tool/#accessURLNIEM": {
+        "@type": "http://www.w3.org/2001/XMLSchema#anyURI",
+        "@value": "<https://ea.dhs.gov/mobius>"
+    },
+    "http://resources.data.gov/resources/dcat-us/#modified": {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2022-02-16"
+    },
+    "https://usdhs.github.io/dcat-tool/#vendor": [
+        "ECS",
+        "GeoManagement, Inc."
+    ],
+    "http://purl.org/dc/terms/license": "MIT",
+    "http://purl.org/dc/terms/accessRights": "public",
+    "http://www.w3.org/ns/dcat#theme": [
+        "data management",
+        "data governance",
+        "data inventory"
+    ],
+    "https://usdhs.github.io/dcat-tool/#functionalDataDomain": "IDII",
+    "http://www.w3.org/ns/dcat#mediaType": "application/node",
+    "https://usdhs.github.io/dcat-tool/#tableCount": {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 44
+    },
+    "https://usdhs.github.io/dcat-tool/#recordCount": {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 96
+    },
+    "http://www.w3.org/ns/dcat#byteSize": {
+        "@type": "http://www.w3.org/2001/XMLSchema#integer",
+        "@value": 4
+    },
+    "https://usdhs.github.io/dcat-tool/#datasetClassification": "CUI",
+    "https://usdhs.github.io/dcat-tool/#ch-person-level": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-financial": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "true"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-event-records": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-faces": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "true"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-fingerprints": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "true"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-cui": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-phi": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-pii": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-geospatial": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-environmental": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-fisa": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-8usc1367": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-propin": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-immigration": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-criticalInfrastructure": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#ch-disseminationRestrictions": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#hostingLocation": "CIRRUS",
+    "https://usdhs.github.io/dcat-tool/#hostedInCloud": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#easilyAccessibleByCreatingComponent": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#easilyAccessibleByAllComponents": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "true"
+    },
+    "https://usdhs.github.io/dcat-tool/#easilyAccessibleByGeneralPublic": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#recordTransmission": {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2022-02-16"
+    },
+    "https://usdhs.github.io/dcat-tool/#validityTime": {
+        "@type": "http://www.w3.org/2001/XMLSchema#duration",
+        "@value": "P1Y"
+    }
+}

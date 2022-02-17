@@ -23,29 +23,30 @@ dhs:dataInventoryRecord
 dhs:dataInventoryRecord
     a sh:NodeShape ;
     rdfs:comment "Specify the DCATv3 fields (and other fields) that are being collected for the DHS Data Inventory Project."@en ;
-    owl:versionInfo "1.3" ;
+    owl:versionInfo "1.4" ;
     dcterms:modified "2022-01-28"^^xsd:date ;
+    sh:targetClass dhs:dataInventoryRecord ;
     sh:property
     [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 100 ; sh:datatype xsd:string ; sh:message "Identifier (string) is required and must not be more than 100 characters." ; dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset. String limit is 100 characters."@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 256 ; sh:datatype xsd:string ; sh:message "Title (string) is required and must not be more than 255 characters." ; rdfs:comment "The official title for the dataset. String limit is 255 characters."@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:description        ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 4000 ; sh:datatype xsd:string ; sh:message "Description (string) is required and must not be more than 4,000 characters." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcat:keyword               ; sh:minCount 0 ; sh:datatype xsd:string ; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcterms:publisher          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:publisher          ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path usg:accessLevel            ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "restricted public" "non-public") ; sh:message "Must be one of the following (exactly): 'public', 'restricted public' or 'non-public'" ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dhs:metadataClassification ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "non-public")                     ; sh:message "Must be one of the following (exactly): 'public' or 'non-public'"                      ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:issued             ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:date; sh:message "Issued date is required and must be a date (like 12/31/2021)." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dhs:component              ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel ],
 
-    [ sh:path dcterms:creator            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:governance             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:owner                  ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class sdo:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:steward                ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:custodian              ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dcterms:creator            ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:governance             ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:owner                  ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:steward                ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:custodian              ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path usg:primaryITInvestmentUII ; sh:minCount 0 ; sh:datatype xsd:string ; sh:message "UII must be a string, typically of the format NNN-NNNNNNNNN and can have multiple, comma separated values." ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:fismaID                ; sh:minCount 0 ; sh:datatype xsd:string ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dcterms:references         ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:sharingAgreements      ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dcat:contactPoint          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dcat:contactPoint          ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:collectionAuthority    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:retentionAuthority     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:releaseAuthority       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
@@ -65,7 +66,7 @@ dhs:dataInventoryRecord
     [ sh:path usg:describedByType        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
     [ sh:path dcterms:isPartOf           ; sh:minCount 0 ; sh:maxLength 5000 ; a sh:PropertyShape ; dt:group dt:provenance; ],
 
-    [ sh:path dcterms:accrualPeriodicity     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataset ],
+    [ sh:path dcterms:accrualPeriodicity     ; sh:minCount 0 ; sh:datatype xsd:duration ;  a sh:PropertyShape ; dt:group dt:dataset ],
 
     [ sh:path dcterms:spatial            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetGeospatial ],
     [ sh:path dcat:spatialResolutionInMeters  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetGeospatial],
@@ -79,10 +80,10 @@ dhs:dataInventoryRecord
     [ sh:path usg:dataQuality            ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:dataQuality ],
 
     [ sh:path dcterms:format             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path dcat:accessURL             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path dhs:accessURLNIEM          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dcat:accessURL             ; sh:minCount 0 ;  sh:maxCount 1 ; sh:datatype xsd:anyURI; a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dhs:accessURLNIEM          ; sh:minCount 0 ;  sh:maxCount 1 ; sh:datatype xsd:anyURI; a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path usg:modified               ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:date; a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path dhs:vendor                 ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dhs:vendor                 ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcterms:license            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcterms:accessRights       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcat:theme                 ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
@@ -113,10 +114,10 @@ dhs:dataInventoryRecord
     [ sh:path dhs:ch-disseminationRestrictions; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
 
     [ sh:path dhs:hostingLocation        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
-    [ sh:path dhs:hostedInCloud          ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
-    [ sh:path dhs:easilyAccessibleByCreatingComponent  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
-    [ sh:path dhs:easilyAccessibleByAllComponents  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
-    [ sh:path dhs:easilyAccessibleByGeneralPublic  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
+    [ sh:path dhs:hostedInCloud          ; sh:minCount 0 ; sh:datatype xsd:boolean ; a sh:PropertyShape ; dt:group dt:location ],
+    [ sh:path dhs:easilyAccessibleByCreatingComponent  ; sh:minCount 0 ; sh:datatype xsd:boolean ;  a sh:PropertyShape ; dt:group dt:location ],
+    [ sh:path dhs:easilyAccessibleByAllComponents  ; sh:minCount 0 ; sh:datatype xsd:boolean ; a sh:PropertyShape ; dt:group dt:location ],
+    [ sh:path dhs:easilyAccessibleByGeneralPublic  ; sh:minCount 0 ; sh:datatype xsd:boolean ; a sh:PropertyShape ; dt:group dt:location ],
     [ sh:path dhs:recordTransmission     ; sh:minCount 0 ; sh:datatype xsd:date ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ],
     [ sh:path dhs:validityTime           ; sh:minCount 0 ; sh:datatype xsd:duration ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ]
     ;
