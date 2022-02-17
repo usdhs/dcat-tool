@@ -20,10 +20,10 @@
     "http://purl.org/dc/terms/description": "test keywords array in DIP record",
     "http://purl.org/dc/terms/issued": {
         "@type": "xsd:date",
-        "@value": "2022-02-16"
+        "@value": "2022-02-17"
     },
     "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
-    "https://usdhs.github.io/dcat-tool/#metadataClassification": "public",
+    "https://usdhs.github.io/dcat-tool/#dataCatalogRecordAccessLevel": "public",
     "https://usdhs.github.io/dcat-tool/#component": "MGMT",
     "http://www.w3.org/ns/dcat#keyword": [
         "test",
