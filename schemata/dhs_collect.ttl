@@ -41,8 +41,8 @@ dhs:Characteristics
     [ sh:path dhs:ch-immigration         ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
     [ sh:path dhs:ch-criticalInfrastructure; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
     [ sh:path dhs:ch-pcii               ;  sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-biometrics         ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ]
-    [ sh:path dhs:ch-disseminationRestrictions; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-biometrics         ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-disseminationRestrictions; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ]
     .
 
 dhs:dataInventoryRecord
