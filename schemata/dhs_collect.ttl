@@ -15,12 +15,17 @@
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
 @prefix usg:     <http://resources.data.gov/resources/dcat-us/#> .
 
-dhs:dataInventoryRecord
+dhs:DataInventoryRecord
     a owl:Class ;
     rdfs:subClassOf dcat:Dataset ;
     .
 
 dhs:Characteristics
+    a owl:Class ;
+    rdfs:subClassOf dcat:Dataset ;
+    .
+
+dhs:characteristics
     a sh:NodeShape ;
     rdfs:comment "The characteristics of a dataset - i.e. whether it contains PII, PMI, biometrics, etc."@en ;
     sh:targetClass dhs:Characteristics ;
@@ -50,7 +55,7 @@ dhs:dataInventoryRecord
     rdfs:comment "Specify the DCATv3 fields (and other fields) that are being collected for the DHS Data Inventory Project."@en ;
     owl:versionInfo "1.5" ;
     dcterms:modified "2022-02-17"^^xsd:date ;
-    sh:targetClass dhs:dataInventoryRecord ;
+    sh:targetClass dhs:DataInventoryRecord ;
     sh:property
     [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 100 ; sh:datatype xsd:string ; sh:message "Identifier (string) is required and must not be more than 100 characters." ; dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset. String limit is 100 characters."@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 256 ; sh:datatype xsd:string ; sh:message "Title (string) is required and must not be more than 255 characters." ; rdfs:comment "The official title for the dataset. String limit is 255 characters."@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
@@ -126,11 +131,12 @@ dhs:dataInventoryRecord
     [ sh:path dhs:easilyAccessibleByCreatingComponent  ; sh:minCount 0 ; sh:datatype xsd:boolean ;  a sh:PropertyShape ; dt:group dt:location ],
     [ sh:path dhs:easilyAccessibleByAllComponents  ; sh:minCount 0 ; sh:datatype xsd:boolean ; a sh:PropertyShape ; dt:group dt:location ],
     [ sh:path dhs:easilyAccessibleByGeneralPublic  ; sh:minCount 0 ; sh:datatype xsd:boolean ; a sh:PropertyShape ; dt:group dt:location ],
+
+    [ sh:path usg:encryptionAlgorithm    ; sh:minCount 0 ; sh:datatype xsd:string                   ; a sh:PropertyShape; dt:group dt:publication ],
     [ sh:path dhs:recordTransmission     ; sh:minCount 0 ; sh:datatype xsd:date ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ],
-    [ sh:path dhs:validityTime           ; sh:minCount 0 ; sh:datatype xsd:duration ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ],
-    [ sh:path usg:encryptionAlgorithm    ; sh:minCount 0 ; sh:datatype xsd:string                   ; a sh:PropertyShape; dt:group dt:publication ]
+    [ sh:path dhs:validityTime           ; sh:minCount 0 ; sh:datatype xsd:duration ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ]
     ;
 
-    sh:targetClass dhs:dataInventoryRecord ;
+    sh:targetClass dhs:DataInventoryRecord ;
     skos:definition "Constraints for a record in a data catalog, describing the registration of a single dataset or data service."@en ;
     .
