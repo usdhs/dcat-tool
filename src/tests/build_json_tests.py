@@ -88,7 +88,7 @@ def buildTestBase(testid, testDescription, jsonobj):
     dateobj.update({"@value":thisday})
     jsonobj.update({"http://purl.org/dc/terms/issued":dateobj})
     jsonobj.update({"http://resources.data.gov/resources/dcat-us/#accessLevel":"public"})
-    jsonobj.update({"https://usdhs.github.io/dcat-tool/#metadataClassification":"public"})
+    jsonobj.update({"https://usdhs.github.io/dcat-tool/#dataCatalogRecordAccessLevel":"public"})
     jsonobj.update({"https://usdhs.github.io/dcat-tool/#component":"MGMT"})
 
     return jsonobj

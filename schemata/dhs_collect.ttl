@@ -20,11 +20,36 @@ dhs:dataInventoryRecord
     rdfs:subClassOf dcat:Dataset ;
     .
 
+dhs:Characteristics
+    a sh:NodeShape ;
+    rdfs:comment "The characteristics of a dataset - i.e. whether it contains PII, PMI, biometrics, etc."@en ;
+    sh:targetClass dhs:Characteristics ;
+    sh:property
+    [ sh:path dhs:ch-person-level        ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-financial           ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-event-records       ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-faces               ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-fingerprints        ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-cui                 ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-phi                 ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-pii                 ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-geospatial          ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-environmental       ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-fisa                ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-8usc1367            ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-propin              ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-immigration         ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-criticalInfrastructure; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-pcii               ;  sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-biometrics         ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-disseminationRestrictions; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ]
+    .
+
 dhs:dataInventoryRecord
     a sh:NodeShape ;
     rdfs:comment "Specify the DCATv3 fields (and other fields) that are being collected for the DHS Data Inventory Project."@en ;
-    owl:versionInfo "1.4" ;
-    dcterms:modified "2022-01-28"^^xsd:date ;
+    owl:versionInfo "1.5" ;
+    dcterms:modified "2022-02-17"^^xsd:date ;
     sh:targetClass dhs:dataInventoryRecord ;
     sh:property
     [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 100 ; sh:datatype xsd:string ; sh:message "Identifier (string) is required and must not be more than 100 characters." ; dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset. String limit is 100 characters."@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
@@ -33,7 +58,7 @@ dhs:dataInventoryRecord
     [ sh:path dcat:keyword               ; sh:minCount 0 ; sh:datatype xsd:string ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:publisher          ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path usg:accessLevel            ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "restricted public" "non-public") ; sh:message "Must be one of the following (exactly): 'public', 'restricted public' or 'non-public'" ; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dhs:metadataClassification ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "non-public")                     ; sh:message "Must be one of the following (exactly): 'public' or 'non-public'"                      ; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dhs:dataCatalogRecordAccessLevel ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "non-public"); sh:message "Must be one of the following (exactly): 'public' or 'non-public'"  ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:issued             ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:date; sh:message "Issued date is required and must be a date (like 12/31/2021)." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dhs:component              ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel ],
 
@@ -95,23 +120,6 @@ dhs:dataInventoryRecord
     [ sh:path dcat:byteSize              ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:message "Only one value is allowed and must be a non-negative integer" ; a sh:PropertyShape ; dt:group dt:size ],
 
     [ sh:path dhs:datasetClassification  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:characteristics        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-person-level        ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-financial           ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-event-records       ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-faces               ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-fingerprints        ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-cui                 ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-phi                 ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-pii                 ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-geospatial          ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-environmental       ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-fisa                ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-8usc1367            ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-propin              ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-immigration         ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-criticalInfrastructure; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-disseminationRestrictions; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
 
     [ sh:path dhs:hostingLocation        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
     [ sh:path dhs:hostedInCloud          ; sh:minCount 0 ; sh:datatype xsd:boolean ; a sh:PropertyShape ; dt:group dt:location ],

@@ -37,6 +37,7 @@ then does a join with OPTIONAL on several other objects we would like to extract
 CI_QUERY = """
 SELECT DISTINCT ?aProperty ?aTitle ?aPropertyComment ?aShapeComment ?aType ?aWidth ?aGroup ?aPropertyDefinedBy ?aPropertyLabel ?aMinCount ?aDataType
 WHERE {
+{
   dhs:dataInventoryRecord sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
 
@@ -51,6 +52,24 @@ WHERE {
   OPTIONAL { ?aShapeName sh:minCount     ?aMinCount . }
   OPTIONAL { ?aShapeName sh:datatype     ?aDataType . }
   FILTER (!BOUND(?aPropertyLabel) || lang(?aPropertyLabel) = "" || lang(?aPropertyLabel) = "en" || lang(?aPropertyLabel) = "en-US")
+  } 
+  UNION 
+  {
+  dhs:Characteristics sh:property ?aShapeName .
+  ?aShapeName sh:path ?aProperty .
+
+  OPTIONAL { ?aProperty  rdfs:range      ?aType . }
+  OPTIONAL { ?aProperty  rdfs:comment    ?aPropertyComment . }
+  OPTIONAL { ?aProperty  rdfs:isDefinedBy    ?aPropertyDefinedBy . }
+  OPTIONAL { ?aProperty  rdfs:label    ?aPropertyLabel . }
+  OPTIONAL { ?aShapeName dhs:excelWidth  ?aWidth . }
+  OPTIONAL { ?aShapeName dt:title        ?aTitle . }
+  OPTIONAL { ?aShapeName dt:group        ?aGroup . }
+  OPTIONAL { ?aShapeName rdfs:comment    ?aShapeComment . }
+  OPTIONAL { ?aShapeName sh:minCount     ?aMinCount . }
+  OPTIONAL { ?aShapeName sh:datatype     ?aDataType . }
+  FILTER (!BOUND(?aPropertyLabel) || lang(?aPropertyLabel) = "" || lang(?aPropertyLabel) = "en" || lang(?aPropertyLabel) = "en-US")
+  }
 }
 """
 
@@ -140,7 +159,20 @@ class Validator:
             pass
 
     def get_query_dict(self):
-        for r in self.g.query( CI_QUERY ):
+        # creates a sorted list to output everything in the expected order
+        baseDict = self.g.query( CI_QUERY )
+        sortedDict = []
+        groupList = []
+        for q in baseDict:
+            if q['aGroup'] not in groupList:
+                groupList.append(q['aGroup'])
+                #print('test it: ' + str(q['aGroup']))
+        for k in groupList:
+            for q in baseDict:
+                if q['aGroup'] == k:
+                    sortedDict.append(q)
+
+        for r in sortedDict:
             d = r.asdict()
             if self.debug:
                 print(d)
