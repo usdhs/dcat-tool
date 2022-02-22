@@ -28,7 +28,7 @@ def test_excelGenerator():
     outdir = "/tmp"             # for dev
     fname  = os.path.join(outdir, "inventory_tool.xlsx")
     g = easy_workbook.ExcelGenerator()
-    g.add_markdown_sheet("Instructions", open(dcat_tool.INSTRUCTIONS).read())
+    g.add_markdown_sheet(name="Instructions", markdown=open(dcat_tool.INSTRUCTIONS).read(), versionNumber="1")
     g.add_columns_sheet("Inventory",
                         [easy_workbook.ColumnInfo(value="First Column", comment="Foo",
                                                   author="Author 1", width=50, typ='int', group='a'),
