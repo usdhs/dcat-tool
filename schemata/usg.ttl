@@ -115,3 +115,13 @@ usg:primaryITInvestmentUII
     rdfs:range rdfs:Literal ;
     rdfs:comment "For linking a dataset with an IT Unique Investment Identifier (UII). Can have multiple comma separated values." ;
     .
+
+usg:encryptionAlgorithm
+    a rdf:Property ;
+    rdfs:label "Encryption algorithm"@en ;
+    rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "Specifies encryption algorithm used to protect data at rest. Can have multiple comma separated values." ;
+    .    
+
+
