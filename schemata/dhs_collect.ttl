@@ -119,7 +119,8 @@ dhs:dataInventoryRecord
     [ sh:path dhs:easilyAccessibleByAllComponents  ; sh:minCount 0 ; sh:datatype xsd:boolean ; a sh:PropertyShape ; dt:group dt:location ],
     [ sh:path dhs:easilyAccessibleByGeneralPublic  ; sh:minCount 0 ; sh:datatype xsd:boolean ; a sh:PropertyShape ; dt:group dt:location ],
     [ sh:path dhs:recordTransmission     ; sh:minCount 0 ; sh:datatype xsd:date ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ],
-    [ sh:path dhs:validityTime           ; sh:minCount 0 ; sh:datatype xsd:duration ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ]
+    [ sh:path dhs:validityTime           ; sh:minCount 0 ; sh:datatype xsd:duration ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ],
+    [ sh:path usg:encryptionAlgorithm    ; sh:minCount 0 ; sh:datatype xsd:string                   ; a sh:PropertyShape; dt:group dt:publication ]
     ;
 
     sh:targetClass dhs:dataInventoryRecord ;
