@@ -25,10 +25,10 @@ dhs:Characteristics
     rdfs:subClassOf dcat:Dataset ;
     .
 
-dhs:characteristics
+dhs:characteristicsShape
     a sh:NodeShape ;
-    rdfs:comment "The characteristics of a dataset - i.e. whether it contains PII, PMI, biometrics, etc."@en ;
     sh:targetClass dhs:Characteristics ;
+    rdfs:comment "The characteristics of a dataset - i.e. whether it contains PII, PMI, biometrics, etc."@en ;
     sh:property
     [ sh:path dhs:ch-person-level        ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
     [ sh:path dhs:ch-financial           ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
@@ -47,15 +47,17 @@ dhs:characteristics
     [ sh:path dhs:ch-criticalInfrastructure; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
     [ sh:path dhs:ch-pcii               ;  sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
     [ sh:path dhs:ch-biometrics         ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-disseminationRestrictions; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ]
+    [ sh:path dhs:ch-disseminationRestrictions; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ];
+    sh:closed true;
+    sh:ignoredProperties ( rdf:type )
     .
 
-dhs:dataInventoryRecord
+dhs:dataInventoryRecordShape
     a sh:NodeShape ;
+    sh:targetClass dhs:DataInventoryRecord ;
     rdfs:comment "Specify the DCATv3 fields (and other fields) that are being collected for the DHS Data Inventory Project."@en ;
     owl:versionInfo "1.5" ;
     dcterms:modified "2022-02-17"^^xsd:date ;
-    sh:targetClass dhs:DataInventoryRecord ;
     sh:property
     [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 100 ; sh:datatype xsd:string ; sh:message "Identifier (string) is required and must not be more than 100 characters." ; dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset. String limit is 100 characters."@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 256 ; sh:datatype xsd:string ; sh:message "Title (string) is required and must not be more than 255 characters." ; rdfs:comment "The official title for the dataset. String limit is 255 characters."@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
@@ -134,9 +136,9 @@ dhs:dataInventoryRecord
 
     [ sh:path usg:encryptionAlgorithm    ; sh:minCount 0 ; sh:datatype xsd:string                   ; a sh:PropertyShape; dt:group dt:publication ],
     [ sh:path dhs:recordTransmission     ; sh:minCount 0 ; sh:datatype xsd:date ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ],
-    [ sh:path dhs:validityTime           ; sh:minCount 0 ; sh:datatype xsd:duration ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ]
-    ;
-
-    sh:targetClass dhs:DataInventoryRecord ;
+    [ sh:path dhs:validityTime           ; sh:minCount 0 ; sh:datatype xsd:duration ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ],
+    [ sh:path dhs:characteristics                  ; sh:minCount 0 ; sh:class dhs:Characteristics; a sh:PropertyShape ];
+    sh:closed true;
     skos:definition "Constraints for a record in a data catalog, describing the registration of a single dataset or data service."@en ;
+    sh:ignoredProperties ( rdf:type )
     .
