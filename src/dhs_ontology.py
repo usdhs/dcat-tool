@@ -38,7 +38,7 @@ CI_QUERY = """
 SELECT DISTINCT ?aProperty ?aTitle ?aPropertyComment ?aShapeComment ?aType ?aWidth ?aGroup ?aPropertyDefinedBy ?aPropertyLabel ?aMinCount ?aDataType
 WHERE {
 {
-  dhs:dataInventoryRecord sh:property ?aShapeName .
+  dhs:dataInventoryRecordShape sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
 
   OPTIONAL { ?aProperty  rdfs:range      ?aType . }
@@ -55,7 +55,7 @@ WHERE {
   } 
   UNION 
   {
-  dhs:Characteristics sh:property ?aShapeName .
+  dhs:characteristicsShape sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
 
   OPTIONAL { ?aProperty  rdfs:range      ?aType . }

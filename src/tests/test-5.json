@@ -14,13 +14,13 @@
         "usg": "http://resources.data.gov/resources/dcat-us/#"
     },
     "@id": "https://dhs.gov/test-5",
-    "@type": "https://usdhs.github.io/dcat-tool/#dataInventoryRecord",
+    "@type": "https://usdhs.github.io/dcat-tool/#DataInventoryRecord",
     "http://purl.org/dc/terms/identifier": "test-5",
     "http://purl.org/dc/terms/title": "test-5",
     "http://purl.org/dc/terms/description": "test owner as string",
     "http://purl.org/dc/terms/issued": {
         "@type": "xsd:date",
-        "@value": "2022-02-17"
+        "@value": "2022-02-23"
     },
     "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
     "https://usdhs.github.io/dcat-tool/#dataCatalogRecordAccessLevel": "public",

@@ -15,6 +15,7 @@ TESTFILE_2 = os.path.join(os.path.dirname(__file__), 'test-2.json')
 TESTFILE_3 = os.path.join(os.path.dirname(__file__), 'test-3.json')
 TESTFILE_4 = os.path.join(os.path.dirname(__file__), 'test-4.json')
 TESTFILE_5 = os.path.join(os.path.dirname(__file__), 'test-5.json')
+TESTFILE_6 = os.path.join(os.path.dirname(__file__), 'test-6.json')
 
 # setup the schema graph
 s = Graph().parse(COLLECT_TTL)
@@ -60,6 +61,11 @@ class TestDIPValidation(unittest.TestCase):
         d = Graph().parse(TESTFILE_5)
         validate_test_5 = validateJSONGraphs(s,d)
         self.assertTrue(validate_test_5, True)
+
+    def test_6(self):
+        d = Graph().parse(TESTFILE_6)
+        validate_test_6 = validateJSONGraphs(s,d)
+        self.assertTrue(validate_test_6, True)
 
 
 if __name__ == '__main__':

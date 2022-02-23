@@ -11,18 +11,26 @@
         "sdo": "http://schema.org/",
         "vcard": "http://www.w3.org/2006/vcard/ns#",
         "dhs": "https://usdhs.github.io/dcat-tool/#",
-        "usg": "http://resources.data.gov/resources/dcat-us/#"
+        "usg": "http://resources.data.gov/resources/dcat-us/#",
+        "ch-pii": {
+            "@id": "https://usdhs.github.io/dcat-tool/#ch-pii",
+            "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+        }
     },
-    "@id": "https://dhs.gov/test-1",
+    "@id": "https://dhs.gov/test-6",
     "@type": "https://usdhs.github.io/dcat-tool/#DataInventoryRecord",
-    "http://purl.org/dc/terms/identifier": "test-1",
-    "http://purl.org/dc/terms/title": "test-1",
-    "http://purl.org/dc/terms/description": "test only required fields for DIP record",
+    "http://purl.org/dc/terms/identifier": "test-6",
+    "http://purl.org/dc/terms/title": "test-6",
+    "http://purl.org/dc/terms/description": "test a characteristic",
     "http://purl.org/dc/terms/issued": {
         "@type": "xsd:date",
         "@value": "2022-02-23"
     },
     "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
     "https://usdhs.github.io/dcat-tool/#dataCatalogRecordAccessLevel": "public",
-    "https://usdhs.github.io/dcat-tool/#component": "MGMT"
+    "https://usdhs.github.io/dcat-tool/#component": "MGMT",
+    "https://usdhs.github.io/dcat-tool/#characteristics": {
+        "@type": "https://usdhs.github.io/dcat-tool/#Characteristics",
+        "ch-pii": "true"
+    }
 }
