@@ -171,12 +171,17 @@ def addTestNodes(nodeName, jsonobj, testValue = None):
                     jsonobj.update({nodekey["uri"]:uriobj})
                 elif 'string' in dataTypekey:
                     # -- handle UUI and Fisma --
-                    if rw in ['primaryITInvestmentUII','fismaID']:  
+                    #print('strings -- ' + rw)
+                    if rw in ['primaryITInvestmentUII','fismaID','keyword','encryptionAlgorithm']:  
                         if rw == 'fismaID':
                             jsonobj.update({nodekey["uri"]:"FSA-00100-MAJ-00100"})
-                        else:
+                        elif rw == 'keyword':
+                            jsonobj.update({nodekey["uri"]:['test','dataset','Data Inventory Record']})
+                        elif rw == 'primaryITInvestmentUII':
                             jsonobj.update({nodekey["uri"]:"010-999992220"})
-                    pass
+                        else:
+                            jsonobj.update({nodekey["uri"]:"3DES"})
+                    #pass
                 else:
                     if rw in ['owner','steward','custodian','contactPoint','publisher','creator','governance']:
                         if rw in ['publisher','creator','governance']:
@@ -196,6 +201,7 @@ def addTestNodes(nodeName, jsonobj, testValue = None):
                             jsonobj.update({nodekey["uri"]:vcardOrgObj})
                             #print('******************** found a name!!! *****************' + rw) 
                     else:
+                        #print('WIT??? -- '+ rw)
                         if rw == 'keyword':
                             jsonobj.update({nodekey["uri"]:['test','dataset','Data Inventory Record']})
                         elif rw in ['references','sharingAgreements','describedBy']:

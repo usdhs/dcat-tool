@@ -1,28 +1,33 @@
 {
-  "@context": {
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dctype": "http://purl.org/dc/terms/",
-    "usg": "http://resources.data.gov/resources/dcat-us/#",
-    "dhs": "https://usdhs.github.io/dcat-tool/#",
-    "sdo": "http://schema.org/",
-    "issued": {
-      "@id":"http://purl.org/dc/terms/issued",
-      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    "@context": {
+        "xml": "http://www.w3.org/XML/1998/namespace",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "dctype": "http://purl.org/dc/dcmitype/",
+        "prov": "http://www.w3.org/ns/prov#",
+        "sdo": "http://schema.org/",
+        "vcard": "http://www.w3.org/2006/vcard/ns#",
+        "dhs": "https://usdhs.github.io/dcat-tool/#",
+        "usg": "http://resources.data.gov/resources/dcat-us/#"
     },
-    "dataQuality": {
-      "@id":"http://resources.data.gov/resources/dcat-us/#dataQuality",
-      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-    }
-  },
-  "@id": "https://dhs.gov/test-id-23451-y78ujy",
-  "@type": "https://usdhs.github.io/dcat-tool/#dataInventoryRecord",
-  "dctype:description": "A description should not exceed 4000 chars.",
-  "dctype:identifier": "test-id-23451-y78ujy",
-  "issued":"2021-10-21",
-  "dctype:title": "A Test Title",
-  "usg:accessLevel": "public",
-  "dhs:component": "MGMT",
-  "dhs:metadataClassification": "CUI"
+    "@id": "https://dhs.gov/test-3",
+    "@type": "https://usdhs.github.io/dcat-tool/#DataInventoryRecord",
+    "http://purl.org/dc/terms/identifier": "test-3",
+    "http://purl.org/dc/terms/title": "test-3",
+    "http://purl.org/dc/terms/description": "test keywords array in DIP record",
+    "http://purl.org/dc/terms/issued": {
+        "@type": "xsd:date",
+        "@value": "2022-02-24"
+    },
+    "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
+    "https://usdhs.github.io/dcat-tool/#dataCatalogRecordAccessLevel": "public",
+    "https://usdhs.github.io/dcat-tool/#component": "MGMT",
+    "http://www.w3.org/ns/dcat#keyword": [
+        "test",
+        "some",
+        "keywords"
+    ]
 }

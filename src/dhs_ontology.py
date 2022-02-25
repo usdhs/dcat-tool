@@ -187,6 +187,9 @@ class Validator:
         simp = Simplifier(self.g)
         counter = 0
         for d in self.get_query_dict():
+            group = d.get('aGroup', '')
+            if(group == ''):
+                continue
             comment = d.get('aShapeComment', d.get('aPropertyComment', ''))
             label = d.get('aPropertyLabel', '')
             definedByNS = d.get('aPropertyDefinedBy', '')
@@ -195,7 +198,7 @@ class Validator:
             if(int(requiredIn) > 0):
                 required = "Yes" 
             counter += 1
-            yield (simp.simplify(d['aGroup']), simp.simplify(d['aProperty']), comment, label, definedByNS, required)
+            yield (group, simp.simplify(d['aProperty']), comment, label, definedByNS, required)
         #print(str(counter))
 
     def get_namespace(self):
@@ -207,6 +210,9 @@ class Validator:
         for d in self.get_query_dict():
             definedByNS = d.get('aPropertyDefinedBy', '')
             if(namespaceStr in definedByNS):
+                group = d.get('aGroup', '')
+                if(group == ''):
+                    continue
                 comment = d.get('aShapeComment', d.get('aPropertyComment', ''))
                 label = d.get('aPropertyLabel', '')
                 definedByNS = d.get('aPropertyDefinedBy', '')
@@ -215,7 +221,7 @@ class Validator:
                 if(int(requiredIn) > 0):
                     required = "Yes"
                 counterb += 1
-                yield (simp.simplify(d['aGroup']), simp.simplify(d['aProperty']), comment, label, definedByNS, required, simp.simplify(d.get('aType', DEFAULT_TYPE)), simp.simplify(d.get('aDataType', DEFAULT_TYPE)) )
+                yield (group, simp.simplify(d['aProperty']), comment, label, definedByNS, required, simp.simplify(d.get('aType', DEFAULT_TYPE)), simp.simplify(d.get('aDataType', DEFAULT_TYPE)) )
         #print(str(counterb))
 
     def get_template_column_info_objs(self):

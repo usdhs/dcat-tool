@@ -214,6 +214,10 @@ class ExcelGenerator:
             from openpyxl.comments import Comment
             import openpyxl.utils
 
+            # 'characteristics'  is a class so skip it
+            if obj.value=='characteristics':
+                continue
+
             #print(obj.value, obj.typ)
             # We tried making the comment string the description and the DCATv3 type is the comment "author", but that didn't work
             cell = ws.cell(row=1, column=col)
@@ -255,7 +259,7 @@ class ExcelGenerator:
                     int100_dv.add(f'{column_letter}2:{column_letter}{rows}')
                 if obj.value=='accessLevel':
                     enum_dv.add(f'{column_letter}2:{column_letter}{rows}')
-                if obj.value=='metadataClassification':
+                if obj.value=='dataCatalogRecordAccessLevel':
                     enum_dv2.add(f'{column_letter}2:{column_letter}{rows}')
     def save(self, fname):
         self.wb.save(fname)

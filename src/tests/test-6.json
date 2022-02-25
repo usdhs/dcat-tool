@@ -24,7 +24,7 @@
     "http://purl.org/dc/terms/description": "test a characteristic",
     "http://purl.org/dc/terms/issued": {
         "@type": "xsd:date",
-        "@value": "2022-02-23"
+        "@value": "2022-02-24"
     },
     "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
     "https://usdhs.github.io/dcat-tool/#dataCatalogRecordAccessLevel": "public",
