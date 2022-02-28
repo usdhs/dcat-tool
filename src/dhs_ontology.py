@@ -198,7 +198,8 @@ class Validator:
             if(int(requiredIn) > 0):
                 required = "Yes" 
             counter += 1
-            yield (group, simp.simplify(d['aProperty']), comment, label, definedByNS, required)
+            #yield (group, simp.simplify(d['aProperty']), comment, label, definedByNS, required)
+            yield (simp.simplify(group, namespace=False), simp.simplify(d['aProperty']), comment, label, definedByNS, required, simp.simplify(d.get('aType', DEFAULT_TYPE)), simp.simplify(d.get('aDataType', DEFAULT_TYPE)) )
         #print(str(counter))
 
     def get_namespace(self):

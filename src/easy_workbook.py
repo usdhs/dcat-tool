@@ -31,6 +31,7 @@ LIGHT_GREEN_FILL  = PatternFill(fill_type='solid', start_color='EAFAF1', end_col
 PR_FILL     = PatternFill(fill_type='solid', start_color='F4D03F')       # yellow
 STATE1_FILL = PatternFill(fill_type='solid', start_color='F2F4F4')   # silver
 STATE2_FILL = PatternFill(fill_type='solid', start_color='A9CCE3') # blue
+STATE3_FILL = PatternFill(fill_type='solid', start_color='A0A0A0') # grey
 
 LIGHT_COLORS = ['FFFFEE','FFEEFF','EEFFFF','FFEEEE','EEFFEE','EEEEFF','EEEEEE']
 

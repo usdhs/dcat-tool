@@ -59,6 +59,7 @@ if __name__=="__main__":
     parser.add_argument("--dumpci", help="Dump the collection instrument after everything it is read", action='store_true')
     parser.add_argument("--writeschema", help="write the schema to the specified file")
     parser.add_argument("--render_descriptions", help="Render descriptions of each attribute in an HTML file")
+    parser.add_argument("--render_excel_descriptions", help="Render descriptions of each attribute in an Excel file")
     parser.add_argument("--render_namespace", help="Render namespace descriptions for novel attributes in an HTML file")
     parser.add_argument("--make_template",
                         help="specify the output filename of the Excel template to make for a collection schema")
@@ -114,6 +115,61 @@ if __name__=="__main__":
         )
         template = env.get_template('definitions.html')
         open(args.render_descriptions,"w").write(template.render(desc = desc))
+
+    if args.render_excel_descriptions:
+        desc = v.get_descriptions()
+        wb = easy_workbook.Workbook()
+        ws = wb.active
+        ws.title = "DIP Attribute Descriptions"
+        #write header row
+        bold = easy_workbook.Font(color="FF0000", bold=True)
+        ws['A1'] = 'Attribute Name'
+        ws['B1'] = 'Qualified Name'
+        ws['C1'] = 'Description'
+        ws['D1'] = 'Required'
+        ws['E1'] = 'Data Type'
+        ws['F1'] = 'Namespace'
+        ws['G1'] = 'Group'
+        #row = ws.row_dimensions[1]
+        #row.font = easy_workbook.BOLD
+        ws['A1'].font = easy_workbook.BOLD
+        ws['A1'].fill = easy_workbook.STATE3_FILL
+        ws['B1'].font = easy_workbook.BOLD
+        ws['B1'].fill = easy_workbook.STATE3_FILL
+        ws['C1'].font = easy_workbook.BOLD
+        ws['C1'].fill = easy_workbook.STATE3_FILL
+        ws['D1'].font = easy_workbook.BOLD
+        ws['D1'].fill = easy_workbook.STATE3_FILL
+        ws['E1'].font = easy_workbook.BOLD
+        ws['E1'].fill = easy_workbook.STATE3_FILL
+        ws['F1'].font = easy_workbook.BOLD
+        ws['F1'].fill = easy_workbook.STATE3_FILL
+        ws['G1'].font = easy_workbook.BOLD
+        ws['G1'].fill = easy_workbook.STATE3_FILL
+        ws.column_dimensions['A'].width = 34
+        ws.column_dimensions['B'].width = 34
+        ws.column_dimensions['C'].width = 40
+        ws.column_dimensions['E'].width = 15
+        ws.column_dimensions['F'].width = 40
+        ws.column_dimensions['G'].width = 34
+        rowCounter = 2
+        for d in desc:
+            ws.cell(row=rowCounter,column=1).value = d[3]
+            ws.cell(row=rowCounter,column=2).value = d[1]
+            ws.cell(row=rowCounter,column=3).value = d[2]
+            ws.cell(row=rowCounter,column=4).value = d[5]
+            if d[5] == 'Yes':
+                ws.cell(row=rowCounter,column=4).fill = easy_workbook.PINK_FILL
+            ws.cell(row=rowCounter,column=5).value = d[7]
+            ws.cell(row=rowCounter,column=6).value = d[4]
+            ws.cell(row=rowCounter,column=6).hyperlink = d[4]
+            ws.cell(row=rowCounter,column=6).font = easy_workbook.Font(color="0000FF")
+            ws.cell(row=rowCounter,column=7).value = d[0]
+            rowCounter += 1
+            #print(d[0])
+        #print('Done!')
+        wb.save(args.render_excel_descriptions)
+
 
     if args.render_namespace:
         namesp = v.get_namespace()
