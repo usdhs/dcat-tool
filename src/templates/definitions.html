@@ -12,7 +12,7 @@
 Below is a list of terms and their definitions for the DHS Data Inventory.
 
 <table class='definitions'>
-{% for (group,name,d,label,namesp, required) in desc %}
+{% for (group,name,d,label,namesp, required, rtype, dtype) in desc %}
    {% if loop.changed(group) %}
       </table>
       <h3>{{group}}</h3>

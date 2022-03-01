@@ -33,7 +33,7 @@ The minimum record for the DIP collects just enough data to identify that a data
     <li>Title</li>
     <li>Description</li>
     <li>Access Level</li>
-    <li>Metadata Classification</li>
+    <li>Data Catalog Record Access Level</li>
     <li>Date Issued</li>
     <li>Component</li>
   </ul>
@@ -99,7 +99,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
 
    
       </table>
-      <h3>dt:highLevel</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#highLevel</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
@@ -121,7 +121,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <tr><th> Access Level </th> <td> usg:accessLevel </td> <td> The degree to which this dataset could be made publicly-available, regardless of whether it has been made available. Choices: public (Data asset is or could be made publicly available to all without restrictions), restricted public (Data asset is available under certain use restrictions), or non-public (Data asset is not available to members of the public). </td> <td> <a href="https://resources.data.gov/resources/dcat-us/" target="_blank">https://resources.data.gov/resources/dcat-us/</a> </td> <td> Yes </td> </tr>
 
    
-      <tr><th> Metadata Classification </th> <td> dhs:metadataClassification </td> <td> The classification level of the metadata. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> Yes </td> </tr>
+      <tr><th> Data Catalog Record Access Level </th> <td> dhs:dataCatalogRecordAccessLevel </td> <td> The classification level of the metadata. This should be 'public' for data catalog records that are reported to data.gov, and 'non-public' for data catalog records that are not reported. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> Yes </td> </tr>
 
    
       <tr><th> Date Issued </th> <td> dcterms:issued </td> <td> Date of formal issuance (e.g., publication) of the resource. </td> <td> <a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a> </td> <td> Yes </td> </tr>
@@ -131,7 +131,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
 
    
       </table>
-      <h3>dt:dataGovernanceInformation</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#dataGovernanceInformation</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
@@ -181,7 +181,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
 
    
       </table>
-      <h3>dt:standards</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#standards</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
@@ -204,7 +204,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
 
    
       </table>
-      <h3>dt:provenance</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#provenance</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
@@ -224,7 +224,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
 
    
       </table>
-      <h3>dt:dataset</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#dataset</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
@@ -232,7 +232,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
 
    
       </table>
-      <h3>dt:datasetGeospatial</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#datasetGeospatial</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
@@ -243,7 +243,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
 
    
       </table>
-      <h3>dt:datasetTemporal</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#datasetTemporal</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
@@ -254,7 +254,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
 
    
       </table>
-      <h3>dt:dataQuality</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#dataQuality</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
@@ -271,7 +271,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
 
    
       </table>
-      <h3>dt:distribution</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#distribution</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
@@ -306,7 +306,7 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
 
    
       </table>
-      <h3>dt:size</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#size</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
@@ -320,14 +320,11 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
 
    
       </table>
-      <h3>dt:security</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#security</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
       <tr><th> Dataset Classification </th> <td> dhs:datasetClassification </td> <td> Security classificaiton of the data. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
-
-   
-      <tr><th> Characteristics </th> <td> dhs:characteristics </td> <td> Specific container to hold various data characteristics. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
       <tr><th> Characteristics - Person Level </th> <td> dhs:ch-person-level </td> <td> The dataset contains person-level records. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
@@ -375,11 +372,17 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
       <tr><th> Characteristics - Critical Infrastructure </th> <td> dhs:ch-criticalInfrastructure </td> <td> The dataset contains critical infrastructure information. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
+      <tr><th> Characteristics - PCII - Protected Critical Infrastructure Information </th> <td> dhs:ch-pcii </td> <td> The dataset contains Protected Critical Infrastructure Information (PCII). </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
+
+   
+      <tr><th> Characteristics - biometrics </th> <td> dhs:ch-biometrics </td> <td> The dataset contains biometric information. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
+
+   
       <tr><th> Characteristics - Dissemination Restrictions </th> <td> dhs:ch-disseminationRestrictions </td> <td> The information has dissemination restrictions. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 
    
       </table>
-      <h3>dt:location</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#location</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
    
@@ -399,9 +402,12 @@ Below is a list of terms and their definitions for the DHS Data Inventory.
 
    
       </table>
-      <h3>dt:publication</h3>
+      <h3>http://github.com/usdhs/dcat-tool/0.1#publication</h3>
       <table class='definitions'>
          <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
+   
+      <tr><th> Encryption algorithm </th> <td> usg:encryptionAlgorithm </td> <td> Specifies encryption algorithm used to protect data at rest. Can have multiple comma separated values. </td> <td> <a href="http://resources.data.gov/resources/dcat-us/" target="_blank">http://resources.data.gov/resources/dcat-us/</a> </td> <td> No </td> </tr>
+
    
       <tr><th> Record Transmission </th> <td> dhs:recordTransmission </td> <td> When the metadata record was transmitted. Must be a date. </td> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td> <td> No </td> </tr>
 

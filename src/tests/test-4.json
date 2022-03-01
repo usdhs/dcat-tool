@@ -14,16 +14,16 @@
         "usg": "http://resources.data.gov/resources/dcat-us/#"
     },
     "@id": "https://dhs.gov/test-4",
-    "@type": "https://usdhs.github.io/dcat-tool/#dataInventoryRecord",
+    "@type": "https://usdhs.github.io/dcat-tool/#DataInventoryRecord",
     "http://purl.org/dc/terms/identifier": "test-4",
     "http://purl.org/dc/terms/title": "test-4",
     "http://purl.org/dc/terms/description": "test keywords string",
     "http://purl.org/dc/terms/issued": {
         "@type": "xsd:date",
-        "@value": "2022-02-16"
+        "@value": "2022-02-24"
     },
     "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
-    "https://usdhs.github.io/dcat-tool/#metadataClassification": "public",
+    "https://usdhs.github.io/dcat-tool/#dataCatalogRecordAccessLevel": "public",
     "https://usdhs.github.io/dcat-tool/#component": "MGMT",
     "http://www.w3.org/ns/dcat#keyword": "test"
 }

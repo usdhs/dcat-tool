@@ -21,11 +21,19 @@ s = Graph().parse(COLLECT_TTL)
 ALL_QUERY = """
 SELECT DISTINCT ?aProperty ?aMinCount ?aDataType
 WHERE {
-  dhs:dataInventoryRecord sh:property ?aShapeName .
+  {
+  dhs:dataInventoryRecordShape sh:property ?aShapeName .
   ?aShapeName sh:path ?aProperty .
   OPTIONAL { ?aShapeName sh:minCount     ?aMinCount . }
   OPTIONAL { ?aShapeName sh:datatype     ?aDataType . }
-
+  }
+  UNION
+  {
+   dhs:characteristicsShape sh:property ?aShapeName .
+  ?aShapeName sh:path ?aProperty .
+  OPTIONAL { ?aShapeName sh:minCount     ?aMinCount . }
+  OPTIONAL { ?aShapeName sh:datatype     ?aDataType . }
+  }
 }"""
 
 # -- builds a useful data dictionary from the results of the SPARQL query --
@@ -74,12 +82,19 @@ def cleanContextItem(jsonobj, itm):
     if itm in jsonobj:
         jsonobj.pop(itm)
 
+
+def addAttributeToContext(jsonobj, attributeName, attributeObj):
+    ctx = jsonobj["@context"]
+    ctx.update({attributeName:attributeObj})
+
+
+
 # --- build the required fields as a base --
 def buildTestBase(testid, testDescription, jsonobj):
     thisday = datetime.today().strftime('%Y-%m-%d')
     testiduri = "https://dhs.gov/" + testid
     jsonobj.update({"@id":testiduri})
-    jsonobj.update({"@type":"https://usdhs.github.io/dcat-tool/#dataInventoryRecord"})
+    jsonobj.update({"@type":"https://usdhs.github.io/dcat-tool/#DataInventoryRecord"})
     jsonobj.update({"http://purl.org/dc/terms/identifier":testid})
     jsonobj.update({"http://purl.org/dc/terms/title":testid})
     jsonobj.update({"http://purl.org/dc/terms/description":testDescription})
@@ -88,7 +103,7 @@ def buildTestBase(testid, testDescription, jsonobj):
     dateobj.update({"@value":thisday})
     jsonobj.update({"http://purl.org/dc/terms/issued":dateobj})
     jsonobj.update({"http://resources.data.gov/resources/dcat-us/#accessLevel":"public"})
-    jsonobj.update({"https://usdhs.github.io/dcat-tool/#metadataClassification":"public"})
+    jsonobj.update({"https://usdhs.github.io/dcat-tool/#dataCatalogRecordAccessLevel":"public"})
     jsonobj.update({"https://usdhs.github.io/dcat-tool/#component":"MGMT"})
 
     return jsonobj
@@ -100,7 +115,7 @@ def addTestNodes(nodeName, jsonobj, testValue = None):
     if nodeName == 'all':
         # loop and add all elements in the allNodesDict
         # types that are not string need the type identified
-        #print('inside ALL --- ' + str(len(allNodesDict)))
+        # print('inside ALL --- ' + str(len(allNodesDict)))
         for rw , vl in allNodesDict.items():
             if(vl["min"] == '0'):
                 nodekey = allNodesDict.get(rw)
@@ -113,12 +128,30 @@ def addTestNodes(nodeName, jsonobj, testValue = None):
                     jsonobj.update({nodekey["uri"]:intobj})        
                     #print('a int field! ----> ' + rw)
                 elif 'boolean' in dataTypekey:
-                    boolobj = {}
-                    boolobj.update({'@type':dataTypekey})
-                    rbool = random.choice(['true','false'])
-                    boolobj.update({'@value':rbool})
-                    jsonobj.update({nodekey["uri"]:boolobj})        
-                    #print('a bool field! ----> ' + rw)
+                    # if this is a 'ch-' type then 1. add the attribute type to the context, check to see if the object exists in the record for the class, add value to object
+                    if('ch-' in nodekey["uri"]):
+                        boolIdObj = {}
+                        boolIdObj.update({'@id':nodekey["uri"]})
+                        boolIdObj.update({'@type':dataTypekey})
+                        addAttributeToContext(jsonobj,rw,boolIdObj)
+                        #print('in boolean test... ' + rw)
+                        if("https://usdhs.github.io/dcat-tool/#characteristics" in jsonobj):
+                            charObj = jsonobj.get("https://usdhs.github.io/dcat-tool/#characteristics")
+                            charObj.update({rw:"true"})
+                            #print('just add the attribute and value')
+                        else:
+                            CharisteristicsObj = {}
+                            CharisteristicsObj.update({'@type':'https://usdhs.github.io/dcat-tool/#Characteristics'})
+                            CharisteristicsObj.update({rw:'true'})
+                            jsonobj.update({"https://usdhs.github.io/dcat-tool/#characteristics":CharisteristicsObj})
+                            #print('need a node!')
+                    else:
+                        boolobj = {}
+                        boolobj.update({'@type':dataTypekey})
+                        rbool = random.choice(['true','false'])
+                        boolobj.update({'@value':rbool})
+                        jsonobj.update({nodekey["uri"]:boolobj})        
+                        #print('a bool field! ----> ' + rw)
                 elif 'date' in dataTypekey:
                     dateobj = {}
                     dateobj.update({'@type':dataTypekey})
@@ -138,12 +171,17 @@ def addTestNodes(nodeName, jsonobj, testValue = None):
                     jsonobj.update({nodekey["uri"]:uriobj})
                 elif 'string' in dataTypekey:
                     # -- handle UUI and Fisma --
-                    if rw in ['primaryITInvestmentUII','fismaID']:  
+                    #print('strings -- ' + rw)
+                    if rw in ['primaryITInvestmentUII','fismaID','keyword','encryptionAlgorithm']:  
                         if rw == 'fismaID':
                             jsonobj.update({nodekey["uri"]:"FSA-00100-MAJ-00100"})
-                        else:
+                        elif rw == 'keyword':
+                            jsonobj.update({nodekey["uri"]:['test','dataset','Data Inventory Record']})
+                        elif rw == 'primaryITInvestmentUII':
                             jsonobj.update({nodekey["uri"]:"010-999992220"})
-                    pass
+                        else:
+                            jsonobj.update({nodekey["uri"]:"3DES"})
+                    #pass
                 else:
                     if rw in ['owner','steward','custodian','contactPoint','publisher','creator','governance']:
                         if rw in ['publisher','creator','governance']:
@@ -163,6 +201,7 @@ def addTestNodes(nodeName, jsonobj, testValue = None):
                             jsonobj.update({nodekey["uri"]:vcardOrgObj})
                             #print('******************** found a name!!! *****************' + rw) 
                     else:
+                        #print('WIT??? -- '+ rw)
                         if rw == 'keyword':
                             jsonobj.update({nodekey["uri"]:['test','dataset','Data Inventory Record']})
                         elif rw in ['references','sharingAgreements','describedBy']:
@@ -227,8 +266,28 @@ def addTestNodes(nodeName, jsonobj, testValue = None):
 
             
     else:
-        nodekey = allNodesDict.get(nodeName)
-        jsonobj.update({nodekey["uri"]:testValue})
+        #print('trying to add: ' + nodeName)
+        if('ch-' in nodeName):
+            nodekey = allNodesDict.get(nodeName)
+            print('special treatment!')
+            boolIdObj = {}
+            boolIdObj.update({'@id':nodekey["uri"]})
+            boolIdObj.update({'@type':nodekey["type"]})
+            addAttributeToContext(jsonobj,nodeName,boolIdObj)
+            #print('in boolean test... ' + rw)
+            if("https://usdhs.github.io/dcat-tool/#characteristics" in jsonobj):
+                charObj = jsonobj.get("https://usdhs.github.io/dcat-tool/#characteristics")
+                charObj.update({nodeName:"true"})
+                #print('just add the attribute and value')
+            else:
+                CharisteristicsObj = {}
+                CharisteristicsObj.update({'@type':'https://usdhs.github.io/dcat-tool/#Characteristics'})
+                CharisteristicsObj.update({nodeName:'true'})
+                jsonobj.update({"https://usdhs.github.io/dcat-tool/#characteristics":CharisteristicsObj})
+                #print('need a node!')
+        else:        
+            nodekey = allNodesDict.get(nodeName)
+            jsonobj.update({nodekey["uri"]:testValue})
 
     return jsonobj
 
@@ -247,7 +306,8 @@ testSuiteDict = [
     {'id':'test-2','description':'test all fields for DIP record - a full record','testObject':None,'node':'all'},
     {'id':'test-3','description':'test keywords array in DIP record','testObject':['test','some','keywords'],'node':'keyword'},
     {'id':'test-4','description':'test keywords string','testObject':'test','node':'keyword'},
-    {'id':'test-5','description':'test owner as string','testObject':'Mr Bingo','node':'owner'}
+    {'id':'test-5','description':'test owner as string','testObject':'Mr Bingo','node':'owner'},
+    {'id':'test-6','description':'test a characteristic','testObject':'true','node':'ch-pii'}
     ]
 
 # -- the main function --
@@ -264,7 +324,6 @@ def buildTestSuite():
             ojson = buildTestBase(testcase["id"], testcase["description"], bjson)
             ojson = addTestNodes('all', bjson)
         else:
-            #print('build a special case for: ' + testcase["node"])
             #ojson = addTestNodes('keyword', bjson, ['test','some','keywords'])
             ojson = buildTestBase(testcase["id"], testcase["description"], bjson)
             ojson = addTestNodes(testcase["node"], bjson, testcase["testObject"])
@@ -280,5 +339,7 @@ def writeTestToFile(fName, testObj):
     with open(fileName, 'w') as outfile:
         outfile.write(testObj)
 
+
+#print('inside ALL --- ' + str(allNodes))
 buildTestSuite()
 print('Done!')

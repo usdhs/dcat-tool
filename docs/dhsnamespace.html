@@ -13,9 +13,9 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
-    <h3>dt:highLevel</h3>
+    <h3>http://github.com/usdhs/dcat-tool/0.1#highLevel</h3>
     
-    <a href="#Metadata Classification">Metadata Classification</a>&nbsp
+    <a href="#Data Catalog Record Access Level">Data Catalog Record Access Level</a>&nbsp
 
 
     
@@ -23,7 +23,7 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
-    <h3>dt:dataGovernanceInformation</h3>
+    <h3>http://github.com/usdhs/dcat-tool/0.1#dataGovernanceInformation</h3>
     
     <a href="#Governance">Governance</a>&nbsp
 
@@ -65,7 +65,7 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
-    <h3>dt:standards</h3>
+    <h3>http://github.com/usdhs/dcat-tool/0.1#standards</h3>
     
     <a href="#Conforms FIPS">Conforms FIPS</a>&nbsp
 
@@ -87,7 +87,7 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
-    <h3>dt:provenance</h3>
+    <h3>http://github.com/usdhs/dcat-tool/0.1#provenance</h3>
     
     <a href="#Source Datasets">Source Datasets</a>&nbsp
 
@@ -97,7 +97,7 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
-    <h3>dt:dataQuality</h3>
+    <h3>http://github.com/usdhs/dcat-tool/0.1#dataQuality</h3>
     
     <a href="#Data Quality Known">Data Quality Known</a>&nbsp
 
@@ -111,7 +111,7 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
-    <h3>dt:distribution</h3>
+    <h3>http://github.com/usdhs/dcat-tool/0.1#distribution</h3>
     
     <a href="#Access URL NIEM">Access URL NIEM</a>&nbsp
 
@@ -125,7 +125,7 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
-    <h3>dt:size</h3>
+    <h3>http://github.com/usdhs/dcat-tool/0.1#size</h3>
     
     <a href="#Table Count">Table Count</a>&nbsp
 
@@ -135,13 +135,9 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
-    <h3>dt:security</h3>
+    <h3>http://github.com/usdhs/dcat-tool/0.1#security</h3>
     
     <a href="#Dataset Classification">Dataset Classification</a>&nbsp
-
-
-    
-    <a href="#Characteristics">Characteristics</a>&nbsp
 
 
     
@@ -205,11 +201,19 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
+    <a href="#Characteristics - PCII - Protected Critical Infrastructure Information">Characteristics - PCII - Protected Critical Infrastructure Information</a>&nbsp
+
+
+    
+    <a href="#Characteristics - biometrics">Characteristics - biometrics</a>&nbsp
+
+
+    
     <a href="#Characteristics - Dissemination Restrictions">Characteristics - Dissemination Restrictions</a>&nbsp
 
 
     
-    <h3>dt:location</h3>
+    <h3>http://github.com/usdhs/dcat-tool/0.1#location</h3>
     
     <a href="#Hosting Location">Hosting Location</a>&nbsp
 
@@ -231,7 +235,7 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
-    <h3>dt:publication</h3>
+    <h3>http://github.com/usdhs/dcat-tool/0.1#publication</h3>
     
     <a href="#Record Transmission">Record Transmission</a>&nbsp
 
@@ -248,12 +252,12 @@ Detailed definitions follow:
 
    
       </table>
-      <a name="Metadata Classification"></a>
-      <h3>Metadata Classification</h3>      
+      <a name="Data Catalog Record Access Level"></a>
+      <h3>Data Catalog Record Access Level</h3>      
       <table class='definitions'>
-         <tr class="headspecial"><td colspan="2">Term Name: dhs:metadataClassification &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:dataCatalogRecordAccessLevel &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
    
-        <tr><th> Description </th> <td> The classification level of the metadata. </td></tr> 
+        <tr><th> Description </th> <td> The classification level of the metadata. This should be 'public' for data catalog records that are reported to data.gov, and 'non-public' for data catalog records that are not reported. </td></tr> 
         <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
         <tr><th>Required</th><td> Yes </td> </tr>
         <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
@@ -543,7 +547,7 @@ Detailed definitions follow:
         <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
         <tr><th>Required</th><td> No </td> </tr>
         <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
-        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:anyURI </td> </tr>
 
    
       </table>
@@ -605,19 +609,6 @@ Detailed definitions follow:
          <tr class="headspecial"><td colspan="2">Term Name: dhs:datasetClassification &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
    
         <tr><th> Description </th> <td> Security classificaiton of the data. </td></tr> 
-        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
-        <tr><th>Required</th><td> No </td> </tr>
-        <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
-        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
-
-   
-      </table>
-      <a name="Characteristics"></a>
-      <h3>Characteristics</h3>      
-      <table class='definitions'>
-         <tr class="headspecial"><td colspan="2">Term Name: dhs:characteristics &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
-   
-        <tr><th> Description </th> <td> Specific container to hold various data characteristics. </td></tr> 
         <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
         <tr><th>Required</th><td> No </td> </tr>
         <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
@@ -820,6 +811,32 @@ Detailed definitions follow:
 
    
       </table>
+      <a name="Characteristics - PCII - Protected Critical Infrastructure Information"></a>
+      <h3>Characteristics - PCII - Protected Critical Infrastructure Information</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-pcii &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains Protected Critical Infrastructure Information (PCII). </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
+      <a name="Characteristics - biometrics"></a>
+      <h3>Characteristics - biometrics</h3>      
+      <table class='definitions'>
+         <tr class="headspecial"><td colspan="2">Term Name: dhs:ch-biometrics &nbsp <a class="hrefright" href="#top">return to top</a> </td></tr>
+   
+        <tr><th> Description </th> <td> The dataset contains biometric information. </td></tr> 
+        <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
+        <tr><th>Required</th><td> No </td> </tr>
+        <tr><th>Rdfs datatype</th><td> xsd:boolean </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
+
+   
+      </table>
       <a name="Characteristics - Dissemination Restrictions"></a>
       <h3>Characteristics - Dissemination Restrictions</h3>      
       <table class='definitions'>
@@ -855,7 +872,7 @@ Detailed definitions follow:
         <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
         <tr><th>Required</th><td> No </td> </tr>
         <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
-        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
 
    
       </table>
@@ -868,7 +885,7 @@ Detailed definitions follow:
         <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
         <tr><th>Required</th><td> No </td> </tr>
         <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
-        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
 
    
       </table>
@@ -881,7 +898,7 @@ Detailed definitions follow:
         <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
         <tr><th>Required</th><td> No </td> </tr>
         <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
-        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
 
    
       </table>
@@ -894,7 +911,7 @@ Detailed definitions follow:
         <tr><th> namespace </th> <td> <a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a> </td></tr>
         <tr><th>Required</th><td> No </td> </tr>
         <tr><th>Rdfs datatype</th><td> rdfs:Literal </td> </tr>
-        <tr><th>Shacl datatype </th><td> xsd:string </td> </tr>
+        <tr><th>Shacl datatype </th><td> xsd:boolean </td> </tr>
 
    
       </table>

@@ -31,6 +31,7 @@ LIGHT_GREEN_FILL  = PatternFill(fill_type='solid', start_color='EAFAF1', end_col
 PR_FILL     = PatternFill(fill_type='solid', start_color='F4D03F')       # yellow
 STATE1_FILL = PatternFill(fill_type='solid', start_color='F2F4F4')   # silver
 STATE2_FILL = PatternFill(fill_type='solid', start_color='A9CCE3') # blue
+STATE3_FILL = PatternFill(fill_type='solid', start_color='A0A0A0') # grey
 
 LIGHT_COLORS = ['FFFFEE','FFEEFF','EEFFFF','FFEEEE','EEFFEE','EEEEFF','EEEEEE']
 
@@ -214,6 +215,10 @@ class ExcelGenerator:
             from openpyxl.comments import Comment
             import openpyxl.utils
 
+            # 'characteristics'  is a class so skip it
+            if obj.value=='characteristics':
+                continue
+
             #print(obj.value, obj.typ)
             # We tried making the comment string the description and the DCATv3 type is the comment "author", but that didn't work
             cell = ws.cell(row=1, column=col)
@@ -255,7 +260,7 @@ class ExcelGenerator:
                     int100_dv.add(f'{column_letter}2:{column_letter}{rows}')
                 if obj.value=='accessLevel':
                     enum_dv.add(f'{column_letter}2:{column_letter}{rows}')
-                if obj.value=='metadataClassification':
+                if obj.value=='dataCatalogRecordAccessLevel':
                     enum_dv2.add(f'{column_letter}2:{column_letter}{rows}')
     def save(self, fname):
         self.wb.save(fname)

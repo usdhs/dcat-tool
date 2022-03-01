@@ -30,10 +30,10 @@ dcterms:contributor [
     owl:versionInfo "Initial Version";
     .
 
-dhs:metadataClassification
+dhs:dataCatalogRecordAccessLevel
     a rdf:Property ;
     rdfs:range rdfs:Literal ;
-    rdfs:label "Metadata Classification"@en ;
+    rdfs:label "Data Catalog Record Access Level"@en ;
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:comment "The classification level of the metadata. This should be 'public' for data catalog records that are reported to data.gov, and 'non-public' for data catalog records that are not reported." ;
     .
@@ -407,6 +407,22 @@ dhs:ch-disseminationRestrictions
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
     rdfs:comment "The information has dissemination restrictions." ;
+    .
+
+dhs:ch-biometrics
+    a rdf:Property ;
+    rdfs:label "Characteristics - biometrics"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range xsd:boolean;
+    rdfs:comment "The dataset contains biometric information." ;
+    .
+
+dhs:ch-pcii
+    a rdf:Property ;
+    rdfs:label "Characteristics - PCII - Protected Critical Infrastructure Information"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range xsd:boolean;
+    rdfs:comment "The dataset contains Protected Critical Infrastructure Information (PCII)." ;
     .
 
 dhs:hostingLocation
