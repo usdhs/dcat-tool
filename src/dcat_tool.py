@@ -165,6 +165,7 @@ if __name__=="__main__":
             ws.cell(row=rowCounter,column=6).hyperlink = d[4]
             ws.cell(row=rowCounter,column=6).font = easy_workbook.Font(color="0000FF")
             ws.cell(row=rowCounter,column=7).value = d[0]
+            ws.cell(row=rowCounter,column=8).value = rowCounter - 1
             rowCounter += 1
             #print(d[0])
         #print('Done!')
