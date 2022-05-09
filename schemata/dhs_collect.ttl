@@ -59,7 +59,7 @@ dhs:dataInventoryRecordShape
     owl:versionInfo "1.5" ;
     dcterms:modified "2022-02-17"^^xsd:date ;
     sh:property
-    [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 128 ; sh:pattern "^\\S*$" ; sh:datatype xsd:string ; sh:message "Identifier (string) is required and must not be more than 100 characters." ; dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset. String limit is 100 characters."@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 128 ; sh:pattern "^\\S*$" ; sh:datatype xsd:string ; sh:message "Identifier (string) is required, must not be more than 128 characters and cannot contain spaces." ; dt:title "unique identifier"; rdfs:comment "A unique identifier for the dataset. String limit is 100 characters."@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 256 ; sh:datatype xsd:string ; sh:message "Title (string) is required and must not be more than 255 characters." ; rdfs:comment "The official title for the dataset. String limit is 255 characters."@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:description        ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 4000 ; sh:datatype xsd:string ; sh:message "Description (string) is required and must not be more than 4,000 characters." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcat:keyword               ; sh:minCount 0 ; sh:datatype xsd:string ; a sh:PropertyShape ; dt:group dt:highLevel; ],

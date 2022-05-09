@@ -194,10 +194,18 @@ class ExcelGenerator:
             ws.add_data_validation(int100_dv)
 
             #-- text/string (less than 100) --
+            # -- not used at this time - using custom rule for Unique Identifer - below --
             text_100_dv = DataValidation(type="textLength", operator="lessThanOrEqual", formula1=100)
             text_100_dv.error ='This value must be string with fewer than 100 chars'
             text_100_dv.errorTitle = 'Invalid Entry'
             ws.add_data_validation(text_100_dv)
+
+            # custom rule for Unique Identifer - no spaces and not longer than 128 --
+            ui_128_dv = DataValidation(type="custom", formula1="AND(LEN(A2)<129,NOT(ISNUMBER(SEARCH(\" \",A2))))")
+            ui_128_dv.error ='This value must be string with no spaces and a max of 128 chars'
+            ui_128_dv.errorTitle = 'Invalid Entry'
+            ws.add_data_validation(ui_128_dv)
+
 
         last_group = None
         color_index = 0
@@ -246,6 +254,8 @@ class ExcelGenerator:
                 cell2.border = new_border
 
             if USE_DATA_VALIDATION:
+                #print('wwwwhhhhaaa...' + obj.value + '...')
+                #print(obj.value)
                 # Set the types with data validation where possible
                 if obj.typ=='xsd:boolean':
                     dv_boolean.add(f'{column_letter}2:{column_letter}{rows}')
@@ -262,6 +272,10 @@ class ExcelGenerator:
                     enum_dv.add(f'{column_letter}2:{column_letter}{rows}')
                 if obj.value=='dataCatalogRecordAccessLevel':
                     enum_dv2.add(f'{column_letter}2:{column_letter}{rows}')
+                if 'unique identifier' in obj.value:
+                    #if obj.value=='unique identifier':
+                    print('here! -- is there a space?')
+                    ui_128_dv.add(f'{column_letter}2:{column_letter}{rows}')
     def save(self, fname):
         self.wb.save(fname)
 
