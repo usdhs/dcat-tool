@@ -66,7 +66,7 @@ dhs:dataInventoryRecordShape
     [ sh:path dcterms:publisher          ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path usg:accessLevel            ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "restricted public" "non-public") ; sh:message "Must be one of the following (exactly): 'public', 'restricted public' or 'non-public'" ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dhs:dataCatalogRecordAccessLevel ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "non-public"); sh:message "Must be one of the following (exactly): 'public' or 'non-public'"  ; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcterms:issued             ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:date; sh:message "Issued date is required and must be a date (like 12/31/2021)." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:issued             ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:date; sh:message "Issued date is required and must be a date (like 12/31/2021 for Excel or 2021-12-31 for JSON and edits in the Mobius Maintenance page)." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dhs:component              ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel ],
 
     [ sh:path dcterms:creator            ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
