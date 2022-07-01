@@ -8,7 +8,7 @@ body {
   max-width: 960px;
   margin: 0 auto;
   background: white;
-  font-family:Arial, Helvetica, sans-serif; 
+  font-family:Arial, Helvetica, sans-serif;
   font-size:small;
 }
 
@@ -134,39 +134,62 @@ input[type=submit] {
   min-width: 10em;
 }
 
-
 table.definitions {
     border-collapse: collapse;
     border: 1px solid gray;
+    width: 100%;
 }
 
 table.definitions tr {
     border-bottom: 1px solid black;
 }
 
-table.definitions th {
+table.definitions td.label {
     color: black;
     background-color: lightskyblue;
     font-weight: normal;
-    width: 50px;
     text-align: left;
     padding: 5px;
+    width: 20%;
 }
 
 table.definitions td {
     border: 1px solid gray;
     color: black;
-    width: 400px;
     padding: 5px;
 }
 
+table.definitions td.attrname {
+  width:20%;
+}
+
+table.definitions td.definition {
+  word-break: break-word;
+  width:30%;
+}
+
+table.definitions td.namespace {
+  word-break: break-word;
+  width:20%;
+}
+
+table.definitions td.required {
+  width:10%;
+}
+
 .headspecial{
-  background-color: lightslategrey; 
-  color: black !important; 
+  background-color: lightslategrey;
+  color: black !important;
   font-weight: bold;
 }
 
 .hrefright{
-  color: white !important; 
+  color: white !important;
   text-align: right;
+}
+
+ul.no-bullets {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

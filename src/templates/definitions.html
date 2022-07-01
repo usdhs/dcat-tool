@@ -1,27 +1,50 @@
 <!doctype html>
 <html>
+
 <head>
-<title>DHS Data Inventory Attribute Definitions</title>
-<link rel="stylesheet" href="./static/style.css"/>
+   <title>DHS Data Inventory Attribute Definitions</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="./static/style.css" />
 </head>
+
 <body>
+   <header></header>
+   <main>
+      <div class='container'>
+         {% include "introduction.html" %}
+      </div>
 
-   {% include "introduction.html" %}
+      <div class='container'>
+         <h1>DHS Collection Vocabulary</h1>
+         Below is a list of terms and their definitions for the DHS Data Inventory.
 
-<h1>DHS Collection Vocabulary</h1>
-Below is a list of terms and their definitions for the DHS Data Inventory.
-
-<table class='definitions'>
-{% for (group,name,d,label,namesp, required, rtype, dtype) in desc %}
-   {% if loop.changed(group) %}
-      </table>
-      <h3>{{group}}</h3>
-      <table class='definitions'>
-         <tr class="headspecial"><td>Label</td><td>Attribute Name</td><td>Definition</td><td>Namespace</td><td>Required</td></tr>
-   {% endif %}
-      <tr><th> {{ label }} </th> <td> {{ name }} </td> <td> {{ d }} </td> <td> <a href="{{ namesp }}" target="_blank">{{ namesp }}</a> </td> <td> {{ required }} </td> </tr>
-{% endfor %}
-</table>
-
+         <table class='definitions'>
+            {% for (group,name,d,label,namesp, required, rtype, dtype) in desc %}
+            {% if loop.changed(group) %}
+         </table>
+         <h3>{{group}}</h3>
+         <table class='definitions'>
+            <tr class="headspecial">
+               <th>Label</th>
+               <th>Attribute Name</th>
+               <th>Definition</th>
+               <th>Namespace</th>
+               <th>Required</th>
+            </tr>
+            {% endif %}
+            <tr>
+               <td class='label'>{{ label }}</td>
+               <td class='attrname'>{{ name }}</td>
+               <td class='definition'>{{ d }}</td>
+               <td class='namespace'><a href="{{ namesp }}" target="_blank">{{ namesp }}</a></td>
+               <td class="required">{{ required }}</td>
+            </tr>
+            {% endfor %}
+         </table>
+      </div>
+   </main>
+   <footer></footer>
 </body>
+
 </html>
