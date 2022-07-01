@@ -43,7 +43,7 @@ usg:accessLevel
     rdfs:range rdfs:Literal ;
     rdfs:label "Access Level"@en ;
     rdfs:isDefinedBy <https://resources.data.gov/resources/dcat-us/> ;
-    rdfs:comment "The degree to which this dataset could be made publicly-available, regardless of whether it has been made available. Choices: public (Data asset is or could be made publicly available to all without restrictions), restricted public (Data asset is available under certain use restrictions), or non-public (Data asset is not available to members of the public)." ;
+    rdfs:comment "<p>The three levels that determine how publicly-available the resource is:</p><p>Public: is/could be publicly-available without restrictions.</p><p>Restricted Public: is available under certain restrictions.</p><p>Non-Public: is not available to the public.</p>" ;
 
     sh:property [
         sh:in ( usg:public usg:restrictedPublic  usg:nonPublic ) ;
@@ -55,7 +55,7 @@ usg:systemOfRecords
     rdfs:label "System of Records"@en ;
     rdfs:isDefinedBy <https://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "The system of records notice (SORN) in which the dataset appears." ;
+    rdfs:comment "<p>If the system is designated as a system of records under the Privacy Act of 1974, provide the URL to the System of Records Notice that relates to the dataset. The URL should be from FederalRegister.gov  or point to an entry from the Federal Register.</p>" ;
     .
 
 usg:describedBy
@@ -63,7 +63,7 @@ usg:describedBy
     rdfs:label "Described By"@en ;
     rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "URL for the JSON Schema file that defines the schema used." ;
+    rdfs:comment "<p>A URL link to the  dictionary that defines the fields or column heading of the information.</p>" ;
     .
 
 usg:describedByType
@@ -71,7 +71,7 @@ usg:describedByType
     rdfs:label "Described By Type"@en ;
     rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "The machine-readable file format (IANA Media Type also known as MIME Type) of the dataset's Data Dictionary (describedBy)." ;
+    rdfs:comment "<p>The file format of the describedBy URL link. Should be a standard mime (IANA media)type.</p><p>Examples:<ul class='no-bullets'><li>application/xml</li></ul></p>" ;
     .
 
 usg:dataQuality
@@ -79,7 +79,7 @@ usg:dataQuality
     rdfs:label "Data Quality"@en ;
     rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Indicates whether a dataset conforms to the agency's information quality guidelines (boolean)." ;
+    rdfs:comment "<p>True or False</p><p>Does the information contained in the resource meet the agency's Information Quality Guidelines?</p>" ;
     .
 
 usg:modified
@@ -87,7 +87,7 @@ usg:modified
     rdfs:label "Modified"@en ;
     rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Most recent date on which the dataset was changed, updated or modified." ;
+    rdfs:comment "<p>The most recent date on  which the information contained in the resource was changed, updated, or modified.<p>" ;
     .
 
 usg:public
@@ -113,7 +113,7 @@ usg:primaryITInvestmentUII
     rdfs:label "Primary IT Investment UII"@en ;
     rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "For linking a dataset with an IT Unique Investment Identifier (UII). Can have multiple comma separated values." ;
+    rdfs:comment "<p>Used for linking a dataset with an IT UII. A Unique Investment Identifier (UII) is an established and unique identifier of an investment, assigned at the Component level.</p><p>Example: 010-999992220</p><p>Non-Tech Example: The number/ identifier on the 'Property of...' sticker on your laptop.</p>" ;
     .
 
 usg:encryptionAlgorithm
@@ -121,7 +121,7 @@ usg:encryptionAlgorithm
     rdfs:label "Encryption algorithm"@en ;
     rdfs:isDefinedBy <http://resources.data.gov/resources/dcat-us/> ;
     rdfs:range rdfs:Literal ;
-    rdfs:comment "Specifies encryption algorithm used to protect data at rest. Can have multiple comma separated values." ;
-    .    
+    rdfs:comment "<p>The specific encryption algorithm used to protect data at rest.</p><p>Can have multiple comma separated values.</p><p>Example:<li>3DES</li><li>AES</li><li>RSA</li></ul></p>" ;
+    .
 
 
