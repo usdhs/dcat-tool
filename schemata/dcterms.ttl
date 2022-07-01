@@ -427,7 +427,7 @@ dcterms:accessRights
     dcterms:issued "2003-02-15"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "Information about who can access the resource or an indication of its security status."@en ;
+    rdfs:comment "<p>Determines whether the information can be accessed by anyone (Public) or only by authorized parties.</p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Access Rights"@en ;
     rdfs:range dcterms:RightsStatement ;
@@ -449,7 +449,7 @@ dcterms:accrualPeriodicity
     dcterms:issued "2005-06-13"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2010-10-11"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "The frequency with which items are added to a collection."@en ;
+    rdfs:comment "<p>The frequency with which resources or sets of information are added to the dataset. Recommend timeframes (or frequency) can be found in the Collection Description Accrual Policy Vocabulary. </p>"@en ;
     rdfs:domain <http://purl.org/dc/dcmitype/Collection> ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Accrual Periodicity"@en ;
@@ -517,7 +517,7 @@ dcterms:conformsTo
     dcterms:issued "2001-05-21"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "An established standard to which the described resource conforms. Should use the Dublin Core Standard Class."@en ;
+    rdfs:comment "<p>A technical standard that the dataset conforms to.</p><p>Example:<ul class='no-bullets'><li>WGS84 is standard for GPS. The Global Positioning System uses the World Geodetic System (WGS84) as its reference coordinate system.</li></ul></p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Conforms To"@en ;
     rdfs:range dcterms:Standard ;
@@ -564,7 +564,7 @@ dcterms:creator
     dcterms:issued "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2010-10-11"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "An entity primarily responsible for making the resource."@en ;
+    rdfs:comment "<p>Either a name or email (individual or group) of the individual responsible for creating the resource. Include the point of contact information with either a name or email (individual or group) when submitting via Excel or a full Vcard when submitting via JSON.</p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Creator"@en ;
     rdfs:range dcterms:Agent ;
@@ -624,7 +624,7 @@ dcterms:description
     dcterms:issued "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "An account of the resource. Text limit is 4,000 characters."@en ;
+    rdfs:comment "<p>A summary of the resource, limited to 4,000 characters.</p><p>Example:</p><p>A mission and overview of the Data Inventory Program (DIP) containing instructions, references, terminology, and explanations designed  for users to understand and be able to use the features it contains.</p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Description"@en ;
     rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/description> .
@@ -657,7 +657,7 @@ dcterms:format
     dcterms:issued "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "The file format, physical medium, or dimensions of the resource."@en ;
+    rdfs:comment "<p>The file format, physical medium, or dimension of the resource.</p><p>Examples:<ul class='no-bullets'><li>File Format - CSV, HTML, JSON, MySQL</li><li>Physical Medium - USB drives, CD<li><li>Dimension - Size, Duration</li></ul></p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Format"@en ;
     rdfs:range dcterms:MediaTypeOrExtent ;
@@ -702,7 +702,7 @@ dcterms:identifier
     dcterms:issued "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "An unambiguous reference to the resource within a given context. A string that does not exceed 100 characters"@en ;
+    rdfs:comment "<p>Similar to a serial number associated with your laptop, the identifier is a unique and specific combination of characters that identify the resource. The combination must start with the DHS component code, is limited to 128 characters, and be in the following format: code-xxx-x</p><p>Example:<ul class='no-bullets'><li>mgmt-test-2</li><li>fema-1234-D</li></ul></p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Identifier"@en ;
     rdfs:range rdfs:Literal ;
@@ -735,7 +735,7 @@ dcterms:isPartOf
     dcterms:issued "2000-07-11"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "A related resource in which the described resource is physically or logically included."@en ;
+    rdfs:comment "<p>The source in which a grouping of related resources are included in. This is typically the name of the system in which the dataset resides.</p><p>Example:<ul class='no-bullets'><li>TRM isPartOf Mobius.</li></ul></p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Is Part Of"@en ;
     rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/relation>, dcterms:relation ;
@@ -791,7 +791,7 @@ dcterms:issued
     dcterms:issued "2000-07-11"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "Date of formal issuance (e.g., publication) of the resource."@en ;
+    rdfs:comment "<p>The issued date of the dataset (if not published this may be the date the data was first made available internally).</p><p>Records submitted via JSON must be in ISO 8601 format (YYYY-MM-DD). Records submitted via Excel must be in standard format (MM/DD/YYYY).</p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Date Issued"@en ;
     rdfs:range rdfs:Literal ;
@@ -814,7 +814,7 @@ dcterms:license
     dcterms:issued "2004-06-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "A legal document giving official permission to do something with the resource."@en ;
+    rdfs:comment "<p>The legal structure that gives official permission to utilize or  distribute information contained in the resource.</p><p>Example:<ul class='no-bullets'><li>MIT</li></ul></p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "License"@en ;
     rdfs:range dcterms:LicenseDocument ;
@@ -872,7 +872,7 @@ dcterms:publisher
     dcterms:issued "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2010-10-11"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "An entity responsible for making the resource available."@en ;
+    rdfs:comment "<p>The entity responsible for making the resource available.</p><p>Entity may include federal agency, sub- agency, state or local agencies, an organization, a network, a service, or a POC.</P><p>Example:<ul class='no-bullets'><li>DHS/MGMT/OCHCO</li></ul></p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Publisher"@en ;
     rdfs:range dcterms:Agent ;
@@ -883,7 +883,7 @@ dcterms:references
     dcterms:issued "2000-07-11"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "A related resource that is referenced, cited, or otherwise pointed to by the described resource."@en ;
+    rdfs:comment "<p>A related piece of information from another source (typically linked via URL) that provides additional related information about the resource.</p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "References"@en ;
     rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/relation>, dcterms:relation ;
@@ -962,7 +962,7 @@ dcterms:spatial
     dcterms:issued "2000-07-11"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "Spatial characteristics of the resource."@en ;
+    rdfs:comment "<p>A named local or geographic area.</p><p>Example:<ul class='no-bullets'><li>St. Elizabeth Campus, Dowtown DC, Arlington County, United States</li></ul></p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Spatial Coverage"@en ;
     rdfs:range dcterms:Location ;
@@ -995,7 +995,7 @@ dcterms:temporal
     dcterms:issued "2000-07-11"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "Temporal characteristics of the resource."@en ;
+    rdfs:comment "<p>The period of time that the dataset covers.</p><p>Example:<ul class='no-bullets'><li>December 2021</li><li>2012-2018</li></ul></p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Temporal Coverage"@en ;
     rdfs:range dcterms:PeriodOfTime ;
@@ -1006,7 +1006,7 @@ dcterms:title
     dcterms:issued "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2010-10-11"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "A name given to the resource. String limit is 255 characters"@en ;
+    rdfs:comment "<p>The official name (title) given to the resource, limited to 255 characters. Acronyms should be used sparingly and only when explained in the description.</p><p>Example:<ul class='no-bullets'><li>DHS Data Inventory Introduction</li></ul></p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Title"@en ;
     rdfs:range rdfs:Literal ;

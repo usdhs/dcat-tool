@@ -502,7 +502,7 @@ dcat:accessService
 dcat:accessURL
   a rdf:Property ;
   a owl:ObjectProperty ;
-  rdfs:comment "A URL of a resource that gives access to a distribution of the dataset. E.g. landing page, feed, SPARQL endpoint. Use for all cases except a simple download link, in which case downloadURL is preferred."@en ;
+  rdfs:comment "<p>The landing page (URL) that gives access to the resource.</p><p>Must be a URL.</p><p>https://ea.dhs.gov/mobius</p><p>Example:<ul class='no-bullets'><li>The Netflix login page your required to complete in order to gain access to their content.</li></ul></p>"@en ;
   rdfs:comment "Ceci peut être tout type d'URL qui donne accès à une distribution du jeu de données. Par exemple, un lien à une page HTML contenant un lien au jeu de données, un Flux RSS, un point d'accès SPARQL. Utilisez le lorsque votre catalogue ne contient pas d'information sur quoi il est ou quand ce n'est pas téléchargeable."@fr ;
   rdfs:comment "Puede ser cualquier tipo de URL que de acceso a una distribución del conjunto de datos, e.g., página de destino, descarga, URL feed, punto de acceso SPARQL. Esta propriedad se debe usar cuando su catálogo de datos no tiene información sobre donde está o cuando no se puede descargar."@es ;
   rdfs:comment "URL zdroje, přes které je přístupná distribuce datové sady. Příkladem může být vstupní stránka, RSS kanál či SPARQL endpoint. Použijte ve všech případech kromě URL souboru ke stažení, pro které je lepší použít dcat:downloadURL."@cs ;
@@ -580,7 +580,7 @@ dcat:byteSize
   rdfs:comment "El tamaño de una distribución en bytes."@es ;
   rdfs:comment "La dimensione di una distribuzione in byte."@it ;
   rdfs:comment "La taille de la distribution en octects"@fr ;
-  rdfs:comment "The size of a distribution in bytes."@en ;
+  rdfs:comment "<p>The size of the distribution in bytes.</p><p>The size in bytes can be approximated (as a integer) when the precise size is not known.</p>"@en ;
   rdfs:comment "Velikost distribuce v bajtech."@cs ;
   rdfs:comment "Το μέγεθος μιας διανομής σε bytes."@el ;
   rdfs:comment "الحجم بالبايتات "@ar ;
@@ -709,7 +709,7 @@ dcat:contactPoint
   a owl:ObjectProperty ;
   rdfs:comment "Información relevante de contacto para el recurso catalogado. Se recomienda el uso de vCard."@es ;
   rdfs:comment "Informazioni di contatto rilevanti per la risorsa catalogata. Si raccomanda l'uso di vCard."@it ;
-  rdfs:comment "Relevant contact information for the catalogued resource. Use of vCard is recommended."@en ;
+  rdfs:comment "<p>The contact information  (name and email preferred) of the main individual to contact with questions about the dataset.</p>"@en ;
   rdfs:comment "Relevantní kontaktní informace pro katalogizovaný zdroj. Doporučuje se použít slovník VCard."@cs ;
   rdfs:comment "Relie un jeu de données à une information de contact utile en utilisant VCard."@fr ;
   rdfs:comment "Συνδέει ένα σύνολο δεδομένων με ένα σχετικό σημείο επικοινωνίας, μέσω VCard."@el ;
@@ -989,7 +989,7 @@ dcat:hadRole
 dcat:keyword
   a rdf:Property ;
   a owl:DatatypeProperty ;
-  rdfs:comment "A keyword or tag describing a resource."@en ;
+  rdfs:comment "<p>A keyword or multiple (comma delimited) keywords describing the resource.</p><p>Example:</p><p>City of New York, Universities, Immigration</p>"@en ;
   rdfs:comment "Klíčové slovo nebo značka popisující zdroj."@cs ;
   rdfs:comment "Un mot-clé ou étiquette décrivant une ressource."@fr ;
   rdfs:comment "Una palabra clave o etiqueta que describe un recurso."@es ;
@@ -1068,7 +1068,7 @@ dcat:mediaType
   rdfs:comment "Cette propriété doit être utilisée quand c'est définit le type de média de la distribution en IANA, sinon dcterms:format DOIT être utilisé avec différentes valeurs."@fr ;
   rdfs:comment "Esta propiedad debe ser usada cuando está definido el tipo de media de la distribución en IANA, de otra manera dcterms:format puede ser utilizado con diferentes valores"@es ;
   rdfs:comment "Il tipo di media della distribuzione come definito da IANA"@it ;
-  rdfs:comment "The media type of the distribution as defined by IANA"@en ;
+  rdfs:comment "<p>The media type of the distribution as defined by IANA.</p><p>Example:<ul class='no-bullets'><li>application/node</li><li>audio/mp4</li><li>font/otf</li><li>image/png</li><li>message/http</li><li>model/obj</li><li>text/csv</li></ul></p>"@en ;
   rdfs:comment "Typ média distribuce definovaný v IANA."@cs ;
   rdfs:comment "Η ιδιότητα αυτή ΘΑ ΠΡΕΠΕΙ να χρησιμοποιείται όταν ο τύπος μέσου μίας διανομής είναι ορισμένος στο IANA, αλλιώς η ιδιότητα dcterms:format ΔΥΝΑΤΑΙ να χρησιμοποιηθεί με διαφορετικές τιμές."@el ;
   rdfs:comment "يجب استخدام هذه الخاصية إذا كان نوع الملف معرف ضمن IANA"@ar ;
@@ -1268,8 +1268,8 @@ dcat:service
 dcat:spatialResolutionInMeters
   a rdf:Property ;
   a owl:DatatypeProperty ;
-  rdfs:comment "minimum spatial separation resolvable in a dataset, measured in meters."@en ;
-  rdfs:comment "minimum spatial separation resolvable in a dataset, measured in metres."@en-GB ;
+  rdfs:comment "<p>How small of an area, in meters, you can make (or zoom into) an image that will still provide a quality resolution in order to identify the content in the image.</p><p>Example:<ul class='no-bullets'><li>5x5 meters</li></ul></p>"@en ;
+  rdfs:comment "<p>How small of an area, in meters, you can make (or zoom into) an image that will still provide a quality resolution in order to identify the content in the image.</p><p>Example:<ul class='no-bullets'><li>5x5 meters</li></ul></p>"@en-GB ;
   rdfs:comment "minimální prostorový rozestup rozeznatelný v datové sadě, měřeno v metrech."@cs ;
   rdfs:comment "mínima separacíon espacial disponible en un conjunto de datos, medida en metros."@es ;
   rdfs:comment "separazione spaziale minima risolvibile in un set di dati, misurata in metri."@it ;
@@ -1335,7 +1335,7 @@ dcat:startDate
 .
 dcat:temporalResolution
   a owl:DatatypeProperty ;
-  rdfs:comment "minimum time period resolvable in a dataset."@en ;
+  rdfs:comment "<p>The smallest amount of time between records in dataset.</p><p>Example:<ul class='no-bullets'><li>P1Y</li><li>P1M</li><li>P7D</li></ul></p>"@en ;
   rdfs:comment "minimální doba trvání rozlišitelná v datové sadě."@cs ;
   rdfs:comment "periodo di tempo minimo risolvibile in un set di dati."@it ;
   rdfs:comment "período de tiempo mínimo en el conjunto de datos."@es ;
@@ -1373,7 +1373,7 @@ dcat:temporalResolution
 dcat:theme
   a rdf:Property ;
   a owl:ObjectProperty ;
-  rdfs:comment "A main category of the resource. A resource can have multiple themes."@en ;
+  rdfs:comment "<p>The main category of the information contained in the resource. A resource can have multiple themes.</p><p>Theme is similar to a Keyword but at a much higher level.</p><p>Example:<ul class='no-bullets'><li>Policy</li><li>Data Mgmt.</li><li>Data Inventory</li><li>Data Governance</li></ul></p>"@en ;
   rdfs:comment "Hlavní téma zdroje. Zdroj může mít více témat."@cs ;
   rdfs:comment "La categoria principale della risorsa. Una risorsa può avere più temi."@it ;
   rdfs:comment "La categoría principal del recurso. Un recurso puede tener varios temas."@es ;
