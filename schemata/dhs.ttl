@@ -374,7 +374,7 @@ dhs:ch-8usc1367
     rdfs:label "Characteristics - 8usc1367"@en ;
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
-    rdfs:comment "<p>True or False</p><p>The information in the resource contains  8 USC 1367.</p><p>Reference: <a href='https://www.dhs.gov/sites/default/files/publications/dhs_foia_instruction_section_1367_information.pdf'>https://www.dhs.gov/sites/default/files/publications/dhs_foia_instruction_section_1367_information.pdf</a></p>" ;
+    rdfs:comment "<p>True or False</p><p>The information in the resource contains  8 USC 1367.</p><p>Reference: https://www.dhs.gov/sites/default/files/publications/dhs_foia_instruction_section_1367_information.pdf</p>" ;
     .
 
 dhs:ch-propin
