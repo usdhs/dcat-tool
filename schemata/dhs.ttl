@@ -350,7 +350,7 @@ dhs:ch-geospatial
     rdfs:label "Characteristics - Geospatial"@en ;
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
-    rdfs:comment "<p>True or False</p><p>The information in the resource contains geospatial information.</p><p>Example:<ul class='no-bullets'><li>https://catalog.data.gov/dataset/fema-historical-disaster-declarations-shp</li><li>https://catalog.data.gov/dataset/formerly-used-defense-sites-fuds-public-properties</li></ul></P>" ;
+    rdfs:comment "<p>True or False</p><p>The information in the resource contains geospatial information.</p><p>Example:<ul class='no-bullets'><li>https://catalog.data.gov/dataset/fema-historical-disaster-declarations-shp</li><li>https://catalog.data.gov/dataset/formerly-used-defense-sites-fuds-public-properties</li></ul></p>" ;
     .
 
 dhs:ch-environmental
