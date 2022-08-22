@@ -427,7 +427,7 @@ dcterms:accessRights
     dcterms:issued "2003-02-15"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "<p>Determines whether the information can be accessed by anyone (Public) or only by authorized parties.</p>"@en ;
+    rdfs:comment "<p>Provides information regarding access or restrictions to data based on privacy, security, or other policies</p><p>Example:</p><p>User must have PIV card and be granted permission by System Owner</p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Access Rights"@en ;
     rdfs:range dcterms:RightsStatement ;

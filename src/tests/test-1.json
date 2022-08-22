@@ -20,7 +20,7 @@
     "http://purl.org/dc/terms/description": "test only required fields for DIP record",
     "http://purl.org/dc/terms/issued": {
         "@type": "xsd:date",
-        "@value": "2022-02-24"
+        "@value": "2022-08-07"
     },
     "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
     "https://usdhs.github.io/dcat-tool/#dataCatalogRecordAccessLevel": "public",

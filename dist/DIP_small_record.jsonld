@@ -24,5 +24,5 @@
   "dctype:title": "A Test Title",
   "usg:accessLevel": "public",
   "dhs:component": "MGMT",
-  "dhs:metadataClassification": "CUI"
+  "dhs:dataCatalogRecordAccessLevel": "CUI"
 }

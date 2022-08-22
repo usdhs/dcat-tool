@@ -350,7 +350,7 @@ dhs:ch-geospatial
     rdfs:label "Characteristics - Geospatial"@en ;
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
-    rdfs:comment "<p>True or False</p><p>The information in the resource contains geospatial information.</p><p>Example:<ul class='no-bullets'><li>https://catalog.data.gov/dataset/fema-historical-disaster-declarations-shp</li><li>https://catalog.data.gov/dataset/formerly-used-defense-sites-fuds-public-properties</li></ul></P>" ;
+    rdfs:comment "<p>True or False</p><p>The information in the resource contains geospatial information.</p><p>Example:<ul class='no-bullets'><li>https://catalog.data.gov/dataset/fema-historical-disaster-declarations-shp</li><li>https://catalog.data.gov/dataset/formerly-used-defense-sites-fuds-public-properties</li></ul></p>" ;
     .
 
 dhs:ch-environmental
@@ -374,7 +374,7 @@ dhs:ch-8usc1367
     rdfs:label "Characteristics - 8usc1367"@en ;
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
-    rdfs:comment "<p>True or False</p><p>The information in the resource contains  8 USC 1367.</p><p>Reference: <a href='https://www.dhs.gov/sites/default/files/publications/dhs_foia_instruction_section_1367_information.pdf'>https://www.dhs.gov/sites/default/files/publications/dhs_foia_instruction_section_1367_information.pdf</a></p>" ;
+    rdfs:comment "<p>True or False</p><p>The information in the resource contains  8 USC 1367.</p><p>Reference: https://www.dhs.gov/sites/default/files/publications/dhs_foia_instruction_section_1367_information.pdf</p>" ;
     .
 
 dhs:ch-propin

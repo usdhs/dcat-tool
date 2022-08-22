@@ -57,7 +57,7 @@ dhs:dataInventoryRecordShape
     sh:targetClass dhs:DataInventoryRecord ;
     rdfs:comment "Specify the DCATv3 fields (and other fields) that are being collected for the DHS Data Inventory Project."@en ;
     owl:versionInfo "1.5" ;
-    dcterms:modified "2022-02-17"^^xsd:date ;
+    dcterms:modified "2022-08-07"^^xsd:date ;
     sh:property
     [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 128 ; sh:pattern "^\\S*$" ; sh:datatype xsd:string ; sh:message "Identifier (string) is required, must not be more than 128 characters and cannot contain spaces." ; dt:title "unique identifier"; rdfs:comment "<p>Similar to a serial number associated with your laptop, the identifier is a unique and specific combination of characters that identify the resource. The combination must start with the DHS component code, is limited to 128 characters, and be in the following format: code-xxx-x</p><p>Example:<ul class='no-bullets'><li>mgmt-test-2</li><li>fema-1234-D</li></ul></p>"@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 256 ; sh:datatype xsd:string ; sh:message "Title (string) is required and must not be more than 255 characters." ; rdfs:comment "<p>The official name (title) given to the resource, limited to 255 characters. Acronyms should be used sparingly and only when explained in the description.</p><p>Example:<ul class='no-bullets'><li>DHS Data Inventory Introduction</li></ul></p>"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
