@@ -17,12 +17,12 @@
     }
   },
   "@id": "https://dhs.gov/test-id-23451-y78ujy",
-  "@type": "https://usdhs.github.io/dcat-tool/#dataInventoryRecord",
+  "@type": "https://usdhs.github.io/dcat-tool/#DataInventoryRecord",
   "dctype:description": "A description should not exceed 4000 chars.",
   "dctype:identifier": "test-id-23451-y78ujy",
   "issued":"2021-10-21",
   "dctype:title": "A Test Title",
   "usg:accessLevel": "public",
   "dhs:component": "MGMT",
-  "dhs:dataCatalogRecordAccessLevel": "CUI"
+  "dhs:dataCatalogRecordAccessLevel": "public"
 }
