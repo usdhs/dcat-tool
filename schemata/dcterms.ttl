@@ -962,7 +962,7 @@ dcterms:spatial
     dcterms:issued "2000-07-11"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "<p>A named local or geographic area.</p><p>Example:<ul class='no-bullets'><li>St. Elizabeth Campus, Dowtown DC, Arlington County, United States</li></ul></p>"@en ;
+    rdfs:comment "<p>A named local or geographic area.</p><p>Example:<ul class='no-bullets'><li>St. Elizabeth Campus, Downtown DC, Arlington County, United States</li></ul></p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Spatial Coverage"@en ;
     rdfs:range dcterms:Location ;
