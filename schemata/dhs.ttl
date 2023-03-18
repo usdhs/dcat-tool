@@ -113,14 +113,6 @@ dhs:collectionAuthority
     rdfs:comment "<p>The legislation or executive order under which the data was collected.</p><p>The specific document or policy that grants you permission to collect specific data.</p><p>Example:<ul class='no-bullets'><li>https://www.ecfr.gov/current/title-28/chapter-I/part-28/subpart-B/section-28.12</li></ul></p>" ;
     .
 
-dhs:retentionAuthority
-    a rdf:Property ;
-    rdfs:label "Retention Authority"@en ;
-    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
-    rdfs:range rdfs:Literal ;
-    rdfs:comment "<p>The legislation or executive order under which the data was retained. The document will state who, how, and duration period of the information being retained.</p><p>Example:<ul class='no-bullets'><li>https://www.govinfo.gov/content/pkg/CFR-2020-title21-vol5/xml/CFR-2020-title21-vol5-sec320-38.xml</li></ul></p>" ;
-    .
-
 dhs:releaseAuthority
     a rdf:Property ;
     rdfs:label "Release Authority"@en ;
@@ -135,6 +127,14 @@ dhs:recordsSchedule
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "<p>The policy indicating the time period in which the records are retained.</p><p>Example:<ul class='no-bullets'><li>DAA-0563-2013-0005 (link below)</li></ul></p>" ;
+    .
+
+dhs:ptaAdjudicatedDate
+    a rdf:Property ;
+    rdfs:label "PTA Adjudicated Date"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "<p>The date on which the Privacy Threshold Assessment (PTA) was adjudicated</p>" ;
     .
 
 dhs:conformsFIPS
@@ -193,6 +193,30 @@ dhs:destinationDatasets
     rdfs:comment "<p>The unique identifier of downstream datasets fed by this dataset.</p><P>Example:<ul class='no-bullets'><li>In this instance, Mobius would include the unique identifier for downstream datasets.</li></ul></p>" ;
     .
 
+dhs:isOpenSource
+    a rdf:Property ;
+    rdfs:label "Is Open Source"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "<p>True or False</p><p>The data in the dataset is composed of publicly available data and maybe compiled from multiple sources.</p>" ;
+    .
+
+dhs:isCommercial
+    a rdf:Property ;
+    rdfs:label "Is Commercial"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "<p>True or False</p><p>The dataset is aquired from a private sector provider (may be purchased or acquired via agreement).</p>" ;
+    .
+
+dhs:hasDataDictioinary
+    a rdf:Property ;
+    rdfs:label "Has Data Dictionary"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "<p>True or False</p><p>The dataset has a data dictionary (should be pointed to in the referencedBy attribute).</p>" ;
+    .
+
 dhs:dataQualityKnown
     a rdf:Property ;
     rdfs:label "Data Quality Known"@en ;
@@ -241,12 +265,36 @@ dhs:component
     rdfs:comment "<p>The DHS Component (sub-agency) the data pertains too.</p><p><ul class='no-bullets'><li>MGMT</li><li>CISA</li><li>CBP</li><li></li><li>FEMA</li><li>S&T</li><li>TSA</li><li>ICE</li><li>USCIS</li><li>FPS</li><li>FLETC</li><li>USSS</li><li>USCG</li></ul></p>" ;
     .
 
+dhs:restrictionReason
+    a rdf:Property ;
+    rdfs:label "Restriction Reason"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "<p>A reason for which the dataset is not published to data.gov (I.e. not marked as 'public' for accessLevel and not marked as 'public' for dataCatalogRecordAccessLevel). Must be provided as a comma separated list including one or more of the following:</p><p><ul class='no-bullets'><li>PII Sensitive</li><li>Security Risk</li><li>Legal liability</li><li>Intellectual Property Rights</li><li>Confidential Business Information</li><li>Restricted by Contract</li><li>FOIA Exeption</li><li>OMB Director Discretion</li></ul></p>" ;
+    .
+
 dhs:functionalDataDomain
     a rdf:Property ;
     rdfs:label "Functional Data Domain"@en ;
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range rdfs:Literal ;
     rdfs:comment "<p>The functional subject area of the resource.</p><p>List:<ul class='no-bullets'><li>Biometrics</li><li>CBRN</li><li>Cybersecurity</li><li>Emergency Mgmt. Geospatial</li><li>Immigration</li><li>Infra. Protection</li><li>Intelligence</li><li>International Trade</li><li>Law Enforcement</li><li>Maritime</li><li>Mission Support & Mgmt.</li><li>Screening</li></ul></p>" ;
+    .
+
+dhs:isStream
+    a rdf:Property ;
+    rdfs:label "Is Stream"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "<p>True or False</p><p>Data Set or Data Source is streaming. The data is constantly updated.</p>" ;
+    .
+
+dhs:accessInstructions
+    a rdf:Property ;
+    rdfs:label "Access Instructions"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "<p>The steps or actions an individual must take to gain access to the dataset. Can work in conjunction with accessRights (max length 5,000 characters).</p><p>Example: 'Visit the (accessURL) link and then click on 'Your ArcGIS organization's URL and enter <MGMT> and click Continue'</p>" ;
     .
 
 dhs:tableCount
@@ -424,6 +472,31 @@ dhs:ch-pcii
     rdfs:range xsd:boolean;
     rdfs:comment "<p>True or False</p><p>The information in the resource contains protected critical infrastructure information.</p>" ;
     .
+
+dhs:ch-les
+    a rdf:Property ;
+    rdfs:label "Characteristics - LES - Law Enforcement Sensative"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range xsd:boolean;
+    rdfs:comment "<p>True or False</p><p>The information in the resource contains information that is deemed Law Enforcement Sensative.</p>" ;
+    .
+
+dhs:ch-synthetic
+    a rdf:Property ;
+    rdfs:label "Characteristics - Synthetic"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range xsd:boolean;
+    rdfs:comment "<p>True or False</p><p>The data is created manually or artificially apart from the data generated by real-world events. This may include data that is generated for the purposes of modeling and may be generated by a computer simulation. The data approximates real data, but does not necessarily reflect the real world. This includes synthetically derived data (e.g. data that is created programmatically from a set of source data, typically with some algorithm applied)</p>" ;
+    .
+
+dhs:ch-anonymized
+    a rdf:Property ;
+    rdfs:label "Characteristics - Anonymized"@en ;
+    rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
+    rdfs:range xsd:boolean;
+    rdfs:comment "<p>True or False</p><p>The identifying information int he resource has been removed or changed so that the individual cannot be identified.</p>" ;
+    .
+
 
 dhs:hostingLocation
     a rdf:Property ;
