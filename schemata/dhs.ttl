@@ -494,7 +494,7 @@ dhs:ch-anonymized
     rdfs:label "Characteristics - Anonymized"@en ;
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;
     rdfs:range xsd:boolean;
-    rdfs:comment "<p>True or False</p><p>The identifying information int he resource has been removed or changed so that the individual cannot be identified.</p>" ;
+    rdfs:comment "<p>True or False</p><p>The identifying information in the resource has been removed or changed so that the individual cannot be identified.</p>" ;
     .
 
 
