@@ -209,7 +209,7 @@ dhs:isCommercial
     rdfs:comment "<p>True or False</p><p>The dataset is aquired from a private sector provider (may be purchased or acquired via agreement).</p>" ;
     .
 
-dhs:hasDataDictioinary
+dhs:hasDataDictionary
     a rdf:Property ;
     rdfs:label "Has Data Dictionary"@en ;
     rdfs:isDefinedBy <http://github.com/usdhs/dcat-tool/> ;

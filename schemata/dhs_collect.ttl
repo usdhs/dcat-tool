@@ -103,7 +103,7 @@ dhs:dataInventoryRecordShape
     [ sh:path dcterms:isPartOf           ; sh:minCount 0 ; sh:maxLength 5000 ; a sh:PropertyShape ; dt:group dt:provenance; ],
     [ sh:path dhs:isOpenSource           ; sh:minCount 0 ;  sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:provenance ],
     [ sh:path dhs:isCommercial           ; sh:minCount 0 ;  sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:provenance ],
-    [ sh:path dhs:hasDataDictioinary     ; sh:minCount 0 ;  sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:provenance ],
+    [ sh:path dhs:hasDataDictionary     ; sh:minCount 0 ;  sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:provenance ],
 
     [ sh:path dcterms:accrualPeriodicity     ; sh:minCount 0 ; sh:datatype xsd:duration ;  a sh:PropertyShape ; dt:group dt:dataset ],
 
