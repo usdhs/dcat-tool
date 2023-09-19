@@ -23,6 +23,10 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
+    <a href="#Restriction Reason">Restriction Reason</a>&nbsp
+
+
+    
     <h3>http://github.com/usdhs/dcat-tool/0.1#dataGovernanceInformation</h3>
     
     <a href="#Governance">Governance</a>&nbsp
@@ -53,15 +57,15 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
-    <a href="#Retention Authority">Retention Authority</a>&nbsp
-
-
-    
     <a href="#Release Authority">Release Authority</a>&nbsp
 
 
     
     <a href="#Records Schedule">Records Schedule</a>&nbsp
+
+
+    
+    <a href="#PTA Adjudicated Date">PTA Adjudicated Date</a>&nbsp
 
 
     
@@ -97,6 +101,18 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
+    <a href="#Is Open Source">Is Open Source</a>&nbsp
+
+
+    
+    <a href="#Is Commercial">Is Commercial</a>&nbsp
+
+
+    
+    <a href="#Has Data Dictionary">Has Data Dictionary</a>&nbsp
+
+
+    
     <h3>http://github.com/usdhs/dcat-tool/0.1#dataQuality</h3>
     
     <a href="#Data Quality Known">Data Quality Known</a>&nbsp
@@ -122,6 +138,14 @@ of terms are linked to their more detailed definitions (provided in the section 
 
     
     <a href="#Functional Data Domain">Functional Data Domain</a>&nbsp
+
+
+    
+    <a href="#Is Stream">Is Stream</a>&nbsp
+
+
+    
+    <a href="#Access Instructions">Access Instructions</a>&nbsp
 
 
     
@@ -213,6 +237,18 @@ of terms are linked to their more detailed definitions (provided in the section 
 
 
     
+    <a href="#Characteristics - LES - Law Enforcement Sensative">Characteristics - LES - Law Enforcement Sensative</a>&nbsp
+
+
+    
+    <a href="#Characteristics - Synthetic">Characteristics - Synthetic</a>&nbsp
+
+
+    
+    <a href="#Characteristics - Anonymized">Characteristics - Anonymized</a>&nbsp
+
+
+    
     <h3>http://github.com/usdhs/dcat-tool/0.1#location</h3>
     
     <a href="#Hosting Location">Hosting Location</a>&nbsp
@@ -300,6 +336,36 @@ Detailed definitions follow:
         <tr>
             <td class='label'>Required</td>
             <td>Yes</td>
+        </tr>
+        <tr>
+            <td class='label'>Rdfs datatype</td>
+            <td>rdfs:Literal</td>
+        </tr>
+        <tr>
+            <td class='label'>Shacl datatype</td>
+            <td>xsd:string</td>
+        </tr>
+
+   
+      </table>
+      <a name="Restriction Reason"></a>
+      <h3>Restriction Reason</h3>
+      <table class='definitions'>
+        <tr class="headspecial">
+            <th colspan="2">Term Name: dhs:restrictionReason &nbsp <a class="hrefright" href="#top">return to top</a></th>
+        </tr>
+   
+        <tr>
+            <td class='label'>Description</td>
+            <td><p>A reason for which the dataset is not published to data.gov (I.e. not marked as 'public' for accessLevel and not marked as 'public' for dataCatalogRecordAccessLevel). Must be provided as a comma separated list including one or more of the following:</p><p><ul class='no-bullets'><li>PII Sensitive</li><li>Security Risk</li><li>Legal liability</li><li>Intellectual Property Rights</li><li>Confidential Business Information</li><li>Restricted by Contract</li><li>FOIA Exeption</li><li>OMB Director Discretion</li></ul></p></td>
+        </tr>
+        <tr>
+            <td class='label'>Namespace</td>
+            <td><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+        </tr>
+        <tr>
+            <td class='label'>Required</td>
+            <td>No</td>
         </tr>
         <tr>
             <td class='label'>Rdfs datatype</td>
@@ -522,36 +588,6 @@ Detailed definitions follow:
 
    
       </table>
-      <a name="Retention Authority"></a>
-      <h3>Retention Authority</h3>
-      <table class='definitions'>
-        <tr class="headspecial">
-            <th colspan="2">Term Name: dhs:retentionAuthority &nbsp <a class="hrefright" href="#top">return to top</a></th>
-        </tr>
-   
-        <tr>
-            <td class='label'>Description</td>
-            <td><p>The legislation or executive order under which the data was retained. The document will state who, how, and duration period of the information being retained.</p><p>Example:<ul class='no-bullets'><li>https://www.govinfo.gov/content/pkg/CFR-2020-title21-vol5/xml/CFR-2020-title21-vol5-sec320-38.xml</li></ul></p></td>
-        </tr>
-        <tr>
-            <td class='label'>Namespace</td>
-            <td><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
-        </tr>
-        <tr>
-            <td class='label'>Required</td>
-            <td>No</td>
-        </tr>
-        <tr>
-            <td class='label'>Rdfs datatype</td>
-            <td>rdfs:Literal</td>
-        </tr>
-        <tr>
-            <td class='label'>Shacl datatype</td>
-            <td>xsd:string</td>
-        </tr>
-
-   
-      </table>
       <a name="Release Authority"></a>
       <h3>Release Authority</h3>
       <table class='definitions'>
@@ -608,6 +644,36 @@ Detailed definitions follow:
         <tr>
             <td class='label'>Shacl datatype</td>
             <td>xsd:string</td>
+        </tr>
+
+   
+      </table>
+      <a name="PTA Adjudicated Date"></a>
+      <h3>PTA Adjudicated Date</h3>
+      <table class='definitions'>
+        <tr class="headspecial">
+            <th colspan="2">Term Name: dhs:ptaAdjudicatedDate &nbsp <a class="hrefright" href="#top">return to top</a></th>
+        </tr>
+   
+        <tr>
+            <td class='label'>Description</td>
+            <td><p>The date on which the Privacy Threshold Assessment (PTA) was adjudicated</p></td>
+        </tr>
+        <tr>
+            <td class='label'>Namespace</td>
+            <td><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+        </tr>
+        <tr>
+            <td class='label'>Required</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td class='label'>Rdfs datatype</td>
+            <td>rdfs:Literal</td>
+        </tr>
+        <tr>
+            <td class='label'>Shacl datatype</td>
+            <td>xsd:date</td>
         </tr>
 
    
@@ -822,6 +888,96 @@ Detailed definitions follow:
 
    
       </table>
+      <a name="Is Open Source"></a>
+      <h3>Is Open Source</h3>
+      <table class='definitions'>
+        <tr class="headspecial">
+            <th colspan="2">Term Name: dhs:isOpenSource &nbsp <a class="hrefright" href="#top">return to top</a></th>
+        </tr>
+   
+        <tr>
+            <td class='label'>Description</td>
+            <td><p>True or False</p><p>The data in the dataset is composed of publicly available data and maybe compiled from multiple sources.</p></td>
+        </tr>
+        <tr>
+            <td class='label'>Namespace</td>
+            <td><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+        </tr>
+        <tr>
+            <td class='label'>Required</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td class='label'>Rdfs datatype</td>
+            <td>rdfs:Literal</td>
+        </tr>
+        <tr>
+            <td class='label'>Shacl datatype</td>
+            <td>xsd:boolean</td>
+        </tr>
+
+   
+      </table>
+      <a name="Is Commercial"></a>
+      <h3>Is Commercial</h3>
+      <table class='definitions'>
+        <tr class="headspecial">
+            <th colspan="2">Term Name: dhs:isCommercial &nbsp <a class="hrefright" href="#top">return to top</a></th>
+        </tr>
+   
+        <tr>
+            <td class='label'>Description</td>
+            <td><p>True or False</p><p>The dataset is aquired from a private sector provider (may be purchased or acquired via agreement).</p></td>
+        </tr>
+        <tr>
+            <td class='label'>Namespace</td>
+            <td><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+        </tr>
+        <tr>
+            <td class='label'>Required</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td class='label'>Rdfs datatype</td>
+            <td>rdfs:Literal</td>
+        </tr>
+        <tr>
+            <td class='label'>Shacl datatype</td>
+            <td>xsd:boolean</td>
+        </tr>
+
+   
+      </table>
+      <a name="Has Data Dictionary"></a>
+      <h3>Has Data Dictionary</h3>
+      <table class='definitions'>
+        <tr class="headspecial">
+            <th colspan="2">Term Name: dhs:hasDataDictionary &nbsp <a class="hrefright" href="#top">return to top</a></th>
+        </tr>
+   
+        <tr>
+            <td class='label'>Description</td>
+            <td><p>True or False</p><p>The dataset has a data dictionary (should be pointed to in the referencedBy attribute).</p></td>
+        </tr>
+        <tr>
+            <td class='label'>Namespace</td>
+            <td><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+        </tr>
+        <tr>
+            <td class='label'>Required</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td class='label'>Rdfs datatype</td>
+            <td>rdfs:Literal</td>
+        </tr>
+        <tr>
+            <td class='label'>Shacl datatype</td>
+            <td>xsd:boolean</td>
+        </tr>
+
+   
+      </table>
       <a name="Data Quality Known"></a>
       <h3>Data Quality Known</h3>
       <table class='definitions'>
@@ -982,6 +1138,66 @@ Detailed definitions follow:
         <tr>
             <td class='label'>Description</td>
             <td><p>The functional subject area of the resource.</p><p>List:<ul class='no-bullets'><li>Biometrics</li><li>CBRN</li><li>Cybersecurity</li><li>Emergency Mgmt. Geospatial</li><li>Immigration</li><li>Infra. Protection</li><li>Intelligence</li><li>International Trade</li><li>Law Enforcement</li><li>Maritime</li><li>Mission Support & Mgmt.</li><li>Screening</li></ul></p></td>
+        </tr>
+        <tr>
+            <td class='label'>Namespace</td>
+            <td><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+        </tr>
+        <tr>
+            <td class='label'>Required</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td class='label'>Rdfs datatype</td>
+            <td>rdfs:Literal</td>
+        </tr>
+        <tr>
+            <td class='label'>Shacl datatype</td>
+            <td>xsd:string</td>
+        </tr>
+
+   
+      </table>
+      <a name="Is Stream"></a>
+      <h3>Is Stream</h3>
+      <table class='definitions'>
+        <tr class="headspecial">
+            <th colspan="2">Term Name: dhs:isStream &nbsp <a class="hrefright" href="#top">return to top</a></th>
+        </tr>
+   
+        <tr>
+            <td class='label'>Description</td>
+            <td><p>True or False</p><p>Data Set or Data Source is streaming. The data is constantly updated.</p></td>
+        </tr>
+        <tr>
+            <td class='label'>Namespace</td>
+            <td><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+        </tr>
+        <tr>
+            <td class='label'>Required</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td class='label'>Rdfs datatype</td>
+            <td>rdfs:Literal</td>
+        </tr>
+        <tr>
+            <td class='label'>Shacl datatype</td>
+            <td>xsd:boolean</td>
+        </tr>
+
+   
+      </table>
+      <a name="Access Instructions"></a>
+      <h3>Access Instructions</h3>
+      <table class='definitions'>
+        <tr class="headspecial">
+            <th colspan="2">Term Name: dhs:accessInstructions &nbsp <a class="hrefright" href="#top">return to top</a></th>
+        </tr>
+   
+        <tr>
+            <td class='label'>Description</td>
+            <td><p>The steps or actions an individual must take to gain access to the dataset. Can work in conjunction with accessRights (max length 5,000 characters).</p><p>Example: 'Visit the (accessURL) link and then click on 'Your ArcGIS organization's URL and enter <MGMT> and click Continue'</p></td>
         </tr>
         <tr>
             <td class='label'>Namespace</td>
@@ -1341,7 +1557,7 @@ Detailed definitions follow:
    
         <tr>
             <td class='label'>Description</td>
-            <td><p>True or False</p><p>The information in the resource contains geospatial information.</p><p>Example:<ul class='no-bullets'><li>https://catalog.data.gov/dataset/fema-historical-disaster-declarations-shp</li><li>https://catalog.data.gov/dataset/formerly-used-defense-sites-fuds-public-properties</li></ul></P></td>
+            <td><p>True or False</p><p>The information in the resource contains geospatial information.</p><p>Example:<ul class='no-bullets'><li>https://catalog.data.gov/dataset/fema-historical-disaster-declarations-shp</li><li>https://catalog.data.gov/dataset/formerly-used-defense-sites-fuds-public-properties</li></ul></p></td>
         </tr>
         <tr>
             <td class='label'>Namespace</td>
@@ -1431,7 +1647,7 @@ Detailed definitions follow:
    
         <tr>
             <td class='label'>Description</td>
-            <td><p>True or False</p><p>The information in the resource contains  8 USC 1367.</p><p>Reference: <a href='https://www.dhs.gov/sites/default/files/publications/dhs_foia_instruction_section_1367_information.pdf'>https://www.dhs.gov/sites/default/files/publications/dhs_foia_instruction_section_1367_information.pdf</a></p></td>
+            <td><p>True or False</p><p>The information in the resource contains  8 USC 1367.</p><p>Reference: https://www.dhs.gov/sites/default/files/publications/dhs_foia_instruction_section_1367_information.pdf</p></td>
         </tr>
         <tr>
             <td class='label'>Namespace</td>
@@ -1612,6 +1828,96 @@ Detailed definitions follow:
         <tr>
             <td class='label'>Description</td>
             <td><p>True or False</p><p>The information  has dissemination restrictions.</p></td>
+        </tr>
+        <tr>
+            <td class='label'>Namespace</td>
+            <td><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+        </tr>
+        <tr>
+            <td class='label'>Required</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td class='label'>Rdfs datatype</td>
+            <td>xsd:boolean</td>
+        </tr>
+        <tr>
+            <td class='label'>Shacl datatype</td>
+            <td>xsd:boolean</td>
+        </tr>
+
+   
+      </table>
+      <a name="Characteristics - LES - Law Enforcement Sensative"></a>
+      <h3>Characteristics - LES - Law Enforcement Sensative</h3>
+      <table class='definitions'>
+        <tr class="headspecial">
+            <th colspan="2">Term Name: dhs:ch-les &nbsp <a class="hrefright" href="#top">return to top</a></th>
+        </tr>
+   
+        <tr>
+            <td class='label'>Description</td>
+            <td><p>True or False</p><p>The information in the resource contains information that is deemed Law Enforcement Sensative.</p></td>
+        </tr>
+        <tr>
+            <td class='label'>Namespace</td>
+            <td><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+        </tr>
+        <tr>
+            <td class='label'>Required</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td class='label'>Rdfs datatype</td>
+            <td>xsd:boolean</td>
+        </tr>
+        <tr>
+            <td class='label'>Shacl datatype</td>
+            <td>xsd:boolean</td>
+        </tr>
+
+   
+      </table>
+      <a name="Characteristics - Synthetic"></a>
+      <h3>Characteristics - Synthetic</h3>
+      <table class='definitions'>
+        <tr class="headspecial">
+            <th colspan="2">Term Name: dhs:ch-synthetic &nbsp <a class="hrefright" href="#top">return to top</a></th>
+        </tr>
+   
+        <tr>
+            <td class='label'>Description</td>
+            <td><p>True or False</p><p>The data is created manually or artificially apart from the data generated by real-world events. This may include data that is generated for the purposes of modeling and may be generated by a computer simulation. The data approximates real data, but does not necessarily reflect the real world. This includes synthetically derived data (e.g. data that is created programmatically from a set of source data, typically with some algorithm applied)</p></td>
+        </tr>
+        <tr>
+            <td class='label'>Namespace</td>
+            <td><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+        </tr>
+        <tr>
+            <td class='label'>Required</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td class='label'>Rdfs datatype</td>
+            <td>xsd:boolean</td>
+        </tr>
+        <tr>
+            <td class='label'>Shacl datatype</td>
+            <td>xsd:boolean</td>
+        </tr>
+
+   
+      </table>
+      <a name="Characteristics - Anonymized"></a>
+      <h3>Characteristics - Anonymized</h3>
+      <table class='definitions'>
+        <tr class="headspecial">
+            <th colspan="2">Term Name: dhs:ch-anonymized &nbsp <a class="hrefright" href="#top">return to top</a></th>
+        </tr>
+   
+        <tr>
+            <td class='label'>Description</td>
+            <td><p>True or False</p><p>The identifying information in the resource has been removed or changed so that the individual cannot be identified.</p></td>
         </tr>
         <tr>
             <td class='label'>Namespace</td>

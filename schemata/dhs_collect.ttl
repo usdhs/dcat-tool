@@ -47,7 +47,10 @@ dhs:characteristicsShape
     [ sh:path dhs:ch-criticalInfrastructure; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
     [ sh:path dhs:ch-pcii               ;  sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
     [ sh:path dhs:ch-biometrics         ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
-    [ sh:path dhs:ch-disseminationRestrictions; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ];
+    [ sh:path dhs:ch-disseminationRestrictions; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-les                ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-synthetic          ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:ch-anonymized         ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:security ];
     sh:closed true;
     sh:ignoredProperties ( rdf:type )
     .
@@ -56,8 +59,8 @@ dhs:dataInventoryRecordShape
     a sh:NodeShape ;
     sh:targetClass dhs:DataInventoryRecord ;
     rdfs:comment "Specify the DCATv3 fields (and other fields) that are being collected for the DHS Data Inventory Project."@en ;
-    owl:versionInfo "1.5" ;
-    dcterms:modified "2022-08-07"^^xsd:date ;
+    owl:versionInfo "2.0" ;
+    dcterms:modified "2023-03-16"^^xsd:date ;
     sh:property
     [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 128 ; sh:pattern "^\\S*$" ; sh:datatype xsd:string ; sh:message "Identifier (string) is required, must not be more than 128 characters and cannot contain spaces." ; dt:title "unique identifier"; rdfs:comment "<p>Similar to a serial number associated with your laptop, the identifier is a unique and specific combination of characters that identify the resource. The combination must start with the DHS component code, is limited to 128 characters, and be in the following format: code-xxx-x</p><p>Example:<ul class='no-bullets'><li>mgmt-test-2</li><li>fema-1234-D</li></ul></p>"@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 256 ; sh:datatype xsd:string ; sh:message "Title (string) is required and must not be more than 255 characters." ; rdfs:comment "<p>The official name (title) given to the resource, limited to 255 characters. Acronyms should be used sparingly and only when explained in the description.</p><p>Example:<ul class='no-bullets'><li>DHS Data Inventory Introduction</li></ul></p>"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
@@ -68,6 +71,7 @@ dhs:dataInventoryRecordShape
     [ sh:path dhs:dataCatalogRecordAccessLevel ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "non-public"); sh:message "Must be one of the following (exactly): 'public' or 'non-public'"  ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dcterms:issued             ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:date; sh:message "Issued date is required and must be a date (like 12/31/2021 for Excel or 2021-12-31 for JSON and edits in the Mobius Maintenance page)." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
     [ sh:path dhs:component              ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel ],
+    [ sh:path dhs:restrictionReason      ; sh:minCount 0 ; sh:in("PII Sensitive" "Security Risk" "Legal liability" "Intellectual Property Rights" "Confidential Business Information" "Restricted by Contract" "FOIA Exemption" "OMB Director Discretion"); sh:message "May be one or more the following: 'PII Sensitive', 'Security Risk', 'Legal liability', 'Intellectual Property Rights', 'Confidential Business Information', 'Restricted by Contract', 'FOIA Exemption' or 'OMB Director Discretion'" ; a sh:PropertyShape ; dt:group dt:highLevel ],
 
     [ sh:path dcterms:creator            ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:governance             ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
@@ -80,10 +84,10 @@ dhs:dataInventoryRecordShape
     [ sh:path dhs:sharingAgreements      ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dcat:contactPoint          ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:collectionAuthority    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:retentionAuthority     ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:releaseAuthority       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path dhs:recordsSchedule        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
     [ sh:path usg:systemOfRecords        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:ptaAdjudicatedDate     ; sh:minCount 0 ; ; sh:datatype xsd:date; sh:message "PTA Adjudicated date must be a date (like 12/31/2021 for Excel or 2021-12-31 for JSON and edits in the Mobius Maintenance page)." ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
 
     [ sh:path dcterms:conformsTo         ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
     [ sh:path dhs:conformsFIPS           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
@@ -97,6 +101,9 @@ dhs:dataInventoryRecordShape
     [ sh:path usg:describedBy            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
     [ sh:path usg:describedByType        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
     [ sh:path dcterms:isPartOf           ; sh:minCount 0 ; sh:maxLength 5000 ; a sh:PropertyShape ; dt:group dt:provenance; ],
+    [ sh:path dhs:isOpenSource           ; sh:minCount 0 ;  sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:provenance ],
+    [ sh:path dhs:isCommercial           ; sh:minCount 0 ;  sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:provenance ],
+    [ sh:path dhs:hasDataDictionary     ; sh:minCount 0 ;  sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:provenance ],
 
     [ sh:path dcterms:accrualPeriodicity     ; sh:minCount 0 ; sh:datatype xsd:duration ;  a sh:PropertyShape ; dt:group dt:dataset ],
 
@@ -121,6 +128,8 @@ dhs:dataInventoryRecordShape
     [ sh:path dcat:theme                 ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dhs:functionalDataDomain   ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dcat:mediaType             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dhs:isStream               ; sh:minCount 0 ;  sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dhs:accessInstructions    ; sh:minCount 0 ; sh:maxLength 5000 ; a sh:PropertyShape ; dt:group dt:distribution ],
 
     [ sh:path dhs:tableCount             ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:message "Only one value is allowed and must be a non-negative integer" ;  a sh:PropertyShape ; dt:group dt:size ],
     [ sh:path dhs:recordCount            ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:message "Only one value is allowed and must be a non-negative integer" ;  a sh:PropertyShape ; dt:group dt:size ],

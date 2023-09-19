@@ -216,6 +216,15 @@ Please note, however, that there are several variations to the formatting that a
             </tr>
             
             
+            <tr>
+               <td class='label'>Restriction Reason</td>
+               <td class='attrname'>dhs:restrictionReason</td>
+               <td class='definition'><p>A reason for which the dataset is not published to data.gov (I.e. not marked as 'public' for accessLevel and not marked as 'public' for dataCatalogRecordAccessLevel). Must be provided as a comma separated list including one or more of the following:</p><p><ul class='no-bullets'><li>PII Sensitive</li><li>Security Risk</li><li>Legal liability</li><li>Intellectual Property Rights</li><li>Confidential Business Information</li><li>Restricted by Contract</li><li>FOIA Exeption</li><li>OMB Director Discretion</li></ul></p></td>
+               <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+               <td class="required">No</td>
+            </tr>
+            
+            
          </table>
          <h3>dataGovernanceInformation</h3>
          <table class='definitions'>
@@ -327,15 +336,6 @@ Please note, however, that there are several variations to the formatting that a
             
             
             <tr>
-               <td class='label'>Retention Authority</td>
-               <td class='attrname'>dhs:retentionAuthority</td>
-               <td class='definition'><p>The legislation or executive order under which the data was retained. The document will state who, how, and duration period of the information being retained.</p><p>Example:<ul class='no-bullets'><li>https://www.govinfo.gov/content/pkg/CFR-2020-title21-vol5/xml/CFR-2020-title21-vol5-sec320-38.xml</li></ul></p></td>
-               <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
-               <td class="required">No</td>
-            </tr>
-            
-            
-            <tr>
                <td class='label'>Release Authority</td>
                <td class='attrname'>dhs:releaseAuthority</td>
                <td class='definition'><p>The document, legislation or executive order under which he data can be released.</p><p>Examples:<ul class='no-bullets'><li>https://www.ecfr.gov/current/title-6/chapter-I/part-7/subpart-B/section-7.23</li><li>https://irp.fas.org/dni/icd/icd-403.pdf</li></ul><p></td>
@@ -358,6 +358,15 @@ Please note, however, that there are several variations to the formatting that a
                <td class='attrname'>usg:systemOfRecords</td>
                <td class='definition'><p>If the system is designated as a system of records under the Privacy Act of 1974, provide the URL to the System of Records Notice that relates to the dataset. The URL should be from FederalRegister.gov  or point to an entry from the Federal Register.</p></td>
                <td class='namespace'><a href="https://resources.data.gov/resources/dcat-us/" target="_blank">https://resources.data.gov/resources/dcat-us/</a></td>
+               <td class="required">No</td>
+            </tr>
+            
+            
+            <tr>
+               <td class='label'>PTA Adjudicated Date</td>
+               <td class='attrname'>dhs:ptaAdjudicatedDate</td>
+               <td class='definition'><p>The date on which the Privacy Threshold Assessment (PTA) was adjudicated</p></td>
+               <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
                <td class="required">No</td>
             </tr>
             
@@ -483,6 +492,33 @@ Please note, however, that there are several variations to the formatting that a
             </tr>
             
             
+            <tr>
+               <td class='label'>Is Open Source</td>
+               <td class='attrname'>dhs:isOpenSource</td>
+               <td class='definition'><p>True or False</p><p>The data in the dataset is composed of publicly available data and maybe compiled from multiple sources.</p></td>
+               <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+               <td class="required">No</td>
+            </tr>
+            
+            
+            <tr>
+               <td class='label'>Is Commercial</td>
+               <td class='attrname'>dhs:isCommercial</td>
+               <td class='definition'><p>True or False</p><p>The dataset is aquired from a private sector provider (may be purchased or acquired via agreement).</p></td>
+               <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+               <td class="required">No</td>
+            </tr>
+            
+            
+            <tr>
+               <td class='label'>Has Data Dictionary</td>
+               <td class='attrname'>dhs:hasDataDictionary</td>
+               <td class='definition'><p>True or False</p><p>The dataset has a data dictionary (should be pointed to in the referencedBy attribute).</p></td>
+               <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+               <td class="required">No</td>
+            </tr>
+            
+            
          </table>
          <h3>dataset</h3>
          <table class='definitions'>
@@ -517,7 +553,7 @@ Please note, however, that there are several variations to the formatting that a
             <tr>
                <td class='label'>Spatial Coverage</td>
                <td class='attrname'>dcterms:spatial</td>
-               <td class='definition'><p>A named local or geographic area.</p><p>Example:<ul class='no-bullets'><li>St. Elizabeth Campus, Dowtown DC, Arlington County, United States</li></ul></p></td>
+               <td class='definition'><p>A named local or geographic area.</p><p>Example:<ul class='no-bullets'><li>St. Elizabeth Campus, Downtown DC, Arlington County, United States</li></ul></p></td>
                <td class='namespace'><a href="http://purl.org/dc/terms/" target="_blank">http://purl.org/dc/terms/</a></td>
                <td class="required">No</td>
             </tr>
@@ -709,6 +745,24 @@ Please note, however, that there are several variations to the formatting that a
             </tr>
             
             
+            <tr>
+               <td class='label'>Is Stream</td>
+               <td class='attrname'>dhs:isStream</td>
+               <td class='definition'><p>True or False</p><p>Data Set or Data Source is streaming. The data is constantly updated.</p></td>
+               <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+               <td class="required">No</td>
+            </tr>
+            
+            
+            <tr>
+               <td class='label'>Access Instructions</td>
+               <td class='attrname'>dhs:accessInstructions</td>
+               <td class='definition'><p>The steps or actions an individual must take to gain access to the dataset. Can work in conjunction with accessRights (max length 5,000 characters).</p><p>Example: 'Visit the (accessURL) link and then click on 'Your ArcGIS organization's URL and enter <MGMT> and click Continue'</p></td>
+               <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+               <td class="required">No</td>
+            </tr>
+            
+            
          </table>
          <h3>size</h3>
          <table class='definitions'>
@@ -842,7 +896,7 @@ Please note, however, that there are several variations to the formatting that a
             <tr>
                <td class='label'>Characteristics - Geospatial</td>
                <td class='attrname'>dhs:ch-geospatial</td>
-               <td class='definition'><p>True or False</p><p>The information in the resource contains geospatial information.</p><p>Example:<ul class='no-bullets'><li>https://catalog.data.gov/dataset/fema-historical-disaster-declarations-shp</li><li>https://catalog.data.gov/dataset/formerly-used-defense-sites-fuds-public-properties</li></ul></P></td>
+               <td class='definition'><p>True or False</p><p>The information in the resource contains geospatial information.</p><p>Example:<ul class='no-bullets'><li>https://catalog.data.gov/dataset/fema-historical-disaster-declarations-shp</li><li>https://catalog.data.gov/dataset/formerly-used-defense-sites-fuds-public-properties</li></ul></p></td>
                <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
                <td class="required">No</td>
             </tr>
@@ -869,7 +923,7 @@ Please note, however, that there are several variations to the formatting that a
             <tr>
                <td class='label'>Characteristics - 8usc1367</td>
                <td class='attrname'>dhs:ch-8usc1367</td>
-               <td class='definition'><p>True or False</p><p>The information in the resource contains  8 USC 1367.</p><p>Reference: <a href='https://www.dhs.gov/sites/default/files/publications/dhs_foia_instruction_section_1367_information.pdf'>https://www.dhs.gov/sites/default/files/publications/dhs_foia_instruction_section_1367_information.pdf</a></p></td>
+               <td class='definition'><p>True or False</p><p>The information in the resource contains  8 USC 1367.</p><p>Reference: https://www.dhs.gov/sites/default/files/publications/dhs_foia_instruction_section_1367_information.pdf</p></td>
                <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
                <td class="required">No</td>
             </tr>
@@ -924,6 +978,33 @@ Please note, however, that there are several variations to the formatting that a
                <td class='label'>Characteristics - Dissemination Restrictions</td>
                <td class='attrname'>dhs:ch-disseminationRestrictions</td>
                <td class='definition'><p>True or False</p><p>The information  has dissemination restrictions.</p></td>
+               <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+               <td class="required">No</td>
+            </tr>
+            
+            
+            <tr>
+               <td class='label'>Characteristics - LES - Law Enforcement Sensative</td>
+               <td class='attrname'>dhs:ch-les</td>
+               <td class='definition'><p>True or False</p><p>The information in the resource contains information that is deemed Law Enforcement Sensative.</p></td>
+               <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+               <td class="required">No</td>
+            </tr>
+            
+            
+            <tr>
+               <td class='label'>Characteristics - Synthetic</td>
+               <td class='attrname'>dhs:ch-synthetic</td>
+               <td class='definition'><p>True or False</p><p>The data is created manually or artificially apart from the data generated by real-world events. This may include data that is generated for the purposes of modeling and may be generated by a computer simulation. The data approximates real data, but does not necessarily reflect the real world. This includes synthetically derived data (e.g. data that is created programmatically from a set of source data, typically with some algorithm applied)</p></td>
+               <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
+               <td class="required">No</td>
+            </tr>
+            
+            
+            <tr>
+               <td class='label'>Characteristics - Anonymized</td>
+               <td class='attrname'>dhs:ch-anonymized</td>
+               <td class='definition'><p>True or False</p><p>The identifying information in the resource has been removed or changed so that the individual cannot be identified.</p></td>
                <td class='namespace'><a href="http://github.com/usdhs/dcat-tool/" target="_blank">http://github.com/usdhs/dcat-tool/</a></td>
                <td class="required">No</td>
             </tr>
