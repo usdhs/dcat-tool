@@ -36,13 +36,13 @@
         }
     },
     "@id": "https://dhs.gov/test-6",
-    "@type": "https://usdhs.github.io/dcat-tool/#dataInventoryRecord",
+    "@type": "https://usdhs.github.io/dcat-tool/#DataInventoryRecord",
     "http://purl.org/dc/terms/identifier": "test-6",
     "http://purl.org/dc/terms/title": "test-6",
     "http://purl.org/dc/terms/description": "test a characteristic",
     "http://purl.org/dc/terms/issued": {
         "@type": "xsd:date",
-        "@value": "2023-09-22"
+        "@value": "2023-09-25"
     },
     "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
     "https://usdhs.github.io/dcat-tool/#dataCatalogRecordAccessLevel": "public",

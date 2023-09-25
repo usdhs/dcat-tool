@@ -210,6 +210,8 @@ def addTestNodes(nodeName, jsonobj, testValue = None):
                         #print('WIT??? -- '+ rw)
                         if rw == 'keyword':
                             jsonobj.update({nodekey["uri"]:['test','dataset','Data Inventory Record']})
+                        elif rw in ['restrictionReason']:
+                            jsonobj.update({nodekey["uri"]:"PII Sensitive"})
                         elif rw in ['references','sharingAgreements','describedBy']:
                             jsonobj.update({nodekey["uri"]:'https://example.org/some/valuable/resource.html'})
                         elif rw in ['collectionAuthority','retentionAuthority','releaseAuthority']:

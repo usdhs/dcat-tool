@@ -32,13 +32,13 @@
         "usg": "http://resources.data.gov/resources/dcat-us/#"
     },
     "@id": "https://dhs.gov/test-3",
-    "@type": "https://usdhs.github.io/dcat-tool/#dataInventoryRecord",
+    "@type": "https://usdhs.github.io/dcat-tool/#DataInventoryRecord",
     "http://purl.org/dc/terms/identifier": "test-3",
     "http://purl.org/dc/terms/title": "test-3",
     "http://purl.org/dc/terms/description": "test keywords array in DIP record",
     "http://purl.org/dc/terms/issued": {
         "@type": "xsd:date",
-        "@value": "2023-09-22"
+        "@value": "2023-09-25"
     },
     "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
     "https://usdhs.github.io/dcat-tool/#dataCatalogRecordAccessLevel": "public",
