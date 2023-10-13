@@ -231,10 +231,12 @@ class ExcelGenerator:
             # We tried making the comment string the description and the DCATv3 type is the comment "author", but that didn't work
             cell = ws.cell(row=1, column=col)
             cell.value = obj.value
+            desca = obj.comment
+            descb = desca.replace('<p>','\n').replace('</p>','\n').replace('<li>','\n').replace('</li>','').replace('</ul>','').replace("<ul class='no-bullets'>",'')
             cell.alignment = Alignment(textRotation=45)
-            cell.comment = Comment(obj.comment + "\n" + "<" + obj.author + ">" , "")
+            cell.comment = Comment(descb + "\n" + "<" + obj.author + ">" , "")
             cell.comment.width = 200
-            cell.comment.height = 400
+            cell.comment.height = 420
             column_letter = openpyxl.utils.get_column_letter( cell.col_idx)
             ws.column_dimensions[ column_letter ].width   = obj.width
 

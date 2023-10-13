@@ -261,17 +261,17 @@ class Validator:
         """Check the dictionary (a loaded JSON object) """
         if not isinstance(obj,dict):
             raise ValidationFail(f'argument is type "{type(obj)}" and is not a JSON object or python dictionary')
-        if 'dct:identifier' not in obj:
-            raise ValidationFail('dct:identifier missing')
+        if 'dcterms:identifier' not in obj:
+            raise ValidationFail('dcterms:identifier missing')
         return True
 
     def add_row(self, obj):
         """Validates a single object."""
         self.validate( obj )
 
-        ident = obj['dct:identifier']
+        ident = obj['dcterms:identifier']
         if ident in self.seenIDs:
-            raise ValidationFail(f'dct:identifier "{ident}" already seen')
+            raise ValidationFail(f'dcterms:identifier "{ident}" already seen')
         self.seenIDs.add(ident)
         self.rows.append( obj )
 
@@ -303,4 +303,8 @@ def read_xlsx(fname) :
     return list(tr.inventory_records())
 
 def validate_xlsx( v, fname):
+    # validate_inventory_records( v, read_xlsx( fname ) )
+    # v.get_template_column_info_objs()
+    # #print(v.g2.serialize(format="xml"))
+    # print(v.g2.serialize(format="json-ld"))
     return validate_inventory_records( v, read_xlsx( fname ) )
