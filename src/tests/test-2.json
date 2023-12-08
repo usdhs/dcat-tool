@@ -1,17 +1,63 @@
 {
     "@context": {
-        "xml": "http://www.w3.org/XML/1998/namespace",
+        "brick": "https://brickschema.org/schema/Brick#",
+        "csvw": "http://www.w3.org/ns/csvw#",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "dcam": "http://purl.org/dc/dcam/",
+        "doap": "http://usefulinc.com/ns/doap#",
+        "geo": "http://www.opengis.net/ont/geosparql#",
+        "odrl": "http://www.w3.org/ns/odrl/2/",
+        "org": "http://www.w3.org/ns/org#",
+        "prof": "http://www.w3.org/ns/dx/prof/",
+        "prov": "http://www.w3.org/ns/prov#",
+        "qb": "http://purl.org/linked-data/cube#",
+        "schema": "https://schema.org/",
+        "sosa": "http://www.w3.org/ns/sosa/",
+        "ssn": "http://www.w3.org/ns/ssn/",
+        "time": "http://www.w3.org/2006/time#",
+        "vann": "http://purl.org/vocab/vann/",
+        "void": "http://rdfs.org/ns/void#",
+        "wgs": "https://www.w3.org/2003/01/geo/wgs84_pos#",
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
-        "dcat": "http://www.w3.org/ns/dcat#",
-        "dcterms": "http://purl.org/dc/terms/",
+        "xml": "http://www.w3.org/XML/1998/namespace",
         "dctype": "http://purl.org/dc/dcmitype/",
-        "prov": "http://www.w3.org/ns/prov#",
+        "foaf1": "http://xmlns.com/foaf/0.1/#",
         "sdo": "http://schema.org/",
         "vcard": "http://www.w3.org/2006/vcard/ns#",
         "dhs": "https://usdhs.github.io/dcat-tool/#",
         "usg": "http://resources.data.gov/resources/dcat-us/#",
+        "publisher": {
+            "@id": "http://purl.org/dc/terms/publisher",
+            "@type": "http://www.w3.org/2006/vcard/ns#Individual"
+        },
+        "creator": {
+            "@id": "http://purl.org/dc/terms/creator",
+            "@type": "http://www.w3.org/2006/vcard/ns#Individual"
+        },
+        "governance": {
+            "@id": "https://usdhs.github.io/dcat-tool/#governance",
+            "@type": "http://www.w3.org/2006/vcard/ns#Individual"
+        },
+        "owner": {
+            "@id": "https://usdhs.github.io/dcat-tool/#owner",
+            "@type": "http://www.w3.org/2006/vcard/ns#Individual"
+        },
+        "steward": {
+            "@id": "https://usdhs.github.io/dcat-tool/#steward",
+            "@type": "http://www.w3.org/2006/vcard/ns#Individual"
+        },
+        "custodian": {
+            "@id": "https://usdhs.github.io/dcat-tool/#custodian",
+            "@type": "http://www.w3.org/2006/vcard/ns#Individual"
+        },
+        "contactPoint": {
+            "@id": "http://www.w3.org/ns/dcat#contactPoint",
+            "@type": "http://www.w3.org/2006/vcard/ns#Individual"
+        },
         "ch-person-level": {
             "@id": "https://usdhs.github.io/dcat-tool/#ch-person-level",
             "@type": "http://www.w3.org/2001/XMLSchema#boolean"
@@ -83,6 +129,18 @@
         "ch-disseminationRestrictions": {
             "@id": "https://usdhs.github.io/dcat-tool/#ch-disseminationRestrictions",
             "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+        },
+        "ch-les": {
+            "@id": "https://usdhs.github.io/dcat-tool/#ch-les",
+            "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+        },
+        "ch-synthetic": {
+            "@id": "https://usdhs.github.io/dcat-tool/#ch-synthetic",
+            "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+        },
+        "ch-anonymized": {
+            "@id": "https://usdhs.github.io/dcat-tool/#ch-anonymized",
+            "@type": "http://www.w3.org/2001/XMLSchema#boolean"
         }
     },
     "@id": "https://dhs.gov/test-2",
@@ -92,7 +150,7 @@
     "http://purl.org/dc/terms/description": "test all fields for DIP record - a full record",
     "http://purl.org/dc/terms/issued": {
         "@type": "xsd:date",
-        "@value": "2022-08-07"
+        "@value": "2023-09-25"
     },
     "http://resources.data.gov/resources/dcat-us/#accessLevel": "public",
     "https://usdhs.github.io/dcat-tool/#dataCatalogRecordAccessLevel": "public",
@@ -107,6 +165,7 @@
         "http://www.w3.org/2006/vcard/ns#organization-name": "DHS",
         "http://www.w3.org/2006/vcard/ns#organization-unit": "MGMT"
     },
+    "https://usdhs.github.io/dcat-tool/#restrictionReason": "PII Sensitive",
     "http://purl.org/dc/terms/creator": {
         "@type": "http://www.w3.org/2006/vcard/ns#Organization",
         "http://www.w3.org/2006/vcard/ns#organization-name": "DHS",
@@ -119,18 +178,18 @@
     },
     "https://usdhs.github.io/dcat-tool/#owner": {
         "@type": "http://www.w3.org/2006/vcard/ns#Individual",
-        "http://www.w3.org/2006/vcard/ns#organization-name": "Deloitte",
-        "http://www.w3.org/2006/vcard/ns#fn": "Anna Cole"
+        "http://www.w3.org/2006/vcard/ns#organization-name": "CACI",
+        "http://www.w3.org/2006/vcard/ns#fn": "Mike Smythe"
     },
     "https://usdhs.github.io/dcat-tool/#steward": {
         "@type": "http://www.w3.org/2006/vcard/ns#Individual",
-        "http://www.w3.org/2006/vcard/ns#organization-name": "CACI",
+        "http://www.w3.org/2006/vcard/ns#organization-name": "Kinsley",
         "http://www.w3.org/2006/vcard/ns#fn": "Anna Cole"
     },
     "https://usdhs.github.io/dcat-tool/#custodian": {
         "@type": "http://www.w3.org/2006/vcard/ns#Individual",
-        "http://www.w3.org/2006/vcard/ns#organization-name": "ECS",
-        "http://www.w3.org/2006/vcard/ns#fn": "Ron Johnson"
+        "http://www.w3.org/2006/vcard/ns#organization-name": "Booz Allen",
+        "http://www.w3.org/2006/vcard/ns#fn": "Mike Smythe"
     },
     "http://resources.data.gov/resources/dcat-us/#primaryITInvestmentUII": "010-999992220",
     "https://usdhs.github.io/dcat-tool/#fismaID": "FSA-00100-MAJ-00100",
@@ -138,14 +197,10 @@
     "https://usdhs.github.io/dcat-tool/#sharingAgreements": "https://example.org/some/valuable/resource.html",
     "http://www.w3.org/ns/dcat#contactPoint": {
         "@type": "http://www.w3.org/2006/vcard/ns#Individual",
-        "http://www.w3.org/2006/vcard/ns#organization-name": "Kinsley",
-        "http://www.w3.org/2006/vcard/ns#fn": "Mike Smythe"
+        "http://www.w3.org/2006/vcard/ns#organization-name": "PWC",
+        "http://www.w3.org/2006/vcard/ns#fn": "Kim Palsi"
     },
     "https://usdhs.github.io/dcat-tool/#collectionAuthority": [
-        "Some Article of legal authority",
-        "or Executive Orders"
-    ],
-    "https://usdhs.github.io/dcat-tool/#retentionAuthority": [
         "Some Article of legal authority",
         "or Executive Orders"
     ],
@@ -158,19 +213,23 @@
         "A description of the records management schedule"
     ],
     "http://resources.data.gov/resources/dcat-us/#systemOfRecords": "https://example.org/a_SORN_entry.html",
+    "https://usdhs.github.io/dcat-tool/#ptaAdjudicatedDate": {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2023-09-25"
+    },
     "http://purl.org/dc/terms/conformsTo": "http://niem.github.io/reference/iepd/",
     "https://usdhs.github.io/dcat-tool/#conformsFIPS": "https://www.nist.gov/publications/security-requirements-cryptographic-modules-includes-change-notices-1232002",
     "https://usdhs.github.io/dcat-tool/#conformsNIEMPercent": {
         "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": 55
+        "@value": 75
     },
     "https://usdhs.github.io/dcat-tool/#conformsUnicode": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "false"
+        "@value": "true"
     },
     "https://usdhs.github.io/dcat-tool/#identitiesNativeScript": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "false"
+        "@value": "true"
     },
     "https://usdhs.github.io/dcat-tool/#transliterationStandard": "https://www.iso.org/ics/01.140.10/x/",
     "https://usdhs.github.io/dcat-tool/#sourceDatasets": [
@@ -186,6 +245,18 @@
     "http://resources.data.gov/resources/dcat-us/#describedBy": "https://example.org/some/valuable/resource.html",
     "http://resources.data.gov/resources/dcat-us/#describedByType": "application/json",
     "http://purl.org/dc/terms/isPartOf": "Mobius",
+    "https://usdhs.github.io/dcat-tool/#isOpenSource": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "false"
+    },
+    "https://usdhs.github.io/dcat-tool/#isCommercial": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "true"
+    },
+    "https://usdhs.github.io/dcat-tool/#hasDataDictionary": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "true"
+    },
     "http://purl.org/dc/terms/accrualPeriodicity": {
         "@type": "http://www.w3.org/2001/XMLSchema#duration",
         "@value": "P1Y"
@@ -196,16 +267,16 @@
     "http://www.w3.org/ns/dcat#temporalResolution": "P1M",
     "https://usdhs.github.io/dcat-tool/#dataQualityKnown": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "false"
+        "@value": "true"
     },
     "https://usdhs.github.io/dcat-tool/#dataQualityPercent": {
         "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": 53
+        "@value": 72
     },
     "https://usdhs.github.io/dcat-tool/#dataQualityAssessment": "This dataset has some gaps in crtical areas. Efforts are underway to remediate.",
     "http://resources.data.gov/resources/dcat-us/#dataQuality": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "http://purl.org/dc/terms/format": "CSV",
     "http://www.w3.org/ns/dcat#accessURL": {
@@ -218,7 +289,7 @@
     },
     "http://resources.data.gov/resources/dcat-us/#modified": {
         "@type": "http://www.w3.org/2001/XMLSchema#date",
-        "@value": "2022-08-07"
+        "@value": "2023-09-25"
     },
     "https://usdhs.github.io/dcat-tool/#vendor": [
         "ECS",
@@ -233,23 +304,28 @@
     ],
     "https://usdhs.github.io/dcat-tool/#functionalDataDomain": "IDII",
     "http://www.w3.org/ns/dcat#mediaType": "application/node",
+    "https://usdhs.github.io/dcat-tool/#isStream": {
+        "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+        "@value": "true"
+    },
+    "https://usdhs.github.io/dcat-tool/#accessInstructions": "the history of",
     "https://usdhs.github.io/dcat-tool/#tableCount": {
         "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": 59
+        "@value": 36
     },
     "https://usdhs.github.io/dcat-tool/#recordCount": {
         "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": 46
+        "@value": 57
     },
     "http://www.w3.org/ns/dcat#byteSize": {
         "@type": "http://www.w3.org/2001/XMLSchema#integer",
-        "@value": 20
+        "@value": 55
     },
     "https://usdhs.github.io/dcat-tool/#datasetClassification": "CUI",
     "https://usdhs.github.io/dcat-tool/#hostingLocation": "CIRRUS",
     "https://usdhs.github.io/dcat-tool/#hostedInCloud": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "https://usdhs.github.io/dcat-tool/#easilyAccessibleByCreatingComponent": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
@@ -261,12 +337,12 @@
     },
     "https://usdhs.github.io/dcat-tool/#easilyAccessibleByGeneralPublic": {
         "@type": "http://www.w3.org/2001/XMLSchema#boolean",
-        "@value": "true"
+        "@value": "false"
     },
     "http://resources.data.gov/resources/dcat-us/#encryptionAlgorithm": "3DES",
     "https://usdhs.github.io/dcat-tool/#recordTransmission": {
         "@type": "http://www.w3.org/2001/XMLSchema#date",
-        "@value": "2022-08-07"
+        "@value": "2023-09-25"
     },
     "https://usdhs.github.io/dcat-tool/#validityTime": {
         "@type": "http://www.w3.org/2001/XMLSchema#duration",
@@ -291,6 +367,9 @@
         "ch-criticalInfrastructure": "true",
         "ch-pcii": "true",
         "ch-biometrics": "true",
-        "ch-disseminationRestrictions": "true"
+        "ch-disseminationRestrictions": "true",
+        "ch-les": "true",
+        "ch-synthetic": "true",
+        "ch-anonymized": "true"
     }
 }

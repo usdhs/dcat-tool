@@ -25,6 +25,29 @@ dhs:Characteristics
     rdfs:subClassOf dcat:Dataset ;
     .
 
+dhs:ValidOptions
+   a sh:NodeShape;
+   sh:pattern "^(?!(na|n/a|none|no|unknown|not available)$)";
+   sh:flags "i" ;
+   .
+
+dhs:ValidOptionsPersonOrOrg
+   a sh:NodeShape;
+   sh:xone(
+   [sh:datatype xsd:string  ; sh:pattern "^(?!(na|n/a|none|no|unknown|not available)$)" ;]
+   [sh:class sdo:Person ;]
+   [sh:class vcard:Individual ;]
+   [sh:class vcard:Organization ;]
+   )
+   .
+
+dhs:ValidDateValue
+   a sh:NodeShape;
+   sh:pattern "[0-9]{4}-[0-9]{2}-[0-9]{2}";
+   sh:minInclusive "1970-01-01"^^xsd:date;
+   sh:maxInclusive "2099-12-31"^^xsd:date;
+   .
+
 dhs:characteristicsShape
     a sh:NodeShape ;
     sh:targetClass dhs:Characteristics ;
@@ -60,74 +83,74 @@ dhs:dataInventoryRecordShape
     sh:targetClass dhs:DataInventoryRecord ;
     rdfs:comment "Specify the DCATv3 fields (and other fields) that are being collected for the DHS Data Inventory Project."@en ;
     owl:versionInfo "2.0" ;
-    dcterms:modified "2023-03-16"^^xsd:date ;
+    dcterms:modified "2023-09-25"^^xsd:date ;
     sh:property
-    [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 128 ; sh:pattern "^\\S*$" ; sh:datatype xsd:string ; sh:message "Identifier (string) is required, must not be more than 128 characters and cannot contain spaces." ; dt:title "unique identifier"; rdfs:comment "<p>Similar to a serial number associated with your laptop, the identifier is a unique and specific combination of characters that identify the resource. The combination must start with the DHS component code, is limited to 128 characters, and be in the following format: code-xxx-x</p><p>Example:<ul class='no-bullets'><li>mgmt-test-2</li><li>fema-1234-D</li></ul></p>"@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 256 ; sh:datatype xsd:string ; sh:message "Title (string) is required and must not be more than 255 characters." ; rdfs:comment "<p>The official name (title) given to the resource, limited to 255 characters. Acronyms should be used sparingly and only when explained in the description.</p><p>Example:<ul class='no-bullets'><li>DHS Data Inventory Introduction</li></ul></p>"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcterms:description        ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 4000 ; sh:datatype xsd:string ; sh:message "Description (string) is required and must not be more than 4,000 characters." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcat:keyword               ; sh:minCount 0 ; sh:datatype xsd:string ; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcterms:publisher          ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path usg:accessLevel            ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "restricted public" "non-public") ; sh:message "Must be one of the following (exactly): 'public', 'restricted public' or 'non-public'" ; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dhs:dataCatalogRecordAccessLevel ; sh:minCount 1 ; sh:maxCount 1 ; sh:in("public" "non-public"); sh:message "Must be one of the following (exactly): 'public' or 'non-public'"  ; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dcterms:issued             ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:date; sh:message "Issued date is required and must be a date (like 12/31/2021 for Excel or 2021-12-31 for JSON and edits in the Mobius Maintenance page)." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
-    [ sh:path dhs:component              ; sh:minCount 1 ;  a sh:PropertyShape ; dt:group dt:highLevel ],
-    [ sh:path dhs:restrictionReason      ; sh:minCount 0 ; sh:in("PII Sensitive" "Security Risk" "Legal liability" "Intellectual Property Rights" "Confidential Business Information" "Restricted by Contract" "FOIA Exemption" "OMB Director Discretion"); sh:message "May be one or more the following: 'PII Sensitive', 'Security Risk', 'Legal liability', 'Intellectual Property Rights', 'Confidential Business Information', 'Restricted by Contract', 'FOIA Exemption' or 'OMB Director Discretion'" ; a sh:PropertyShape ; dt:group dt:highLevel ],
+    [ sh:path dcterms:identifier         ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 128 ; sh:node dhs:ValidOptions; sh:pattern "^\\S*$" ; sh:datatype xsd:string ; sh:message "Identifier (string) is required, must be valid value, and must not be more than 128 characters and cannot contain spaces." ; dt:title "unique identifier"; rdfs:comment "<p>Similar to a serial number associated with your laptop, the identifier is a unique and specific combination of characters that identify the resource. The combination must start with the DHS component code, is limited to 128 characters, and be in the following format: code-xxx-x</p><p>Example:<ul class='no-bullets'><li>mgmt-test-2</li><li>fema-1234-D</li></ul></p>"@en; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:title              ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 256 ; sh:node dhs:ValidOptions; sh:datatype xsd:string ; sh:message "Title (string) is required, must be a valid value, and must not be more than 255 characters." ; rdfs:comment "<p>The official name (title) given to the resource, limited to 255 characters. Acronyms should be used sparingly and only when explained in the description.</p><p>Example:<ul class='no-bullets'><li>DHS Data Inventory Introduction</li></ul></p>"@en; dhs:excelWidth 30; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:description        ; sh:minCount 1 ; sh:maxCount 1 ; sh:maxLength 4000 ; sh:node dhs:ValidOptions; sh:datatype xsd:string ; sh:message "Description (string) is required, must be a valid value, and must not be more than 4,000 characters." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcat:keyword               ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:datatype xsd:string ; sh:message "keyword (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:publisher          ; sh:minCount 0 ; sh:node dhs:ValidOptionsPersonOrOrg; sh:message "publisher (string, vcard or sdo:Person) is optional, but must be a valid value (not N/A)."; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path usg:accessLevel            ; sh:minCount 1 ; sh:maxCount 1 ; sh:node dhs:ValidOptions; sh:in("public" "restricted public" "non-public") ; sh:message "Must be one of the following (exactly): 'public', 'restricted public' or 'non-public'" ; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dhs:dataCatalogRecordAccessLevel ; sh:minCount 1 ; sh:maxCount 1 ; sh:node dhs:ValidOptions; sh:in("public" "non-public"); sh:message "Must be one of the following (exactly): 'public' or 'non-public'"  ; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dcterms:issued             ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:date; sh:node dhs:ValidDateValue; sh:message "Issued date is required and must be a date (like 12/31/2021 for Excel or 2021-12-31 for JSON and edits in the Mobius Maintenance page), and must be in the range between 1970-01-01 and 2099-12-31." ; a sh:PropertyShape ; dt:group dt:highLevel; ],
+    [ sh:path dhs:component              ; sh:minCount 1 ; sh:maxCount 1 ; sh:node dhs:ValidOptions; sh:message "component (string) is required, and must be a valid component abbreviation (in CAPS)."; a sh:PropertyShape ; dt:group dt:highLevel ],
+    [ sh:path dhs:restrictionReason      ; sh:minCount 0 ; sh:in("PII Sensitive" "Security Risk" "Legal Liability" "Intellectual Property Rights" "Confidential Business Information" "Restricted by Contract" "FOIA Exemption" "OMB Director Discretion"); sh:message "May be one or more the following: 'PII Sensitive', 'Security Risk', 'Legal Liability', 'Intellectual Property Rights', 'Confidential Business Information', 'Restricted by Contract', 'FOIA Exemption' or 'OMB Director Discretion'" ; a sh:PropertyShape ; dt:group dt:highLevel ],
 
-    [ sh:path dcterms:creator            ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:governance             ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:owner                  ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:steward                ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:custodian              ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path usg:primaryITInvestmentUII ; sh:minCount 0 ; sh:datatype xsd:string ; sh:message "UII must be a string, typically of the format NNN-NNNNNNNNN and can have multiple, comma separated values." ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:fismaID                ; sh:minCount 0 ; sh:datatype xsd:string ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dcterms:references         ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:sharingAgreements      ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dcat:contactPoint          ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:collectionAuthority    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:releaseAuthority       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:recordsSchedule        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path usg:systemOfRecords        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
-    [ sh:path dhs:ptaAdjudicatedDate     ; sh:minCount 0 ; ; sh:datatype xsd:date; sh:message "PTA Adjudicated date must be a date (like 12/31/2021 for Excel or 2021-12-31 for JSON and edits in the Mobius Maintenance page)." ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dcterms:creator            ; sh:minCount 0 ; sh:node dhs:ValidOptionsPersonOrOrg; sh:message "creator (string, vcard or sdo:Person) is optional, but must be a valid value (not N/A)."; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:governance             ; sh:minCount 0 ; sh:node dhs:ValidOptionsPersonOrOrg; sh:message "governance (string, vcard or sdo:Person) is optional, but must be a valid value (not N/A)."; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:owner                  ; sh:minCount 0 ; sh:node dhs:ValidOptionsPersonOrOrg; sh:message "owner (string, vcard or sdo:Person) is optional, but must be a valid value (not N/A)."; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:steward                ; sh:minCount 0 ; sh:node dhs:ValidOptionsPersonOrOrg; sh:message "steward (string, vcard or sdo:Person) is optional, but must be a valid value (not N/A)."; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:custodian              ; sh:minCount 0 ; sh:node dhs:ValidOptionsPersonOrOrg; sh:message "custodian (string, vcard or sdo:Person) is optional, but must be a valid value (not N/A)."; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:primaryITInvestmentUII ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:datatype xsd:string ; sh:message "UII must be a string, typically of the format NNN-NNNNNNNNN and can have multiple, comma separated values." ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:fismaID                ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "fismaID (string) is optional, but must be a valid value."; sh:datatype xsd:string ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dcterms:references         ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "references (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:sharingAgreements      ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "sharingAgreements (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dcat:contactPoint          ; sh:minCount 0 ; sh:node dhs:ValidOptionsPersonOrOrg; sh:message "contactPoint (string, vcard or sdo:Person) is optional, but must be a valid value (not N/A)."; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:datatype xsd:string]) ; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:collectionAuthority    ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "collectionAuthority (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:releaseAuthority       ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "releaseAuthority (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:recordsSchedule        ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "recordsSchedule (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path usg:systemOfRecords        ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "systemOfRecords (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
+    [ sh:path dhs:ptaAdjudicatedDate     ; sh:minCount 0 ; ; sh:datatype xsd:date; sh:node dhs:ValidDateValue; sh:message "PTA Adjudicated date must be a date (like 12/31/2021 for Excel or 2021-12-31 for JSON and edits in the Mobius Maintenance page)." ;  a sh:PropertyShape ; dt:group dt:dataGovernanceInformation;],
 
-    [ sh:path dcterms:conformsTo         ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
-    [ sh:path dhs:conformsFIPS           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
+    [ sh:path dcterms:conformsTo         ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "conformsTo (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:standards ],
+    [ sh:path dhs:conformsFIPS           ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "conformsFIPS (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:standards ],
     [ sh:path dhs:conformsNIEMPercent    ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:message "Must be a integer between 0 and 100" ; sh:minInclusive 0 ; sh:maxInclusive 100 ; sh:message "Must be an integer between 0 and 100." ; a sh:PropertyShape ; dt:group dt:standards ],
     [ sh:path dhs:conformsUnicode        ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:boolean ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:standards ],
     [ sh:path dhs:identitiesNativeScript ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:boolean ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:standards ],
-    [ sh:path dhs:transliterationStandard; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:standards ],
+    [ sh:path dhs:transliterationStandard; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "transliterationStandard (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:standards ],
 
-    [ sh:path dhs:sourceDatasets         ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
-    [ sh:path dhs:destinationDatasets    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
-    [ sh:path usg:describedBy            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
-    [ sh:path usg:describedByType        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:provenance; ],
-    [ sh:path dcterms:isPartOf           ; sh:minCount 0 ; sh:maxLength 5000 ; a sh:PropertyShape ; dt:group dt:provenance; ],
+    [ sh:path dhs:sourceDatasets         ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "sourceDatasets (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:provenance; ],
+    [ sh:path dhs:destinationDatasets    ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "destinationDatasets (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:provenance; ],
+    [ sh:path usg:describedBy            ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "describedBy (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:provenance; ],
+    [ sh:path usg:describedByType        ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "describedByType (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:provenance; ],
+    [ sh:path dcterms:isPartOf           ; sh:minCount 0 ; sh:maxLength 5000 ; sh:node dhs:ValidOptions; sh:message "isPartOf (string) is optional, but must be a valid value, and must not be more than 5,000 characters."; a sh:PropertyShape ; dt:group dt:provenance; ],
     [ sh:path dhs:isOpenSource           ; sh:minCount 0 ;  sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:provenance ],
     [ sh:path dhs:isCommercial           ; sh:minCount 0 ;  sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:provenance ],
     [ sh:path dhs:hasDataDictionary     ; sh:minCount 0 ;  sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:provenance ],
 
     [ sh:path dcterms:accrualPeriodicity     ; sh:minCount 0 ; sh:datatype xsd:duration ;  a sh:PropertyShape ; dt:group dt:dataset ],
 
-    [ sh:path dcterms:spatial            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetGeospatial ],
-    [ sh:path dcat:spatialResolutionInMeters  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetGeospatial],
+    [ sh:path dcterms:spatial            ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "spatial (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:datasetGeospatial ],
+    [ sh:path dcat:spatialResolutionInMeters  ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "spatialResolutionInMeters (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:datasetGeospatial],
 
-    [ sh:path dcterms:temporal           ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetTemporal],
-    [ sh:path dcat:temporalResolution    ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:datasetTemporal],
+    [ sh:path dcterms:temporal           ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "temporal (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:datasetTemporal],
+    [ sh:path dcat:temporalResolution    ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "temporalResolution (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:datasetTemporal],
 
     [ sh:path dhs:dataQualityKnown       ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:dataQuality ],
     [ sh:path dhs:dataQualityPercent     ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:message "Must be a integer between 0 and 100" ;   a sh:PropertyShape ; dt:group dt:dataQuality ],
-    [ sh:path dhs:dataQualityAssessment  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:dataQuality ],
+    [ sh:path dhs:dataQualityAssessment  ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "dataQualityAssessment (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:dataQuality ],
     [ sh:path usg:dataQuality            ; sh:minCount 0 ; sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:dataQuality ],
 
-    [ sh:path dcterms:format             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path dcat:accessURL             ; sh:minCount 0 ;  sh:maxCount 1 ; sh:datatype xsd:anyURI; a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path dhs:accessURLNIEM          ; sh:minCount 0 ;  sh:maxCount 1 ; sh:datatype xsd:anyURI; a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path usg:modified               ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:date; a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path dhs:vendor                 ; sh:minCount 0 ; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ;  a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path dcterms:license            ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path dcterms:accessRights       ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path dcat:theme                 ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path dhs:functionalDataDomain   ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
-    [ sh:path dcat:mediaType             ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:distribution ],
+     [ sh:path dcterms:format             ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "format (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dcat:accessURL             ; sh:minCount 0 ; sh:maxCount 1 ; sh:node dhs:ValidOptions; sh:message "accessURL (string) is optional, but must be a valid value."; sh:datatype xsd:anyURI; a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dhs:accessURLNIEM          ; sh:minCount 0 ; sh:maxCount 1 ; sh:node dhs:ValidOptions; sh:message "accessURLNIEM (string) is optional, but must be a valid value."; sh:datatype xsd:anyURI; a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path usg:modified               ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:date; sh:node dhs:ValidDateValue;  sh:message "Modified is optional, but it is a date (like 12/31/2021 for Excel or 2021-12-31 for JSON and edits in the Mobius Maintenance page), and must be in the range between 1970-01-01 and 2099-12-31"; a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dhs:vendor                 ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "vendor (string) is optional, but must be a valid value."; sh:or ([ sh:class sdo:Person ][ sh:class vcard:Individual ][ sh:class sdo:Organization ][ sh:class vcard:Organization ][ sh:datatype xsd:string]) ;  a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dcterms:license            ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "license (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dcterms:accessRights       ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "accessRights (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dcat:theme                 ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "theme (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dhs:functionalDataDomain   ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "functionalDataDomain (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:distribution ],
+    [ sh:path dcat:mediaType             ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "mediaType (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dhs:isStream               ; sh:minCount 0 ;  sh:datatype xsd:boolean ; sh:maxCount 1 ; sh:message "Use either 'true' or 'false' with lower case" ; a sh:PropertyShape ; dt:group dt:distribution ],
     [ sh:path dhs:accessInstructions    ; sh:minCount 0 ; sh:maxLength 5000 ; a sh:PropertyShape ; dt:group dt:distribution ],
 
@@ -135,18 +158,18 @@ dhs:dataInventoryRecordShape
     [ sh:path dhs:recordCount            ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:message "Only one value is allowed and must be a non-negative integer" ;  a sh:PropertyShape ; dt:group dt:size ],
     [ sh:path dcat:byteSize              ; sh:minCount 0 ; sh:maxCount 1 ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:message "Only one value is allowed and must be a non-negative integer" ; a sh:PropertyShape ; dt:group dt:size ],
 
-    [ sh:path dhs:datasetClassification  ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:security ],
+    [ sh:path dhs:datasetClassification  ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "datasetClassification (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:security ],
 
-    [ sh:path dhs:hostingLocation        ; sh:minCount 0 ;  a sh:PropertyShape ; dt:group dt:location ],
+    [ sh:path dhs:hostingLocation        ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "hostingLocation (string) is optional, but must be a valid value."; a sh:PropertyShape ; dt:group dt:location ],
     [ sh:path dhs:hostedInCloud          ; sh:minCount 0 ; sh:datatype xsd:boolean ; a sh:PropertyShape ; dt:group dt:location ],
     [ sh:path dhs:easilyAccessibleByCreatingComponent  ; sh:minCount 0 ; sh:datatype xsd:boolean ;  a sh:PropertyShape ; dt:group dt:location ],
     [ sh:path dhs:easilyAccessibleByAllComponents  ; sh:minCount 0 ; sh:datatype xsd:boolean ; a sh:PropertyShape ; dt:group dt:location ],
     [ sh:path dhs:easilyAccessibleByGeneralPublic  ; sh:minCount 0 ; sh:datatype xsd:boolean ; a sh:PropertyShape ; dt:group dt:location ],
 
-    [ sh:path usg:encryptionAlgorithm    ; sh:minCount 0 ; sh:datatype xsd:string                   ; a sh:PropertyShape; dt:group dt:publication ],
-    [ sh:path dhs:recordTransmission     ; sh:minCount 0 ; sh:datatype xsd:date ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ],
+    [ sh:path usg:encryptionAlgorithm    ; sh:minCount 0 ; sh:node dhs:ValidOptions; sh:message "encryptionAlgorithm (string) is optional, but must be a valid value."; sh:datatype xsd:string; a sh:PropertyShape; dt:group dt:publication ],
+    [ sh:path dhs:recordTransmission     ; sh:minCount 0 ; sh:datatype xsd:date ; sh:maxCount 1 ;  sh:datatype xsd:date; sh:node dhs:ValidDateValue;  sh:message "recordTransmission is optional, but it is a date (like 12/31/2021 for Excel or 2021-12-31 for JSON and edits in the Mobius Maintenance page), and must be in the range between 1970-01-01 and 2099-12-31"; a sh:PropertyShape ; dt:group dt:publication ],
     [ sh:path dhs:validityTime           ; sh:minCount 0 ; sh:datatype xsd:duration ; sh:maxCount 1 ;  a sh:PropertyShape ; dt:group dt:publication ],
-    [ sh:path dhs:characteristics                  ; sh:minCount 0 ; sh:class dhs:Characteristics; a sh:PropertyShape ];
+    [ sh:path dhs:characteristics        ; sh:minCount 0 ; sh:class dhs:Characteristics; a sh:PropertyShape ];
     sh:closed true;
     skos:definition "Constraints for a record in a data catalog, describing the registration of a single dataset or data service."@en ;
     sh:ignoredProperties ( rdf:type )

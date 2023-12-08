@@ -872,7 +872,7 @@ dcterms:publisher
     dcterms:issued "2008-01-14"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dcterms:modified "2010-10-11"^^<http://www.w3.org/2001/XMLSchema#date> ;
     a rdf:Property ;
-    rdfs:comment "<p>The entity responsible for making the resource available.</p><p>Entity may include federal agency, sub- agency, state or local agencies, an organization, a network, a service, or a POC.</P><p>Example:<ul class='no-bullets'><li>DHS/MGMT/OCHCO</li></ul></p>"@en ;
+    rdfs:comment "<p>The entity responsible for making the resource available.</p><p>Entity may include federal agency, sub- agency, state or local agencies, an organization, a network, a service, or a POC.</p><p>Example:<ul class='no-bullets'><li>DHS/MGMT/OCHCO</li></ul></p>"@en ;
     rdfs:isDefinedBy <http://purl.org/dc/terms/> ;
     rdfs:label "Publisher"@en ;
     rdfs:range dcterms:Agent ;

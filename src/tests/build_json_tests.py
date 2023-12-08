@@ -184,6 +184,12 @@ def addTestNodes(nodeName, jsonobj, testValue = None):
                     #pass
                 else:
                     if rw in ['owner','steward','custodian','contactPoint','publisher','creator','governance']:
+                        # -- first add the def to the context --
+                        dataTypekey = "http://www.w3.org/2006/vcard/ns#Individual"
+                        vcardIdObj = {}
+                        vcardIdObj.update({'@id':nodekey["uri"]})
+                        vcardIdObj.update({'@type':dataTypekey})
+                        addAttributeToContext(jsonobj,rw,vcardIdObj)
                         if rw in ['publisher','creator','governance']:
                             #print('org only' + rw)
                             vcardOrgObj = {}
@@ -204,6 +210,8 @@ def addTestNodes(nodeName, jsonobj, testValue = None):
                         #print('WIT??? -- '+ rw)
                         if rw == 'keyword':
                             jsonobj.update({nodekey["uri"]:['test','dataset','Data Inventory Record']})
+                        elif rw in ['restrictionReason']:
+                            jsonobj.update({nodekey["uri"]:"PII Sensitive"})
                         elif rw in ['references','sharingAgreements','describedBy']:
                             jsonobj.update({nodekey["uri"]:'https://example.org/some/valuable/resource.html'})
                         elif rw in ['collectionAuthority','retentionAuthority','releaseAuthority']:

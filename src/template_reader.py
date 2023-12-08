@@ -31,7 +31,7 @@ class TemplateReader:
         for row in ws.rows:
             for cell in row:
                 try:
-                    if "dct:identifier" in cell.comment.text:
+                    if "dcterms:identifier" in cell.comment.text:
                         return True
                 except AttributeError:
                     pass
