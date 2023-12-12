@@ -66,7 +66,7 @@ if __name__=="__main__":
     parser.add_argument("--read_xlsx", help="Read a filled-out Excel template and generate multi-line output JSON for each without validating.")
     parser.add_argument("--noinstructions", help="Do not generate instructions. Mostly for debugging.",
                         action='store_true')
-    parser.add_argument("--validate_xlsx", help="Validate a filled-out Excel template and generate validateion report")
+    parser.add_argument("--validate_xlsx", help="Validate a filled-out Excel template and generate validation report")
     parser.add_argument("--validate", help="Read a single JSON object on stdin and validate.", action='store_true')
     parser.add_argument("--validate_lines", help="Read multiple JSON objects on stdin and validate all.",
                         action='store_true')
@@ -103,7 +103,7 @@ if __name__=="__main__":
             v.validate( jin )
             print("OK")
         except dhs_ontology.ValidationFail as e:
-            print("FAIL:"+e.message)
+            print("FAIL:"+str(e))
 
     if args.make_template:
         make_template(v, args.make_template, not args.noinstructions)
@@ -194,7 +194,7 @@ if __name__=="__main__":
             try:
                 records.append( json.loads( data ) )
             except json.decoder.JSONDecodeError as e:
-                fail.append([line, e.message])
+                fail.append([line, str(e)])
                 continue
         ret = dhs_ontology.validate_inventory_records( v, records)
         if ret['response']==200 and fail==[]:

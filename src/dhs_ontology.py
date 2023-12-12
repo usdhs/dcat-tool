@@ -12,6 +12,14 @@ import time
 import rdflib
 from rdflib import Dataset, Graph, URIRef, Literal, Namespace
 
+# New imports
+from rdflib import Dataset, Graph, URIRef, Literal, Namespace, BNode
+from rdflib.namespace import DC, XSD, RDF, NamespaceManager
+import json
+from dateutil.parser import parse
+from pyshacl import validate
+from datetime import datetime
+
 import template_reader
 import easy_workbook
 
@@ -259,10 +267,159 @@ class Validator:
 
     def validate(self, obj):
         """Check the dictionary (a loaded JSON object) """
-        if not isinstance(obj,dict):
-            raise ValidationFail(f'argument is type "{type(obj)}" and is not a JSON object or python dictionary')
-        if 'dcterms:identifier' not in obj:
-            raise ValidationFail('dcterms:identifier missing')
+        # -- setup a default date incase a date is bad or missing --
+        today = datetime.today()
+
+        # -- a list of fields that can show up as comma seaparted and need to be converted to an array --
+        arrayFields = ['keyword', 'restrictionReason', 'primaryITInvestmentUII', 'fismaID', 'references', 'sharingAgreements', 'sourceDatasets', 'destinationDatasets', 'vendor', 'collectionAuthority', 'retentionAuthority', 'releaseAuthority', 'hostingLocation', 'theme', 'license']
+
+        # -------------------------- create reference graph 's' and python dict (start) -----------------------------------
+        # -- here we read the reference graph in and create a (pretty) python dict to look up properties --
+        s =  Graph().parse(COLLECT_TTL)
+
+        ALL_QUERY_2 = """
+        SELECT DISTINCT ?aProperty ?aMinCount ?aDataType
+        WHERE {
+        {
+        dhs:dataInventoryRecordShape sh:property ?aShapeName .
+        ?aShapeName sh:path ?aProperty .
+        OPTIONAL { ?aShapeName sh:minCount     ?aMinCount . }
+        OPTIONAL { ?aShapeName sh:datatype     ?aDataType . }
+        }
+        UNION 
+        {
+        dhs:characteristicsShape sh:property ?aShapeName .
+        ?aShapeName sh:path ?aProperty .
+        OPTIONAL { ?aShapeName sh:minCount     ?aMinCount . }
+        OPTIONAL { ?aShapeName sh:datatype     ?aDataType . }
+        }
+        }
+        """
+
+        # -- builds a useful data dictionary from the results of the SPARQL query --
+        def buildDataDict(k,v1,v2,v3):
+            allNodesDict.update({k:{v1,v2,v3}})
+
+
+        allNodesDict = {}
+        allNodes = s.query(ALL_QUERY_2)
+        for row in allNodes:
+            if(row[0].rfind('#')>0):
+                start = row[0].rfind('#')
+            else:
+                start = row[0].rfind('/')
+            rowDict = {"uri":str(row[0]),"min":str(row[1]),"type":str(row[2])}
+            allNodesDict.update({row[0][start+1:]:rowDict})
+        # -------------------------- create reference graph 's' and python dict (end) -----------------------------------
+
+        #print(allNodesDict)
+
+        # -- if the provided attribute is potentially an array check to see if it is comma delimited and if so return a list (array) --
+        def checkArray(attValue):
+            testSplit = attValue.split(',')
+            if len(testSplit) > 1:
+                #return '[' + attValue + ']'
+                return testSplit
+            else:
+                return False
+
+        # bind namespace to the graph or its namespace manager
+        USG = Namespace('http://resources.data.gov/resources/dcat-us/#')
+        DCTERMS = Namespace('http://purl.org/dc/terms/')
+        DCAT = Namespace('http://www.w3.org/ns/dcat#')
+        DHS = Namespace('https://usdhs.github.io/dcat-tool/#')
+
+        # -- create an empty graph --
+        dipr = Graph()
+
+        # Bind a few prefix, namespace pairs to the graph
+        dipr.bind("dc", DC)
+        dipr.bind("usg", USG)
+        dipr.bind("xsd", XSD)
+        dipr.bind("dcterms", DCTERMS)
+        dipr.bind("dcat", DCAT)
+        dipr.bind("dhs", DHS)
+
+        # Generate a empty node --  a GUID is generated as the node ID -- you can also create your own node id but it is not required or necessary 
+        bnode = BNode()
+
+        # -- set the rdf type to 'DataInventoryRecord'
+        dipr.add( ( bnode, RDF.type, DHS.DataInventoryRecord))  
+
+        for item in obj:
+            items = item.split(':')
+            #print(items[0] + '... ' + items[1])
+            # -- look up the type and namespace(URI) in the allNodesDict --
+            thisAttrProp = allNodesDict.get(items[1])
+            #print(thisAttrProp['uri'])
+            #print(thisAttrProp['type'])
+            # -- if type is None just treat it like a string --
+            if thisAttrProp['type'] == 'None' or thisAttrProp['type'] == 'http://www.w3.org/2001/XMLSchema#string':
+                # -- if the item is a string (or undefined) type check to see if it is comma delimited --
+                # TODO - this will probably NOT behave correctly for large text fields, so maybe skip title and description and a few others? 
+                if items[1] in arrayFields:
+                    arrayedVal = checkArray(obj[item])
+                    if not arrayedVal:
+                        dipr.add( ( bnode, URIRef(thisAttrProp['uri']), Literal(obj[item])) )
+                    else:
+                        #print(arrayedVal)
+                        for arrayItem in arrayedVal:
+                            dipr.add( ( bnode, URIRef(thisAttrProp['uri']), (Literal(arrayItem))) )
+                else:    
+                    dipr.add( ( bnode, URIRef(thisAttrProp['uri']), Literal(obj[item])) )
+            # -- dates need to be converted to ensure ISO format ---
+            elif thisAttrProp['type'] == 'http://www.w3.org/2001/XMLSchema#date':
+                #print('A Date!!!')
+                # TODO probably should be a try catch here... (and this is not needed in MySQL?)
+                try:
+                    dt = parse(obj[item])
+                #print(dt)
+                except:
+                    dt = today
+                #print(dt.strftime('%Y-%m-%d'))
+                dipr.add( ( bnode, URIRef(thisAttrProp['uri']), Literal(dt.strftime('%Y-%m-%d'), datatype=XSD.date)) )
+            # -- if there is a URL in a string field (won't be a anyURI type here) -- cap it with <> --
+            elif thisAttrProp['type'] == 'http://www.w3.org/2001/XMLSchema#anyURI':
+                #print('A URL!!!')
+                if obj[item][:4] == 'http':
+                    print('A URL: ' + obj[item])
+                    cappedURL = '<' + obj[item] + '>'
+                    dipr.add( ( bnode, URIRef(thisAttrProp['uri']), Literal(cappedURL, datatype=XSD.anyURI) ))
+                else:
+                    dipr.add( ( bnode, URIRef(thisAttrProp['uri']), Literal(obj[item])))
+
+            # -- handle 'characteristics' --
+            elif items[1][:3] == 'ch-':
+                #print('a characteristic! ' + items[1] )
+                # --  see if the characteristicBnode is present in the graph --  
+                if (None, RDF.type, DHS.Characteristics) in dipr:
+                    print("This graph has the characteristic node")
+                else:
+                    # -- create a bnode reference for Characteristic class -- 
+                    characteristicBNode = BNode()
+                    # -- set the rdf type to 'Characteristics' class and add it to the graph -- 
+                    dipr.add( ( characteristicBNode, RDF.type, DHS.Characteristics))
+                    # -- add dhs:characteristic as a node to the main graph --
+                    characteristicAttrProp = allNodesDict.get("characteristics")
+                    # - Yes! - adds a reference node to the primary graph - so the primary record knows there is a 'nested' node set --
+                    dipr.add( ( bnode, URIRef(characteristicAttrProp['uri']), characteristicBNode))
+
+
+                dipr.add( (characteristicBNode, URIRef(thisAttrProp['uri']), Literal(obj[item], datatype=URIRef(thisAttrProp['type']))) )
+            else:
+                dipr.add( ( bnode, URIRef(thisAttrProp['uri']), Literal(obj[item], datatype=URIRef(thisAttrProp['type']))) )
+            #print(recroot[item])
+
+        print("---------rdf/xml-----------")
+        print(dipr.serialize( format='xml'))
+        # print("---------rdf/xml-----------")
+        # print(dipr.serialize( format='json-ld'))
+
+        conforms, report, message = validate(dipr, shacl_graph=s, advanced=True, debug=False)
+
+        if conforms == False:
+            raise ValidationFail(message)
+        
         return True
 
     def add_row(self, obj):
