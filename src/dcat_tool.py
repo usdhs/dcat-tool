@@ -196,14 +196,11 @@ if __name__=="__main__":
             except json.decoder.JSONDecodeError as e:
                 fail.append([line, str(e)])
                 continue
-        ret = dhs_ontology.validate_inventory_records( v, records)
-        if ret['response']==200 and fail==[]:
+        try:
+            dhs_ontology.validate_inventory_records(v, records)
             print("OK")
-        else:
-            print("FAILURE:")
-            print(json.dumps(ret,indent=4, default=str))
-            exit(1 if not args.flip else 0)
-        exit(0 if not args.flip else 1)
+        except dhs_ontology.ValidationFail as e:
+            print("FAIL:"+str(e))
 
     if args.validate_xlsx:
         print(json.dumps( dhs_ontology.validate_xlsx( v, args.validate_xlsx), indent=4, default=str))

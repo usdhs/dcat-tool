@@ -432,9 +432,6 @@ class Validator:
         self.seenIDs.add(ident)
         self.rows.append( obj )
 
-    # TODO: Implement shackl validation.
-    # Make sure all mandatory fields are present
-    # Make sure all fields have correct format
 
 
 def validate_inventory_records( v, records ):
@@ -444,15 +441,16 @@ def validate_inventory_records( v, records ):
     ret['messages'] = []
     ret['errors']   = []
     v.clear()
-    for (num,record) in enumerate(records):
+    for num, record in enumerate(records):
         ret['records'].append(record)
         try:
-            v.add_row( record )
+            v.validate(record)
             ret['messages'].append('OK')
         except ValidationFail as e:
             ret['response'] = 409
             ret['errors'].append(num)
             ret['messages'].append(str(e))
+
     return ret
 
 def read_xlsx(fname) :
