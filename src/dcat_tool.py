@@ -215,7 +215,7 @@ if __name__=="__main__":
     This code is not working propertly.
 
 Test:
-echo '{ "dct:identifier": "id102", "dct:title": "This is ID102", "dct:description": "This is the third dataset" }' |  python dcat_tool.py --convertJSON
+echo '{ "dcterms:identifier": "id102", "dcterms:title": "This is ID102", "dcterms:description": "This is the third dataset", "usg:accessLevel": "public", "dhs:dataCatalogRecordAccessLevel": "public", "dcterms:issued": "12/22/2023", "dhs:component": "MGMT" }' |  python dcat_tool.py --convertJSON
 
 URLs for help:
 https://github.com/RDFLib/rdflib/issues/543

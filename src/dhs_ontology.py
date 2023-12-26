@@ -296,11 +296,6 @@ class Validator:
         }
         """
 
-        # -- builds a useful data dictionary from the results of the SPARQL query --
-        def buildDataDict(k,v1,v2,v3):
-            allNodesDict.update({k:{v1,v2,v3}})
-
-
         allNodesDict = {}
         allNodes = s.query(ALL_QUERY_2)
         for row in allNodes:
@@ -382,7 +377,7 @@ class Validator:
             elif thisAttrProp['type'] == 'http://www.w3.org/2001/XMLSchema#anyURI':
                 #print('A URL!!!')
                 if obj[item][:4] == 'http':
-                    print('A URL: ' + obj[item])
+                    #print('A URL: ' + obj[item])
                     cappedURL = '<' + obj[item] + '>'
                     dipr.add( ( bnode, URIRef(thisAttrProp['uri']), Literal(cappedURL, datatype=XSD.anyURI) ))
                 else:
@@ -392,9 +387,7 @@ class Validator:
             elif items[1][:3] == 'ch-':
                 #print('a characteristic! ' + items[1] )
                 # --  see if the characteristicBnode is present in the graph --  
-                if (None, RDF.type, DHS.Characteristics) in dipr:
-                    print("This graph has the characteristic node")
-                else:
+                if (None, RDF.type, DHS.Characteristics) not in dipr:
                     # -- create a bnode reference for Characteristic class -- 
                     characteristicBNode = BNode()
                     # -- set the rdf type to 'Characteristics' class and add it to the graph -- 
