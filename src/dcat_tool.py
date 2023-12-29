@@ -43,11 +43,12 @@ def make_template(v, fname, include_instructions):
     eg.add_columns_sheet("Inventory", v.ci_objs)
     eg.save( fname )
 
-if __name__=="__main__":
+
+def parse_arguments(args):
     import argparse
 
     parser = argparse.ArgumentParser(description='Use a DCAT schema to produce capture instruments and APIs.',
-                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+                                    formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--schemata_dir",
                         help="specify the directory to read all the schemata. If the --schema file is in schemata_dir, it will only be read once.",
                         default=dhs_ontology.SCHEMATA_DIR)
@@ -72,8 +73,12 @@ if __name__=="__main__":
                         action='store_true')
     parser.add_argument("--flip", help="Flip exit code with --validate_lines", action='store_true')
     parser.add_argument("--convertJSON", help="Read simplified JSON on stdin line-by-line and output full RDF/JSON using DCATv3 spec",action='store_true')
-    args = parser.parse_args()
+    
 
+    return parser, parser.parse_args(args)
+
+### ------- TODO: make define_args return something consistent and don't print anything until main -------- ###
+def define_args(args):
     if args.dumpts:
         print("Dumping triple store:\n")
         for stmt in sorted( dhs_ontology.dcatv3_ontology(args.schemata_dir, args.schema_file) ):
@@ -203,7 +208,11 @@ if __name__=="__main__":
             print("FAIL:"+str(e))
 
     if args.validate_xlsx:
-        print(json.dumps( dhs_ontology.validate_xlsx( v, args.validate_xlsx), indent=4, default=str))
+        res = dhs_ontology.validate_xlsx( v, args.validate_xlsx)
+        print(json.dumps(res, indent=4, default=str))
+        if res.get('errors') is not None:
+            return False
+
 
     if args.writeschema:
         fmt = os.path.splitext(args.writeschema)[1][1:].lower()
@@ -239,3 +248,9 @@ https://github.com/RDFLib/rdflib/issues/1232
                 g2.add( ( bnode, URIRef(k), Literal(v)) )
             print(g2)
             print(g2.serialize( format='turtle'))
+    return True
+
+if __name__=="__main__":
+    print(sys.argv[1:])
+    parser, args = parse_arguments(sys.argv[1:])
+    define_args(args)
