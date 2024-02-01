@@ -208,6 +208,7 @@ def define_args(args):
             print("OK")
         except dhs_ontology.ValidationFail as e:
             print("FAIL:"+str(e))
+            return False
 
     if args.validate_xlsx:
         res = dhs_ontology.validate_xlsx( v, args.validate_xlsx)

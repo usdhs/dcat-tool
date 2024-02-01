@@ -58,6 +58,13 @@ def validateSimpleJSON():
     results = dcat_tool.define_args(args)
     return results
 
+def validateJSONLines():
+    input_data = '{ "dcterms:identifier": "id102", "dcterms:title": "This is ID102", "dcterms:description": "This is the third dataset", "usg:accessLevel": "public", "dhs:dataCatalogRecordAccessLevel": "public", "dcterms:issued": "12/22/2023", "dhs:component": "MGMT" }, { "dcterms:identifier": "id103", "dcterms:title": "This is ID103", "dcterms:description": "This is the fourth dataset", "usg:accessLevel": "public", "dhs:dataCatalogRecordAccessLevel": "public", "dcterms:issued": "1/2/2024", "dhs:component": "MGMT" }'
+    sys.stdin = StringIO(input_data)
+    parser, args = dcat_tool.parse_arguments(['--validate_lines'])
+    results = dcat_tool.define_args(args)
+    return results
+
 class TestDIPValidation(unittest.TestCase):
 
     def test_1(self):
@@ -98,6 +105,10 @@ class TestDIPValidation(unittest.TestCase):
     def test_8(self):
         validate_test_8 = validateSimpleJSON()
         self.assertTrue(validate_test_8, True)
+
+    def test_9(self):
+        validate_test_9 = validateJSONLines()
+        self.assertTrue(validate_test_9, True)
 
 if __name__ == '__main__':
     unittest.main()
