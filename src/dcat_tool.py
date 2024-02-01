@@ -104,11 +104,13 @@ def define_args(args):
         except json.decoder.JSONDecodeError as e:
             print(e)
             print("offending input: ",data)
+            return False      
         try:
             v.validate( jin )
             print("OK")
         except dhs_ontology.ValidationFail as e:
             print("FAIL:"+str(e))
+            return False
 
     if args.make_template:
         make_template(v, args.make_template, not args.noinstructions)
@@ -210,7 +212,7 @@ def define_args(args):
     if args.validate_xlsx:
         res = dhs_ontology.validate_xlsx( v, args.validate_xlsx)
         print(json.dumps(res, indent=4, default=str))
-        if res.get('errors') is not None:
+        if res.get('errors'):
             return False
 
 
