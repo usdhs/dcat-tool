@@ -403,13 +403,14 @@ class Validator:
                 dipr.add( ( bnode, URIRef(thisAttrProp['uri']), Literal(obj[item], datatype=URIRef(thisAttrProp['type']))) )
             #print(recroot[item])
 
-        print("---------rdf/xml-----------")
-        print(dipr.serialize( format='xml'))
         # print("---------rdf/xml-----------")
+        # print(dipr.serialize( format='xml'))
+        # print("---------rdf/json-----------")
         # print(dipr.serialize( format='json-ld'))
 
         conforms, report, message = validate(dipr, shacl_graph=s, advanced=True, debug=False)
 
+### --------- TODO: Fix validation fail output to make it less cluttered and clearer ----------- ###
         if conforms == False:
             raise ValidationFail(message)
         
