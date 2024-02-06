@@ -66,7 +66,7 @@ if __name__=="__main__":
     parser.add_argument("--read_xlsx", help="Read a filled-out Excel template and generate multi-line output JSON for each without validating.")
     parser.add_argument("--noinstructions", help="Do not generate instructions. Mostly for debugging.",
                         action='store_true')
-    parser.add_argument("--validate_xlsx", help="Validate a filled-out Excel template and generate validateion report")
+    parser.add_argument("--validate_xlsx", help="Validate a filled-out Excel template and generate validation report")
     parser.add_argument("--validate", help="Read a single JSON object on stdin and validate.", action='store_true')
     parser.add_argument("--validate_lines", help="Read multiple JSON objects on stdin and validate all.",
                         action='store_true')
@@ -103,7 +103,7 @@ if __name__=="__main__":
             v.validate( jin )
             print("OK")
         except dhs_ontology.ValidationFail as e:
-            print("FAIL:"+e.message)
+            print("FAIL:"+str(e))
 
     if args.make_template:
         make_template(v, args.make_template, not args.noinstructions)
@@ -194,16 +194,13 @@ if __name__=="__main__":
             try:
                 records.append( json.loads( data ) )
             except json.decoder.JSONDecodeError as e:
-                fail.append([line, e.message])
+                fail.append([line, str(e)])
                 continue
-        ret = dhs_ontology.validate_inventory_records( v, records)
-        if ret['response']==200 and fail==[]:
+        try:
+            dhs_ontology.validate_inventory_records(v, records)
             print("OK")
-        else:
-            print("FAILURE:")
-            print(json.dumps(ret,indent=4, default=str))
-            exit(1 if not args.flip else 0)
-        exit(0 if not args.flip else 1)
+        except dhs_ontology.ValidationFail as e:
+            print("FAIL:"+str(e))
 
     if args.validate_xlsx:
         print(json.dumps( dhs_ontology.validate_xlsx( v, args.validate_xlsx), indent=4, default=str))
@@ -218,7 +215,7 @@ if __name__=="__main__":
     This code is not working propertly.
 
 Test:
-echo '{ "dct:identifier": "id102", "dct:title": "This is ID102", "dct:description": "This is the third dataset" }' |  python dcat_tool.py --convertJSON
+echo '{ "dcterms:identifier": "id102", "dcterms:title": "This is ID102", "dcterms:description": "This is the third dataset", "usg:accessLevel": "public", "dhs:dataCatalogRecordAccessLevel": "public", "dcterms:issued": "12/22/2023", "dhs:component": "MGMT" }' |  python dcat_tool.py --convertJSON
 
 URLs for help:
 https://github.com/RDFLib/rdflib/issues/543
